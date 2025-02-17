@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Footer = () => {
     return (
       <footer className='bg-white shadow-sm'>
@@ -6,54 +8,21 @@ const Footer = () => {
           <div className='flex flex-col items-center text-center'>
             <div className='flex gap-2 items-center'>
               <img className='w-auto h-7' src='' alt='' />
-              <span>SoloSphere</span>
+              <Link to="/"><span className="font-semibold">ClassifiedAds</span></Link>
             </div>
   
-            <div className='flex flex-wrap justify-center mt-6 -mx-4'>
-              <a
-                href='#'
-                className='mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 '
-                aria-label='Reddit'
-              >
-                {' '}
-                Home{' '}
-              </a>
+            <div className='flex flex-wrap justify-center mt-6 -mx-4 gap-4'>
+              <Link to="/all-ads">All Ads</Link>
+              <Link to="/about">About</Link>
+              <Link to="/privacy">Privacy</Link> 
+              <Link to="/cookies">Cookies</Link>
+              <Link to="/update-ads">Update Ads</Link>
   
-              <a
-                href='#'
-                className='mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 '
-                aria-label='Reddit'
-              >
-                {' '}
-                About{' '}
-              </a>
+            
+             
   
-              <a
-                href='#'
-                className='mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 '
-                aria-label='Reddit'
-              >
-                {' '}
-                Teams{' '}
-              </a>
-  
-              <a
-                href='#'
-                className='mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 '
-                aria-label='Reddit'
-              >
-                {' '}
-                Privacy{' '}
-              </a>
-  
-              <a
-                href='#'
-                className='mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 '
-                aria-label='Reddit'
-              >
-                {' '}
-                Cookies{' '}
-              </a>
+               
+            
             </div>
           </div>
   
@@ -61,7 +30,7 @@ const Footer = () => {
   
           <div className='flex flex-col items-center sm:flex-row sm:justify-between'>
             <p className='text-sm text-gray-500 '>
-              © Copyright 2021. All Rights Reserved.
+              © Copyright 2025. All Rights Reserved.
             </p>
   
             <div className='flex -mx-2'>
