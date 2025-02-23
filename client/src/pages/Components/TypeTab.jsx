@@ -21,7 +21,7 @@ const TypeTab = () => {
            <AdCard></AdCard>
            </div>
            <div className='my-4 text-center' >
-           <Link to="/post-events">
+           <Link to="/all-ads">
   <button className="px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition w-60">
      All Services
     </button>
@@ -35,7 +35,7 @@ const TypeTab = () => {
            <AdCard></AdCard>
            </div>
            <div className='my-4 text-center' >
-           <Link to="/post-events">
+           <Link to="/all-ads">
   <button className="px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition w-60">
      All Events
     </button>

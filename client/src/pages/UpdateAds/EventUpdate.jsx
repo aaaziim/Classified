@@ -7,7 +7,7 @@ const EventUpdate = () => {
     <div className='mb-4'>
          <Helmet>
                   <title>Update Event</title>
-                </Helmet>
+        </Helmet>
           <div className='space-y-4 mb-4'>
       <Breadcrumb
        title={"Update Events"}

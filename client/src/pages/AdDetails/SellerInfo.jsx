@@ -6,7 +6,7 @@ const SellerInfo = () => {
       <div className="bg-white shadow-md rounded-lg p-4">
     <h3 className="text-lg font-semibold border-b pb-2 mb-4">Seller Information</h3>
 
-    <div className="flex items-center space-x-4">
+    <div className="flex flex-col items-center space-x-4">
         <img width="80" height="80" className="rounded-full border" src="https://www.radiustheme.com/demo/wordpress/themes/classima/wp-content/uploads/2023/08/logo_5.png" alt="Seller Logo" />
         <div>
             <h4 className="text-base font-semibold">
@@ -18,7 +18,7 @@ const SellerInfo = () => {
     <div className="mt-4 space-y-2">
         <div className="flex items-center text-gray-700">
             <i className="fa fa-shopping-basket mr-2"></i>
-            <a href="https://www.radiustheme.com/demo/wordpress/themes/classima/store/radiustheme/" className="text-blue-500 hover:underline">View Store</a>
+            <a href="https://www.radiustheme.com/demo/wordpress/themes/classima/store/radiustheme/" className="text-blue-500 hover:underline">View Profile</a>
         </div>
 
      

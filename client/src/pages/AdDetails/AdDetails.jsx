@@ -13,7 +13,7 @@ const AdDetails = () => {
           </Helmet>
           <div className='flex flex-col justify-center md:flex-row gap-4 my-10'>
        
-       <div className='w-full md:2/3 bg-gray-200 p-4 space-y-4'>
+       <div className='w-full md:2/3 bg-gray-200 p-4 space-y-4 rounded-2xl '>
            <img className='w-full h-96' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2z-Qg3pe-RY9Lv8kQ4Ik3uFlebhYk4I9R0Q&s" alt="" />
        <div className='flex gap-4'> 
            <p className='flex items-center gap-2'><span><MdOutlineDateRange /></span> <span>12,12,2025</span></p>

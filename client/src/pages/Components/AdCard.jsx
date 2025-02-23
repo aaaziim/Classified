@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const AdCard = () => {
   return (
+    <Link to="/ad-details">
     <div>
       <div className="card bg-base-100 shadow-sm">
   <figure>
@@ -18,6 +20,7 @@ const AdCard = () => {
   </div>
 </div>
     </div>
+    </Link>
   )
 }
 

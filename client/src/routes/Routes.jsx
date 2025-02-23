@@ -21,6 +21,8 @@ import MyServices from "../pages/UserAuthentication/Profile/MyServices";
 import MyEvents from "../pages/UserAuthentication/Profile/MyEvents";
 import ServiceUpdate from "../pages/UpdateAds/ServiceUpdate";
 import EventUpdate from "../pages/UpdateAds/EventUpdate";
+import SingleCategoryPage from "../pages/SingleCategoryPage/SingleCategoryPage";
+import SingleLocationPage from "../pages/SingleLocationPage/SingleLocationPage";
 
 
 const routes = createBrowserRouter([
@@ -101,6 +103,14 @@ const routes = createBrowserRouter([
             {
                 path:"/ad-details",
                 element:<AdDetails></AdDetails>
+            },
+            {
+                path:`/category/:name`,
+                element:<SingleCategoryPage></SingleCategoryPage>
+            },
+            {
+                path:`/location/:name`,
+                element:<SingleLocationPage></SingleLocationPage>
             },
             
            
