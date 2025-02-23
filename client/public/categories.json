@@ -1,0 +1,52 @@
+[
+    {
+      "id": 1,
+      "name": "Vehicles",
+      "slug": "vehicles",
+      "subcategories": [
+        { "id": 101, "name": "Cars", "slug": "cars" },
+        { "id": 102, "name": "Motorcycles", "slug": "motorcycles" },
+        { "id": 103, "name": "Trucks", "slug": "trucks" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Real Estate",
+      "slug": "real-estate",
+      "subcategories": [
+        { "id": 201, "name": "Apartments", "slug": "apartments" },
+        { "id": 202, "name": "Houses", "slug": "houses" },
+        { "id": 203, "name": "Commercial Properties", "slug": "commercial-properties" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Electronics",
+      "slug": "electronics",
+      "subcategories": [
+        { "id": 301, "name": "Mobile Phones", "slug": "mobile-phones" },
+        { "id": 302, "name": "Laptops", "slug": "laptops" },
+        { "id": 303, "name": "Cameras", "slug": "cameras" }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Jobs",
+      "slug": "jobs",
+      "subcategories": [
+        { "id": 401, "name": "IT & Software", "slug": "it-software" },
+        { "id": 402, "name": "Marketing", "slug": "marketing" },
+        { "id": 403, "name": "Construction", "slug": "construction" }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Services",
+      "slug": "services",
+      "subcategories": [
+        { "id": 501, "name": "Home Services", "slug": "home-services" },
+        { "id": 502, "name": "Education & Training", "slug": "education-training" },
+        { "id": 503, "name": "Event Planning", "slug": "event-planning" }
+      ]
+    }
+  ]

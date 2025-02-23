@@ -2,8 +2,10 @@ import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import Breadcrumb from '../Components/Breadcrumb'
 import AdCard from '../Components/AdCard'
+import { useParams } from 'react-router'
 
 const SingleCategoryPage = () => {
+  const { slug } = useParams();
   return (
     <div>
        <Helmet>
@@ -11,7 +13,7 @@ const SingleCategoryPage = () => {
           </Helmet>
           <div className='space-y-4 mb-4'>
       <Breadcrumb
-       title={"Category Name"}
+        title={`${slug}`} 
        subTitle={"Here you can update your service information"}>
        </Breadcrumb>
     </div>

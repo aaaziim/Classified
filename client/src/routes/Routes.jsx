@@ -105,11 +105,11 @@ const routes = createBrowserRouter([
                 element:<AdDetails></AdDetails>
             },
             {
-                path:`/category/:name`,
+                path:`/category/:slug`,
                 element:<SingleCategoryPage></SingleCategoryPage>
             },
             {
-                path:`/location/:name`,
+                path:`/location/:slug`,
                 element:<SingleLocationPage></SingleLocationPage>
             },
             
