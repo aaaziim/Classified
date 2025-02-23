@@ -1,10 +1,14 @@
 import React from 'react'
 import Breadcrumb from '../Components/Breadcrumb'
+import { Helmet } from 'react-helmet-async'
 
 const PostEvents = () => {
   return (
     
            <div className='space-y-4 mb-4'>
+              <Helmet>
+                                      <title>Post Event</title>
+                      </Helmet>
       
       <Breadcrumb title={"Post an Event"}></Breadcrumb>
 

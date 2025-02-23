@@ -1,11 +1,22 @@
 import React from 'react'
 import LoadingSpinner from '../Components/LoadingSpinner'
 import AdCard from '../Components/AdCard'
+import { Helmet } from 'react-helmet-async'
+import Breadcrumb from '../Components/Breadcrumb'
 
 const AllAds = () => {
   const pages = [1, 2, 3, 4, 5]
   return (
     <div>
+        <Helmet>
+                          <title>All Ads</title>
+          </Helmet>
+          <div className='space-y-4 mb-4'>
+      <Breadcrumb
+       title={"All Ads"}
+       subTitle={"Here you can find"}>
+       </Breadcrumb>
+    </div>
         <h1 className="text-6xl">All Ads</h1>
         <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
       <div>

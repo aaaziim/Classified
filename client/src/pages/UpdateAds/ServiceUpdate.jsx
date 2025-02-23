@@ -1,10 +1,14 @@
 import React from 'react'
 import Breadcrumb from '../Components/Breadcrumb'
+import { Helmet } from 'react-helmet-async'
 
 const ServiceUpdate = () => {
   return (
 
     <div className='mb-4'>
+        <Helmet>
+                          <title>Update Service</title>
+                </Helmet>
           <div className='space-y-4 mb-4'>
       <Breadcrumb
        title={"Update Service"}

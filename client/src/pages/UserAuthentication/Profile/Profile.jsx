@@ -6,6 +6,9 @@ import Breadcrumb from '../../Components/Breadcrumb'
 const Profile = () => {
   return (
     <div className='mb-4'>
+        <Helmet>
+          <title>Profile</title>
+        </Helmet>
         <div className='space-y-4 mb-4'>
       
       <Breadcrumb title={"Profile"}></Breadcrumb>

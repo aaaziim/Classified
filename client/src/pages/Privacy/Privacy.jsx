@@ -1,9 +1,19 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
+import Breadcrumb from '../Components/Breadcrumb'
 
 const Privacy = () => {
   return (
     <div>
-        <h1 className="text-6xl">Privacy</h1>
+         <div className='space-y-4 mb-4'>
+      <Breadcrumb
+       title={"Privacy Policy"}
+       subTitle={"Here you can read safety information"}>
+       </Breadcrumb>
+    </div>
+        <Helmet>
+                          <title>Privacy</title>
+          </Helmet>
     </div>
   )
 }
