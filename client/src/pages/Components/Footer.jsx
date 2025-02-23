@@ -16,7 +16,9 @@ const Footer = () => {
               <Link to="/about">About</Link>
               <Link to="/privacy">Privacy</Link> 
               <Link to="/cookies">Cookies</Link>
-              <Link to="/update-ads">Update Ads</Link>
+              <Link to="/service-update">Update Service</Link>
+              <Link to="/event-update">Update Event</Link>
+              <Link to="/ad-details">View Ads</Link>
   
             
              

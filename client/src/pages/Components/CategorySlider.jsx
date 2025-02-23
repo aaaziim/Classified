@@ -19,7 +19,7 @@ const CategorySlider = () => {
         <SwiperSlide>
             <div className="avatar avatar-placeholder">
                 <div className="bg-neutral text-neutral-content w-32 rounded-full">
-                    <span className="text-xl">Electronics</span>
+                    <span className="text-xl">Pets</span>
                  </div>
             </div>
         </SwiperSlide>
@@ -33,14 +33,14 @@ const CategorySlider = () => {
         <SwiperSlide>
             <div className="avatar avatar-placeholder">
                 <div className="bg-neutral text-neutral-content w-32 rounded-full">
-                    <span className="text-xl">Electronics</span>
+                    <span className="text-xl">Furniture</span>
                  </div>
             </div>
         </SwiperSlide>
         <SwiperSlide>
             <div className="avatar avatar-placeholder">
                 <div className="bg-neutral text-neutral-content w-32 rounded-full">
-                    <span className="text-xl">Electronics</span>
+                    <span className="text-xl">Services</span>
                  </div>
             </div>
         </SwiperSlide>

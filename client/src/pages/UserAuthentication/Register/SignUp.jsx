@@ -118,6 +118,16 @@ const SignUp = () => {
                   type='password'
                 />
               </div>
+              
+
+              <div className='mt-4 flex items-center'>
+              <input type='checkbox' id='terms' className='mr-2'   />
+              <label htmlFor='terms' className='text-sm text-gray-600'>
+                I agree to the <Link to='/terms' className='text-blue-600 hover:underline'>Terms and Conditions</Link>
+              </label>
+            </div>
+
+
               <div className='mt-6'>
                 <button
                   type='submit'

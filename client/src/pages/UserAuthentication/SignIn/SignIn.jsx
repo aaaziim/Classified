@@ -78,13 +78,16 @@ const SignIn = () => {
               </div>
   
               <div className='mt-4'>
-                <div className='flex justify-between'>
+              <div className='flex justify-between'>
                   <label
                     className='block mb-2 text-sm font-medium text-gray-600 '
                     htmlFor='loggingPassword'
                   >
                     Password
                   </label>
+                  <Link to='/forgot-password' className='text-xs text-gray-500 hover:underline'>
+                    Forgot Password?
+                  </Link>
                 </div>
   
                 <input

@@ -2,11 +2,11 @@ import { Link } from "react-router";
 
 const Navbar = () => {
     return (
-      <div className='navbar bg-base-100 shadow-sm container px-4 mx-auto'>
+      <div className='navbar bg-base-100 shadow-sm px-4 mb-4'>
         <div className='flex-auto'>
-          <div>
-            <Link to="/"  className='flex gap-2 items-center'>
-            <img className='w-auto h-7' src='' alt='' />
+          <div  className='flex gap-2 items-center'>
+            <Link to="/" >
+           
             <span className='font-bold'>ClassifiedAds</span>
             </Link>
           </div>
@@ -42,7 +42,7 @@ const Navbar = () => {
               </li>
 
               <li>
-              <Link to="/my-ads">My Ads</Link>
+              <Link to="/my-services">My Services</Link>
               </li>
               <li>
               <Link to="/my-events">My Events</Link>
@@ -56,7 +56,7 @@ const Navbar = () => {
            
           </div>
            
-             <Link to="/post-ad"><button className="btn btn-outline">Post Ad</button></Link>
+             <Link to="/post"><button className="btn btn-outline">Post Ad</button></Link>
         
         </div>
        
