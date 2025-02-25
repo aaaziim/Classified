@@ -23,6 +23,7 @@ import ServiceUpdate from "../pages/UpdateAds/ServiceUpdate";
 import EventUpdate from "../pages/UpdateAds/EventUpdate";
 import SingleCategoryPage from "../pages/SingleCategoryPage/SingleCategoryPage";
 import SingleLocationPage from "../pages/SingleLocationPage/SingleLocationPage";
+import EventDetails from "../pages/AdDetails/EventDetails";
 
 
 const routes = createBrowserRouter([
@@ -103,6 +104,10 @@ const routes = createBrowserRouter([
             {
                 path:"/ad-details",
                 element:<AdDetails></AdDetails>
+            },
+            {
+                path:"/event-details",
+                element:<EventDetails></EventDetails>
             },
             {
                 path:`/category/:slug`,

@@ -1,59 +1,58 @@
 [
-      {
-        "id": 1,
-        "name": "Alabama",
-        "code": "AL",
-        "slug": "alabama",
-        "sub_locations": [
-          { "id": 101, "name": "Birmingham", "slug": "birmingham" },
-          { "id": 102, "name": "Huntsville / Decatur", "slug": "huntsville-decatur" },
-          { "id": 103, "name": "Mobile", "slug": "mobile" },
-          { "id": 104, "name": "Montgomery", "slug": "montgomery" },
-          { "id": 105, "name": "Tuscaloosa", "slug": "tuscaloosa" }
-        ]
-      },
-      {
-        "id": 2,
-        "name": "Alaska",
-        "code": "AK",
-        "slug": "alaska",
-        "sub_locations": [
-          { "id": 201, "name": "Anchorage / Mat-Su", "slug": "anchorage-matsu" },
-          { "id": 202, "name": "Fairbanks", "slug": "fairbanks" },
-          { "id": 203, "name": "Kenai Peninsula", "slug": "kenai-peninsula" },
-          { "id": 204, "name": "Southeast Alaska", "slug": "southeast-alaska" }
-        ]
-      },
-      {
-        "id": 3,
-        "name": "Arizona",
-        "code": "AZ",
-        "slug": "arizona",
-        "sub_locations": [
-          { "id": 301, "name": "Flagstaff / Sedona", "slug": "flagstaff-sedona" },
-          { "id": 302, "name": "Mohave County", "slug": "mohave-county" },
-          { "id": 303, "name": "Phoenix", "slug": "phoenix" },
-          { "id": 304, "name": "Prescott", "slug": "prescott" },
-          { "id": 305, "name": "Show Low", "slug": "show-low" },
-          { "id": 306, "name": "Sierra Vista", "slug": "sierra-vista" },
-          { "id": 307, "name": "Tucson", "slug": "tucson" },
-          { "id": 308, "name": "Yuma", "slug": "yuma" }
-        ]
-      },
-      {
-        "id": 4,
-        "name": "Arkansas",
-        "code": "AR",
-        "slug": "arkansas",
-        "sub_locations": [
-          { "id": 401, "name": "Fayetteville", "slug": "fayetteville" },
-          { "id": 402, "name": "Fort Smith", "slug": "fort-smith" },
-          { "id": 403, "name": "Jonesboro", "slug": "jonesboro" },
-          { "id": 404, "name": "Little Rock", "slug": "little-rock" },
-          { "id": 405, "name": "Texarkana", "slug": "texarkana" }
-        ]
-      }
-       
+  {
+    "id": 1,
+    "name": "Alabama",
+    "code": "AL",
+    "slug": "alabama",
+    "sub_locations": [
+      { "id": 101, "name": "Birmingham", "slug": "birmingham" },
+      { "id": 102, "name": "Huntsville / Decatur", "slug": "huntsville-decatur" },
+      { "id": 103, "name": "Mobile", "slug": "mobile" },
+      { "id": 104, "name": "Montgomery", "slug": "montgomery" },
+      { "id": 105, "name": "Tuscaloosa", "slug": "tuscaloosa" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Alaska",
+    "code": "AK",
+    "slug": "alaska",
+    "sub_locations": [
+      { "id": 201, "name": "Anchorage / Mat-Su", "slug": "anchorage-matsu" },
+      { "id": 202, "name": "Fairbanks", "slug": "fairbanks" },
+      { "id": 203, "name": "Kenai Peninsula", "slug": "kenai-peninsula" },
+      { "id": 204, "name": "Southeast Alaska", "slug": "southeast-alaska" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Arizona",
+    "code": "AZ",
+    "slug": "arizona",
+    "sub_locations": [
+      { "id": 301, "name": "Flagstaff / Sedona", "slug": "flagstaff-sedona" },
+      { "id": 302, "name": "Mohave County", "slug": "mohave-county" },
+      { "id": 303, "name": "Phoenix", "slug": "phoenix" },
+      { "id": 304, "name": "Prescott", "slug": "prescott" },
+      { "id": 305, "name": "Show Low", "slug": "show-low" },
+      { "id": 306, "name": "Sierra Vista", "slug": "sierra-vista" },
+      { "id": 307, "name": "Tucson", "slug": "tucson" },
+      { "id": 308, "name": "Yuma", "slug": "yuma" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Arkansas",
+    "code": "AR",
+    "slug": "arkansas",
+    "sub_locations": [
+      { "id": 401, "name": "Fayetteville", "slug": "fayetteville" },
+      { "id": 402, "name": "Fort Smith", "slug": "fort-smith" },
+      { "id": 403, "name": "Jonesboro", "slug": "jonesboro" },
+      { "id": 404, "name": "Little Rock", "slug": "little-rock" },
+      { "id": 405, "name": "Texarkana", "slug": "texarkana" }
+    ]
+  }
+   
 ]
-  
-  
+
