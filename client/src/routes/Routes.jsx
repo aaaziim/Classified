@@ -24,6 +24,7 @@ import EventUpdate from "../pages/UpdateAds/EventUpdate";
 import SingleCategoryPage from "../pages/SingleCategoryPage/SingleCategoryPage";
 import SingleLocationPage from "../pages/SingleLocationPage/SingleLocationPage";
 import EventDetails from "../pages/AdDetails/EventDetails";
+import PrivateRoute from "./PrivateRoute";
 
 
 const routes = createBrowserRouter([
@@ -47,27 +48,27 @@ const routes = createBrowserRouter([
             },
             {
                 path:"/profile",
-                element:<Profile></Profile>
+                element:<PrivateRoute> <Profile></Profile></PrivateRoute>
             },
             {
                 path:"/my-services",
-                element:<MyServices></MyServices>
+                element:<PrivateRoute> <MyServices></MyServices></PrivateRoute>
             },
             {
                 path:"/my-events",
-                element:<MyEvents></MyEvents>
+                element:<PrivateRoute> <MyEvents></MyEvents></PrivateRoute>
             },
             {
                 path:"/post",
-                element:<PostAds></PostAds>
+                element:<PrivateRoute> <PostAds></PostAds></PrivateRoute>
             },
             {
                 path:"/post-services",
-                element:<PostServices></PostServices>
+                element:<PrivateRoute> <PostServices></PostServices></PrivateRoute>
             },
             {
                 path:"/post-events",
-                element:<PostEvents></PostEvents>
+                element:<PrivateRoute> <PostEvents></PostEvents></PrivateRoute>
             },
             {
                 path:"/about",
@@ -87,15 +88,15 @@ const routes = createBrowserRouter([
             },
             {
                 path:"/service-update",
-                element:<ServiceUpdate></ServiceUpdate>
+                element:<PrivateRoute> <ServiceUpdate></ServiceUpdate></PrivateRoute>
             },
             {
                 path:"/event-update",
-                element:<EventUpdate></EventUpdate>
+                element:<PrivateRoute> <EventUpdate></EventUpdate></PrivateRoute>
             },
             {
                 path:"/update-profile",
-                element:<UpdateProfile></UpdateProfile>
+                element:<PrivateRoute> <UpdateProfile></UpdateProfile></PrivateRoute>
             },
             {
                 path:"/all-ads",
