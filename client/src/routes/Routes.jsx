@@ -26,7 +26,6 @@ import SingleLocationPage from "../pages/SingleLocationPage/SingleLocationPage";
 import EventDetails from "../pages/AdDetails/EventDetails";
 import PrivateRoute from "./PrivateRoute";
 
-
 const routes = createBrowserRouter([
     {
         path: "/",
