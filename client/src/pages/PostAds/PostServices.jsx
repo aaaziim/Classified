@@ -9,6 +9,7 @@ const PostServices = () => {
     const [locations, setLocations] = useState([]);
     const [country, setCountry] = useState("");
     const [stateIndex, setStateIndex] = useState(0);
+    const [categoryIndex, setCategoryIndex] = useState(0);
     const [state, setState] = useState();
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
@@ -103,11 +104,21 @@ const PostServices = () => {
 
                         <label className='block'>
                             <span className='text-[#001C27]'>Category</span>
-                            <select name='service_category' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
+                            <select name='service_category' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required
+                             onChange={(e) => setCategoryIndex(e.target.selectedIndex - 1)} 
+                            >
                                 <option value=''>Select Category</option>
-                                <option value='Cleaning'>Cleaning</option>
-                                <option value='Repair'>Repair</option>
-                                <option value='IT Support'>IT Support</option>
+                                {
+    categories.map((category, index) => (
+        <option 
+            key={index} 
+            value={category.name} 
+           // Wrap the function call in an anonymous function
+        >
+            {category.name}
+        </option>
+    ))
+}
                             </select>
                         </label>
 
@@ -115,6 +126,17 @@ const PostServices = () => {
                             <span className='text-[#001C27]'>Sub-Category</span>
                             <select name='service_subcategory' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
                                 <option value=''>Select Sub-Category</option>
+                                {
+
+categories[categoryIndex].subcategories.map((subcategory, index) => (
+    <option 
+        key={index} 
+        value={subcategory.name} 
+    >
+        {subcategory.name}
+    </option>
+))
+                                }
                             </select>
                         </label>
 
