@@ -12,7 +12,7 @@ import Contact from "../pages/Contact/Contact";
 import Privacy from "../pages/Privacy/Privacy";
 import Cookies from "../pages/Cookies/Cookies";
  
-import AllAds from "../pages/AllAds/AllAds";
+import AllAds from "../pages/AllAds/AllServices";
 import AdDetails from "../pages/AdDetails/AdDetails";
 import PostServices from "../pages/PostAds/PostServices";
 import PostEvents from "../pages/PostAds/PostEvents";
@@ -25,6 +25,8 @@ import SingleCategoryPage from "../pages/SingleCategoryPage/SingleCategoryPage";
 import SingleLocationPage from "../pages/SingleLocationPage/SingleLocationPage";
 import EventDetails from "../pages/AdDetails/EventDetails";
 import PrivateRoute from "./PrivateRoute";
+import AllServices from "../pages/AllAds/AllServices";
+import AllEvents from "../pages/AllAds/AllEvents";
 
 const routes = createBrowserRouter([
     {
@@ -98,8 +100,12 @@ const routes = createBrowserRouter([
                 element:<PrivateRoute> <UpdateProfile></UpdateProfile></PrivateRoute>
             },
             {
-                path:"/all-ads",
-                element:<AllAds></AllAds>
+                path:"/all-services",
+                element:<AllServices></AllServices>
+            },
+            {
+                path:"/all-events",
+                element:<AllEvents></AllEvents>
             },
             {
                 path:"/ad-details",
