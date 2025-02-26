@@ -7,6 +7,8 @@ import LocationCard from "./LocationCard";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const Home = () => {
   const [locations, setLocations] = useState([]);
@@ -15,11 +17,13 @@ const Home = () => {
   const [loadingLocations, setLoadingLocations] = useState(true);
   const [errorCategories, setErrorCategories] = useState('');
   const [errorLocations, setErrorLocations] = useState('');
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('categories.json');
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure("/categories")
         setCategories(response.data);
         setLoadingCategories(false);
       } catch (err) {
@@ -30,7 +34,7 @@ const Home = () => {
 
     const fetchLocations = async () => {
       try {
-        const response = await axios.get('locations.json');
+        const response = await axiosSecure("/locations")
         
         setLocations(response.data);
         setLoadingLocations(false);
@@ -44,7 +48,7 @@ const Home = () => {
     fetchLocations();
   }, []);
 
-  if (loadingCategories || loadingLocations) return <div className="text-center text-[#014D48]">Loading...</div>;
+  if (loadingCategories || loadingLocations) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
   if (errorCategories) return <div className="text-center text-[#FA8649]">{errorCategories}</div>;
   if (errorLocations) return <div className="text-center text-[#FA8649]">{errorLocations}</div>;
 
