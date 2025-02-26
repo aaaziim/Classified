@@ -108,11 +108,11 @@ const routes = createBrowserRouter([
                 element:<AllEvents></AllEvents>
             },
             {
-                path:"/ad-details",
+                path:"/ad-details/:id",
                 element:<AdDetails></AdDetails>
             },
             {
-                path:"/event-details",
+                path:"/event-details/:id",
                 element:<EventDetails></EventDetails>
             },
             {

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const EventCard = () => {
+const EventCard = ({event}) => {
+  const {title, description, _id} = event;
   return (
-    <Link to="/event-details" className="block">
+    <Link to={`/event-details/${_id}`} className="block">
       <div className="card bg-[#FFE5D5] shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105">
         <figure>
           <img
@@ -13,10 +14,9 @@ const EventCard = () => {
           />
         </figure>
         <div className="card-body p-4">
-          <h2 className="card-title text-[#014D48] text-lg font-bold">Event Title</h2>
+          <h2 className="card-title text-[#014D48] text-lg font-bold">{title}</h2>
           <p className="text-[#001C27] text-sm">
-            A card component has a figure, a body part, and inside body there are title and actions parts.
-          </p>
+           {description.slice(0,50)}... </p>
           {/* <div className="card-actions">
             <button className="btn rounded-xl bg-[#FA8649] text-white hover:bg-[#014D48]">
               View Event
