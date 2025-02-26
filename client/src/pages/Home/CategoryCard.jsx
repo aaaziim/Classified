@@ -1,16 +1,19 @@
-import React from 'react'
-import { FcElectronics } from "react-icons/fc";
-import { Link } from 'react-router';
-const CategoryCard = ({category}) => {
-  const {id, name, slug} = category;
+import React from 'react';
+import { FcElectronics } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
+
+const CategoryCard = ({ category }) => {
+  const { id, name, slug } = category;
   return (
     <Link to={`/category/${slug}`}>
-    <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center">
-      <span className="text-4xl mb-3"><FcElectronics /></span>
-      <h3 className="text-lg font-semibold">{name}</h3>
-    </div>
+      <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center transition-all transform hover:scale-105 hover:shadow-2xl hover:border-[#FA8649] hover:text-[#FA8649]">
+        <span className="text-4xl mb-3">
+          <FcElectronics />
+        </span>
+        <h3 className="text-lg font-semibold text-[#014D48]">{name}</h3>
+      </div>
     </Link>
-  )
-}
+  );
+};
 
-export default CategoryCard
+export default CategoryCard;
