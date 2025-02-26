@@ -9,7 +9,7 @@
         "name": "Alabama",
         "code": "AL",
         "slug": "alabama",
-        " cities": [
+        "cities": [
           { "id": 101, "name": "Birmingham", "slug": "birmingham" },
           { "id": 102, "name": "Huntsville / Decatur", "slug": "huntsville-decatur" },
           { "id": 103, "name": "Mobile", "slug": "mobile" },
@@ -22,7 +22,7 @@
         "name": "Alaska",
         "code": "AK",
         "slug": "alaska",
-        " cities": [
+        "cities": [
           { "id": 201, "name": "Anchorage / Mat-Su", "slug": "anchorage-matsu" },
           { "id": 202, "name": "Fairbanks", "slug": "fairbanks" },
           { "id": 203, "name": "Kenai Peninsula", "slug": "kenai-peninsula" },
@@ -34,7 +34,7 @@
         "name": "Arizona",
         "code": "AZ",
         "slug": "arizona",
-        " cities": [
+        "cities": [
           { "id": 301, "name": "Flagstaff / Sedona", "slug": "flagstaff-sedona" },
           { "id": 302, "name": "Mohave County", "slug": "mohave-county" },
           { "id": 303, "name": "Phoenix", "slug": "phoenix" },
@@ -50,7 +50,7 @@
         "name": "Arkansas",
         "code": "AR",
         "slug": "arkansas",
-        " cities": [
+        "cities": [
           { "id": 401, "name": "Fayetteville", "slug": "fayetteville" },
           { "id": 402, "name": "Fort Smith", "slug": "fort-smith" },
           { "id": 403, "name": "Jonesboro", "slug": "jonesboro" },

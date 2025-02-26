@@ -13,10 +13,16 @@ import LoadingSpinner from "../Components/LoadingSpinner";
 const Home = () => {
   const [locations, setLocations] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [services, setServices] = useState([]);
+  const [events, setEvents] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [loadingLocations, setLoadingLocations] = useState(true);
+  const [loadingServices, setLoadingServices] = useState(true);
+  const [loadingEvents, setLoadingEvents] = useState(true);
   const [errorCategories, setErrorCategories] = useState('');
   const [errorLocations, setErrorLocations] = useState('');
+  const [errorServices, setErrorServices] = useState('');
+  const [errorEvents, setErrorEvents] = useState('');
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
@@ -44,8 +50,35 @@ const Home = () => {
       }
     };
 
+
+    const fetchServices = async () => {
+      try {
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure("/services")
+        setServices(response.data);
+        setLoadingServices(false);
+      } catch (err) {
+        setErrorServices('Error loading services');
+        setLoadingServices(false);
+      }
+    };
+    const fetchEvents = async () => {
+      try {
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure("/events")
+        setEvents(response.data);
+        setLoadingEvents(false);
+      } catch (err) {
+        setErrorEvents('Error loading services');
+        setLoadingEvents(false);
+      }
+    };
+
+
+
     fetchCategories();
     fetchLocations();
+    fetchServices();
   }, []);
 
   if (loadingCategories || loadingLocations) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;

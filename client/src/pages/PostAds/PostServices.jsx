@@ -3,8 +3,13 @@ import Breadcrumb from '../Components/Breadcrumb';
 import { Helmet } from 'react-helmet-async';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import LoadingSpinner from '../Components/LoadingSpinner';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
+import useAuth from '../../hooks/useAuth';
 
 const PostServices = () => {
+
+    const {user} =useAuth()
 
     const [locations, setLocations] = useState([]);
     const [country, setCountry] = useState("");
@@ -17,6 +22,7 @@ const PostServices = () => {
   const [errorCategories, setErrorCategories] = useState('');
   const [errorLocations, setErrorLocations] = useState('');
   const axiosSecure = useAxiosSecure()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -53,12 +59,9 @@ const PostServices = () => {
 
 
 
-   
-  console.log(locations[0].state[stateIndex].name)
-
+    
   
-  
-    const handleAdPostService = (e) => {
+    const handleAdPostService = async(e) => {
         e.preventDefault();
         const form = e.target;
 
@@ -68,9 +71,10 @@ const PostServices = () => {
             subcategory: form.service_subcategory.value,
             price: form.service_price.value,
             description: form.service_description.value,
-            state: form.service_state.value,
+            
             country: form.service_country.value,
-            city: form.service_city.value,
+            state: form.service_state?.value,
+            city: form.service_city?.value,
            
             
             posted: new Date().toISOString(),
@@ -81,6 +85,15 @@ const PostServices = () => {
                 instagram: form.author_instagram.value,
             },
         };
+
+        try{
+            const {data} = await axiosSecure.post(`/services`, service)
+            console.log(data)
+            toast.success("Service posted successfully")
+            navigate("/my-services")
+           } catch(err){ 
+              toast.error(err.response.data)
+           }
 
          
     };
@@ -234,7 +247,7 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                         <label className='block'>
                             <span className='text-[#001C27]'>Email</span>
-                            <input type='email' name='author_email' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required />
+                            <input type='email' name='author_email' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' defaultValue={user.email} disabled required />
                         </label>
                         <label className='block'>
                             <span className='text-[#001C27]'>Phone</span>
