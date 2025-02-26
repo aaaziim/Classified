@@ -6,7 +6,7 @@ const CategoryCard = ({ category }) => {
   const { id, name, slug } = category;
   return (
     <Link to={`/category/${slug}`}>
-      <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center transition-all transform hover:scale-105 hover:shadow-2xl hover:border-[#FA8649] hover:text-[#FA8649]">
+      <div className="h-52 p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center transition-all transform hover:scale-105 hover:shadow-2xl hover:border-[#FA8649] hover:text-[#FA8649]">
         <span className="text-4xl mb-3">
           <FcElectronics />
         </span>

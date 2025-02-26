@@ -1,58 +1,863 @@
 [
   {
-    "id": 1,
-    "name": "Alabama",
-    "code": "AL",
-    "slug": "alabama",
-    "sub_locations": [
-      { "id": 101, "name": "Birmingham", "slug": "birmingham" },
-      { "id": 102, "name": "Huntsville / Decatur", "slug": "huntsville-decatur" },
-      { "id": 103, "name": "Mobile", "slug": "mobile" },
-      { "id": 104, "name": "Montgomery", "slug": "montgomery" },
-      { "id": 105, "name": "Tuscaloosa", "slug": "tuscaloosa" }
+    "id": 0,
+    "name": "USA",
+    "slug": "usa",
+    "state":[
+      {
+        "id": 1,
+        "name": "Alabama",
+        "code": "AL",
+        "slug": "alabama",
+        " cities": [
+          { "id": 101, "name": "Birmingham", "slug": "birmingham" },
+          { "id": 102, "name": "Huntsville / Decatur", "slug": "huntsville-decatur" },
+          { "id": 103, "name": "Mobile", "slug": "mobile" },
+          { "id": 104, "name": "Montgomery", "slug": "montgomery" },
+          { "id": 105, "name": "Tuscaloosa", "slug": "tuscaloosa" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Alaska",
+        "code": "AK",
+        "slug": "alaska",
+        " cities": [
+          { "id": 201, "name": "Anchorage / Mat-Su", "slug": "anchorage-matsu" },
+          { "id": 202, "name": "Fairbanks", "slug": "fairbanks" },
+          { "id": 203, "name": "Kenai Peninsula", "slug": "kenai-peninsula" },
+          { "id": 204, "name": "Southeast Alaska", "slug": "southeast-alaska" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Arizona",
+        "code": "AZ",
+        "slug": "arizona",
+        " cities": [
+          { "id": 301, "name": "Flagstaff / Sedona", "slug": "flagstaff-sedona" },
+          { "id": 302, "name": "Mohave County", "slug": "mohave-county" },
+          { "id": 303, "name": "Phoenix", "slug": "phoenix" },
+          { "id": 304, "name": "Prescott", "slug": "prescott" },
+          { "id": 305, "name": "Show Low", "slug": "show-low" },
+          { "id": 306, "name": "Sierra Vista", "slug": "sierra-vista" },
+          { "id": 307, "name": "Tucson", "slug": "tucson" },
+          { "id": 308, "name": "Yuma", "slug": "yuma" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Arkansas",
+        "code": "AR",
+        "slug": "arkansas",
+        " cities": [
+          { "id": 401, "name": "Fayetteville", "slug": "fayetteville" },
+          { "id": 402, "name": "Fort Smith", "slug": "fort-smith" },
+          { "id": 403, "name": "Jonesboro", "slug": "jonesboro" },
+          { "id": 404, "name": "Little Rock", "slug": "little-rock" },
+          { "id": 405, "name": "Texarkana", "slug": "texarkana" }
+        ]
+      },
+      {
+        "id": 13,
+        "name": "California",
+        "code": "CA",
+        "slug": "california",
+        "cities": [
+          { "id": 1301, "name": "Bakersfield", "slug": "bakersfield" },
+          { "id": 1302, "name": "Chico", "slug": "chico" },
+          { "id": 1303, "name": "Fresno / Madera", "slug": "fresno-madera" },
+          { "id": 1304, "name": "Gold Country", "slug": "gold-country" },
+          { "id": 1305, "name": "Hanford / Corcoran", "slug": "hanford-corcoran" },
+          { "id": 1306, "name": "Humboldt County", "slug": "humboldt-county" },
+          { "id": 1307, "name": "Imperial County", "slug": "imperial-county" },
+          { "id": 1308, "name": "Inland Empire", "slug": "inland-empire" },
+          { "id": 1309, "name": "Los Angeles", "slug": "los-angeles" },
+          { "id": 1310, "name": "Mendocino County", "slug": "mendocino-county" },
+          { "id": 1311, "name": "Merced", "slug": "merced" },
+          { "id": 1312, "name": "Modesto", "slug": "modesto" },
+          { "id": 1313, "name": "Monterey Bay", "slug": "monterey-bay" },
+          { "id": 1314, "name": "Orange County", "slug": "orange-county" },
+          { "id": 1315, "name": "Palm Springs", "slug": "palm-springs" },
+          { "id": 1316, "name": "Redding", "slug": "redding" },
+          { "id": 1317, "name": "Sacramento", "slug": "sacramento" },
+          { "id": 1318, "name": "San Diego", "slug": "san-diego" },
+          { "id": 1319, "name": "San Francisco Bay Area", "slug": "san-francisco-bay-area" },
+          { "id": 1320, "name": "San Luis Obispo", "slug": "san-luis-obispo" },
+          { "id": 1321, "name": "Santa Barbara", "slug": "santa-barbara" },
+          { "id": 1322, "name": "Santa Maria", "slug": "santa-maria" },
+          { "id": 1323, "name": "Siskiyou County", "slug": "siskiyou-county" },
+          { "id": 1324, "name": "Stockton", "slug": "stockton" },
+          { "id": 1325, "name": "Susanville", "slug": "susanville" },
+          { "id": 1326, "name": "Ventura County", "slug": "ventura-county" },
+          { "id": 1327, "name": "Visalia / Tulare", "slug": "visalia-tulare" },
+          { "id": 1328, "name": "Yuba-Sutter", "slug": "yuba-sutter" }
+        ]
+      },
+      {
+        "id": 14,
+        "name": "Colorado",
+        "code": "CO",
+        "slug": "colorado",
+        "cities": [
+          { "id": 1401, "name": "Boulder", "slug": "boulder" },
+          { "id": 1402, "name": "Colorado Springs", "slug": "colorado-springs" },
+          { "id": 1403, "name": "Denver", "slug": "denver" },
+          { "id": 1404, "name": "Eastern Colorado", "slug": "eastern-colorado" },
+          { "id": 1405, "name": "Fort Collins / North CO", "slug": "fort-collins-north-co" },
+          { "id": 1406, "name": "High Rockies", "slug": "high-rockies" },
+          { "id": 1407, "name": "Pueblo", "slug": "pueblo" },
+          { "id": 1408, "name": "Western Slope", "slug": "western-slope" }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Connecticut",
+        "code": "CT",
+        "slug": "connecticut",
+        "cities": [
+          { "id": 1501, "name": "Danbury", "slug": "danbury" },
+          { "id": 1502, "name": "Hartford", "slug": "hartford" },
+          { "id": 1503, "name": "New Haven", "slug": "new-haven" },
+          { "id": 1504, "name": "Northwest CT", "slug": "northwest-ct" }
+        ]
+      },
+      {
+        "id": 16,
+        "name": "Delaware",
+        "code": "DE",
+        "slug": "delaware",
+        "cities": [
+          { "id": 1601, "name": "Delaware", "slug": "delaware" }
+        ]
+      },
+      {
+        "id": 17,
+        "name": "Florida",
+        "code": "FL",
+        "slug": "florida",
+        "cities": [
+          { "id": 1701, "name": "Daytona Beach", "slug": "daytona-beach" },
+          { "id": 1702, "name": "Fort Lauderdale", "slug": "fort-lauderdale" },
+          { "id": 1703, "name": "Fort Myers / SW Florida", "slug": "fort-myers-sw-florida" },
+          { "id": 1704, "name": "Gainesville", "slug": "gainesville" },
+          { "id": 1705, "name": "Heartland Florida", "slug": "heartland-florida" },
+          { "id": 1706, "name": "Jacksonville", "slug": "jacksonville" },
+          { "id": 1707, "name": "Keys", "slug": "keys" },
+          { "id": 1708, "name": "Lakeland", "slug": "lakeland" },
+          { "id": 1709, "name": "Miami / Dade", "slug": "miami-dade" },
+          { "id": 1710, "name": "North Central FL", "slug": "north-central-fl" },
+          { "id": 1711, "name": "Ocala", "slug": "ocala" },
+          { "id": 1712, "name": "Okaloosa / Walton", "slug": "okaloosa-walton" },
+          { "id": 1713, "name": "Orlando", "slug": "orlando" },
+          { "id": 1714, "name": "Palm Beach County", "slug": "palm-beach-county" },
+          { "id": 1715, "name": "Panama City", "slug": "panama-city" },
+          { "id": 1716, "name": "Pensacola", "slug": "pensacola" },
+          { "id": 1717, "name": "Sarasota / Bradenton", "slug": "sarasota-bradenton" },
+          { "id": 1718, "name": "South Florida", "slug": "south-florida" },
+          { "id": 1719, "name": "Space Coast", "slug": "space-coast" },
+          { "id": 1720, "name": "St. Augustine", "slug": "st-augustine" },
+          { "id": 1721, "name": "Tallahassee", "slug": "tallahassee" },
+          { "id": 1722, "name": "Tampa Bay Area", "slug": "tampa-bay-area" },
+          { "id": 1723, "name": "Treasure Coast", "slug": "treasure-coast" }
+        ]
+      },
+      {
+        "id": 18,
+        "name": "Georgia",
+        "code": "GA",
+        "slug": "georgia",
+        "cities": [
+          { "id": 1801, "name": "Athens", "slug": "athens" },
+          { "id": 1802, "name": "Atlanta", "slug": "atlanta" },
+          { "id": 1803, "name": "Augusta", "slug": "augusta" },
+          { "id": 1804, "name": "Brunswick", "slug": "brunswick" },
+          { "id": 1805, "name": "Columbus", "slug": "columbus" },
+          { "id": 1806, "name": "Macon / Warner Robins", "slug": "macon-warner-robins" },
+          { "id": 1807, "name": "Northwest GA", "slug": "northwest-ga" },
+          { "id": 1808, "name": "Savannah", "slug": "savannah" },
+          { "id": 1809, "name": "Statesboro", "slug": "statesboro" },
+          { "id": 1810, "name": "Valdosta", "slug": "valdosta" }
+        ]
+      },
+      {
+        "id": 19,
+        "name": "Hawaii",
+        "code": "HI",
+        "slug": "hawaii",
+        "cities": [
+          { "id": 1901, "name": "Hawaii (Big Island)", "slug": "hawaii-big-island" },
+          { "id": 1902, "name": "Kauai", "slug": "kauai" },
+          { "id": 1903, "name": "Maui", "slug": "maui" },
+          { "id": 1904, "name": "Oahu", "slug": "oahu" }
+        ]
+      },
+      {
+        "id": 20,
+        "name": "Idaho",
+        "code": "ID",
+        "slug": "idaho",
+        "cities": [
+          { "id": 2001, "name": "Boise", "slug": "boise" },
+          { "id": 2002, "name": "East Idaho", "slug": "east-idaho" },
+          { "id": 2003, "name": "Lewiston / Clarkston", "slug": "lewiston-clarkston" },
+          { "id": 2004, "name": "Twin Falls", "slug": "twin-falls" }
+        ]
+      },
+      {
+        "id": 21,
+        "name": "Illinois",
+        "code": "IL",
+        "slug": "illinois",
+        "cities": [
+          { "id": 2101, "name": "Bloomington / Normal", "slug": "bloomington-normal" },
+          { "id": 2102, "name": "Champaign / Urbana", "slug": "champaign-urbana" },
+          { "id": 2103, "name": "Chicago", "slug": "chicago" },
+          { "id": 2104, "name": "Decatur", "slug": "decatur" },
+          { "id": 2105, "name": "La Salle County", "slug": "la-salle-county" },
+          { "id": 2106, "name": "Mattoon / Charleston", "slug": "mattoon-charleston" },
+          { "id": 2107, "name": "Peoria", "slug": "peoria" },
+          { "id": 2108, "name": "Rockford", "slug": "rockford" },
+          { "id": 2109, "name": "Southern Illinois", "slug": "southern-illinois" },
+          { "id": 2110, "name": "Springfield", "slug": "springfield" },
+          { "id": 2111, "name": "Western IL", "slug": "western-il" }
+        ]
+      },
+      {
+        "id": 22,
+        "name": "Indiana",
+        "code": "IN",
+        "slug": "indiana",
+        "cities": [
+          { "id": 2201, "name": "Bloomington", "slug": "bloomington" },
+          { "id": 2202, "name": "Evansville", "slug": "evansville" },
+          { "id": 2203, "name": "Fort Wayne", "slug": "fort-wayne" },
+          { "id": 2204, "name": "Indianapolis", "slug": "indianapolis" },
+          { "id": 2205, "name": "Kokomo", "slug": "kokomo" },
+          { "id": 2206, "name": "Lafayette / West Lafayette", "slug": "lafayette-west-lafayette" },
+          { "id": 2207, "name": "Muncie / Anderson", "slug": "muncie-anderson" },
+          { "id": 2208, "name": "Richmond", "slug": "richmond" },
+          { "id": 2209, "name": "South Bend / Michiana", "slug": "south-bend-michiana" },
+          { "id": 2210, "name": "Terre Haute", "slug": "terre-haute" }
+        ]
+      },
+      {
+        "id": 23,
+        "name": "Iowa",
+        "code": "IA",
+        "slug": "iowa",
+        "cities": [
+          { "id": 2301, "name": "Ames", "slug": "ames" },
+          { "id": 2302, "name": "Cedar Rapids", "slug": "cedar-rapids" },
+          { "id": 2303, "name": "Des Moines", "slug": "des-moines" },
+          { "id": 2304, "name": "Dubuque", "slug": "dubuque" },
+          { "id": 2305, "name": "Iowa City", "slug": "iowa-city" },
+          { "id": 2306, "name": "Quad Cities", "slug": "quad-cities" },
+          { "id": 2307, "name": "Sioux City", "slug": "sioux-city" },
+          { "id": 2308, "name": "Waterloo / Cedar Falls", "slug": "waterloo-cedar-falls" }
+        ]
+      },
+      {
+        "id": 24,
+        "name": "Kansas",
+        "code": "KS",
+        "slug": "kansas",
+        "cities": [
+          { "id": 2401, "name": "Lawrence", "slug": "lawrence" },
+          { "id": 2402, "name": "Manhattan", "slug": "manhattan" },
+          { "id": 2403, "name": "Northwest KS", "slug": "northwest-ks" },
+          { "id": 2404, "name": "Salina", "slug": "salina" },
+          { "id": 2405, "name": "Southeast KS", "slug": "southeast-ks" },
+          { "id": 2406, "name": "Topeka", "slug": "topeka" },
+          { "id": 2407, "name": "Wichita", "slug": "wichita" }
+        ]
+      },
+      {
+        "id": 25,
+        "name": "Kentucky",
+        "code": "KY",
+        "slug": "kentucky",
+        "cities": [
+          { "id": 2501, "name": "Bowling Green", "slug": "bowling-green" },
+          { "id": 2502, "name": "Eastern KY", "slug": "eastern-ky" },
+          { "id": 2503, "name": "Lexington", "slug": "lexington" },
+          { "id": 2504, "name": "Louisville", "slug": "louisville" },
+          { "id": 2505, "name": "Owensboro", "slug": "owensboro" },
+          { "id": 2506, "name": "Western KY", "slug": "western-ky" }
+        ]
+      },
+      {
+        "id": 26,
+        "name": "Louisiana",
+        "code": "LA",
+        "slug": "louisiana",
+        "cities": [
+          { "id": 2601, "name": "Baton Rouge", "slug": "baton-rouge" },
+          { "id": 2602, "name": "Central Louisiana", "slug": "central-louisiana" },
+          { "id": 2603, "name": "Lafayette", "slug": "lafayette" },
+          { "id": 2604, "name": "Lake Charles", "slug": "lake-charles" },
+          { "id": 2605, "name": "New Orleans", "slug": "new-orleans" },
+          { "id": 2606, "name": "Shreveport", "slug": "shreveport" }
+        ]
+      },
+      {
+        "id": 27,
+        "name": "Maine",
+        "code": "ME",
+        "slug": "maine",
+        "cities": [
+          { "id": 2701, "name": "Maine", "slug": "maine" }
+        ]
+      },
+      {
+        "id": 28,
+        "name": "Maryland",
+        "code": "MD",
+        "slug": "maryland",
+        "cities": [
+          { "id": 2801, "name": "Annapolis", "slug": "annapolis" },
+          { "id": 2802, "name": "Baltimore", "slug": "baltimore" },
+          { "id": 2803, "name": "Eastern Shore", "slug": "eastern-shore" },
+          { "id": 2804, "name": "Frederick", "slug": "frederick" },
+          { "id": 2805, "name": "Western Maryland", "slug": "western-maryland" }
+        ]
+      },
+      {
+        "id": 29,
+        "name": "Massachusetts",
+        "code": "MA",
+        "slug": "massachusetts",
+        "cities": [
+          { "id": 2901, "name": "Boston", "slug": "boston" },
+          { "id": 2902, "name": "Cape Cod / Islands", "slug": "cape-cod-islands" },
+          { "id": 2903, "name": "South Coast", "slug": "south-coast" },
+          { "id": 2904, "name": "Western Massachusetts", "slug": "western-massachusetts" },
+          { "id": 2905, "name": "Worcester", "slug": "worcester" }
+        ]
+      },
+      {
+        "id": 30,
+        "name": "Michigan",
+        "code": "MI",
+        "slug": "michigan",
+        "cities": [
+          { "id": 3001, "name": "Ann Arbor", "slug": "ann-arbor" },
+          { "id": 3002, "name": "Battle Creek", "slug": "battle-creek" },
+          { "id": 3003, "name": "Central Michigan", "slug": "central-michigan" },
+          { "id": 3004, "name": "Detroit", "slug": "detroit" },
+          { "id": 3005, "name": "Flint", "slug": "flint" },
+          { "id": 3006, "name": "Grand Rapids", "slug": "grand-rapids" },
+          { "id": 3007, "name": "Holland", "slug": "holland" },
+          { "id": 3008, "name": "Jackson", "slug": "jackson" },
+          { "id": 3009, "name": "Kalamazoo", "slug": "kalamazoo" },
+          { "id": 3010, "name": "Lansing", "slug": "lansing" },
+          { "id": 3011, "name": "Monroe", "slug": "monroe" },
+          { "id": 3012, "name": "Muskegon", "slug": "muskegon" },
+          { "id": 3013, "name": "Northern Michigan", "slug": "northern-michigan" },
+          { "id": 3014, "name": "Port Huron", "slug": "port-huron" },
+          { "id": 3015, "name": "Saginaw / Midland / Bay City", "slug": "saginaw-midland-bay-city" },
+          { "id": 3016, "name": "Southwest Michigan", "slug": "southwest-michigan" },
+          { "id": 3017, "name": "Upper Peninsula", "slug": "upper-peninsula" }
+        ]
+      },
+      {
+        "id": 31,
+        "name": "Minnesota",
+        "code": "MN",
+        "slug": "minnesota",
+        "cities": [
+          { "id": 3101, "name": "Duluth / Superior", "slug": "duluth-superior" },
+          { "id": 3102, "name": "Mankato", "slug": "mankato" },
+          { "id": 3103, "name": "Minneapolis / St. Paul", "slug": "minneapolis-st-paul" },
+          { "id": 3104, "name": "Rochester", "slug": "rochester" },
+          { "id": 3105, "name": "St. Cloud", "slug": "st-cloud" }
+        ]
+      },
+      {
+        "id": 32,
+        "name": "Mississippi",
+        "code": "MS",
+        "slug": "mississippi",
+        "cities": [
+          { "id": 3201, "name": "Gulfport / Biloxi", "slug": "gulfport-biloxi" },
+          { "id": 3202, "name": "Hattiesburg", "slug": "hattiesburg" },
+          { "id": 3203, "name": "Jackson", "slug": "jackson" },
+          { "id": 3204, "name": "Meridian", "slug": "meridian" },
+          { "id": 3205, "name": "North Mississippi", "slug": "north-mississippi" }
+        ]
+      },
+      {
+        "id": 33,
+        "name": "Missouri",
+        "code": "MO",
+        "slug": "missouri",
+        "cities": [
+          { "id": 3301, "name": "Columbia / Jefferson City", "slug": "columbia-jefferson-city" },
+          { "id": 3302, "name": "Joplin", "slug": "joplin" },
+          { "id": 3303, "name": "Kansas City", "slug": "kansas-city" },
+          { "id": 3304, "name": "Kirksville", "slug": "kirksville" },
+          { "id": 3305, "name": "Lake of the Ozarks", "slug": "lake-of-the-ozarks" },
+          { "id": 3306, "name": "Southeast Missouri", "slug": "southeast-missouri" },
+          { "id": 3307, "name": "Springfield", "slug": "springfield" },
+          { "id": 3308, "name": "St. Joseph", "slug": "st-joseph" },
+          { "id": 3309, "name": "St. Louis", "slug": "st-louis" }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Montana",
+        "code": "MT",
+        "slug": "montana",
+        "cities": [
+          { "id": 3401, "name": "Billings", "slug": "billings" },
+          { "id": 3402, "name": "Bozeman", "slug": "bozeman" },
+          { "id": 3403, "name": "Butte", "slug": "butte" },
+          { "id": 3404, "name": "Great Falls", "slug": "great-falls" },
+          { "id": 3405, "name": "Helena", "slug": "helena" },
+          { "id": 3406, "name": "Kalispell", "slug": "kalispell" },
+          { "id": 3407, "name": "Missoula", "slug": "missoula" }
+        ]
+      },
+      {
+        "id": 35,
+        "name": "Nebraska",
+        "code": "NE",
+        "slug": "nebraska",
+        "cities": [
+          { "id": 3501, "name": "Grand Island", "slug": "grand-island" },
+          { "id": 3502, "name": "Lincoln", "slug": "lincoln" },
+          { "id": 3503, "name": "North Platte", "slug": "north-platte" },
+          { "id": 3504, "name": "Omaha / Council Bluffs", "slug": "omaha-council-bluffs" },
+          { "id": 3505, "name": "Scottsbluff / Panhandle", "slug": "scottsbluff-panhandle" }
+        ]
+      },
+      {
+        "id": 36,
+        "name": "Nevada",
+        "code": "NV",
+        "slug": "nevada",
+        "cities": [
+          { "id": 3601, "name": "Elko", "slug": "elko" },
+          { "id": 3602, "name": "Las Vegas", "slug": "las-vegas" },
+          { "id": 3603, "name": "Reno / Tahoe", "slug": "reno-tahoe" }
+        ]
+      },
+      {
+        "id": 37,
+        "name": "New Hampshire",
+        "code": "NH",
+        "slug": "new-hampshire",
+        "cities": [
+          { "id": 3701, "name": "New Hampshire", "slug": "new-hampshire" }
+        ]
+      },
+      {
+        "id": 38,
+        "name": "New Jersey",
+        "code": "NJ",
+        "slug": "new-jersey",
+        "cities": [
+          { "id": 3801, "name": "Central NJ", "slug": "central-nj" },
+          { "id": 3802, "name": "Jersey Shore", "slug": "jersey-shore" },
+          { "id": 3803, "name": "North Jersey", "slug": "north-jersey" },
+          { "id": 3804, "name": "South Jersey", "slug": "south-jersey" }
+        ]
+      },
+      {
+        "id": 39,
+        "name": "New Mexico",
+        "code": "NM",
+        "slug": "new-mexico",
+        "cities": [
+          { "id": 3901, "name": "Albuquerque", "slug": "albuquerque" },
+          { "id": 3902, "name": "Clovis / Portales", "slug": "clovis-portales" },
+          { "id": 3903, "name": "Farmington", "slug": "farmington" },
+          { "id": 3904, "name": "Las Cruces", "slug": "las-cruces" },
+          { "id": 3905, "name": "Roswell / Carlsbad", "slug": "roswell-carlsbad" },
+          { "id": 3906, "name": "Santa Fe / Taos", "slug": "santa-fe-taos" }
+        ]
+      },
+      {
+        "id": 40,
+        "name": "New York",
+        "code": "NY",
+        "slug": "new-york",
+        "cities": [
+          { "id": 4001, "name": "Albany", "slug": "albany" },
+          { "id": 4002, "name": "Binghamton", "slug": "binghamton" },
+          { "id": 4003, "name": "Buffalo", "slug": "buffalo" },
+          { "id": 4004, "name": "Catskills", "slug": "catskills" },
+          { "id": 4005, "name": "Chautauqua", "slug": "chautauqua" },
+          { "id": 4006, "name": "Elmira / Corning", "slug": "elmira-corning" },
+          { "id": 4007, "name": "Finger Lakes", "slug": "finger-lakes" },
+          { "id": 4008, "name": "Glens Falls", "slug": "glens-falls" },
+          { "id": 4009, "name": "Hudson Valley", "slug": "hudson-valley" },
+          { "id": 4010, "name": "Ithaca", "slug": "ithaca" },
+          { "id": 4011, "name": "Long Island", "slug": "long-island" },
+          { "id": 4012, "name": "New York City", "slug": "new-york-city" },
+          { "id": 4013, "name": "Oneonta", "slug": "oneonta" },
+          { "id": 4014, "name": "Plattsburgh / Adirondacks", "slug": "plattsburgh-adirondacks" },
+          { "id": 4015, "name": "Rochester", "slug": "rochester" },
+          { "id": 4016, "name": "Syracuse", "slug": "syracuse" },
+          { "id": 4017, "name": "Utica / Rome", "slug": "utica-rome" },
+          { "id": 4018, "name": "Watertown", "slug": "watertown" }
+        ]
+      },
+      {
+        "id": 41,
+        "name": "North Carolina",
+        "code": "NC",
+        "slug": "north-carolina",
+        "cities": [
+          { "id": 4101, "name": "Asheville", "slug": "asheville" },
+          { "id": 4102, "name": "Boone", "slug": "boone" },
+          { "id": 4103, "name": "Charlotte", "slug": "charlotte" },
+          { "id": 4104, "name": "Eastern NC", "slug": "eastern-nc" },
+          { "id": 4105, "name": "Fayetteville", "slug": "fayetteville" },
+          { "id": 4106, "name": "Greensboro", "slug": "greensboro" },
+          { "id": 4107, "name": "Hickory / Lenoir", "slug": "hickory-lenoir" },
+          { "id": 4108, "name": "Jacksonville", "slug": "jacksonville" },
+          { "id": 4109, "name": "Outer Banks", "slug": "outer-banks" },
+          { "id": 4110, "name": "Raleigh / Durham / Chapel Hill", "slug": "raleigh-durham-chapel-hill" },
+          { "id": 4111, "name": "Wilmington", "slug": "wilmington" },
+          { "id": 4112, "name": "Winston-Salem", "slug": "winston-salem" }
+        ]
+      },
+      {
+        "id": 42,
+        "name": "North Dakota",
+        "code": "ND",
+        "slug": "north-dakota",
+        "cities": [
+          { "id": 4201, "name": "Bismarck", "slug": "bismarck" },
+          { "id": 4202, "name": "Fargo / Moorhead", "slug": "fargo-moorhead" },
+          { "id": 4203, "name": "Grand Forks", "slug": "grand-forks" },
+          { "id": 4204, "name": "North Dakota", "slug": "north-dakota" }
+        ]
+      },
+      {
+        "id": 43,
+        "name": "Ohio",
+        "code": "OH",
+        "slug": "ohio",
+        "cities": [
+          { "id": 4301, "name": "Akron / Canton", "slug": "akron-canton" },
+          { "id": 4302, "name": "Athens", "slug": "athens" },
+          { "id": 4303, "name": "Cincinnati", "slug": "cincinnati" },
+          { "id": 4304, "name": "Cleveland", "slug": "cleveland" },
+          { "id": 4305, "name": "Columbus", "slug": "columbus" },
+          { "id": 4306, "name": "Dayton / Springfield", "slug": "dayton-springfield" },
+          { "id": 4307, "name": "Lima / Findlay", "slug": "lima-findlay" },
+          { "id": 4308, "name": "Mansfield", "slug": "mansfield" },
+          { "id": 4309, "name": "Toledo", "slug": "toledo" },
+          { "id": 4310, "name": "Youngstown", "slug": "youngstown" },
+          { "id": 4311, "name": "Zanesville / Cambridge", "slug": "zanesville-cambridge" }
+        ]
+      },
+      {
+        "id": 44,
+        "name": "Oklahoma",
+        "code": "OK",
+        "slug": "oklahoma",
+        "cities": [
+          { "id": 4401, "name": "Lawton", "slug": "lawton" },
+          { "id": 4402, "name": "Norman", "slug": "norman" },
+          { "id": 4403, "name": "Oklahoma City", "slug": "oklahoma-city" },
+          { "id": 4404, "name": "Stillwater", "slug": "stillwater" },
+          { "id": 4405, "name": "Tulsa", "slug": "tulsa" }
+        ]
+      },
+      {
+        "id": 45,
+        "name": "Oregon",
+        "code": "OR",
+        "slug": "oregon",
+        "cities": [
+          { "id": 4501, "name": "Bend", "slug": "bend" },
+          { "id": 4502, "name": "Corvallis / Albany", "slug": "corvallis-albany" },
+          { "id": 4503, "name": "East Oregon", "slug": "east-oregon" },
+          { "id": 4504, "name": "Eugene", "slug": "eugene" },
+          { "id": 4505, "name": "Klamath Falls", "slug": "klamath-falls" },
+          { "id": 4506, "name": "Medford / Ashland", "slug": "medford-ashland" },
+          { "id": 4507, "name": "Portland", "slug": "portland" },
+          { "id": 4508, "name": "Roseburg", "slug": "roseburg" },
+          { "id": 4509, "name": "Salem", "slug": "salem" }
+        ]
+      },
+      {
+        "id": 46,
+        "name": "Pennsylvania",
+        "code": "PA",
+        "slug": "pennsylvania",
+        "cities": [
+          { "id": 4601, "name": "Altoona / Johnstown", "slug": "altoona-johnstown" },
+          { "id": 4602, "name": "Erie", "slug": "erie" },
+          { "id": 4603, "name": "Harrisburg", "slug": "harrisburg" },
+          { "id": 4604, "name": "Lancaster", "slug": "lancaster" },
+          { "id": 4605, "name": "Lehigh Valley", "slug": "lehigh-valley" },
+          { "id": 4606, "name": "Meadville", "slug": "meadville" },
+          { "id": 4607, "name": "Philadelphia", "slug": "philadelphia" },
+          { "id": 4608, "name": "Pittsburgh", "slug": "pittsburgh" },
+          { "id": 4609, "name": "Poconos", "slug": "poconos" },
+          { "id": 4610, "name": "Reading", "slug": "reading" },
+          { "id": 4611, "name": "Scranton / Wilkes-Barre", "slug": "scranton-wilkes-barre" },
+          { "id": 4612, "name": "State College", "slug": "state-college" },
+          { "id": 4613, "name": "Williamsport", "slug": "williamsport" },
+          { "id": 4614, "name": "York", "slug": "york" }
+        ]
+      },
+      {
+        "id": 47,
+        "name": "Rhode Island",
+        "code": "RI",
+        "slug": "rhode-island",
+        "cities": [
+          { "id": 4701, "name": "Rhode Island", "slug": "rhode-island" }
+        ]
+      },
+      {
+        "id": 48,
+        "name": "South Carolina",
+        "code": "SC",
+        "slug": "south-carolina",
+        "cities": [
+          { "id": 4801, "name": "Charleston", "slug": "charleston" },
+          { "id": 4802, "name": "Columbia", "slug": "columbia" },
+          { "id": 4803, "name": "Florence", "slug": "florence" },
+          { "id": 4804, "name": "Greenville / Upstate", "slug": "greenville-upstate" },
+          { "id": 4805, "name": "Hilton Head", "slug": "hilton-head" },
+          { "id": 4806, "name": "Myrtle Beach", "slug": "myrtle-beach" }
+        ]
+      },
+      {
+        "id": 49,
+        "name": "South Dakota",
+        "code": "SD",
+        "slug": "south-dakota",
+        "cities": [
+          { "id": 4901, "name": "Rapid City", "slug": "rapid-city" },
+          { "id": 4902, "name": "Sioux Falls", "slug": "sioux-falls" },
+          { "id": 4903, "name": "South Dakota", "slug": "south-dakota" }
+        ]
+      },
+      {
+        "id": 50,
+        "name": "Tennessee",
+        "code": "TN",
+        "slug": "tennessee",
+        "cities": [
+          { "id": 5001, "name": "Chattanooga", "slug": "chattanooga" },
+          { "id": 5002, "name": "Clarksville", "slug": "clarksville" },
+          { "id": 5003, "name": "Cookeville", "slug": "cookeville" },
+          { "id": 5004, "name": "Jackson", "slug": "jackson" },
+          { "id": 5005, "name": "Knoxville", "slug": "knoxville" },
+          { "id": 5006, "name": "Memphis", "slug": "memphis" },
+          { "id": 5007, "name": "Nashville", "slug": "nashville" },
+          { "id": 5008, "name": "Tri-Cities", "slug": "tri-cities" }
+        ]
+      },
+      {
+        "id": 51,
+        "name": "Texas",
+        "code": "TX",
+        "slug": "texas",
+        "cities": [
+          { "id": 5101, "name": "Abilene", "slug": "abilene" },
+          { "id": 5102, "name": "Amarillo", "slug": "amarillo" },
+          { "id": 5103, "name": "Austin", "slug": "austin" },
+          { "id": 5104, "name": "Beaumont / Port Arthur", "slug": "beaumont-port-arthur" },
+          { "id": 5105, "name": "Brownsville", "slug": "brownsville" },
+          { "id": 5106, "name": "College Station", "slug": "college-station" },
+          { "id": 5107, "name": "Corpus Christi", "slug": "corpus-christi" },
+          { "id": 5108, "name": "Dallas / Fort Worth", "slug": "dallas-fort-worth" },
+          { "id": 5109, "name": "Deep East Texas", "slug": "deep-east-texas" },
+          { "id": 5110, "name": "Del Rio", "slug": "del-rio" },
+          { "id": 5111, "name": "El Paso", "slug": "el-paso" },
+          { "id": 5112, "name": "Galveston", "slug": "galveston" },
+          { "id": 5113, "name": "Houston", "slug": "houston" },
+          { "id": 5114, "name": "Killeen / Temple / Fort Hood", "slug": "killeen-temple-fort-hood" },
+          { "id": 5115, "name": "Laredo", "slug": "laredo" },
+          { "id": 5116, "name": "Lubbock", "slug": "lubbock" },
+          { "id": 5117, "name": "McAllen / Edinburg", "slug": "mcallen-edinburg" },
+          { "id": 5118, "name": "Midland / Odessa", "slug": "midland-odessa" },
+          { "id": 5119, "name": "San Angelo", "slug": "san-angelo" },
+          { "id": 5120, "name": "San Antonio", "slug": "san-antonio" },
+          { "id": 5121, "name": "San Marcos", "slug": "san-marcos" },
+          { "id": 5122, "name": "Tyler / East TX", "slug": "tyler-east-tx" },
+          { "id": 5123, "name": "Victoria", "slug": "victoria" },
+          { "id": 5124, "name": "Waco", "slug": "waco" },
+          { "id": 5125, "name": "Wichita Falls", "slug": "wichita-falls" }
+        ]
+      },
+      {
+        "id": 52,
+        "name": "Utah",
+        "code": "UT",
+        "slug": "utah",
+        "cities": [
+          { "id": 5201, "name": "Logan", "slug": "logan" },
+          { "id": 5202, "name": "Ogden / Clearfield", "slug": "ogden-clearfield" },
+          { "id": 5203, "name": "Provo / Orem", "slug": "provo-orem" },
+          { "id": 5204, "name": "Salt Lake City", "slug": "salt-lake-city" },
+          { "id": 5205, "name": "St. George", "slug": "st-george" }
+        ]
+      },
+      {
+        "id": 53,
+        "name": "Vermont",
+        "code": "VT",
+        "slug": "vermont",
+        "cities": [
+          { "id": 5301, "name": "Vermont", "slug": "vermont" }
+        ]
+      },
+      {
+        "id": 54,
+        "name": "Virginia",
+        "code": "VA",
+        "slug": "virginia",
+        "cities": [
+          { "id": 5401, "name": "Charlottesville", "slug": "charlottesville" },
+          { "id": 5402, "name": "Danville", "slug": "danville" },
+          { "id": 5403, "name": "Fredericksburg", "slug": "fredericksburg" },
+          { "id": 5404, "name": "Hampton Roads", "slug": "hampton-roads" },
+          { "id": 5405, "name": "Lynchburg", "slug": "lynchburg" },
+          { "id": 5406, "name": "New River Valley", "slug": "new-river-valley" },
+          { "id": 5407, "name": "Richmond", "slug": "richmond" },
+          { "id": 5408, "name": "Roanoke", "slug": "roanoke" },
+          { "id": 5409, "name": "Southwest VA", "slug": "southwest-va" },
+          { "id": 5410, "name": "Winchester", "slug": "winchester" }
+        ]
+      },
+      {
+        "id": 55,
+        "name": "Washington",
+        "code": "WA",
+        "slug": "washington",
+        "cities": [
+          { "id": 5501, "name": "Bellingham", "slug": "bellingham" },
+          { "id": 5502, "name": "Kennewick / Pasco / Richland", "slug": "kennewick-pasco-richland" },
+          { "id": 5503, "name": "Moses Lake", "slug": "moses-lake" },
+          { "id": 5504, "name": "Olympia", "slug": "olympia" },
+          { "id": 5505, "name": "Pullman / Moscow", "slug": "pullman-moscow" },
+          { "id": 5506, "name": "Seattle / Tacoma", "slug": "seattle-tacoma" },
+          { "id": 5507, "name": "Skagit / Island / SJI", "slug": "skagit-island-sji" },
+          { "id": 5508, "name": "Spokane / Coeur d'Alene", "slug": "spokane-coeur-d-alene" },
+          { "id": 5509, "name": "Wenatchee", "slug": "wenatchee" },
+          { "id": 5510, "name": "Yakima", "slug": "yakima" }
+        ]
+      },
+      {
+        "id": 56,
+        "name": "West Virginia",
+        "code": "WV",
+        "slug": "west-virginia",
+        "cities": [
+          { "id": 5601, "name": "Charleston", "slug": "charleston" },
+          { "id": 5602, "name": "Eastern Panhandle", "slug": "eastern-panhandle" },
+          { "id": 5603, "name": "Huntington / Ashland", "slug": "huntington-ashland" },
+          { "id": 5604, "name": "Morgantown", "slug": "morgantown" },
+          { "id": 5605, "name": "Parkersburg / Marietta", "slug": "parkersburg-marietta" },
+          { "id": 5606, "name": "Southern WV", "slug": "southern-wv" },
+          { "id": 5607, "name": "Wheeling", "slug": "wheeling" }
+        ]
+      },
+      {
+        "id": 57,
+        "name": "Wisconsin",
+        "code": "WI",
+        "slug": "wisconsin",
+        "cities": [
+          { "id": 5701, "name": "Appleton / Oshkosh", "slug": "appleton-oshkosh" },
+          { "id": 5702, "name": "Eau Claire", "slug": "eau-claire" },
+          { "id": 5703, "name": "Green Bay", "slug": "green-bay" },
+          { "id": 5704, "name": "Janesville", "slug": "janesville" },
+          { "id": 5705, "name": "La Crosse", "slug": "la-crosse" },
+          { "id": 5706, "name": "Madison", "slug": "madison" },
+          { "id": 5707, "name": "Milwaukee", "slug": "milwaukee" },
+          { "id": 5708, "name": "Northern WI", "slug": "northern-wi" },
+          { "id": 5709, "name": "Racine", "slug": "racine" },
+          { "id": 5710, "name": "Sheboygan", "slug": "sheboygan" },
+          { "id": 5711, "name": "Wausau", "slug": "wausau" }
+        ]
+      },
+      {
+        "id": 58,
+        "name": "Wyoming",
+        "code": "WY",
+        "slug": "wyoming",
+        "cities": [
+          { "id": 5801, "name": "Wyoming", "slug": "wyoming" }
+        ]
+      }
+      
     ]
+  },
+  {
+    "id": 1,
+    "name": "Egypt",
+    "slug": "egypt"
   },
   {
     "id": 2,
-    "name": "Alaska",
-    "code": "AK",
-    "slug": "alaska",
-    "sub_locations": [
-      { "id": 201, "name": "Anchorage / Mat-Su", "slug": "anchorage-matsu" },
-      { "id": 202, "name": "Fairbanks", "slug": "fairbanks" },
-      { "id": 203, "name": "Kenai Peninsula", "slug": "kenai-peninsula" },
-      { "id": 204, "name": "Southeast Alaska", "slug": "southeast-alaska" }
-    ]
+    "name": "Israel",
+    "slug": "israel"
   },
   {
     "id": 3,
-    "name": "Arizona",
-    "code": "AZ",
-    "slug": "arizona",
-    "sub_locations": [
-      { "id": 301, "name": "Flagstaff / Sedona", "slug": "flagstaff-sedona" },
-      { "id": 302, "name": "Mohave County", "slug": "mohave-county" },
-      { "id": 303, "name": "Phoenix", "slug": "phoenix" },
-      { "id": 304, "name": "Prescott", "slug": "prescott" },
-      { "id": 305, "name": "Show Low", "slug": "show-low" },
-      { "id": 306, "name": "Sierra Vista", "slug": "sierra-vista" },
-      { "id": 307, "name": "Tucson", "slug": "tucson" },
-      { "id": 308, "name": "Yuma", "slug": "yuma" }
-    ]
+    "name": "Jordan",
+    "slug": "jordan"
   },
   {
     "id": 4,
-    "name": "Arkansas",
-    "code": "AR",
-    "slug": "arkansas",
-    "sub_locations": [
-      { "id": 401, "name": "Fayetteville", "slug": "fayetteville" },
-      { "id": 402, "name": "Fort Smith", "slug": "fort-smith" },
-      { "id": 403, "name": "Jonesboro", "slug": "jonesboro" },
-      { "id": 404, "name": "Little Rock", "slug": "little-rock" },
-      { "id": 405, "name": "Texarkana", "slug": "texarkana" }
-    ]
+    "name": "Kuwait",
+    "slug": "kuwait"
+  },
+  {
+    "id": 5,
+    "name": "Turkey",
+    "slug": "turkey"
+  },
+  {
+    "id": 6,
+    "name": "United Arab Emirates",
+    "slug": "united-arab-emirates"
+  },
+  {
+    "id": 7,
+    "name": "Qatar",
+    "slug": "qatar"
+  },
+  {
+    "id": 8,
+    "name": "Saudi Arabia",
+    "slug": "saudi-arabia"
+  },
+  {
+    "id": 9,
+    "name": "South Africa",
+    "slug": "south-africa"
+  },
+  {
+    "id": 10,
+    "name": "Ghana",
+    "slug": "ghana"
+  },
+  {
+    "id": 11,
+    "name": "Kenya",
+    "slug": "kenya"
+  },
+  {
+    "id": 12,
+    "name": "Morocco",
+    "slug": "morocco"
   }
-   
 ]
+
+
+
+
+
+
 

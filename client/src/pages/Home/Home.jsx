@@ -31,6 +31,7 @@ const Home = () => {
     const fetchLocations = async () => {
       try {
         const response = await axios.get('locations.json');
+        
         setLocations(response.data);
         setLoadingLocations(false);
       } catch (err) {
