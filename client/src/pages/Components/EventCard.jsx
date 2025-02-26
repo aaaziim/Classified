@@ -17,11 +17,11 @@ const EventCard = () => {
           <p className="text-[#001C27] text-sm">
             A card component has a figure, a body part, and inside body there are title and actions parts.
           </p>
-          <div className="card-actions justify-end">
-            <button className="btn bg-[#FA8649] text-white hover:bg-[#014D48]">
-              Join Now
+          {/* <div className="card-actions">
+            <button className="btn rounded-xl bg-[#FA8649] text-white hover:bg-[#014D48]">
+              View Event
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </Link>

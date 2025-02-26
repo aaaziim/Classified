@@ -24,7 +24,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/">
-          <span className="font-bold text-white text-lg">ClassifiedAds</span>
+          <span className="font-bold text-white text-lg">SideGurus.com</span>
         </Link>
       </div>
 
@@ -34,7 +34,7 @@ const Navbar = () => {
 
       <div className="navbar-end">
         {user ? (
-          <div className="dropdown dropdown-end z-50">
+          <div className="dropdown dropdown-end z-50 px-2">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full border-2 border-white">
                 <img referrerPolicy="no-referrer" alt="User Profile Photo" src="" />

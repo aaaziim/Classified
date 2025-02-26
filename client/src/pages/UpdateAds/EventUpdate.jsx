@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 
 const EventUpdate = () => {
   return (
-    <div className="mb-4 px-4 py-6">
+    <div className="">
       <Helmet>
         <title>Update Event</title>
       </Helmet>
@@ -17,8 +17,8 @@ const EventUpdate = () => {
       </div>
 
       <div>
-        <h1 className="text-4xl font-bold text-center py-6 text-[#014D48]">Update Event</h1>
-        <form className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48]">
+    
+        <form className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48] mb-4">
           <fieldset className="space-y-4">
             <legend className="text-lg font-semibold text-[#014D48] mb-4">Event Details</legend>
 

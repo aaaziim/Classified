@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PostAds = () => {
   return (
-    <div className="min-h-[calc(100vh-400px)] flex flex-col justify-center items-center bg-[#FFE5D5] mb-4">
+    <div className="min-h-[calc(100vh-400px)] flex flex-col justify-center items-center bg-[#FFE5D5] ">
       <Helmet>
         <title>Post Ad</title>
       </Helmet>

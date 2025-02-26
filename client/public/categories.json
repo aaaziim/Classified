@@ -48,5 +48,15 @@
         { "id": 502, "name": "Education & Training", "slug": "education-training" },
         { "id": 503, "name": "Event Planning", "slug": "event-planning" }
       ]
+    },
+    {
+      "id": 5,
+      "name": "Event",
+      "slug": "services",
+      "subcategories": [
+        { "id": 501, "name": "Home Services", "slug": "home-services" },
+        { "id": 502, "name": "Education & Training", "slug": "education-training" },
+        { "id": 503, "name": "Event Planning", "slug": "event-planning" }
+      ]
     }
   ]

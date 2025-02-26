@@ -53,6 +53,8 @@ const Home = () => {
         <title>Home</title>
       </Helmet>
 
+      <Banner />
+
       <div className='text-center space-y-2 lg:w-4/12 mx-auto my-4'>
         <p className='text-[#FA8649]'>---Find what interests you the most---</p>
         <h2 className='text-2xl font-bold uppercase border-y-2 py-2 text-[#014D48] border-[#FFE5D5]'>Browse From Top Categories</h2>
