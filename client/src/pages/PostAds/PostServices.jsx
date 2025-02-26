@@ -31,9 +31,7 @@ const PostServices = () => {
             },
         };
 
-        console.table(service);
-        form.reset();
-        setServiceImage(null);
+         
     };
 
     return (
