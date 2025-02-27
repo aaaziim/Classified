@@ -14,23 +14,12 @@ import LoadingSpinner from '../Components/LoadingSpinner';
 const AdDetails = () => {
 
   const { id } = useParams(); 
-
- 
-  
   const [service, setService] = useState([]);
- 
-
-
   const [errorService, setErrorService] = useState('');
- 
  const [loadingService, setLoadingService] = useState(true);
- 
   const axiosSecure = useAxiosSecure();
 
-
-
 useEffect(() => {
- 
 
 
   const fetchService = async () => {
@@ -106,7 +95,7 @@ const {title, posted, price, country, state, city, category, subcategory, descri
        </p>
      </div>
      <div className='space-y-10 w-full md:w-1/3'>
-       <SellerInfo />
+       <SellerInfo author={author}/>
        <CategorySidebar />
      </div>
    </div>

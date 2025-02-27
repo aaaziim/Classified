@@ -91,7 +91,7 @@ if (errorLocations) return <div className="text-center text-[#FA8649]">{errorLoc
       city: form.event_city?.value,
       image: form.event_image.value,
       posted: new Date().toISOString(),
-      host: {
+      author: {
         email: form.author_email.value,
         phone: form.author_phone.value,
         facebook: form.author_facebook.value,

@@ -1,10 +1,67 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import LoadingSpinner from '../Components/LoadingSpinner'
 import AdCard from '../Components/AdCard'
 import { Helmet } from 'react-helmet-async'
 import Breadcrumb from '../Components/Breadcrumb'
+import useAxiosSecure from '../../hooks/useAxiosSecure'
 
 const AllServices = () => {
+
+  const [services, setServices] = useState([]);
+  const [events, setEvents] = useState([]);
+
+
+  const [errorServices, setErrorServices] = useState('');
+const [errorEvents, setErrorEvents] = useState('');
+ const [loadingServices, setLoadingServices] = useState(true);
+  const [loadingEvents, setLoadingEvents] = useState(true);
+  const axiosSecure = useAxiosSecure();
+
+
+
+useEffect(() => {
+ 
+
+
+  const fetchServices = async () => {
+    try {
+      // Fetch categories from the API endpoint using the secure axios instance
+      const response = await axiosSecure("/services")
+      setServices(response.data);
+      setLoadingServices(false);
+    } catch (err) {
+      setErrorServices('Error loading services');
+      setLoadingServices(false);
+    }
+  };
+ 
+
+  fetchServices();
+  
+}, []);
+
+
+
+
+if (loadingServices) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
+
+
+if (errorServices) return <div className="text-center text-[#FA8649]">{errorServices}</div>;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const pages = [1, 2, 3, 4, 5]
   return (
     <div>
@@ -62,21 +119,13 @@ const AllServices = () => {
           </div>
           <button className='btn'>Reset</button>
         </div>
-        <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {/* {jobs.map(job => (
-            <JobCard key={job._id} job={job} />
-          ))} */}
-        </div>
+        
       </div>
-      <LoadingSpinner></LoadingSpinner>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-           <AdCard></AdCard>
-           <AdCard></AdCard>
-           <AdCard></AdCard>
-           <AdCard></AdCard>
-           <AdCard></AdCard>
-           <AdCard></AdCard>
-           <AdCard></AdCard>
+       
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+      {
+          services.map((service, index) =><AdCard key={index} service={service}></AdCard>)
+         }
            </div>
 
       <div className='flex justify-center mt-12'>

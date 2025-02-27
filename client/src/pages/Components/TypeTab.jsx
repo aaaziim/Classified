@@ -57,7 +57,7 @@ const TypeTab = () => {
 
 
   
-  if (setLoadingServices || setLoadingEvents) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
+  if (loadingServices || loadingEvents) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
 
 
   if (errorServices) return <div className="text-center text-[#FA8649]">{errorServices}</div>;

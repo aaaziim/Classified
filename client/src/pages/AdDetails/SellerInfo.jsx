@@ -1,6 +1,7 @@
 import React from 'react'
 
-const SellerInfo = () => {
+const SellerInfo = ({author}) => {
+  const { email, phone, facebook, instagram } = author;
   return (
     <div>
       <div className="bg-white shadow-md rounded-lg p-4">
@@ -29,16 +30,16 @@ const SellerInfo = () => {
         <div className="mt-4 space-y-2">
           <div className="border p-2 rounded-md bg-[#FFE5D5] text-center space-y-4 grid grid-cols-2 gap-4">
             <div className="btn bg-white text-[#001C27] p-2 rounded-md border border-[#001C27] hover:bg-[#FA8649] hover:text-white">
-              <p>View Phone</p>
+              <p>{phone}</p>
             </div>
             <div className="btn bg-white text-[#001C27] p-2 rounded-md border border-[#001C27] hover:bg-[#FA8649] hover:text-white">
-              <p>View Email</p>
+              <p>{email}</p>
             </div>
             <div className="btn bg-white text-[#001C27] p-2 rounded-md border border-[#001C27] hover:bg-[#FA8649] hover:text-white">
-              <a href="#" className="text-[#001C27] hover:text-white">Facebook</a>
+              <a href={facebook} className="text-[#001C27] hover:text-white">Facebook</a>
             </div>
             <div className="btn bg-white text-[#001C27] p-2 rounded-md border border-[#001C27] hover:bg-[#FA8649] hover:text-white">
-              <a href="#" className="text-[#001C27] hover:text-white">Instagram</a>
+              <a href={instagram} className="text-[#001C27] hover:text-white">Instagram</a>
             </div>
           </div>
         </div>
