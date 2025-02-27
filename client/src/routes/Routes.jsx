@@ -88,11 +88,11 @@ const routes = createBrowserRouter([
                 element:<Cookies></Cookies>
             },
             {
-                path:"/service-update",
+                path:"/service-update/:id",
                 element:<PrivateRoute> <ServiceUpdate></ServiceUpdate></PrivateRoute>
             },
             {
-                path:"/event-update",
+                path:"/event-update/:id",
                 element:<PrivateRoute> <EventUpdate></EventUpdate></PrivateRoute>
             },
             {
