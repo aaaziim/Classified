@@ -12,12 +12,14 @@ const TypeTab = () => {
 
   
     const [services, setServices] = useState([]);
+    const [errorServices, setErrorServices] = useState('');
+    const [loadingServices, setLoadingServices] = useState(true);
     const [events, setEvents] = useState([]);
 
 
-    const [errorServices, setErrorServices] = useState('');
+   
   const [errorEvents, setErrorEvents] = useState('');
-   const [loadingServices, setLoadingServices] = useState(true);
+  
     const [loadingEvents, setLoadingEvents] = useState(true);
     const axiosSecure = useAxiosSecure();
 

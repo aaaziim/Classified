@@ -208,7 +208,6 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
 
 
 
-
                         {
                             country === "USA"?
                             <label className='block'>

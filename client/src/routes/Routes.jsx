@@ -116,11 +116,11 @@ const routes = createBrowserRouter([
                 element:<EventDetails></EventDetails>
             },
             {
-                path:`/category/:slug`,
+                path:`/category/:id`,
                 element:<SingleCategoryPage></SingleCategoryPage>
             },
             {
-                path:`/location/:slug`,
+                path:`/location/:id`,
                 element:<SingleLocationPage></SingleLocationPage>
             },
             

@@ -5,12 +5,12 @@ import AdCard from '../Components/AdCard'
 import { useParams } from 'react-router'
 
 const SingleLocationPage = () => {
-  const { slug } = useParams();
+  const { id } = useParams();
 
   return (
     <div className="px-4 py-6">
       <Helmet>
-        <title>{slug} | Location</title>
+        <title> | Location</title>
       </Helmet>
 
       <div className="space-y-4 mb-6">

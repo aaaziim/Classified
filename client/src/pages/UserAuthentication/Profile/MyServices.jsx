@@ -4,10 +4,11 @@ import { Helmet } from 'react-helmet-async'
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../Components/LoadingSpinner';
 import ServiceCard from './ServiceCard';
+import useAuth from '../../../hooks/useAuth';
 
 const MyServices = () => {
 
-
+const {user} = useAuth()
 
   const [services, setServices] = useState([]);
 
@@ -22,7 +23,7 @@ const MyServices = () => {
     const fetchServices = async () => {
       try {
         // Fetch categories from the API endpoint using the secure axios instance
-        const response = await axiosSecure("/services")
+        const response = await axiosSecure(`/services/${user.email}`)
         setServices(response.data);
         setLoadingServices(false);
       } catch (err) {
