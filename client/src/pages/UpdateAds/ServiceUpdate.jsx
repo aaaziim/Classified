@@ -103,6 +103,11 @@ const handleServiceUpdate = async(e)=>{
      
   };
 
+  if(updatedService.country!="USA"){
+    updatedService.state= null,
+    updatedService.city= null
+  }
+
   try{
       const {data} = await axiosSecure.put(`/service-update/${id}`, updatedService)
       console.log(data)

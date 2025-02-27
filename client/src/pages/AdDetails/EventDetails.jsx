@@ -75,7 +75,13 @@ const EventDetails = () => {
             <h1 className='text-2xl text-[#001C27] font-bold'>{title}</h1>
             <p className='flex items-center gap-2 text-[#001C27]'>
                   <FaLocationArrow />
-                  <span>{city}, {state}, {country}</span>
+                 
+                  {(city || state || country) && (
+  <span>
+    {[city, state, country].filter(Boolean).join(", ")}
+  </span>
+)}
+
                 </p>
             </div>
        <div className='flex justify-between gap-4'>

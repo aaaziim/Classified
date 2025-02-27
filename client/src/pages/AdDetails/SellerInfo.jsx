@@ -28,12 +28,12 @@ const SellerInfo = ({author}) => {
         </div>
 
         <div className="mt-4 space-y-2">
-          <div className="border p-2 rounded-md bg-[#FFE5D5] text-center space-y-4 grid grid-cols-2 gap-4">
+          <div className="border p-2 rounded-md bg-[#FFE5D5] text-center space-y-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="btn bg-white text-[#001C27] p-2 rounded-md border border-[#001C27] hover:bg-[#FA8649] hover:text-white">
               <p>{phone}</p>
             </div>
-            <div className="btn bg-white text-[#001C27] p-2 rounded-md border border-[#001C27] hover:bg-[#FA8649] hover:text-white">
-              <p>{email}</p>
+            <div className="btn bg-white text-[#001C27] p-2 rounded-md border   border-[#001C27] hover:bg-[#FA8649] hover:text-white">
+              <p  >{email}</p>
             </div>
             <div className="btn bg-white text-[#001C27] p-2 rounded-md border border-[#001C27] hover:bg-[#FA8649] hover:text-white">
               <a href={facebook} className="text-[#001C27] hover:text-white">Facebook</a>

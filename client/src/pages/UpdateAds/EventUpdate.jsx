@@ -96,10 +96,15 @@ const navigate = useNavigate()
       endDate: form.event_end_date.value,
       
       country: form.event_country.value,
+     
       state: form.event_state?.value,
       city: form.event_city?.value, 
       
     };
+    if(updatedEvent.country!="USA"){
+      updatedEvent.state= null,
+      updatedEvent.city= null
+    }
     try{
       const {data} = await axiosSecure.put(`/event-update/${id}`, updatedEvent) 
       toast.success("Event updated successfully")
@@ -221,7 +226,7 @@ categories[categoryIndex]?.subcategories?.map((subcategory, index) => (
         <label className="block">
             <span className="text-[#001C27]">State</span>
             <select
-                name="service_state"
+                name="event_state"
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
                 required
                 onChange={(e) => setStateIndex(e.target.selectedIndex - 1)} 
@@ -245,7 +250,7 @@ categories[categoryIndex]?.subcategories?.map((subcategory, index) => (
                             country === "USA"?
                             <label className='block'>
                             <span className='text-[#001C27]'>City</span>
-                            <select name='service_city' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
+                            <select name='event_city' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
                             {
     locations.length > 0 &&
     locations[0].state &&
@@ -269,7 +274,7 @@ categories[categoryIndex]?.subcategories?.map((subcategory, index) => (
 
               <label className="block">
                 <span className="text-[#001C27]">Upload Image</span>
-                <input type="file" name="service_image" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" />
+                <input type="file" name="event_image" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" />
               </label>
             </div>
           </fieldset>
