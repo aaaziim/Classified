@@ -61,18 +61,6 @@ if (errorCategories) return <div className="text-center text-[#FA8649]">{errorCa
 if (errorLocations) return <div className="text-center text-[#FA8649]">{errorLocations}</div>;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   
   const handleAdPostEvent = async(e) => {
     e.preventDefault();
@@ -107,8 +95,7 @@ if (errorLocations) return <div className="text-center text-[#FA8649]">{errorLoc
         toast.error(err.response.data)
      }
   };
-  console.log(locations[0].state[stateIndex]);
-
+ 
   return (
     <div className='space-y-4 mb-4'>
       <Helmet>
@@ -204,8 +191,7 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
                 required
                 onChange={(e) => setStateIndex(e.target.selectedIndex - 1)} 
                 
-                
-                // ✅ Set stateIndex here
+                 
             >
                 <option value="">Select State</option>
                 {locations.length > 0 && locations[0].state ? (

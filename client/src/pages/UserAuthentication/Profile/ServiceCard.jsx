@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router';
 
-const ServiceCard = ({service}) => {
+const ServiceCard = ({service,handleDelete}) => {
     const {title, description, _id} = service;
   return (
     <div className="flex items-center justify-between p-4 bg-[#FFE5D5] rounded-lg shadow-md hover:shadow-lg transition">
@@ -23,7 +23,7 @@ const ServiceCard = ({service}) => {
             Edit
           </button>
           </Link>
-      <button className="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition">
+      <button onClick={()=>handleDelete(_id)}  className="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition">
         Delete
       </button>
     </div>

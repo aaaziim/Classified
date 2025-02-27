@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../Components/LoadingSpinner';
 import EventCard from './EventCard';
  
+import Swal from 'sweetalert2'; 
 const MyEvents = () => {
 
 
@@ -32,12 +33,40 @@ const MyEvents = () => {
 
  
     fetchEvents(); 
-  }, []);
+  }, [events]);
 
   if ( loadingEvents  ) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
  
   if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents}</div>;
  
+  const handleDelete = async (_id) => {
+    // Show confirmation modal
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+    });
+
+    // If confirmed, send delete request to API
+    if (result.isConfirmed) {
+      try {
+        const response = await axiosSecure.delete(`/event/${_id}`)
+        setEvents(events.filter(event => event._id !== _id));
+        
+        if (response.status === 200) {
+          Swal.fire('Deleted!', 'Your event has been deleted.', 'success');
+        } else {
+          Swal.fire('Error!', 'Something went wrong, please try again.', 'error');
+        }
+      } catch (error) {
+        Swal.fire('Error!', 'Something went wrong, please try again.', 'error');
+      }
+    }
+  };
+
 
 
 
@@ -61,7 +90,7 @@ const MyEvents = () => {
         <div className="space-y-6">
           
      {
-      events.map((event, index)=><EventCard key={index} event={event}></EventCard> )
+      events.map((event, index)=><EventCard key={index} event={event} handleDelete={handleDelete}></EventCard> )
      }
 
         </div>

@@ -1,8 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router';
+ 
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
-const EventCard = ({event}) => {
+const EventCard = ({event, handleDelete}) => {
     const {title, description, _id} = event;
+ 
+
+
+
   return (
     <div className="flex items-center justify-between p-4 bg-[#FFE5D5] rounded-lg shadow-md hover:shadow-lg transition">
     <div className="flex items-center space-x-4">
@@ -23,7 +29,7 @@ const EventCard = ({event}) => {
         Edit
       </button>
       </Link>
-      <button className="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition">
+      <button onClick={()=>handleDelete(_id)} className="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition">
         Delete
       </button>
     </div>
