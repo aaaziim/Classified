@@ -63,6 +63,21 @@ app.get("/categories", async(req, res)=>{
   res.send(result)
 })
 
+
+// Get An Category  by Id
+
+app.get("/category/:id", async(req, res)=>{
+  const id = req.params.id;
+ 
+  const result = await categoriesCollection.findOne({_id : new ObjectId(id)});
+  res.send(result)
+})
+
+
+
+
+
+
 // Categories API End
 
 
@@ -73,6 +88,14 @@ app.get("/categories", async(req, res)=>{
 
 app.get("/locations", async(req, res)=>{
   const result = await locationsCollection.find().toArray();
+  res.send(result)
+})
+
+// Get An Category  by Id
+
+app.get("/location/:id", async(req, res)=>{
+  const id = req.params.id
+  const result = await locationsCollection.findOne({_id : new ObjectId(parseInt(id))});
   res.send(result)
 })
 
@@ -99,17 +122,63 @@ app.get("/locations", async(req, res)=>{
         res.send(result)
     })
 
+
 // Get An Specific Services Posted by a user by user email
 
     app.get("/services/:email",  async(req, res)=>{
-      const tokenEmail = req.user.email
-      const email = req.params.email;
-      if(tokenEmail !== email){
-        return res.status(403).send({message: "Forbidden Access"})
-      }
-      const result = await servicesCollection.find({'buyer.email' : email}).toArray();
+      const email = req.params.email
+      
+      const result = await servicesCollection.find({'author.email' : email}).toArray();
       res.send(result)
     })
+
+
+
+     
+// // Get all jobs data from db for pagination
+// app.get('/all-jobs', async (req, res) => {
+//   const size = parseInt(req.query.size)
+//   const page = parseInt(req.query.page) - 1
+//   const filter = req.query.filter
+//   const sort = req.query.sort
+//   const search = req.query.search
+//   console.log(size, page)
+
+//   let query = {
+//     job_title: { $regex: search, $options: 'i' },
+//   }
+//   if (filter) query.category = filter
+//   let options = {}
+//   if (sort) options = { sort: { deadline: sort === 'asc' ? 1 : -1 } }
+//   const result = await jobsCollection
+//     .find(query, options)
+//     .skip(page * size)
+//     .limit(size)
+//     .toArray()
+
+//   res.send(result)
+// })
+
+app.get("/servicesbycategory", async (req, res) => {
+  try {
+    const { category } = req.query; // Corrected destructuring
+    console.log("Category filter:", category);
+
+    let query = {};
+
+    if (category) {
+      query.category = category; // Match category exactly
+    }
+
+    const services = await servicesCollection.find(query).toArray();
+    
+    res.json(services);
+  } catch (error) {
+    console.error("Error fetching services by category:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 
 // Post API Services
