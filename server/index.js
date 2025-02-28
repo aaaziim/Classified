@@ -199,6 +199,48 @@ app.get("/servicesbycountry", async (req, res) => {
   }
 });
 
+app.get("/servicesbystate", async (req, res) => {
+  try {
+    const { state } = req.query; // Corrected destructuring
+    console.log("state filter:", state);
+
+    let query = {};
+
+    if (state) {
+      query.state = state; // Match state exactly
+    }
+
+    const services = await servicesCollection.find(query).toArray();
+    
+    res.json(services);
+  } catch (error) {
+    console.error("Error fetching services by state:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+app.get("/servicesbycity", async (req, res) => {
+  try {
+    const { city } = req.query; // Corrected destructuring
+    console.log("city filter:", city);
+
+    let query = {};
+
+    if (city) {
+      query.city = city; // Match city exactly
+    }
+
+    const services = await servicesCollection.find(query).toArray();
+    
+    res.json(services);
+  } catch (error) {
+    console.error("Error fetching services by city:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 
 
