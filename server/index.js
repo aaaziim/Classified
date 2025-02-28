@@ -157,6 +157,28 @@ app.get("/servicesbycategory", async (req, res) => {
 
 
 
+app.get("/servicesbysubcategory", async (req, res) => {
+  try {
+    const { subcategory } = req.query; // Corrected destructuring
+    console.log("subcategory filter:", subcategory);
+
+    let query = {};
+
+    if (subcategory) {
+      query.subcategory = subcategory; // Match subcategory exactly
+    }
+
+    const services = await servicesCollection.find(query).toArray();
+    
+    res.json(services);
+  } catch (error) {
+    console.error("Error fetching services by subcategory:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
 app.get("/servicesbycountry", async (req, res) => {
   try {
     const { country } = req.query; // Corrected destructuring
