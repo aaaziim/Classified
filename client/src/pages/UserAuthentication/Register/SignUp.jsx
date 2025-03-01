@@ -17,7 +17,17 @@ const SignUp = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle();
+      const result = await signInWithGoogle();
+      const user = result.user;
+      if (user) {
+        const userProfile = {
+          name: user.displayName,
+          email: user.email, 
+        };
+  
+        // Send user profile to the backend
+        const { data } = await axiosSecure.post("/profile", userProfile);
+      }
       
       toast.success("Sign-in Successful");
     } catch (err) {
