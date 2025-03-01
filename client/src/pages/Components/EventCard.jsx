@@ -16,7 +16,7 @@ const EventCard = ({event}) => {
         <div className="card-body p-4">
           <h2 className="card-title text-[#014D48] text-lg font-bold">{title}</h2>
           <p className="text-[#001C27] text-sm">
-           {description.slice(0,50)}... </p>
+           {description}... </p>
           {/* <div className="card-actions">
             <button className="btn rounded-xl bg-[#FA8649] text-white hover:bg-[#014D48]">
               View Event

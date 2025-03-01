@@ -18,11 +18,13 @@ const SignUp = () => {
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle();
+      
       toast.success("Sign-in Successful");
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
     }
+  
   };
 
   const handleEmailSignIn = async (e) => {
@@ -48,7 +50,7 @@ const SignUp = () => {
 
       try{
           const {data} = await axiosSecure.post(`/profile`, profile)
-          navigate("/my-services")
+         
          } catch(err){ 
             toast.error(err.response.data)
          }

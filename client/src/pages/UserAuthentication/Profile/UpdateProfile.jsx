@@ -62,7 +62,7 @@ const UpdateProfile = () => {
     };
   
     try {
-      const { data } = await axiosSecure.put(`/profile-update/${_id}`, updatedProfile);
+      const { data } = await axiosSecure.put(`/profile-update/${user.email}`, updatedProfile);
       toast.success("Profile updated successfully");
       navigate("/profile");
     } catch (err) {
