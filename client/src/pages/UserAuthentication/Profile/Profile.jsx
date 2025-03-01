@@ -1,9 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import Breadcrumb from '../../Components/Breadcrumb'
+import useAuth from '../../../hooks/useAuth'
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
+import LoadingSpinner from '../../Components/LoadingSpinner'
 
 const Profile = () => {
+  const {user} = useAuth();
+  const axiosSecure = useAxiosSecure()
+  const [profile, setProfile] = useState([])
+  const [profileLoading, setProfileLoading] = useState(true)
+  const [profileError, setProfileError] = useState(false)
+  useEffect(() => {
+  
+    const fetchProfile = async () => {
+      try {
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure(`/userprofile/${user.email}`)
+        setProfile(response.data);
+        setProfileLoading(false);
+      } catch (err) {
+        setProfileError('Error loading profile');
+        setProfileLoading(false);
+      }
+    };
+
+ 
+    fetchProfile(); 
+  }, []);
+
+
+  if (profileLoading) {
+    return (
+      <div className="text-center text-[#014D48]">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (profileError) {
+    return (
+      <div className="text-center text-[#FA8649]">
+        {profileError}
+      </div>
+    );
+  }
+
+  const {name, email, phone, address, bio} = profile;
   return (
     <div className="mb-6">
       <Helmet>
@@ -25,8 +69,12 @@ const Profile = () => {
             />
           </div>
           <div className="ml-6 text-center md:text-left">
-            <h1 className="text-2xl font-semibold text-[#014D48]">John Doe</h1>
-            <p className="text-[#001C27]">Joined: January 2023</p>
+            <h1 className="text-2xl font-semibold text-[#014D48]">{name ||  <Link to="/update-profile">
+              <button className="text-lg font-medium text-[#FA8649] hover:text-[#E06D36] transition">
+                Add Name
+              </button>
+            </Link>}</h1>
+          
           </div>
         </div> 
 
@@ -57,20 +105,36 @@ const Profile = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-lg font-medium text-[#001C27]">Email</h3>
-              <p className="text-[#014D48]">johndoe@example.com</p>
+              <p className="text-[#014D48]">{email ||  <Link to="/update-profile">
+              <button className="text-lg font-medium text-[#FA8649] hover:text-[#E06D36] transition">
+                Add Email
+              </button>
+            </Link>}</p>
             </div>
             <div>
               <h3 className="text-lg font-medium text-[#001C27]">Phone</h3>
-              <p className="text-[#014D48]">+1234567890</p>
+              <p className="text-[#014D48]">{phone ||  <Link to="/update-profile">
+              <button className="text-lg font-medium text-[#FA8649] hover:text-[#E06D36] transition">
+                Add Phone
+              </button>
+            </Link>}</p>
             </div>
             <div>
-              <h3 className="text-lg font-medium text-[#001C27]">Location</h3>
-              <p className="text-[#014D48]">New York, USA</p>
+              <h3 className="text-lg font-medium text-[#001C27]">Address</h3>
+              <p className="text-[#014D48]">{address ||  <Link to="/update-profile">
+              <button className="text-lg font-medium text-[#FA8649] hover:text-[#E06D36] transition">
+                Add Address
+              </button>
+            </Link>}</p>
             </div>
             <div>
               <h3 className="text-lg font-medium text-[#001C27]">Bio</h3>
               <p className="text-[#014D48]">
-                Passionate about connecting people with great services and events.
+            {bio ||  <Link to="/update-profile">
+              <button className="text-lg font-medium text-[#FA8649] hover:text-[#E06D36] transition">
+                Add Bio
+              </button>
+            </Link>}
               </p>
             </div>
           </div>

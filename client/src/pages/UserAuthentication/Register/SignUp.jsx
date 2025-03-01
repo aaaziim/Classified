@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react"; 
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const { createUser, signInWithGoogle, user, loading } = useAuth();
-
+  const axiosSecure = useAxiosSecure()
   useEffect(() => {
     if (user) {
       navigate("/");
@@ -27,13 +28,32 @@ const SignUp = () => {
   const handleEmailSignIn = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
-    const name = e.target.name.value;
     const password = e.target.password.value;
-    const photoURL = e.target.photo.value;
+    const name = e.target.name.value;
+    const phone = e.target.phone.value;
+    const address = e.target.address.value;
+    const bio = e.target.bio.value;
+  
 
     try {
       await createUser(email, password);
-      navigate("/");
+
+      const profile = {
+        name,
+        phone,
+        email,
+        address,
+        bio
+      };
+
+      try{
+          const {data} = await axiosSecure.post(`/profile`, profile)
+          navigate("/my-services")
+         } catch(err){ 
+            toast.error(err.response.data)
+         }
+
+      navigate("/profile");
       toast.success("Sign-up Successful");
     } catch (err) {
       console.log(err);
@@ -98,7 +118,7 @@ const SignUp = () => {
 
           <form onSubmit={handleEmailSignIn} className="space-y-4 mt-4">
             <div>
-              <label className="block mb-1 text-sm font-medium text-[#001C27]">Username</label>
+              <label className="block mb-1 text-sm font-medium text-[#001C27]">Name</label>
               <input
                 name="name"
                 className="w-full border border-[#014D48] rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
@@ -108,11 +128,33 @@ const SignUp = () => {
             </div>
 
             <div>
-              <label className="block mb-1 text-sm font-medium text-[#001C27]">Photo URL</label>
+              <label className="block mb-1 text-sm font-medium text-[#001C27]">Phone</label>
               <input
-                name="photo"
+                name="phone"
                 className="w-full border border-[#014D48] rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
                 type="text"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block mb-1 text-sm font-medium text-[#001C27]">Address</label>
+              <input
+                name="address"
+                className="w-full border border-[#014D48] rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                type="text"
+                required
+              />
+            </div>
+
+            
+            <div>
+              <label className="block mb-1 text-sm font-medium text-[#001C27]">Bio</label>
+              <input
+                name="bio"
+                className="w-full border border-[#014D48] rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                type="text"
+                required
               />
             </div>
 
