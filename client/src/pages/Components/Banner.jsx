@@ -26,10 +26,10 @@ const Banner = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black   to-transparent rounded-2xl"></div>
           {/* Content */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
-            <h2 className="text-4xl font-bold text-[#FA8649]">Browse Available Services</h2>
-            <p className="text-xl font-semibold text-[#FFE5D5] mt-4">Explore a wide range of services offered by professionals near you.</p>
+            <h2 className="text-lg md:text-3xl font-bold text-[#FA8649]">Browse Available Services</h2>
+            <p className="text-sm md:text-xl font-semibold text-[#FFE5D5] ">Explore a wide range of services offered by professionals near you.</p>
             <Link to="/all-services">
-              <button className="mt-6 px-6 py-2 bg-[#FA8649] text-white font-semibold rounded-md hover:bg-[#014D48] transition-colors">
+              <button className="mt-2 md:mt-6 px-6 md:py-2 bg-[#FA8649] text-white font-semibold rounded-md hover:bg-[#014D48] transition-colors">
                 View All Services
               </button>
             </Link>
@@ -45,10 +45,10 @@ const Banner = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black   to-transparent rounded-2xl"></div>
           {/* Content */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
-            <h2 className="text-4xl font-bold text-[#FA8649]">Discover Exciting Events</h2>
-            <p className="text-xl font-semibold text-[#FFE5D5] mt-4">Find all the amazing events happening around you.</p>
+            <h2 className="text-lg md:text-3xl font-bold text-[#FA8649]">Discover Exciting Events</h2>
+            <p className="text-sm md:text-xl font-semibold text-[#FFE5D5] ">Find all the amazing events happening around you.</p>
             <Link to="/all-events">
-              <button className="mt-6 px-6 py-2 bg-[#FA8649] text-white font-semibold rounded-md hover:bg-[#014D48] transition-colors">
+              <button className="mt-2 md:mt-6 px-6 md:py-2 bg-[#FA8649] text-white font-semibold rounded-md hover:bg-[#014D48] transition-colors">
                 View All Events
               </button>
             </Link>
@@ -64,10 +64,10 @@ const Banner = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black   to-transparent rounded-2xl"></div>
           {/* Content */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
-            <h2 className="text-4xl font-bold text-[#FA8649]">Share Your Services</h2>
-            <p className="text-xl font-semibold text-[#FFE5D5] mt-4">Post your services and reach thousands of potential customers today</p>
+            <h2 className="text-lg md:text-3xl font-bold text-[#FA8649]">Share Your Services</h2>
+            <p className="text-sm md:text-xl font-semibold text-[#FFE5D5] ">Post your services and reach thousands of potential customers today</p>
             <Link to="/post-services">
-              <button className="mt-6 px-6 py-2 bg-[#FA8649] text-white font-semibold rounded-md hover:bg-[#014D48] transition-colors">
+              <button className="mt-2 md:mt-6 px-6 md:py-2 bg-[#FA8649] text-white font-semibold rounded-md hover:bg-[#014D48] transition-colors">
                 Post Your Service
               </button>
             </Link>
@@ -83,10 +83,10 @@ const Banner = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black   to-transparent rounded-2xl"></div>
           {/* Content */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
-            <h2 className="text-4xl font-bold text-[#FA8649]">Create Your Event</h2>
-            <p className="text-xl font-semibold text-[#FFE5D5] mt-4">Promote your upcoming events and gather the crowd you need.</p>
+            <h2 className="text-lg md:text-3xl font-bold text-[#FA8649]">Create Your Event</h2>
+            <p className="text-sm md:text-xl font-semibold text-[#FFE5D5] ">Promote your upcoming events and gather the crowd you need.</p>
             <Link to="/post-events">
-              <button className="mt-6 px-6 py-2 bg-[#FA8649] text-white font-semibold rounded-md hover:bg-[#014D48] transition-colors">
+              <button className="mt-2 md:mt-6 px-6 md:py-2 bg-[#FA8649] text-white font-semibold rounded-md hover:bg-[#014D48] transition-colors">
                 Post Your Event
               </button>
             </Link>
