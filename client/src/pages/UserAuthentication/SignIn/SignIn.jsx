@@ -3,12 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const destination = location.state || "/";
-
+  const axiosSecure = useAxiosSecure()
   const { signIn, signInWithGoogle, user, loading } = useAuth();
 
   useEffect(() => {
@@ -19,7 +20,18 @@ const SignIn = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle();
+       
+      const result = await signInWithGoogle();
+      const user = result.user;
+      if (user) {
+        const userProfile = {
+          name: user.displayName,
+          email: user.email, 
+        };
+  
+        // Send user profile to the backend
+        const { data } = await axiosSecure.post("/profile", userProfile);
+      }
       navigate(destination, { replace: true });
       toast.success("Sign-in Successful");
     } catch (err) {
@@ -39,6 +51,7 @@ const SignIn = () => {
       toast.success("Sign-in Successful");
     } catch (err) {
       console.log(err);
+      console.log(err.message);
       toast.error(err?.message);
       navigate("/");
     }
