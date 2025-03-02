@@ -186,7 +186,7 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
         <label className="block">
             <span className="text-[#001C27]">State</span>
             <select
-                name="service_state"
+                name="event_state"
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
                 required
                 onChange={(e) => setStateIndex(e.target.selectedIndex - 1)} 
@@ -210,7 +210,7 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
                             country === "USA"?
                             <label className='block'>
                             <span className='text-[#001C27]'>City</span>
-                            <select name='service_city' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
+                            <select name='event_city' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
                             {
     locations.length > 0 &&
     locations[0].state &&
