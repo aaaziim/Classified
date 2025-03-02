@@ -1,292 +1,276 @@
-import React, { useEffect, useState } from 'react'
-import Breadcrumb from '../Components/Breadcrumb'
-import { Helmet } from 'react-helmet-async'
+import React, { useEffect, useState } from 'react';
+import Breadcrumb from '../Components/Breadcrumb';
+import { Helmet } from 'react-helmet-async';
+import LoadingSpinner from '../Components/LoadingSpinner';
 import { useNavigate, useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import LoadingSpinner from '../Components/LoadingSpinner';
+import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 
 const EventUpdate = () => {
-
-  const { id } = useParams(); 
-  const [event, setEvent] = useState([]);
-  const [errorEvent, setErrorEvent] = useState('');
- const [loadingEvent, setLoadingEvent] = useState(true);
+  const { user } = useAuth();
+  const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const [categoryIndex, setCategoryIndex] = useState(0);
-  const [country, setCountry] = useState("");
-  const [locations, setLocations] = useState([]);
-const [loadingLocations, setLoadingLocations] = useState(true);
-const [errorLocations, setErrorLocations] = useState('');
-const [categories, setCategories] = useState([]);
-const [loadingCategories, setLoadingCategories] = useState(true);
-const [errorCategories, setErrorCategories] = useState('');
-  const [stateIndex, setStateIndex] = useState(0); 
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  const [event, setEvent] = useState({});
+  const [categories, setCategories] = useState([]);
+  const [locations, setLocations] = useState([]);
+  
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedSubcategory, setSelectedSubcategory] = useState('');
+  const [adCountry, setAdCountry] = useState('');
+  const [stateIndex, setStateIndex] = useState(-1);
+  const [selectedState, setSelectedState] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
 
   useEffect(() => {
-
-
-    const fetchEvent = async () => {
+    const fetchData = async () => {
       try {
-        // Fetch categories from the API endpoint using the secure axios instance
-        const response = await axiosSecure(`/event/${id}`)
-        setEvent(response.data);
-        setLoadingEvent(false);
+        const [eventRes, categoriesRes, locationsRes] = await Promise.all([
+          axiosSecure(`/event/${id}`),
+          axiosSecure("/categories"),
+          axiosSecure("/locations")
+        ]);
+
+        setEvent(eventRes.data);
+        setCategories(categoriesRes.data);
+        setLocations(locationsRes.data);
+        setSelectedCategory(eventRes.data.category || '');
+        setSelectedSubcategory(eventRes.data.subcategory || '');
+        setAdCountry(eventRes.data.country || '');
+        setSelectedState(eventRes.data.state || '');
+        setSelectedCity(eventRes.data.city || '');
+
+        setLoading(false);
       } catch (err) {
-        setErrorEvent('Error loading services');
-        setLoadingEvent(false);
+        setError('Error loading data');
+        setLoading(false);
       }
     };
 
-    
-  const fetchCategories = async () => {
-    try {
-      // Fetch categories from the API endpoint using the secure axios instance
-      const response = await axiosSecure("/categories")
-      setCategories(response.data);
-      setLoadingCategories(false);
-    } catch (err) {
-      setErrorCategories('Error loading categories');
-      setLoadingCategories(false);
+    fetchData();
+  }, [id, axiosSecure]);
+
+  if (loading) return <div className="text-center text-[#014D48]"><LoadingSpinner /></div>;
+  if (error) return <div className="text-center text-[#FA8649]">{error}</div>;
+
+  const handleCategoryChange = (e) => {
+    const selectedCat = e.target.value;
+    setSelectedCategory(selectedCat);
+    setSelectedSubcategory(''); // Reset subcategory when category changes
+  };
+
+  const handleCountryChange = (e) => {
+    const selectedCountry = e.target.value;
+    setAdCountry(selectedCountry);
+    setSelectedState('');  // Reset state
+    setSelectedCity('');   // Reset city
+    setStateIndex(-1);     // Reset state index
+  };
+
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setSelectedState(selectedState);
+    setSelectedCity('');   // Reset city when state changes
+
+    // Find the new state index based on the selected country
+    const country = locations.find((loc) => loc.name === adCountry);
+    if (country) {
+      const newStateIndex = country.state.findIndex((st) => st.name === selectedState);
+      setStateIndex(newStateIndex);
     }
   };
-  
-  const fetchLocations = async () => {
-    try {
-      const response = await axiosSecure("/locations")
-      
-      setLocations(response.data);
-      setLoadingLocations(false);
-    } catch (err) {
-      setErrorLocations('Error loading locations');
-      setLoadingLocations(false);
-    }
-  };
-  
-  fetchCategories();
-  fetchLocations();
 
-  
-  
-    fetchEvent();
-     
-  }, []);
-  
-    
-  if (loadingEvent) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
-  if (errorEvent) return <div className="text-center text-[#FA8649]">{errorEvent}</div>;
-  
-  const {title,   price,   description  } = event;
-  
-
-
-
-  const handleUpdateEvent = async(e) => {
+  const handleEventUpdate = async (e) => {
     e.preventDefault();
     const form = e.target;
+
     const updatedEvent = {
       title: form.event_title.value,
-      category: form.event_category.value,
-      subcategory: form.event_subcategory.value,
+      category: selectedCategory,
+      subcategory: selectedSubcategory,
       price: form.event_price.value,
-      description: form.event_description.value,
       startDate: form.event_start_date.value,
       endDate: form.event_end_date.value,
-      
+      description: form.event_description.value,
       country: form.event_country.value,
-     
-      state: form.event_state?.value,
-      city: form.event_city?.value, 
-      
+      state: form.event_state?.value || null,
+      city: form.event_city?.value || null,
     };
-    if(updatedEvent.country!="USA"){
-      updatedEvent.state= null,
-      updatedEvent.city= null
+
+    if (updatedEvent.country !== "USA") {
+      updatedEvent.state = null;
+      updatedEvent.city = null;
     }
-    try{
-      const {data} = await axiosSecure.put(`/event-update/${id}`, updatedEvent) 
-      toast.success("Event updated successfully")
-      navigate("/my-events")
-     } catch(err){ 
-        toast.error(err.response.data)
-     }
+
+    try {
+      await axiosSecure.put(`/event-update/${id}`, updatedEvent);
+      toast.success("Event updated successfully");
+      navigate("/my-events");
+    } catch (err) {
+      toast.error(err.response?.data || "Error updating event");
+    }
   };
 
-
-
-
-
-
-
-
-
-
   return (
-    <div className="">
+    <div>
       <Helmet>
         <title>Update Event</title>
       </Helmet>
 
       <div className="space-y-4 mb-6">
-        <Breadcrumb 
-          title="Update Events"
-          subTitle="Here you can update your event information"
-        />
+        <Breadcrumb title="Update Event" subTitle="Here you can update your event information" />
       </div>
 
-      <div>
-    
-        <form onSubmit={handleUpdateEvent} className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48] mb-4">
-          <fieldset className="space-y-4">
-            <legend className="text-lg font-semibold text-[#014D48] mb-4">Event Details</legend>
+      <form onSubmit={handleEventUpdate} className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48] mb-4">
+        <fieldset className="space-y-4">
+          <legend className="text-lg font-semibold text-[#014D48] mb-4">Event Details</legend>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <label className="block">
-                <span className="text-[#001C27]">Title</span>
-                <input onChange={(e)=>console.log(e.target.value)} type="text" name="event_title" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" required defaultValue={title} />
-              </label>
-              <label className='block'>
-              <span className='text-[#001C27]'>Category</span>
-              <select name='event_category' required className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]'  onChange={(e) => setCategoryIndex(e.target.selectedIndex - 1)} >
-                <option value=''>Select Category</option>
-                {
-    categories.map((category, index) => (
-        <option 
-            key={index} 
-            value={category.name} 
-           // Wrap the function call in an anonymous function
-        >
-            {category.name}
-        </option>
-    ))
-}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <label className="block">
+              <span className="text-[#001C27]">Title</span>
+              <input type="text" name="event_title" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" required defaultValue={event.title} />
+            </label>
+
+            {/* Category Selection */}
+            <label className="block">
+              <span className="text-[#001C27]">Choose Category</span>
+              <select
+                name="event_category"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                required
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+              >
+                <option value="">Select Category</option>
+                {categories.map((cat, index) => (
+                  <option key={index} value={cat.name}>
+                    {cat.name}
+                  </option>
+                ))}
               </select>
             </label>
+
+            {/* Subcategory Selection */}
+            <label className="block">
+              <span className="text-[#001C27]">Choose Sub-Category</span>
+              <select
+                name="event_subcategory"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                required
+                value={selectedSubcategory}
+                onChange={(e) => setSelectedSubcategory(e.target.value)}
+              >
+                <option value="">Select Sub-Category</option>
+                {categories.find(cat => cat.name === selectedCategory)?.subcategories.map((sub, index) => (
+                  <option key={index} value={sub.name}>
+                    {sub.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="block">
+              <span className="text-[#001C27]">Price</span>
+              <input type="number" name="event_price" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" required defaultValue={event.price} />
+            </label>
+
             <label className='block'>
-              <span className='text-[#001C27]'>Sub-Category</span>
-              <select name='event_subcategory' required className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]'>
-                <option value='sub'>Select Sub-Category</option>
-                {
-
-categories[categoryIndex]?.subcategories?.map((subcategory, index) => (
-    <option 
-        key={index} 
-        value={subcategory.name} 
-    >
-        {subcategory.name}
-    </option>
-))
-                                }
-              </select>
-            </label>
-              
-
-              <label className="block">
-                <span className="text-[#001C27]">Ticket Price</span>
-                <input type="number" name="event_price" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" required defaultValue={price} />
-              </label>
-
-              <label className="block md:col-span-2">
-                <span className="text-[#001C27]">Description</span>
-                <textarea name="event_description" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" required defaultValue={description}></textarea>
-              </label>
-
-              <label className='block'>
               <span className='text-[#001C27]'>Event Starts</span>
-              <input type='date' name='event_start_date' required className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]' />
+              <input type='date' name='event_start_date' required className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]' defaultValue={event.startDate} />
             </label>
             <label className='block'>
               <span className='text-[#001C27]'>Event Ends</span>
-              <input type='date' name='event_end_date' required className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]' />
+              <input type='date' name='event_end_date' required className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]' defaultValue={event.endDate} />
             </label>
 
-              <label className='block'>
-                            <span className='text-[#001C27]'>Country</span>
-                            <select   onChange={(e) => setCountry(e.target.value)} name='event_country' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
-                            <option value=''>Select Country</option>
-                            {
-    locations.map((location, index) => (
-        <option 
-            key={index} 
-            value={location.name} 
-           // Wrap the function call in an anonymous function
-        >
-            {location.name}
-        </option>
-    ))
-}
+            <label className="block md:col-span-2">
+              <span className="text-[#001C27]">Description</span>
+              <textarea name="event_description" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" required defaultValue={event.description}></textarea>
+            </label>
 
-                            
-                            </select>
-                        </label>
-                        {
-    country === "USA" && (
-        <label className="block">
-            <span className="text-[#001C27]">State</span>
-            <select
-                name="event_state"
+            {/* Image Upload */}
+            <label className="block">
+              <span className="text-[#001C27]">Upload Image</span>
+              <input type="file" name="event_image" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" />
+            </label>
+
+            {/* Country Selection */}
+            <label className="block">
+              <span className="text-[#001C27]">Country</span>
+              <select
+                name="event_country"
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
                 required
-                onChange={(e) => setStateIndex(e.target.selectedIndex - 1)} 
-                
-                 
-            >
-                <option value="">Select State</option>
-                {locations.length > 0 && locations[0].state ? (
-                    locations[0].state.map((location, index) => (
-                        <option key={index} value={location.name}>
-                            {location.name}
-                        </option>
-                    ))
-                ) : null}
-            </select>
-        </label>
-    )
-}
+                value={adCountry}
+                onChange={handleCountryChange}
+              >
+                <option value="">Select Country</option>
+                {locations.map((location, index) => (
+                  <option key={index} value={location.name}>
+                    {location.name}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-                        {
-                            country === "USA"?
-                            <label className='block'>
-                            <span className='text-[#001C27]'>City</span>
-                            <select name='event_city' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
-                            {
-    locations.length > 0 &&
-    locations[0].state &&
-    stateIndex !== undefined &&
-    stateIndex < locations[0].state.length &&
-    locations[0].state[stateIndex].cities ? (
-        locations[0].state[stateIndex].cities.map((city, index) => (
-            <option 
-                key={index} 
-                value={city.name} 
-            >
-                {city.name}
-            </option>
-        ))
-    ) : null
-}
-
-                            </select>
-                        </label> : null
-                        }
-
+            {/* State Selection */}
+            {adCountry ==="USA" && (
               <label className="block">
-                <span className="text-[#001C27]">Upload Image</span>
-                <input type="file" name="event_image" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" />
+                <span className="text-[#001C27]">State</span>
+                <select
+                  name="event_state"
+                  className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                  required
+                  value={selectedState}
+                  onChange={handleStateChange}
+                >
+                  <option value="">Select State</option>
+                  {locations.find(loc => loc.name === adCountry)?.state.map((state, index) => (
+                    <option key={index} value={state.name}>
+                      {state.name}
+                    </option>
+                  ))}
+                </select>
               </label>
-            </div>
-          </fieldset>
+            )}
 
-          
-          <button type="submit" className="w-full bg-[#FA8649] text-white py-2 rounded-lg hover:bg-[#E06D36] transition mt-6">
-            Update Event
-          </button>
-        </form>
-      </div>
+            {/* City Selection */}
+            {adCountry && selectedState && (
+              <label className="block">
+                <span className="text-[#001C27]">City</span>
+                <select
+                  name="event_city"
+                  className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                  required
+                  value={selectedCity}
+                  onChange={(e) => setSelectedCity(e.target.value)}
+                >
+                  <option value="">Select City</option>
+                  {locations.find(loc => loc.name === adCountry)
+                    ?.state.find(st => st.name === selectedState)
+                    ?.cities.map((city, index) => (
+                      <option key={index} value={city.name}>
+                        {city.name}
+                      </option>
+                    ))}
+                </select>
+              </label>
+            )}
+
+          </div>
+        </fieldset>
+
+        <button type="submit" className="w-full bg-[#FA8649] text-white py-2 rounded-lg hover:bg-[#E06D36] transition mt-6">
+          Update Event
+        </button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default EventUpdate
+export default EventUpdate;
