@@ -4,26 +4,82 @@ import AdCard from '../Components/AdCard'
 import { Helmet } from 'react-helmet-async'
 import Breadcrumb from '../Components/Breadcrumb'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
-import EventCard from '../Components/EventCard'
 import Pagination from '../Components/Pagination'
+import { useNavigate } from 'react-router'
+import useAuth from '../../hooks/useAuth'
+import EventCard from '../Components/EventCard'
 
 const AllEvents = () => {
 
-
-
-
- 
-  const [events, setEvents] = useState([]); 
-const [errorEvents, setErrorEvents] = useState(''); 
-  const [loadingEvents, setLoadingEvents] = useState(true);
+  const {user} = useAuth()
+   
   const axiosSecure = useAxiosSecure();
+
+
+  const [events, setEvents] = useState([]);
+  const [errorEvents, setErrorEvents] = useState('');
+  const [loadingEvents, setLoadingEvents] = useState(true);
+
+
+  const [locations, setLocations] = useState([]);
+  const [loadingLocations, setLoadingLocations] = useState(true);
+  const [errorLocations, setErrorLocations] = useState('');
+
+  const [categories, setCategories] = useState([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [errorCategories, setErrorCategories] = useState('');
+  
+  const [searchText, setSearchText] = useState("")
+  const [category, setCategory] = useState("");
+  const [subcategory, setSubCategory] = useState("");
+  const [categoryIndex, setCategoryIndex] = useState(0);
+
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [stateIndex, setStateIndex] = useState(0);
+
+
+  
+ 
+  
+ 
+const navigate = useNavigate()
+
+
+
+
 
 
 
 useEffect(() => {
  
+  const fetchCategories = async () => {
+    try {
+      // Fetch categories from the API endpoint using the secure axios instance
+      const response = await axiosSecure("/categories")
+      setCategories(response.data);
+      setLoadingCategories(false);
+    } catch (err) {
+      setErrorCategories('Error loading categories');
+      setLoadingCategories(false);
+    }
+  };
 
- 
+  const fetchLocations = async () => {
+    try {
+      const response = await axiosSecure("/locations")
+      
+      setLocations(response.data);
+      setLoadingLocations(false);
+    } catch (err) {
+      setErrorLocations('Error loading locations');
+      setLoadingLocations(false);
+    }
+  };
+
+  
+
   const fetchEvents = async () => {
     try {
       // Fetch categories from the API endpoint using the secure axios instance
@@ -31,14 +87,41 @@ useEffect(() => {
       setEvents(response.data);
       setLoadingEvents(false);
     } catch (err) {
-      setErrorEvents('Error loading Events');
+      setErrorEvents('Error loading events');
       setLoadingEvents(false);
     }
   };
  
+  fetchCategories();
+  fetchLocations();
   fetchEvents();
+  
 }, []);
 
+
+const fetchEventsWithFilter = async (searchText, category, subcategory, country, state, city) => {
+  console.log(searchText, category, subcategory, country, state, city);
+
+  try {
+    // Build the query string dynamically, ensuring that each parameter is properly encoded
+    const response = await axiosSecure(
+      `/eventsbyfilter?searchtext=${encodeURIComponent(searchText)}&category=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}&country=${encodeURIComponent(country)}&state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}`
+    );
+   
+    setEvents(response.data);
+    setLoadingEvents(false);
+  } catch (err) {
+    setErrorEvents('Error loading events');
+    setLoadingEvents(false);
+  }
+};
+
+const handleFilter = (e) => {
+  e.preventDefault(); // Corrected method name
+  fetchEventsWithFilter(searchText, category, subcategory, country, state, city);
+}
+
+ 
 
 
 
@@ -50,22 +133,6 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const pages = [1, 2, 3, 4, 5]
   return (
     <div>
         <Helmet>
@@ -73,56 +140,182 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
           </Helmet>
           <div className='space-y-4 mb-4'>
       <Breadcrumb
-       title={" All Events"}
+       title={"All Events"}
        subTitle={"Here you can find"}>
        </Breadcrumb>
     </div>
-     
+    <div></div>
+         
         <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
-      <div>
-        <div className='flex flex-col md:flex-row justify-center items-center gap-5 '>
-          <div>
-            <select
-              name='category'
-              id='category'
-              className='border p-4 rounded-lg'
-            >
-              <option value=''>Filter By Category</option>
-              <option value='Web Development'>Web Development</option>
-              <option value='Graphics Design'>Graphics Design</option>
-              <option value='Digital Marketing'>Digital Marketing</option>
-            </select>
-          </div>
+          
+        <div className="flex flex-col lg:flex-row justify-between gap-6">
+          
+        <div>
+  <div>
+    <form onSubmit={handleFilter}>
+      <div className='flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-[#FA8649] focus-within:ring-[#FA8649]'>
+        <input
+        onChange={(e)=>setSearchText(e.target.value)}
+          className='px-6 py-2 text-[#001C27] w-full placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
+          type='text'
+          name='search'
+          placeholder='Enter Job Title'
+          aria-label='Enter Job Title'
+        />
 
-          <form>
-            <div className='flex p-1 overflow-hidden border rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
-              <input
-                className='px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
-                type='text'
-                name='search'
-                placeholder='Enter Job Title'
-                aria-label='Enter Job Title'
-              />
-
-              <button className='px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'>
-                Search
-              </button>
-            </div>
-          </form>
-    
-          <button className='btn'>Reset</button>
-        </div>
-       
+        <input type='submit' value="Search" className='px-1 md:px-4 py-3 mx-2 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#014D48] rounded-md hover:bg-[#001C27] focus:bg-[#001C27] focus:outline-none'/>
+         
       </div>
-  
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+    </form>
+  </div>
+
+  <div>
+    <label className='block'>
+      <span className='text-[#001C27]'>Category</span>
+      <select
+        name='event_category'
+        className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+        required
+        onChange={(e) => {
+         
+          setCategory(e.target.value)
+        
+          setCategoryIndex(e.target.selectedIndex - 1)
+        }}
+      >
+        <option value=''>Select Category</option>
+        {categories.map((category, index) => (
+          <option key={index} value={category.name}>
+            {category.name}
+          </option>
+        ))}
+      </select>
+    </label>
+  </div>
+
+  {category && (
+    <div>
+      <label className='block'>
+        <span className='text-[#001C27]'>Sub-Category</span>
+        <select
+          name='event_subcategory'
+          onChange={(e) => {
+        
+            setSubCategory(e.target.value) 
+          }}
+          className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+          required
+        >
+          <option value=''>Select Sub-Category</option>
+          {categories[categoryIndex]?.subcategories?.map((subcategory, index) => (
+            <option key={index} value={subcategory.name}>
+              {subcategory.name}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
+  )}
+
+  <label className='block'>
+    <span className='text-[#001C27]'>Country</span>
+    <select
+      onChange={(e) => setCountry(e.target.value)}
+      name='event_country'
+      className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+      required
+    >
+      <option value=''>Select Country</option>
+      {locations.map((location, index) => (
+        <option key={index} value={location.name}>
+          {location.name}
+        </option>
+      ))}
+    </select>
+  </label>
+
+  {country === 'USA' && (
+    <label className='block'>
+      <span className='text-[#001C27]'>State</span>
+      <select
+        name='event_state'
+        className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+        required
+        onChange={(e) => {
+        
+          setState(e.target.value)
+          setStateIndex(e.target.selectedIndex - 1)
+        }}
+      >
+        <option value=''>Select State</option>
+        {locations.length > 0 && locations[0].state ? (
+          locations[0].state.map((location, index) => (
+            <option key={index} value={location.name}>
+              {location.name}
+            </option>
+          ))
+        ) : null}
+      </select>
+    </label>
+  )}
+
+  {country === 'USA' && (
+    <label className='block'>
+      <span className='text-[#001C27]'>City</span>
+      <select
+        name='event_city'
+        onChange={(e)=> setCity(e.target.value)}
+        className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+        required
+      >
+        {locations.length > 0 &&
+          locations[0].state &&
+          stateIndex !== undefined &&
+          stateIndex < locations[0].state.length &&
+          locations[0].state[stateIndex].cities ? (
+          locations[0].state[stateIndex].cities.map((city, index) => (
+            <option key={index} value={city.name}>
+              {city.name}
+            </option>
+          ))
+        ) : null}
+      </select>
+    </label>
+  )}
+ <button onClick={handleFilter} className='w-full px-1 md:px-4 py-3 my-2 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#014D48] rounded-md hover:bg-[#001C27] focus:bg-[#001C27] focus:outline-none'>
+  Apply Filter
+</button>
+
+</div>
+
+
+
+
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
       {
           events.map((event, index) =><EventCard key={index} event={event}></EventCard>)
          }
            </div>
 
-      <Pagination></Pagination>
-    
+
+
+
+
+
+
+
+
+          </div>
+         
+        
+      <div>
+       
+      </div>
+       
+  
+
+    <Pagination></Pagination>
     </div>
       
  
