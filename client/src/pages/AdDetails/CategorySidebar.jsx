@@ -51,11 +51,11 @@ const CategorySidebar = ({category}) => {
          {
           scategory?.subcategories?.map(sub => (
             <Link to={`/category/${scategory._id}`} key={sub.id}> 
-            <li >
-              <a href="#" className="flex items-center text-[#001C27] hover:text-[#FA8649]">
-                <i className={`fa fa-${sub.name} mr-2`}></i>
+            <li className="cursor-pointer p-1 w-full mb-1 border border-[#014D48] rounded-lg transition duration-300 hover:bg-[#FA8649] hover:text-white hover:border-[#FA8649] active:bg-[#014D48] active:text-white">
+              
+            
                 {sub.name}
-              </a>
+             
             </li>
             </Link>
           ))
