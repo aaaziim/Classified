@@ -15,7 +15,7 @@ const EventCard = ({event, handleDelete}) => {
       <img src="https://static.vecteezy.com/system/resources/thumbnails/005/048/106/small_2x/black-and-yellow-grunge-modern-thumbnail-background-free-vector.jpg" alt="Service Thumbnail" className="w-16 h-16 object-cover rounded-lg border border-[#014D48]" />
       <div>
         <h3 className="text-lg font-semibold text-[#014D48]">{title}</h3>
-        <p className="text-[#001C27]">{description.slice(0,50)}...</p>
+        <p className="text-[#001C27]">{description}...</p>
       </div>
     </div>
     <div className="space-x-3">

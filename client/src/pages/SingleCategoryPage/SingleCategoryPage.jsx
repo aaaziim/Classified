@@ -55,7 +55,7 @@ const fetchServicesbySubCategory = async (name) => {
     // Fetch categories from the API endpoint using the secure axios instance
     const response = await axiosSecure(`/servicesbysubcategory?subcategory=${encodeURIComponent(name)}`);
     setServices(response.data);
-    setLoadingServices(false);
+    setLoadingServices(false); 
   } catch (err) {
     setErrorServices('Error loading services');
     setLoadingServices(false);

@@ -11,32 +11,37 @@ import useAuth from '../../hooks/useAuth'
 const AllServices = () => {
 
   const {user} = useAuth()
-  const [services, setServices] = useState([]);
-  const [events, setEvents] = useState([]);
-
-
-  const [errorServices, setErrorServices] = useState('');
-const [errorEvents, setErrorEvents] = useState('');
- const [loadingServices, setLoadingServices] = useState(true);
-  const [loadingEvents, setLoadingEvents] = useState(true);
+   
   const axiosSecure = useAxiosSecure();
 
 
-
+  const [services, setServices] = useState([]);
+  const [errorServices, setErrorServices] = useState('');
+  const [loadingServices, setLoadingServices] = useState(true);
 
 
   const [locations, setLocations] = useState([]);
-  const [country, setCountry] = useState("");
-  const [stateIndex, setStateIndex] = useState(0);
-  const [category, setCategory] = useState(null);
-  const [subcategory, setSubCategory] = useState(null);
+  const [loadingLocations, setLoadingLocations] = useState(true);
+  const [errorLocations, setErrorLocations] = useState('');
+
+  const [categories, setCategories] = useState([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [errorCategories, setErrorCategories] = useState('');
+  
+  const [searchText, setSearchText] = useState("")
+  const [category, setCategory] = useState("");
+  const [subcategory, setSubCategory] = useState("");
   const [categoryIndex, setCategoryIndex] = useState(0);
-  const [state, setState] = useState();
-const [categories, setCategories] = useState([]);
-const [loadingCategories, setLoadingCategories] = useState(true);
-const [loadingLocations, setLoadingLocations] = useState(true);
-const [errorCategories, setErrorCategories] = useState('');
-const [errorLocations, setErrorLocations] = useState('');
+
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [stateIndex, setStateIndex] = useState(0);
+
+
+  
+ 
+  
  
 const navigate = useNavigate()
 
@@ -93,11 +98,15 @@ useEffect(() => {
 }, []);
 
 
-const fetchServicesbyCategory = async (name) => {
-  console.log(name)
+const fetchServicesWithFilter = async (searchText, category, subcategory, country, state, city) => {
+  console.log(searchText, category, subcategory, country, state, city);
+
   try {
-    // Fetch categories from the API endpoint using the secure axios instance
-    const response = await axiosSecure(`/servicesbycategory?category=${encodeURIComponent(name)}`);
+    // Build the query string dynamically, ensuring that each parameter is properly encoded
+    const response = await axiosSecure(
+      `/servicesbyfilter?searchtext=${encodeURIComponent(searchText)}&category=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}&country=${encodeURIComponent(country)}&state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}`
+    );
+   
     setServices(response.data);
     setLoadingServices(false);
   } catch (err) {
@@ -106,20 +115,12 @@ const fetchServicesbyCategory = async (name) => {
   }
 };
 
+const handleFilter = (e) => {
+  e.preventDefault(); // Corrected method name
+  fetchServicesWithFilter(searchText, category, subcategory, country, state, city);
+}
 
-const fetchServicesbySubCategory = async (name,category) => {
-  console.log(category, name)
-  try {
-    // Fetch categories from the API endpoint using the secure axios instance
-    const response = await axiosSecure(`/servicesbysubcategory?category=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(name)}`);
-    setServices(response.data);
-    setLoadingServices(false);
-  } catch (err) {
-    setErrorServices('Error loading services');
-    setLoadingServices(false);
-  }
-};
-
+ 
 
 
 
@@ -142,80 +143,149 @@ if (errorServices) return <div className="text-center text-[#FA8649]">{errorServ
        subTitle={"Here you can find"}>
        </Breadcrumb>
     </div>
-    <div><div>
-    <form className="flex justify-center">
-  <div className="flex p-1 border rounded-md w-64 mx-auto focus-within:ring focus-within:ring-[#FA8649]">
-    <input
-      className="px-2 py-1 w-full text-gray-700 placeholder-gray-500 bg-white outline-none text-sm"
-      type="text"
-      name="search"
-      placeholder="Search..."
-      aria-label="Search"
-    />
-    <button className="px-3 py-1 text-xs font-medium text-white bg-[#014D48] rounded-md hover:bg-[#FA8649] transition">
-      Search
-    </button>
-  </div>
-</form>
-
-          </div></div>
+    <div></div>
          
         <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
           
         <div className="flex flex-col lg:flex-row justify-between gap-6">
           
-        <div className=' '>
-          <div>
-          <select name='service_category' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required
-                             onChange={(e) => {
-                              setServices([])
-                              setCategory(e.target.value)
-                              fetchServicesbyCategory(e.target.value)
-                              setCategoryIndex(e.target.selectedIndex - 1)
-                             }} 
-                            >
-                                <option value=''>Select Category</option>
-                                {
-    categories.map((category, index) => (
-        <option 
-            key={index} 
-            value={category.name} 
-           // Wrap the function call in an anonymous function
-        >
-            {category.name}
-        </option>
-    ))
-}
-                            </select>
-          </div>
-         {
-          category &&  <div>
-          <select name='service_subcategory' 
-          onChange={(e)=>{
-            setServices([])
-            setSubCategory(e.target.value)
-            fetchServicesbySubCategory(e.target.value, category)
-          }} className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
-                                <option value=''>Select Sub-Category</option>
-                                {
+        <div>
+  <div>
+    <form onSubmit={handleFilter}>
+      <div className='flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-[#FA8649] focus-within:ring-[#FA8649]'>
+        <input
+        onChange={(e)=>setSearchText(e.target.value)}
+          className='px-6 py-2 text-[#001C27] w-full placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
+          type='text'
+          name='search'
+          placeholder='Enter Job Title'
+          aria-label='Enter Job Title'
+        />
 
-categories[categoryIndex]?.subcategories?.map((subcategory, index) => (
-    <option 
-        key={index} 
-        value={subcategory.name} 
-    >
-        {subcategory.name}
-    </option>
-))
-                                }
-                            </select>
-          </div>
-
-         }
-        
-    
+        <input type='submit' value="Search" className='px-1 md:px-4 py-3 mx-2 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#014D48] rounded-md hover:bg-[#001C27] focus:bg-[#001C27] focus:outline-none'/>
          
-        </div>
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <label className='block'>
+      <span className='text-[#001C27]'>Category</span>
+      <select
+        name='service_category'
+        className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+        required
+        onChange={(e) => {
+         
+          setCategory(e.target.value)
+        
+          setCategoryIndex(e.target.selectedIndex - 1)
+        }}
+      >
+        <option value=''>Select Category</option>
+        {categories.map((category, index) => (
+          <option key={index} value={category.name}>
+            {category.name}
+          </option>
+        ))}
+      </select>
+    </label>
+  </div>
+
+  {category && (
+    <div>
+      <label className='block'>
+        <span className='text-[#001C27]'>Sub-Category</span>
+        <select
+          name='service_subcategory'
+          onChange={(e) => {
+        
+            setSubCategory(e.target.value) 
+          }}
+          className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+          required
+        >
+          <option value=''>Select Sub-Category</option>
+          {categories[categoryIndex]?.subcategories?.map((subcategory, index) => (
+            <option key={index} value={subcategory.name}>
+              {subcategory.name}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
+  )}
+
+  <label className='block'>
+    <span className='text-[#001C27]'>Country</span>
+    <select
+      onChange={(e) => setCountry(e.target.value)}
+      name='service_country'
+      className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+      required
+    >
+      <option value=''>Select Country</option>
+      {locations.map((location, index) => (
+        <option key={index} value={location.name}>
+          {location.name}
+        </option>
+      ))}
+    </select>
+  </label>
+
+  {country === 'USA' && (
+    <label className='block'>
+      <span className='text-[#001C27]'>State</span>
+      <select
+        name='service_state'
+        className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+        required
+        onChange={(e) => {
+        
+          setState(e.target.value)
+          setStateIndex(e.target.selectedIndex - 1)
+        }}
+      >
+        <option value=''>Select State</option>
+        {locations.length > 0 && locations[0].state ? (
+          locations[0].state.map((location, index) => (
+            <option key={index} value={location.name}>
+              {location.name}
+            </option>
+          ))
+        ) : null}
+      </select>
+    </label>
+  )}
+
+  {country === 'USA' && (
+    <label className='block'>
+      <span className='text-[#001C27]'>City</span>
+      <select
+        name='service_city'
+        onChange={(e)=> setCity(e.target.value)}
+        className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
+        required
+      >
+        {locations.length > 0 &&
+          locations[0].state &&
+          stateIndex !== undefined &&
+          stateIndex < locations[0].state.length &&
+          locations[0].state[stateIndex].cities ? (
+          locations[0].state[stateIndex].cities.map((city, index) => (
+            <option key={index} value={city.name}>
+              {city.name}
+            </option>
+          ))
+        ) : null}
+      </select>
+    </label>
+  )}
+ <button onClick={handleFilter} className='w-full px-1 md:px-4 py-3 my-2 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#014D48] rounded-md hover:bg-[#001C27] focus:bg-[#001C27] focus:outline-none'>
+  Apply Filter
+</button>
+
+</div>
 
 
 
