@@ -106,6 +106,7 @@ app.get("/location/:id", async(req, res)=>{
 
 
 
+
 // Services API Starts
 
 // Get API Services
@@ -548,6 +549,8 @@ app.delete("/event/:id", async(req, res)=>{
 
 // Profile API Start
 
+// Create Profile API
+
 app.post("/profile", async (req, res) => {
   const newProfile = req.body;
   
@@ -559,9 +562,17 @@ app.post("/profile", async (req, res) => {
   res.status(201).json(result);
   }
 
-
- 
 });
+
+// Get All Profiles API
+app.get("/profiles", async(req, res)=>{
+  const result = await profileCollection.find().sort({ name: 1 }).toArray();
+  res.send(result)
+})
+
+
+
+
 
 app.get("/userprofile/:email", async (req, res) => {
   try {
