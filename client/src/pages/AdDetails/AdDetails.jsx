@@ -45,6 +45,7 @@ if (errorService) return <div className="text-center text-[#FA8649]">{errorServi
 
 const {title, posted, price, country, state, city, category, subcategory, description, author } = service;
 
+ 
 
   return (
   <>
@@ -101,7 +102,7 @@ const {title, posted, price, country, state, city, category, subcategory, descri
      </div>
      <div className='space-y-10 w-full md:w-1/3'>
        <SellerInfo author={author}/>
-       <CategorySidebar />
+       <CategorySidebar category={category} />
      </div>
    </div>
   </>
