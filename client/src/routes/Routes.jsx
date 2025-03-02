@@ -27,6 +27,7 @@ import EventDetails from "../pages/AdDetails/EventDetails";
 import PrivateRoute from "./PrivateRoute";
 import AllServices from "../pages/AllAds/AllServices";
 import AllEvents from "../pages/AllAds/AllEvents";
+import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 
 const routes = createBrowserRouter([
     {
@@ -122,6 +123,10 @@ const routes = createBrowserRouter([
             {
                 path:`/location/:id`,
                 element:<SingleLocationPage></SingleLocationPage>
+            },
+            {
+                path:`/admin`,
+                element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
             },
             
            

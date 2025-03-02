@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const ServiceCard = ({service,handleDelete}) => {
     const {title, description, _id} = service;
   return (
-    <div className="flex items-center justify-between p-4 bg-[#FFE5D5] rounded-lg shadow-md hover:shadow-lg transition">
+    <div className="flex flex-col md:flex-row mb-4 items-center justify-between p-4 bg-[#FFE5D5] rounded-lg shadow-md hover:shadow-lg transition space-y-2">
     <div className="flex items-center space-x-4">
       <img src="https://static.vecteezy.com/system/resources/thumbnails/005/048/106/small_2x/black-and-yellow-grunge-modern-thumbnail-background-free-vector.jpg" alt="Service Thumbnail" className="w-16 h-16 object-cover rounded-lg border border-[#014D48]" />
       <div>
@@ -12,7 +12,7 @@ const ServiceCard = ({service,handleDelete}) => {
         <p className="text-[#001C27]">{description.slice(0,50)}...</p>
       </div>
     </div>
-    <div className="space-x-3">
+    <div className="flex gap-4 flex-row flex-wrap ">
     <Link to={`/ad-details/${_id}`} >
      <button className="px-4 py-2 bg-[#014D48] text-white rounded-lg shadow hover:bg-[#000] transition">
         View
