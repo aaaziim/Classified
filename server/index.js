@@ -77,6 +77,35 @@ app.get("/category/:id", async(req, res)=>{
 
 
 
+app.get("/singlecategory", async (req, res) => {
+  try {
+    const { category } = req.query;
+    console.log("Category received from query:", category); // Log category received
+    
+    if (!category) {
+      return res.status(400).json({ error: "Category query parameter is missing" });
+    }
+
+    // Query to search the category name
+    let query = { name: { $regex: category, $options: "i" } }; // Case-insensitive search for category name
+    console.log("MongoDB query:", query); // Log the query object used for DB lookup
+    
+    const cat = await categoriesCollection.findOne(query);
+    
+    if (!cat) {
+      console.log("No category found matching query.");
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    res.json(cat); // Send the result to the frontend
+  } catch (error) {
+    console.error("Error fetching category:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
 
 
 // Categories API End
