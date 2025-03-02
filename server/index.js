@@ -48,6 +48,7 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
 
+    const profileCollection = client.db('Sidegurus').collection('profiles')
     const servicesCollection = client.db('Sidegurus').collection('services')
     const eventsCollection = client.db('Sidegurus').collection('events')
     const categoriesCollection = client.db('Sidegurus').collection('categories')
@@ -59,7 +60,7 @@ async function run() {
 // Get API Categories
 
 app.get("/categories", async(req, res)=>{
-  const result = await categoriesCollection.find().toArray();
+  const result = await categoriesCollection.find().sort({ name: 1 }).toArray();
   res.send(result)
 })
 
@@ -87,7 +88,7 @@ app.get("/category/:id", async(req, res)=>{
 // Get API Locations
 
 app.get("/locations", async(req, res)=>{
-  const result = await locationsCollection.find().toArray();
+  const result = await locationsCollection.find().sort({ name: 1 }).toArray();
   res.send(result)
 })
 
@@ -95,7 +96,8 @@ app.get("/locations", async(req, res)=>{
 
 app.get("/location/:id", async(req, res)=>{
   const id = req.params.id
-  const result = await locationsCollection.findOne({_id : new ObjectId(id)});
+  const result = await locationsCollection.
+  findOne({_id : new ObjectId(id)});
   res.send(result)
 })
 
@@ -159,17 +161,20 @@ app.get("/servicesbycategory", async (req, res) => {
 
 app.get("/servicesbysubcategory", async (req, res) => {
   try {
-    const { subcategory } = req.query; // Corrected destructuring
-    console.log("subcategory filter:", subcategory);
+    const { subcategory, category } = req.query; // Get parameters
+    console.log("Filtering services:", { category, subcategory });
 
     let query = {};
 
+    if (category) {
+      query.category = category;
+    }
     if (subcategory) {
-      query.subcategory = subcategory; // Match subcategory exactly
+      query.subcategory = subcategory; // Ensures filtering works even if only subcategory is selected
     }
 
     const services = await servicesCollection.find(query).toArray();
-    
+
     res.json(services);
   } catch (error) {
     console.error("Error fetching services by subcategory:", error);
@@ -182,7 +187,7 @@ app.get("/servicesbysubcategory", async (req, res) => {
 app.get("/servicesbycountry", async (req, res) => {
   try {
     const { country } = req.query; // Corrected destructuring
-    console.log("country filter:", country);
+    // console.log("country filter:", country);
 
     let query = {};
 
@@ -241,6 +246,44 @@ app.get("/servicesbycity", async (req, res) => {
   }
 });
 
+ 
+
+
+
+app.get("/servicesbyfilter", async (req, res) => {
+  try {
+    const { searchtext, category, subcategory, country, state, city, sort = 'title' } = req.query;
+    console.log("Filtering services:", { searchtext, category, subcategory, country, state, city });
+
+    let query = {};
+
+    // Apply filters only if they have a value
+    if (category) query.category = category;
+    if (subcategory) query.subcategory = subcategory;
+    if (country) query.country = country; // Country is a string at the root level
+    if (state) query.state = state; // State is directly stored, but in your example, it's null
+    if (city) query.city = city; // City is also stored directly
+    if (searchtext) query.title = { $regex: searchtext, $options: "i" };
+
+    console.log("Final query:", query); // Log the constructed query
+
+    let options = {};
+
+    // Sorting
+    if (sort) {
+      options.sort = { [sort]: 1 }; // Ascending order
+    }
+
+    // Fetch services without pagination
+    const services = await servicesCollection.find(query, options).toArray();
+
+    console.log("Matching services count:", services.length);
+    res.json(services); // Return the filtered services
+  } catch (error) {
+    console.error("Error fetching services by filter:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 
 
@@ -312,6 +355,166 @@ const result = await eventsCollection.find({'buyer.email' : email}).toArray();
 res.send(result)
 })
 
+
+
+
+
+
+app.get("/eventsbycategory", async (req, res) => {
+  try {
+    const { category } = req.query; // Corrected destructuring
+    console.log("Category filter:", category);
+
+    let query = {};
+
+    if (category) {
+      query.category = category; // Match category exactly
+    }
+
+    const events = await eventsCollection.find(query).toArray();
+    
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching events by category:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+app.get("/eventsbysubcategory", async (req, res) => {
+  try {
+    const { subcategory, category } = req.query; // Get parameters
+    console.log("Filtering events:", { category, subcategory });
+
+    let query = {};
+
+    if (category) {
+      query.category = category;
+    }
+    if (subcategory) {
+      query.subcategory = subcategory; // Ensures filtering works even if only subcategory is selected
+    }
+
+    const events = await eventsCollection.find(query).toArray();
+
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching services by subcategory:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+
+app.get("/eventsbycountry", async (req, res) => {
+  try {
+    const { country } = req.query; // Corrected destructuring
+    // console.log("country filter:", country);
+
+    let query = {};
+
+    if (country) {
+      query.country = country; // Match country exactly
+    }
+
+    const events = await eventsCollection.find(query).toArray();
+    
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching events by country:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.get("/eventsbystate", async (req, res) => {
+  try {
+    const { state } = req.query; // Corrected destructuring
+    console.log("state filter:", state);
+
+    let query = {};
+
+    if (state) {
+      query.state = state; // Match state exactly
+    }
+
+    const events = await eventsCollection.find(query).toArray();
+    
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching events by state:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+app.get("/eventsbycity", async (req, res) => {
+  try {
+    const { city } = req.query; // Corrected destructuring
+    console.log("city filter:", city);
+
+    let query = {};
+
+    if (city) {
+      query.city = city; // Match city exactly
+    }
+
+    const events = await eventsCollection.find(query).toArray();
+    
+    res.json(events);
+  } catch (error) {
+    console.error("Error fetching events by city:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+
+app.get("/eventsbyfilter", async (req, res) => {
+  try {
+    const { searchtext, category, subcategory, country, state, city, sort = 'title' } = req.query;
+    console.log("Filtering events:", { searchtext, category, subcategory, country, state, city });
+
+    let query = {};
+
+    // Apply filters only if they have a value
+    if (category) query.category = category;
+    if (subcategory) query.subcategory = subcategory;
+    if (country) query.country = country; // Country is a string at the root level
+    if (state) query.state = state; // State is directly stored, but in your example, it's null
+    if (city) query.city = city; // City is also stored directly
+    if (searchtext) query.title = { $regex: searchtext, $options: "i" };
+
+    console.log("Final query:", query); // Log the constructed query
+
+    let options = {};
+
+    // Sorting
+    if (sort) {
+      options.sort = { [sort]: 1 }; // Ascending order
+    }
+
+    // Fetch services without pagination
+    const events = await eventsCollection.find(query, options).toArray();
+
+    console.log("Matching events count:", events.length);
+    res.json(events); // Return the filtered services
+  } catch (error) {
+    console.error("Error fetching events by filter:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+
+
+
+
+
 // Post API Events
 
 app.post("/events", async(req, res)=>{
@@ -342,6 +545,76 @@ app.delete("/event/:id", async(req, res)=>{
 
 // Events API Ends
 
+
+// Profile API Start
+
+app.post("/profile", async (req, res) => {
+  const newProfile = req.body;
+  
+  // Check if profile already exists (based on a unique field, e.g., email or userId)
+  const existingProfile = await profileCollection.findOne({ email: newProfile.email }); // Change to a relevant unique field
+    // Insert the new profile if it doesn't exist
+  if (!existingProfile) {
+     const result = await profileCollection.insertOne(newProfile);
+  res.status(201).json(result);
+  }
+
+
+ 
+});
+
+app.get("/userprofile/:email", async (req, res) => {
+  try {
+    const email = req.params.email;
+    console.log(email);
+
+    const result = await profileCollection.findOne({ email: email });
+
+    if (!result) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+
+
+app.put("/profile-update/:email", async (req, res) => {
+  try {
+    const email = req.params.email;
+    const updatedProfile = req.body;
+
+    // Validate request body
+    if (!updatedProfile || Object.keys(updatedProfile).length === 0) {
+      return res.status(400).send({ message: "Invalid update data" });
+    }
+
+    console.log(`Updating profile for: ${email}`);
+
+    const result = await profileCollection.updateOne(
+      { email: email }, // Filter
+      { $set: updatedProfile }, // Update operation
+      { upsert: true } // Options: Create if not found
+    );
+
+    if (result.matchedCount === 0 && result.upsertedCount === 0) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    res.send({ message: "Profile updated successfully", result });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+
+
+// Profile API End
 
 
 
