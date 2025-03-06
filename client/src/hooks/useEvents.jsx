@@ -26,7 +26,7 @@ const useEvents = () => {
     };
     fetchEvents();
   }, []);
-  return  [events, loadingEvents, errorEvents]
+  return  [events, loadingEvents, errorEvents, setEvents, setLoadingEvents, setErrorEvents]
 }
 
 export default useEvents

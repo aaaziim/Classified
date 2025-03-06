@@ -9,21 +9,20 @@ import { useNavigate } from 'react-router'
 import useAuth from '../../hooks/useAuth'
 import useCategory from '../../hooks/useCategory'
 import useLocations from '../../hooks/useLocations'
+import useServices from '../../hooks/useServices'
 
 const AllServices = () => {
 
   const {user} = useAuth()
   const [categories, loadingCategories, errorCategories ] = useCategory()
   const [locations, loadingLocations,errorLocations ] = useLocations()
+  const [services, loadingServices, errorServices, setServices, setLoadingServices, setErrorServices ] = useServices()
    
   const axiosSecure = useAxiosSecure();
 
 
 
-  const [services, setServices] = useState([]);
-  const [errorServices, setErrorServices] = useState('');
-  const [loadingServices, setLoadingServices] = useState(true);
-
+ 
 
 
 
@@ -52,26 +51,6 @@ const navigate = useNavigate()
 
 
 
-useEffect(() => {
- 
-  
-
-  const fetchServices = async () => {
-    try {
-      // Fetch categories from the API endpoint using the secure axios instance
-      const response = await axiosSecure("/services")
-      setServices(response.data);
-      setLoadingServices(false);
-    } catch (err) {
-      setErrorServices('Error loading services');
-      setLoadingServices(false);
-    }
-  };
- 
-  
-  fetchServices();
-  
-}, []);
 
 
 const fetchServicesWithFilter = async (searchText, category, subcategory, country, state, city) => {

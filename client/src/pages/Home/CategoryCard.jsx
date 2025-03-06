@@ -5,14 +5,51 @@ import { Link } from 'react-router-dom';
 const CategoryCard = ({ category }) => {
   const {_id, name, slug } = category;
   return (
-    <Link to={`/category/${_id}`}>
-      <div className="h-52 p-6 bg-white shadow-lg rounded-lg flex flex-col items-center text-center transition-all transform hover:scale-105 hover:shadow-2xl hover:border-[#FA8649] hover:text-[#FA8649]">
-        <span className="text-4xl mb-3">
-          <FcElectronics />
-        </span>
-        <h3 className="text-lg font-semibold text-[#014D48]">{name}</h3>
+ 
+<div className="bg-[#FFE5D5] shadow-lg rounded-2xl p-5 w-full max-w-md">
+
+  <div className="space-y-4">
+
+    <div className="bg-white rounded-lg p-4 shadow-md ">
+      <div className=' bg-gray-100 p-4 rounded-2xl overflow-hidden h-20'>
+      <Link to={`/category/${_id}`}>
+      <button className="w-full text-center font-medium text-[#014D48] text-lg focus:outline-none cursor-pointer" title={name}>
+
+      {name}
+      </button>
+      </Link>
       </div>
-    </Link>
+  
+      <ul className="mt-3 space-y-2 pl-5 h-72 relative">
+      {
+  category.subcategories?.map((sub, index) => (
+    index < 6 && (
+      <li key={sub._id} className="block text-[#FA8649] text-sm hover:text-[#001C27] transition duration-300">
+        <Link to={`/category/${sub._id}`}>
+          {sub.name}
+        </Link>
+      </li>
+    )
+  ))
+}
+
+<li className="block text-[#FA8649] text-sm hover:text-[#001C27] transition duration-300 absolute bottom-0">
+<Link to={`/category/${_id}`}>
+      <button className=" btn text-left font-medium text-[#014D48] text-lg focus:outline-none">
+      View More
+      </button>
+      </Link>
+</li>
+      
+      </ul>
+    </div>
+
+ 
+  
+  </div>
+</div>
+
+ 
   );
 };
 

@@ -10,6 +10,7 @@ import useAuth from '../../hooks/useAuth'
 import EventCard from '../Components/EventCard'
 import useCategory from '../../hooks/useCategory'
 import useLocations from '../../hooks/useLocations'
+import useEvents from '../../hooks/useEvents'
 
 const AllEvents = () => {
 
@@ -17,16 +18,10 @@ const AllEvents = () => {
 
     const [categories, loadingCategories, errorCategories ] = useCategory()
     const [locations, loadingLocations,errorLocations ] = useLocations()
+    const  [events, loadingEvents, errorEvents, setEvents, setLoadingEvents, setErrorEvents] = useEvents()
    
   const axiosSecure = useAxiosSecure();
 
-
-  const [events, setEvents] = useState([]);
-  const [errorEvents, setErrorEvents] = useState('');
-  const [loadingEvents, setLoadingEvents] = useState(true);
-
-
- 
  
   const [searchText, setSearchText] = useState("")
   const [category, setCategory] = useState("");
@@ -50,28 +45,6 @@ const navigate = useNavigate()
 
 
 
-
-useEffect(() => {
- 
- 
-
-  
-
-  const fetchEvents = async () => {
-    try {
-      // Fetch categories from the API endpoint using the secure axios instance
-      const response = await axiosSecure("/events")
-      setEvents(response.data);
-      setLoadingEvents(false);
-    } catch (err) {
-      setErrorEvents('Error loading events');
-      setLoadingEvents(false);
-    }
-  };
- 
-  fetchEvents();
-  
-}, []);
 
 
 const fetchEventsWithFilter = async (searchText, category, subcategory, country, state, city) => {

@@ -17,7 +17,16 @@ const Home = () => {
  
   const [categories, loadingCategories, errorCategories ] = useCategory();
    const [locations, loadingLocations,errorLocations ] = useLocations()
-  
+   const serviceCategories = [
+    "Beauty & Personal Care Services",
+    "Health & Wellness",
+    "Event Services",
+    "Home Improvement & Repair Services",
+    "Pet Services",
+    "Educational & Tutoring Services",
+    "Cleaning & Maintenance Services"
+  ];
+ 
 
 
 
@@ -33,17 +42,29 @@ const Home = () => {
       </Helmet>
 
       <Banner />
+
+      <div className="my-10">
       <SectionHeading
       heading={"Browse From Top Categories"}
       subHeading={"Find what interests you the most"}
       ></SectionHeading>
-
   
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 my-10">
-        {categories.slice(0,6).map(category => (
-          <CategoryCard key={category.id} category={category} />
+  
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-10">
+        {categories.map(category => (
+          serviceCategories.includes(category.name) &&  <CategoryCard key={category.id} category={category} />
+         
         ))}
+        
       </div>
+
+      <Link className="flex justify-center" to="/all-categories">
+                <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition w-60">
+                  All Categories
+                </button>
+        </Link>
+        </div>
+
       <SectionHeading
       heading={"Latest Ads"}
       subHeading={"Find what interests you the most"}
@@ -58,12 +79,12 @@ const Home = () => {
 
 
  
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 my-10">
-        {locations.map(location => (
-          <LocationCard key={location.id} location={location} />
-        ))}
+      <div className="  my-10">
+
+      <LocationCard key={location.id} location={locations[0]} />
       </div>
 
+   
  
     </div>
   );

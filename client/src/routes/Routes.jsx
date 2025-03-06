@@ -28,6 +28,8 @@ import PrivateRoute from "./PrivateRoute";
 import AllServices from "../pages/AllAds/AllServices";
 import AllEvents from "../pages/AllAds/AllEvents";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
+import AllCategories from "../pages/AllCategories/AllCategories";
+import AllLocations from "../pages/AllLocations/AllLocations";
 
 const routes = createBrowserRouter([
     {
@@ -107,6 +109,14 @@ const routes = createBrowserRouter([
             {
                 path:"/all-events",
                 element:<AllEvents></AllEvents>
+            },
+            {
+                path:"/all-categories",
+                element:<AllCategories></AllCategories>
+            },
+            {
+                path:"/all-locations",
+                element:<AllLocations></AllLocations>
             },
             {
                 path:"/ad-details/:id",

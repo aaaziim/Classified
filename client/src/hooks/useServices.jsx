@@ -34,7 +34,7 @@ const useServices = () => {
   }, []);
 
 
-  return [services, loadingServices, errorServices ]
+  return [services, loadingServices, errorServices, setServices, setLoadingServices, setErrorServices ]
 }
 
 export default useServices
