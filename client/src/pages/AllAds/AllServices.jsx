@@ -7,12 +7,17 @@ import useAxiosSecure from '../../hooks/useAxiosSecure'
 import Pagination from '../Components/Pagination'
 import { useNavigate } from 'react-router'
 import useAuth from '../../hooks/useAuth'
+import useCategory from '../../hooks/useCategory'
+import useLocations from '../../hooks/useLocations'
 
 const AllServices = () => {
 
   const {user} = useAuth()
+  const [categories, loadingCategories, errorCategories ] = useCategory()
+  const [locations, loadingLocations,errorLocations ] = useLocations()
    
   const axiosSecure = useAxiosSecure();
+
 
 
   const [services, setServices] = useState([]);
@@ -20,13 +25,8 @@ const AllServices = () => {
   const [loadingServices, setLoadingServices] = useState(true);
 
 
-  const [locations, setLocations] = useState([]);
-  const [loadingLocations, setLoadingLocations] = useState(true);
-  const [errorLocations, setErrorLocations] = useState('');
 
-  const [categories, setCategories] = useState([]);
-  const [loadingCategories, setLoadingCategories] = useState(true);
-  const [errorCategories, setErrorCategories] = useState('');
+
   
   const [searchText, setSearchText] = useState("")
   const [category, setCategory] = useState("");
@@ -39,7 +39,8 @@ const AllServices = () => {
   const [stateIndex, setStateIndex] = useState(0);
 
 
-  
+  const [currentPage, setCurrentPage] = useState(1)
+  const servicesPerPage = 6
  
   
  
@@ -53,30 +54,6 @@ const navigate = useNavigate()
 
 useEffect(() => {
  
-  const fetchCategories = async () => {
-    try {
-      // Fetch categories from the API endpoint using the secure axios instance
-      const response = await axiosSecure("/categories")
-      setCategories(response.data);
-      setLoadingCategories(false);
-    } catch (err) {
-      setErrorCategories('Error loading categories');
-      setLoadingCategories(false);
-    }
-  };
-
-  const fetchLocations = async () => {
-    try {
-      const response = await axiosSecure("/locations")
-      
-      setLocations(response.data);
-      setLoadingLocations(false);
-    } catch (err) {
-      setErrorLocations('Error loading locations');
-      setLoadingLocations(false);
-    }
-  };
-
   
 
   const fetchServices = async () => {
@@ -91,8 +68,7 @@ useEffect(() => {
     }
   };
  
-  fetchCategories();
-  fetchLocations();
+  
   fetchServices();
   
 }, []);
@@ -122,6 +98,13 @@ const handleFilter = (e) => {
 
  
 
+  // Get the current page's services
+  const indexOfLastService = currentPage * servicesPerPage
+  const indexOfFirstService = indexOfLastService - servicesPerPage
+  const currentServices = services.slice(indexOfFirstService, indexOfLastService)
+
+  // Handle page change
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 
 if (loadingServices) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
@@ -130,16 +113,18 @@ if (loadingServices) return <div className="text-center text-[#014D48]"><Loading
 if (errorServices) return <div className="text-center text-[#FA8649]">{errorServices}</div>;
 
 
+console.log(country)
+
 
 
   return (
     <div>
         <Helmet>
-                          <title>All Services</title>
+                          <title>Services</title>
           </Helmet>
           <div className='space-y-4 mb-4'>
       <Breadcrumb
-       title={"All Services"}
+       title={"Services"}
        subTitle={"Here you can find"}>
        </Breadcrumb>
     </div>
@@ -312,9 +297,11 @@ if (errorServices) return <div className="text-center text-[#FA8649]">{errorServ
        
       </div>
        
-  
-
-    <Pagination></Pagination>
+      <Pagination
+          totalPages={Math.ceil(services.length / servicesPerPage)}
+          currentPage={currentPage}
+          onPageChange={paginate}
+        />
     </div>
       
  

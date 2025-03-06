@@ -8,10 +8,15 @@ import Pagination from '../Components/Pagination'
 import { useNavigate } from 'react-router'
 import useAuth from '../../hooks/useAuth'
 import EventCard from '../Components/EventCard'
+import useCategory from '../../hooks/useCategory'
+import useLocations from '../../hooks/useLocations'
 
 const AllEvents = () => {
 
   const {user} = useAuth()
+
+    const [categories, loadingCategories, errorCategories ] = useCategory()
+    const [locations, loadingLocations,errorLocations ] = useLocations()
    
   const axiosSecure = useAxiosSecure();
 
@@ -21,14 +26,8 @@ const AllEvents = () => {
   const [loadingEvents, setLoadingEvents] = useState(true);
 
 
-  const [locations, setLocations] = useState([]);
-  const [loadingLocations, setLoadingLocations] = useState(true);
-  const [errorLocations, setErrorLocations] = useState('');
-
-  const [categories, setCategories] = useState([]);
-  const [loadingCategories, setLoadingCategories] = useState(true);
-  const [errorCategories, setErrorCategories] = useState('');
-  
+ 
+ 
   const [searchText, setSearchText] = useState("")
   const [category, setCategory] = useState("");
   const [subcategory, setSubCategory] = useState("");
@@ -54,29 +53,7 @@ const navigate = useNavigate()
 
 useEffect(() => {
  
-  const fetchCategories = async () => {
-    try {
-      // Fetch categories from the API endpoint using the secure axios instance
-      const response = await axiosSecure("/categories")
-      setCategories(response.data);
-      setLoadingCategories(false);
-    } catch (err) {
-      setErrorCategories('Error loading categories');
-      setLoadingCategories(false);
-    }
-  };
-
-  const fetchLocations = async () => {
-    try {
-      const response = await axiosSecure("/locations")
-      
-      setLocations(response.data);
-      setLoadingLocations(false);
-    } catch (err) {
-      setErrorLocations('Error loading locations');
-      setLoadingLocations(false);
-    }
-  };
+ 
 
   
 
@@ -92,8 +69,6 @@ useEffect(() => {
     }
   };
  
-  fetchCategories();
-  fetchLocations();
   fetchEvents();
   
 }, []);
@@ -136,11 +111,11 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
   return (
     <div>
         <Helmet>
-                          <title>All Events</title>
+                          <title>Events</title>
           </Helmet>
           <div className='space-y-4 mb-4'>
       <Breadcrumb
-       title={"All Events"}
+       title={"Events"}
        subTitle={"Here you can find"}>
        </Breadcrumb>
     </div>

@@ -6,55 +6,16 @@ import EventCard from './EventCard';
 import { useEffect, useState } from "react";
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import LoadingSpinner from './LoadingSpinner';
+import useServices from '../../hooks/useServices';
+import useEvents from '../../hooks/useEvents';
  
 const TypeTab = () => {
 
 
+  const [services, loadingServices, errorServices ] = useServices()
+
   
-    const [services, setServices] = useState([]);
-    const [errorServices, setErrorServices] = useState('');
-    const [loadingServices, setLoadingServices] = useState(true);
-    const [events, setEvents] = useState([]);
-
-
-   
-  const [errorEvents, setErrorEvents] = useState('');
-  
-    const [loadingEvents, setLoadingEvents] = useState(true);
-    const axiosSecure = useAxiosSecure();
-
-
-
-  useEffect(() => {
-   
-
-
-    const fetchServices = async () => {
-      try {
-        // Fetch categories from the API endpoint using the secure axios instance
-        const response = await axiosSecure("/services")
-        setServices(response.data);
-        setLoadingServices(false);
-      } catch (err) {
-        setErrorServices('Error loading services');
-        setLoadingServices(false);
-      }
-    };
-    const fetchEvents = async () => {
-      try {
-        // Fetch categories from the API endpoint using the secure axios instance
-        const response = await axiosSecure("/events")
-        setEvents(response.data);
-        setLoadingEvents(false);
-      } catch (err) {
-        setErrorEvents('Error loading Events');
-        setLoadingEvents(false);
-      }
-    };
- 
-    fetchServices();
-    fetchEvents();
-  }, []);
+   const [events, loadingEvents, errorEvents] = useEvents()
 
 
 
@@ -92,7 +53,7 @@ const TypeTab = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {
-                services.map(service => (
+                services.slice(0,6).map(service => (
                   <AdCard key={service.id} service={service} />
                 ))
               }
@@ -109,7 +70,7 @@ const TypeTab = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {
-              events.map(event => (
+              events.slice(0,6).map(event => (
                 <EventCard key={event.id} event={event} />
               ))
 

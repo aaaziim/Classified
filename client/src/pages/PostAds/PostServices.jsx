@@ -6,52 +6,25 @@ import LoadingSpinner from '../Components/LoadingSpinner';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import useCategory from '../../hooks/useCategory';
+import useLocations from '../../hooks/useLocations';
 
 const PostServices = () => {
 
     const {user} =useAuth()
-
-    const [locations, setLocations] = useState([]);
+     
+  const [categories, loadingCategories, errorCategories ] = useCategory();
+  const [locations, loadingLocations,errorLocations ] = useLocations()
+ 
+ 
     const [country, setCountry] = useState("");
     const [stateIndex, setStateIndex] = useState(0);
     const [categoryIndex, setCategoryIndex] = useState(0);
     const [state, setState] = useState();
-  const [categories, setCategories] = useState([]);
-  const [loadingCategories, setLoadingCategories] = useState(true);
-  const [loadingLocations, setLoadingLocations] = useState(true);
-  const [errorCategories, setErrorCategories] = useState('');
-  const [errorLocations, setErrorLocations] = useState('');
-  const axiosSecure = useAxiosSecure()
+ const axiosSecure = useAxiosSecure()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        // Fetch categories from the API endpoint using the secure axios instance
-        const response = await axiosSecure("/categories")
-        setCategories(response.data);
-        setLoadingCategories(false);
-      } catch (err) {
-        setErrorCategories('Error loading categories');
-        setLoadingCategories(false);
-      }
-    };
-
-    const fetchLocations = async () => {
-      try {
-        const response = await axiosSecure("/locations")
-        
-        setLocations(response.data);
-        setLoadingLocations(false);
-      } catch (err) {
-        setErrorLocations('Error loading locations');
-        setLoadingLocations(false);
-      }
-    };
-
-    fetchCategories();
-    fetchLocations();
-  }, []);
+  
 
   if (loadingCategories || loadingLocations) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
   if (errorCategories) return <div className="text-center text-[#FA8649]">{errorCategories}</div>;
@@ -189,7 +162,6 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
             <select
                 name="service_state"
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
-                required
                 onChange={(e) => setStateIndex(e.target.selectedIndex - 1)} // ✅ Set stateIndex here
             >
                 <option value="">Select State</option>
@@ -212,7 +184,7 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
                             country === "USA"?
                             <label className='block'>
                             <span className='text-[#001C27]'>City</span>
-                            <select name='service_city' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
+                            <select name='service_city' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' >
                             {
     locations.length > 0 &&
     locations[0].state &&
