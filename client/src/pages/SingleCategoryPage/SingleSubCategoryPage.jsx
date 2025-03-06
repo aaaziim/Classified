@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Services from "./Services";
-import Events from "./Events";
+ 
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Breadcrumb from "../Components/Breadcrumb";
 

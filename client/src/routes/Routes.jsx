@@ -31,6 +31,7 @@ import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import AllCategories from "../pages/AllCategories/AllCategories";
 import AllLocations from "../pages/AllLocations/AllLocations";
 import SingleSubCategoryPage from "../pages/SingleCategoryPage/SingleSubCategoryPage";
+import SingleStatePage from "../pages/SingleLocationPage/SingleStatePage";
 
 const routes = createBrowserRouter([
     {
@@ -134,6 +135,10 @@ const routes = createBrowserRouter([
             {
                 path:'/category/:id/subcategory/:subId',
                 element:<SingleSubCategoryPage></SingleSubCategoryPage>
+            },
+            {
+                path:'/state/:stateName',
+                element:<SingleStatePage></SingleStatePage>
             },
             {
                 path:`/location/:id`,

@@ -25,7 +25,7 @@ const LocationCard = ({ location }) => {
   location?.state?.map((sub, index) => (
    
       <li key={sub._id} className="block text-[#FA8649] text-sm hover:text-[#001C27] transition duration-300">
-        <Link to={`/category/${sub._id}`}>
+        <Link  to={`/state/${sub.name}`}>
           {sub.name}
         </Link>
       </li>
