@@ -30,6 +30,7 @@ import AllEvents from "../pages/AllAds/AllEvents";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import AllCategories from "../pages/AllCategories/AllCategories";
 import AllLocations from "../pages/AllLocations/AllLocations";
+import SingleSubCategoryPage from "../pages/SingleCategoryPage/SingleSubCategoryPage";
 
 const routes = createBrowserRouter([
     {
@@ -129,6 +130,10 @@ const routes = createBrowserRouter([
             {
                 path:`/category/:id`,
                 element:<SingleCategoryPage></SingleCategoryPage>
+            },
+            {
+                path:'/category/:id/subcategory/:subId',
+                element:<SingleSubCategoryPage></SingleSubCategoryPage>
             },
             {
                 path:`/location/:id`,

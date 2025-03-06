@@ -24,8 +24,8 @@ const CategoryCard = ({ category }) => {
       {
   category.subcategories?.map((sub, index) => (
     index < 6 && (
-      <li key={sub._id} className="block text-[#FA8649] text-sm hover:text-[#001C27] transition duration-300">
-        <Link to={`/category/${sub._id}`}>
+      <li key={sub.id} className="block text-[#FA8649] text-sm hover:text-[#001C27] transition duration-300">
+        <Link to={`/category/${_id}/subcategory/${sub.id}`}>
           {sub.name}
         </Link>
       </li>
