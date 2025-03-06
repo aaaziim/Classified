@@ -16,10 +16,37 @@ const AllServices = () => {
   const {user} = useAuth()
   const [categories, loadingCategories, errorCategories ] = useCategory()
   const [locations, loadingLocations,errorLocations ] = useLocations()
-  const [services, loadingServices, errorServices, setServices, setLoadingServices, setErrorServices ] = useServices()
+
    
+  const [services, setServices] = useState([]);
+  const [errorServices, setErrorServices] = useState('');
+  const [loadingServices, setLoadingServices] = useState(true);
+  
+  const [page, setPage] = useState(1); // Current page
+    const [totalPages, setTotalPages] = useState(1); // Total number of pages
+
+    const limit = 3; // Number of services per page
+
+
   const axiosSecure = useAxiosSecure();
 
+
+  useEffect(() => {
+    const fetchServices = async () => {
+        try {
+            // Fetch services with pagination
+            const response = await axiosSecure(`/services?page=${page}&limit=${limit}`);
+            setServices(response.data.services);  // Use 'services' from the response
+            setTotalPages(response.data.totalPages);  // Set the totalPages from the backend
+            setLoadingServices(false);
+        } catch (err) {
+            setErrorServices('Error loading services');
+            setLoadingServices(false);
+        }
+    };
+
+    fetchServices();
+}, [page]);  // The effect re-runs whenever the page changes
 
 
  
@@ -36,10 +63,6 @@ const AllServices = () => {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [stateIndex, setStateIndex] = useState(0);
-
-
-  const [currentPage, setCurrentPage] = useState(1)
-  const servicesPerPage = 6
  
   
  
@@ -59,10 +82,11 @@ const fetchServicesWithFilter = async (searchText, category, subcategory, countr
   try {
     // Build the query string dynamically, ensuring that each parameter is properly encoded
     const response = await axiosSecure(
-      `/servicesbyfilter?searchtext=${encodeURIComponent(searchText)}&category=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}&country=${encodeURIComponent(country)}&state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}`
+      `/servicesbyfilter?searchtext=${encodeURIComponent(searchText)}&category=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}&country=${encodeURIComponent(country)}&state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}&page=${page}&limit=${limit}`
     );
+    setServices(response.data.services);  // Use 'services' from the response
+    setTotalPages(response.data.totalPages); 
    
-    setServices(response.data);
     setLoadingServices(false);
   } catch (err) {
     setErrorServices('Error loading services');
@@ -77,14 +101,6 @@ const handleFilter = (e) => {
 
  
 
-  // Get the current page's services
-  const indexOfLastService = currentPage * servicesPerPage
-  const indexOfFirstService = indexOfLastService - servicesPerPage
-  const currentServices = services.slice(indexOfFirstService, indexOfLastService)
-
-  // Handle page change
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
-
 
 if (loadingServices) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
 
@@ -92,7 +108,7 @@ if (loadingServices) return <div className="text-center text-[#014D48]"><Loading
 if (errorServices) return <div className="text-center text-[#FA8649]">{errorServices}</div>;
 
 
-console.log(country)
+
 
 
 
@@ -253,14 +269,13 @@ console.log(country)
 
 
 
-
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
+{
+  totalPages > 0?  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
       {
           services.map((service, index) =><AdCard key={index} service={service}></AdCard>)
          }
-           </div>
-
+           </div> : <p>No Service Found</p>
+}
 
 
 
@@ -275,11 +290,13 @@ console.log(country)
       <div>
        
       </div>
-       
-      <Pagination
-          totalPages={Math.ceil(services.length / servicesPerPage)}
-          currentPage={currentPage}
-          onPageChange={paginate}
+
+
+
+<Pagination
+          page={page}
+          setPage={setPage} 
+          totalPages={totalPages}
         />
     </div>
       

@@ -20,7 +20,7 @@ const useServices = () => {
       try {
         // Fetch categories from the API endpoint using the secure axios instance
         const response = await axiosSecure("/services")
-        setServices(response.data);
+        setServices(response.data.services);
         setLoadingServices(false);
       } catch (err) {
         setErrorServices('Error loading services');

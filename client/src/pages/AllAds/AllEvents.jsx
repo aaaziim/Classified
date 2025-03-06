@@ -7,22 +7,54 @@ import useAxiosSecure from '../../hooks/useAxiosSecure'
 import Pagination from '../Components/Pagination'
 import { useNavigate } from 'react-router'
 import useAuth from '../../hooks/useAuth'
-import EventCard from '../Components/EventCard'
 import useCategory from '../../hooks/useCategory'
 import useLocations from '../../hooks/useLocations'
 import useEvents from '../../hooks/useEvents'
+import EventCard from '../Components/EventCard'
 
 const AllEvents = () => {
 
   const {user} = useAuth()
+  const [categories, loadingCategories, errorCategories ] = useCategory()
+  const [locations, loadingLocations,errorLocations ] = useLocations()
 
-    const [categories, loadingCategories, errorCategories ] = useCategory()
-    const [locations, loadingLocations,errorLocations ] = useLocations()
-    const  [events, loadingEvents, errorEvents, setEvents, setLoadingEvents, setErrorEvents] = useEvents()
    
+  const [events, setEvents] = useState([]);
+  const [errorEvents, setErrorEvents] = useState('');
+  const [loadingEvents, setLoadingEvents] = useState(true);
+  
+  const [page, setPage] = useState(1); // Current page
+    const [totalPages, setTotalPages] = useState(1); // Total number of pages
+
+    const limit = 3; // Number of events per page
+
+
   const axiosSecure = useAxiosSecure();
 
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+        try {
+            // Fetch events with pagination
+            const response = await axiosSecure(`/events?page=${page}&limit=${limit}`);
+            setEvents(response.data.events);  // Use 'events' from the response
+            setTotalPages(response.data.totalPages);  // Set the totalPages from the backend
+            setLoadingEvents(false);
+        } catch (err) {
+            setErrorEvents('Error loading events');
+            setLoadingEvents(false);
+        }
+    };
+
+    fetchEvents();
+}, [page]);  // The effect re-runs whenever the page changes
+
+
  
+
+
+
+  
   const [searchText, setSearchText] = useState("")
   const [category, setCategory] = useState("");
   const [subcategory, setSubCategory] = useState("");
@@ -32,13 +64,11 @@ const AllEvents = () => {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [stateIndex, setStateIndex] = useState(0);
-
-
-  
  
   
  
 const navigate = useNavigate()
+
 
 
 
@@ -53,10 +83,11 @@ const fetchEventsWithFilter = async (searchText, category, subcategory, country,
   try {
     // Build the query string dynamically, ensuring that each parameter is properly encoded
     const response = await axiosSecure(
-      `/eventsbyfilter?searchtext=${encodeURIComponent(searchText)}&category=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}&country=${encodeURIComponent(country)}&state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}`
+      `/eventsbyfilter?searchtext=${encodeURIComponent(searchText)}&category=${encodeURIComponent(category)}&subcategory=${encodeURIComponent(subcategory)}&country=${encodeURIComponent(country)}&state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}&page=${page}&limit=${limit}`
     );
+    setEvents(response.data.events);  // Use 'events' from the response
+    setTotalPages(response.data.totalPages); 
    
-    setEvents(response.data);
     setLoadingEvents(false);
   } catch (err) {
     setErrorEvents('Error loading events');
@@ -72,11 +103,12 @@ const handleFilter = (e) => {
  
 
 
-
 if (loadingEvents) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
 
 
 if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents}</div>;
+
+
 
 
 
@@ -238,14 +270,13 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
 
 
 
-
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
+{
+  totalPages > 0?  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
       {
           events.map((event, index) =><EventCard key={index} event={event}></EventCard>)
          }
-           </div>
-
+           </div> : <p>No Service Found</p>
+}
 
 
 
@@ -260,10 +291,15 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
       <div>
        
       </div>
-       
-  
 
-    <Pagination></Pagination>
+ 
+
+       
+      <Pagination
+          page={page}
+          setPage={setPage} 
+          totalPages={totalPages}
+        />
     </div>
       
  

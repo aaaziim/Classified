@@ -53,7 +53,7 @@ const TypeTab = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {
-                services.slice(0,6).map(service => (
+                services.map(service => (
                   <AdCard key={service.id} service={service} />
                 ))
               }
@@ -70,7 +70,7 @@ const TypeTab = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {
-              events.slice(0,6).map(event => (
+              events.map(event => (
                 <EventCard key={event.id} event={event} />
               ))
 
