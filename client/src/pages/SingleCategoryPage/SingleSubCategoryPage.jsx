@@ -9,6 +9,9 @@ import Breadcrumb from "../Components/Breadcrumb";
 
 import AdCard from "../Components/AdCard";
 import EventCard from "../Components/EventCard";
+import Pagination from "../Components/Pagination";
+import SubCategoryEvents from "./SubCategoryEvents";
+import SubCategoryServices from "./SubCategoryServices";
 
 const SingleSubCategoryPage = () => {
   const { id, subId  } = useParams();
@@ -16,6 +19,12 @@ const SingleSubCategoryPage = () => {
   const [subcategory, setSubcategory] = useState("");
   const [services, setServices] = useState([]);
   const [events, setEvents] = useState([]);
+
+       const [page, setPage] = useState(1); 
+       const [pageEvent, setPageEvent] = useState(1); 
+       const [totalPages, setTotalPages] = useState(1);
+       const [totalEventPages, setTotalEventPages] = useState(1);
+       const limit = 3;
 
   useEffect(() => {
     const fetchSubCategory = async () => {
@@ -30,12 +39,6 @@ const SingleSubCategoryPage = () => {
 
         if (foundSubcategory) {
           setSubcategory(foundSubcategory.name);
-          
-          // Fetch services related to this subcategory
-          const servicesResponse = await axiosSecure(`/servicesbysubcategory?subcategory=${foundSubcategory.name}`);
-          setServices(servicesResponse.data.services);
-          const eventResponse = await axiosSecure(`/eventsbysubcategory?subcategory=${foundSubcategory.name}`);
-          setEvents(eventResponse.data.events);
         } else {
           setSubcategory("Unknown Subcategory");
         }
@@ -45,7 +48,7 @@ const SingleSubCategoryPage = () => {
     };
 
     fetchSubCategory();
-  }, [id, subId, axiosSecure]);
+  }, [id, subId, axiosSecure, page, pageEvent]);
 
 
 
@@ -74,21 +77,22 @@ const SingleSubCategoryPage = () => {
             Events
           </Tab>
         </TabList>
+        <div className="my-10">
+          <TabPanel>
+            <SubCategoryServices
+              subcategory={subcategory}
+              >
+            </SubCategoryServices>
+          </TabPanel>
+        </div>
+        <div className="my-10">
+          <TabPanel>
+            <SubCategoryEvents subcategory={subcategory}
+            ></SubCategoryEvents>
+          </TabPanel>
+        </div>
 
-        <div className="my-10">
-          <TabPanel>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-          {services.map(service =><AdCard key={service._id} service={service}></AdCard>)}
-          </div>
-          </TabPanel>
-        </div>
-        <div className="my-10">
-          <TabPanel>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-          {events.map(event =><EventCard key={event._id} event={event}></EventCard>)}
-          </div>
-          </TabPanel>
-        </div>
+       
       </Tabs>
   </>
   );
