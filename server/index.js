@@ -60,7 +60,7 @@ async function run() {
 // Get API Categories
 
 app.get("/categories", async(req, res)=>{
-  const result = await categoriesCollection.find().sort({ name: 1 }).toArray();
+  const result = await categoriesCollection.find().toArray();
   res.send(result)
 })
 
@@ -69,7 +69,6 @@ app.get("/categories", async(req, res)=>{
 
 app.get("/category/:id", async(req, res)=>{
   const id = req.params.id;
- 
   const result = await categoriesCollection.findOne({_id : new ObjectId(id)});
   res.send(result)
 })
@@ -117,7 +116,7 @@ app.get("/singlecategory", async (req, res) => {
 // Get API Locations
 
 app.get("/locations", async(req, res)=>{
-  const result = await locationsCollection.find().sort({ name: 1 }).toArray();
+  const result = await locationsCollection.find().toArray();
   res.send(result)
 })
 
@@ -130,6 +129,25 @@ app.get("/location/:id", async(req, res)=>{
   res.send(result)
 })
 
+
+app.get("/country/:slug", async (req, res) => {
+  const slug = req.params.slug; // Get the slug from the request parameters
+
+  try {
+    const result = await locationsCollection.findOne({ slug: slug }); // Find the location by slug
+    
+    if (!result) {
+      return res.status(404).json({ error: "Location not found" });
+    }
+
+    res.send(result); // Send the result as a response
+  } catch (error) {
+    console.error("Error fetching location:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 // Locations API End
 
 
@@ -140,10 +158,21 @@ app.get("/location/:id", async(req, res)=>{
 
 // Get API Services
 
-    app.get("/services", async(req, res)=>{
-        const result = await servicesCollection.find().toArray();
-        res.send(result)
-    })
+app.get("/services", async(req, res) => {
+  let { page, limit } = req.query;
+  page = parseInt(page) || 1; // Default to page 1
+  limit = parseInt(limit) || 10; // Default limit
+
+  const skip = (page - 1) * limit;
+
+  const result = await servicesCollection.find().skip(skip).limit(limit).toArray();
+  const totalServices = await servicesCollection.countDocuments(); // Count all documents
+
+  res.send({
+      services: result,
+      totalPages: Math.ceil(totalServices / limit), // Calculate total pages
+  });
+});
 
 
 // Get An Specific Service by Id
@@ -170,7 +199,11 @@ app.get("/location/:id", async(req, res)=>{
 app.get("/servicesbycategory", async (req, res) => {
   try {
     const { category } = req.query; // Corrected destructuring
-    console.log("Category filter:", category);
+    let { page, limit } = req.query;
+    page = parseInt(page) || 1; // Default to page 1
+    limit = parseInt(limit) || 10; // Default limit
+  
+    const skip = (page - 1) * limit;
 
     let query = {};
 
@@ -178,9 +211,14 @@ app.get("/servicesbycategory", async (req, res) => {
       query.category = category; // Match category exactly
     }
 
-    const services = await servicesCollection.find(query).toArray();
+    const services = await servicesCollection.find(query).skip(skip).limit(limit).toArray();
+    const totalServices = await servicesCollection.countDocuments(query); // Count all documents
+
+    res.send({
+        services: services,
+        totalPages: Math.ceil(totalServices / limit), // Calculate total pages
+    });
     
-    res.json(services);
   } catch (error) {
     console.error("Error fetching services by category:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -192,7 +230,11 @@ app.get("/servicesbycategory", async (req, res) => {
 app.get("/servicesbysubcategory", async (req, res) => {
   try {
     const { subcategory, category } = req.query; // Get parameters
-    console.log("Filtering services:", { category, subcategory });
+    let { page, limit } = req.query;
+    page = parseInt(page) || 1; // Default to page 1
+    limit = parseInt(limit) || 10; // Default limit
+  
+    const skip = (page - 1) * limit;
 
     let query = {};
 
@@ -203,9 +245,13 @@ app.get("/servicesbysubcategory", async (req, res) => {
       query.subcategory = subcategory; // Ensures filtering works even if only subcategory is selected
     }
 
-    const services = await servicesCollection.find(query).toArray();
+    const services = await servicesCollection.find(query).skip(skip).limit(limit).toArray();
+    const totalServices = await servicesCollection.countDocuments(query); // Count all documents
 
-    res.json(services);
+    res.send({
+        services: services,
+        totalPages: Math.ceil(totalServices / limit), // Calculate total pages
+    });
   } catch (error) {
     console.error("Error fetching services by subcategory:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -217,7 +263,13 @@ app.get("/servicesbysubcategory", async (req, res) => {
 app.get("/servicesbycountry", async (req, res) => {
   try {
     const { country } = req.query; // Corrected destructuring
-    // console.log("country filter:", country);
+    let { page, limit } = req.query;
+  page = parseInt(page) || 1; // Default to page 1
+  limit = parseInt(limit) || 10; // Default limit
+
+  const skip = (page - 1) * limit;
+
+ 
 
     let query = {};
 
@@ -225,9 +277,13 @@ app.get("/servicesbycountry", async (req, res) => {
       query.country = country; // Match country exactly
     }
 
-    const services = await servicesCollection.find(query).toArray();
+    const services = await servicesCollection.find(query).skip(skip).limit(limit).toArray();
     
-    res.json(services);
+    const totalServices = await servicesCollection.countDocuments(query);
+    res.send({
+        services: services,
+        totalPages: Math.ceil(totalServices / limit), // Calculate total pages
+    });
   } catch (error) {
     console.error("Error fetching services by country:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -237,7 +293,12 @@ app.get("/servicesbycountry", async (req, res) => {
 app.get("/servicesbystate", async (req, res) => {
   try {
     const { state } = req.query; // Corrected destructuring
-    console.log("state filter:", state);
+    let { page, limit } = req.query;
+    page = parseInt(page) || 1; // Default to page 1
+    limit = parseInt(limit) || 10; // Default limit
+  
+    const skip = (page - 1) * limit;
+  
 
     let query = {};
 
@@ -245,9 +306,12 @@ app.get("/servicesbystate", async (req, res) => {
       query.state = state; // Match state exactly
     }
 
-    const services = await servicesCollection.find(query).toArray();
-    
-    res.json(services);
+    const services = await servicesCollection.find(query).skip(skip).limit(limit).toArray();
+    const totalServices = await servicesCollection.countDocuments(query);
+    res.send({
+      services: services,
+      totalPages: Math.ceil(totalServices / limit), // Calculate total pages
+  });
   } catch (error) {
     console.error("Error fetching services by state:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -282,39 +346,47 @@ app.get("/servicesbycity", async (req, res) => {
 
 app.get("/servicesbyfilter", async (req, res) => {
   try {
-    const { searchtext, category, subcategory, country, state, city, sort = 'title' } = req.query;
-    console.log("Filtering services:", { searchtext, category, subcategory, country, state, city });
+    // Destructuring query parameters, with default value for `sort`
+    const { searchtext, category, subcategory, country, state, city, page = 1, limit = 10, sort = 'title' } = req.query;
+
+    const pageNumber = parseInt(page); // Page number
+    const limitNumber = parseInt(limit); // Limit per page
+    const skip = (pageNumber - 1) * limitNumber; // Calculate the number of documents to skip
 
     let query = {};
 
     // Apply filters only if they have a value
     if (category) query.category = category;
     if (subcategory) query.subcategory = subcategory;
-    if (country) query.country = country; // Country is a string at the root level
-    if (state) query.state = state; // State is directly stored, but in your example, it's null
-    if (city) query.city = city; // City is also stored directly
+    if (country) query.country = country;
+    if (state) query.state = state;
+    if (city) query.city = city;
     if (searchtext) query.title = { $regex: searchtext, $options: "i" };
 
     console.log("Final query:", query); // Log the constructed query
 
-    let options = {};
+    let options = {
+      sort: { [sort]: 1 }, // Ascending order by default
+    };
 
-    // Sorting
-    if (sort) {
-      options.sort = { [sort]: 1 }; // Ascending order
-    }
+    // Fetch services with pagination
+    const services = await servicesCollection.find(query, options).skip(skip).limit(limitNumber).toArray();
+    
+    // Fetch total count for pagination
+    const totalServices = await servicesCollection.countDocuments(query);
 
-    // Fetch services without pagination
-    const services = await servicesCollection.find(query, options).toArray();
-
-    console.log("Matching services count:", services.length);
-    res.json(services); // Return the filtered services
+    // Send response with services and pagination info
+    res.json({
+      services: services,
+      totalPages: Math.ceil(totalServices / limitNumber), // Calculate total pages
+      currentPage: pageNumber,
+      totalServices: totalServices,
+    });
   } catch (error) {
     console.error("Error fetching services by filter:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 
 // Post API Services
@@ -360,9 +432,21 @@ app.delete("/service/:id", async(req, res)=>{
 // Get API Events
 
 app.get("/events", async(req, res)=>{
-  const result = await eventsCollection.find().toArray();
-  res.send(result)
+  let { page, limit } = req.query;
+  page = parseInt(page) || 1; // Default to page 1
+  limit = parseInt(limit) || 10; // Default limit
+
+  const skip = (page - 1) * limit;
+  const result = await eventsCollection.find().skip(skip).limit(limit).toArray();
+  const totalEvents = await eventsCollection.countDocuments();
+  res.send({
+    events: result,
+    totalPages: Math.ceil(totalEvents / limit), // Calculate total pages
+});
 })
+
+
+ 
 
 
 // Get An Specific Event by Id
@@ -393,7 +477,11 @@ res.send(result)
 app.get("/eventsbycategory", async (req, res) => {
   try {
     const { category } = req.query; // Corrected destructuring
-    console.log("Category filter:", category);
+    let { page, limit } = req.query;
+    page = parseInt(page) || 1; // Default to page 1
+    limit = parseInt(limit) || 10; // Default limit
+  
+    const skip = (page - 1) * limit;
 
     let query = {};
 
@@ -401,9 +489,12 @@ app.get("/eventsbycategory", async (req, res) => {
       query.category = category; // Match category exactly
     }
 
-    const events = await eventsCollection.find(query).toArray();
-    
-    res.json(events);
+    const events = await eventsCollection.find(query).skip(skip).limit(limit).toArray();
+    const totalEvents = await eventsCollection.countDocuments(query);
+  res.send({
+    events: events,
+    totalPages: Math.ceil(totalEvents / limit), // Calculate total pages
+});
   } catch (error) {
     console.error("Error fetching events by category:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -415,7 +506,11 @@ app.get("/eventsbycategory", async (req, res) => {
 app.get("/eventsbysubcategory", async (req, res) => {
   try {
     const { subcategory, category } = req.query; // Get parameters
-    console.log("Filtering events:", { category, subcategory });
+    let { page, limit } = req.query;
+    page = parseInt(page) || 1; // Default to page 1
+    limit = parseInt(limit) || 10; // Default limit
+  
+    const skip = (page - 1) * limit;
 
     let query = {};
 
@@ -426,9 +521,12 @@ app.get("/eventsbysubcategory", async (req, res) => {
       query.subcategory = subcategory; // Ensures filtering works even if only subcategory is selected
     }
 
-    const events = await eventsCollection.find(query).toArray();
-
-    res.json(events);
+    const events = await eventsCollection.find(query).skip(skip).limit(limit).toArray();
+    const totalEvents = await eventsCollection.countDocuments(query);
+  res.send({
+    events: events,
+    totalPages: Math.ceil(totalEvents / limit), // Calculate total pages
+});
   } catch (error) {
     console.error("Error fetching services by subcategory:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -441,7 +539,13 @@ app.get("/eventsbysubcategory", async (req, res) => {
 app.get("/eventsbycountry", async (req, res) => {
   try {
     const { country } = req.query; // Corrected destructuring
-    // console.log("country filter:", country);
+    let { page, limit } = req.query;
+    page = parseInt(page) || 1; // Default to page 1
+    limit = parseInt(limit) || 10; // Default limit
+  
+    const skip = (page - 1) * limit;
+  
+   
 
     let query = {};
 
@@ -449,9 +553,12 @@ app.get("/eventsbycountry", async (req, res) => {
       query.country = country; // Match country exactly
     }
 
-    const events = await eventsCollection.find(query).toArray();
-    
-    res.json(events);
+    const events = await eventsCollection.find().skip(skip).limit(limit).toArray();
+    const totalEvents = await eventsCollection.countDocuments(query);
+    res.send({
+      events: events,
+      totalPages: Math.ceil(totalEvents / limit), // Calculate total pages
+  });
   } catch (error) {
     console.error("Error fetching events by country:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -461,7 +568,14 @@ app.get("/eventsbycountry", async (req, res) => {
 app.get("/eventsbystate", async (req, res) => {
   try {
     const { state } = req.query; // Corrected destructuring
-    console.log("state filter:", state);
+    let { page, limit } = req.query;
+    page = parseInt(page) || 1; // Default to page 1
+    limit = parseInt(limit) || 10; // Default limit
+  
+    const skip = (page - 1) * limit;
+  
+   
+
 
     let query = {};
 
@@ -469,9 +583,13 @@ app.get("/eventsbystate", async (req, res) => {
       query.state = state; // Match state exactly
     }
 
-    const events = await eventsCollection.find(query).toArray();
-    
-    res.json(events);
+    const events = await eventsCollection.find(query).skip(skip).limit(limit).toArray();
+    const totalEvents = await eventsCollection.countDocuments(query);
+    res.send({
+      events: events,
+      totalPages: Math.ceil(totalEvents / limit), // Calculate total pages
+  });
+     
   } catch (error) {
     console.error("Error fetching events by state:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -503,40 +621,40 @@ app.get("/eventsbycity", async (req, res) => {
 
 
 
-app.get("/eventsbyfilter", async (req, res) => {
-  try {
-    const { searchtext, category, subcategory, country, state, city, sort = 'title' } = req.query;
-    console.log("Filtering events:", { searchtext, category, subcategory, country, state, city });
+// app.get("/eventsbyfilter", async (req, res) => {
+//   try {
+//     const { searchtext, category, subcategory, country, state, city, sort = 'title' } = req.query;
+//     console.log("Filtering events:", { searchtext, category, subcategory, country, state, city });
 
-    let query = {};
+//     let query = {};
 
-    // Apply filters only if they have a value
-    if (category) query.category = category;
-    if (subcategory) query.subcategory = subcategory;
-    if (country) query.country = country; // Country is a string at the root level
-    if (state) query.state = state; // State is directly stored, but in your example, it's null
-    if (city) query.city = city; // City is also stored directly
-    if (searchtext) query.title = { $regex: searchtext, $options: "i" };
+//     // Apply filters only if they have a value
+//     if (category) query.category = category;
+//     if (subcategory) query.subcategory = subcategory;
+//     if (country) query.country = country; // Country is a string at the root level
+//     if (state) query.state = state; // State is directly stored, but in your example, it's null
+//     if (city) query.city = city; // City is also stored directly
+//     if (searchtext) query.title = { $regex: searchtext, $options: "i" };
 
-    console.log("Final query:", query); // Log the constructed query
+//     console.log("Final query:", query); // Log the constructed query
 
-    let options = {};
+//     let options = {};
 
-    // Sorting
-    if (sort) {
-      options.sort = { [sort]: 1 }; // Ascending order
-    }
+//     // Sorting
+//     if (sort) {
+//       options.sort = { [sort]: 1 }; // Ascending order
+//     }
 
-    // Fetch services without pagination
-    const events = await eventsCollection.find(query, options).toArray();
+//     // Fetch services without pagination
+//     const events = await eventsCollection.find(query, options).toArray();
 
-    console.log("Matching events count:", events.length);
-    res.json(events); // Return the filtered services
-  } catch (error) {
-    console.error("Error fetching events by filter:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+//     console.log("Matching events count:", events.length);
+//     res.json(events); // Return the filtered services
+//   } catch (error) {
+//     console.error("Error fetching events by filter:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 
 
@@ -546,6 +664,53 @@ app.get("/eventsbyfilter", async (req, res) => {
 
 
 // Post API Events
+
+
+app.get("/eventsbyfilter", async (req, res) => {
+  try {
+    // Destructuring query parameters, with default value for `sort`
+    const { searchtext, category, subcategory, country, state, city, page = 1, limit = 10, sort = 'title' } = req.query;
+
+    const pageNumber = parseInt(page); // Page number
+    const limitNumber = parseInt(limit); // Limit per page
+    const skip = (pageNumber - 1) * limitNumber; // Calculate the number of documents to skip
+
+    let query = {};
+
+    // Apply filters only if they have a value
+    if (category) query.category = category;
+    if (subcategory) query.subcategory = subcategory;
+    if (country) query.country = country;
+    if (state) query.state = state;
+    if (city) query.city = city;
+    if (searchtext) query.title = { $regex: searchtext, $options: "i" };
+
+    console.log("Final query:", query); // Log the constructed query
+
+    let options = {
+      sort: { [sort]: 1 }, // Ascending order by default
+    };
+
+    // Fetch services with pagination
+    const events = await eventsCollection.find(query, options).skip(skip).limit(limitNumber).toArray();
+    
+    // Fetch total count for pagination
+    const totalEvents = await eventsCollection.countDocuments(query);
+
+    // Send response with services and pagination info
+    res.json({
+      events: events,
+      totalPages: Math.ceil(totalEvents / limitNumber), // Calculate total pages
+      currentPage: pageNumber,
+      totalEvents: totalEvents,
+    });
+  } catch (error) {
+    console.error("Error fetching events by filter:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 
 app.post("/events", async(req, res)=>{
   const newService = req.body;
