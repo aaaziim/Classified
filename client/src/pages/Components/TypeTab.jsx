@@ -53,8 +53,8 @@ const TypeTab = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {
-                services.map(service => (
-                  <AdCard key={service.id} service={service} />
+                services.map((service,i) => (
+                  i<6 && <AdCard key={service.id} service={service} />
                 ))
               }
             </div>
@@ -70,8 +70,8 @@ const TypeTab = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {
-              events.map(event => (
-                <EventCard key={event.id} event={event} />
+              events.map((event,i) => (
+                i<6 &&  <EventCard key={event.id} event={event} />
               ))
 
   

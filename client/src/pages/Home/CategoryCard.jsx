@@ -20,7 +20,7 @@ const CategoryCard = ({ category }) => {
       </Link>
       </div>
   
-      <ul className="mt-3 space-y-2 pl-5 h-72 relative">
+      <ul className="mt-3 space-y-2 pl-5 pt-4 h-92 relative">
       {
   category.subcategories?.map((sub, index) => (
     index < 6 && (

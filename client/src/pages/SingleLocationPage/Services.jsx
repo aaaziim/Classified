@@ -6,6 +6,7 @@ import AdCard from '../Components/AdCard'
  
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import LoadingSpinner from '../Components/LoadingSpinner'
+import Pagination from '../Components/Pagination'
 
 const Services = ({id}) => {
  
@@ -22,6 +23,10 @@ const Services = ({id}) => {
       const [errorServices, setErrorServices] = useState('');
       const [loadingServices, setLoadingServices] = useState(true);
     
+
+      const [page, setPage] = useState(1); 
+        const [totalPages, setTotalPages] = useState(1);
+        const limit = 3;
   
    useEffect(() => {
     const fetchLocationAndServices = async () => {
@@ -33,8 +38,9 @@ const Services = ({id}) => {
         console.log(name)
   
         // Now that location is set, fetch services
-        const serviceResponse = await axiosSecure(`/servicesbycountry?country=${encodeURIComponent(name)}`);
-        setServices(serviceResponse.data);
+        const serviceResponse = await axiosSecure(`/servicesbycountry?country=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);
+        setServices(serviceResponse.data.services);
+        setTotalPages(serviceResponse.data.totalPages)
       } catch (err) {
         setErrorLocation("Error loading location");
         setErrorServices("Error loading services");
@@ -45,15 +51,16 @@ const Services = ({id}) => {
     };
   
     fetchLocationAndServices();
-  }, [id]); // Runs when `id` changes
+  }, [id,page]); // Runs when `id` changes
   
   
   const fetchServicesbyState = async (name) => {
     console.log(name)
     try {
       // Fetch categories from the API endpoint using the secure axios instance
-      const response = await axiosSecure(`/servicesbystate?state=${encodeURIComponent(name)}`);
-      setServices(response.data);
+      const response = await axiosSecure(`/servicesbystate?state=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);
+      setServices(response.data.services);
+      setTotalPages(response.data.totalPages)
       setLoadingServices(false);
     } catch (err) {
       setErrorServices('Error loading services');
@@ -118,7 +125,8 @@ const Services = ({id}) => {
   
   
   return (
-    <div className="flex justify-between gap-6">
+    <>
+    <div className="flex  gap-6">
     <div >
 {
   location?.state && <>    <h2 className="text-lg bg-[#014D48] font-semibold mb-2 cursor-pointer p-3 border border-[#014D48] rounded-lg transition duration-300 hover:bg-[#FA8649]  text-white hover:border-[#FA8649] active:bg-[#014D48] active:text-white">States</h2>
@@ -157,11 +165,21 @@ const Services = ({id}) => {
 )}
 
     </div>
+    {
+  totalPages > 0?  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
+      {
+          services.map((service, index) =><AdCard key={index} service={service}></AdCard>)
+         }
+           </div> : <p>No Service Found</p>
+}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-        {services.map(service =><AdCard key={service._id} service={service}></AdCard>)}
-    </div>
       </div>
+      <Pagination
+      page={page}
+      setPage={setPage} 
+      totalPages={totalPages}
+    />
+    </>
   )
 }
 
