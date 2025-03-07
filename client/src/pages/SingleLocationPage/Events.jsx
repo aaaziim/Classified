@@ -6,6 +6,7 @@ import AdCard from '../Components/AdCard'
  
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import LoadingSpinner from '../Components/LoadingSpinner'
+import Pagination from '../Components/Pagination'
 import EventCard from '../Components/EventCard'
 
 const Events = ({id}) => {
@@ -23,6 +24,10 @@ const Events = ({id}) => {
       const [errorEvents, setErrorEvents] = useState('');
       const [loadingEvents, setLoadingEvents] = useState(true);
     
+
+      const [page, setPage] = useState(1); 
+        const [totalPages, setTotalPages] = useState(1);
+        const limit = 3;
   
    useEffect(() => {
     const fetchLocationAndEvents = async () => {
@@ -34,8 +39,9 @@ const Events = ({id}) => {
         console.log(name)
   
         // Now that location is set, fetch events
-        const eventResponse = await axiosSecure(`/eventsbycountry?country=${encodeURIComponent(name)}`);
-        setEvents(eventResponse.data);
+        const eventResponse = await axiosSecure(`/eventsbycountry?country=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);
+        setEvents(eventResponse.data.events);
+        setTotalPages(eventResponse.data.totalPages)
       } catch (err) {
         setErrorLocation("Error loading location");
         setErrorEvents("Error loading events");
@@ -46,15 +52,16 @@ const Events = ({id}) => {
     };
   
     fetchLocationAndEvents();
-  }, [id]); // Runs when `id` changes
+  }, [id,page]); // Runs when `id` changes
   
   
   const fetchEventsbyState = async (name) => {
     console.log(name)
     try {
       // Fetch categories from the API endpoint using the secure axios instance
-      const response = await axiosSecure(`/eventsbystate?state=${encodeURIComponent(name)}`);
-      setEvents(response.data);
+      const response = await axiosSecure(`/eventsbystate?state=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);
+      setEvents(response.data.events);
+      setTotalPages(response.data.totalPages)
       setLoadingEvents(false);
     } catch (err) {
       setErrorEvents('Error loading events');
@@ -119,7 +126,8 @@ const Events = ({id}) => {
   
   
   return (
-    <div className="flex justify-between gap-6">
+    <>
+    <div className="flex  gap-6">
     <div >
 {
   location?.state && <>    <h2 className="text-lg bg-[#014D48] font-semibold mb-2 cursor-pointer p-3 border border-[#014D48] rounded-lg transition duration-300 hover:bg-[#FA8649]  text-white hover:border-[#FA8649] active:bg-[#014D48] active:text-white">States</h2>
@@ -158,11 +166,21 @@ const Events = ({id}) => {
 )}
 
     </div>
+    {
+  totalPages > 0?  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
+      {
+          events.map((event, index) =><EventCard key={index} event={event}></EventCard>)
+         }
+           </div> : <p>No Service Found</p>
+}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-        {events.map(event =><EventCard key={event._id} event={event}></EventCard>)}
-    </div>
       </div>
+      <Pagination
+      page={page}
+      setPage={setPage} 
+      totalPages={totalPages}
+    />
+    </>
   )
 }
 

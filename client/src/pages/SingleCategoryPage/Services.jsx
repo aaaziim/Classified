@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import Breadcrumb from "../Components/Breadcrumb";
 import AdCard from "../Components/AdCard";
+import Pagination from "../Components/Pagination";
 
 const Services = ({id}) => {
     const axiosSecure = useAxiosSecure();
@@ -18,6 +19,13 @@ const Services = ({id}) => {
     const [errorServices, setErrorServices] = useState('');
     const [loadingServices, setLoadingServices] = useState(true);
  
+     const [page, setPage] = useState(1); 
+            const [totalPages, setTotalPages] = useState(1);
+            const limit = 3;
+      
+
+
+
  useEffect(() => {
   const fetchCategoryAndServices = async () => {
     try {
@@ -28,8 +36,10 @@ const Services = ({id}) => {
       console.log(name)
 
       // Now that category is set, fetch services
-      const serviceResponse = await axiosSecure(`/servicesbycategory?category=${encodeURIComponent(name)}`);
-      setServices(serviceResponse.data);
+      const serviceResponse = await axiosSecure(`/servicesbycategory?category=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);
+      setServices(serviceResponse.data.services);
+    setTotalPages(serviceResponse.data.totalPages);
+    setLoadingServices(false); 
     } catch (err) {
       setErrorCategory("Error loading category");
       setErrorServices("Error loading services");
@@ -40,7 +50,7 @@ const Services = ({id}) => {
   };
 
   fetchCategoryAndServices();
-}, [id]); // Runs when `id` changes
+}, [id,page]); // Runs when `id` changes
 
 
 
@@ -49,8 +59,9 @@ const fetchServicesbySubCategory = async (name) => {
   console.log(name)
   try {
     // Fetch categories from the API endpoint using the secure axios instance
-    const response = await axiosSecure(`/servicesbysubcategory?subcategory=${encodeURIComponent(name)}`);
-    setServices(response.data);
+    const response = await axiosSecure(`/servicesbysubcategory?subcategory=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);
+    setServices(response.data.services);
+    setTotalPages(response.data.totalPages);
     setLoadingServices(false); 
   } catch (err) {
     setErrorServices('Error loading services');
@@ -113,10 +124,18 @@ const fetchServicesbySubCategory = async (name) => {
         </ul>
   </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-      {services.map(service =><AdCard key={service._id} service={service}></AdCard>)}
-     
-    </div>
+  {
+    totalPages >0 ?<div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
+    {services.map(service =><AdCard key={service._id} service={service}></AdCard>)}
+  </div> : <p>No Service Found</p>
+  }
+
+    
+    <Pagination
+      page={page}
+      setPage={setPage} 
+      totalPages={totalPages}
+    />
     </div>
 
    
