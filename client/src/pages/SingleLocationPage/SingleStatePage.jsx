@@ -27,7 +27,7 @@ const SingleLocationPage = () => {
       const fetchStateServices = async () => {
         try {
           const response = await axiosSecure(`/servicesbystate?state=${stateName}`);
-          setServices(response.data);
+          setServices(response.data.services);
         } catch (error) {
           console.error("Error fetching services by state:", error);
         }
@@ -35,7 +35,7 @@ const SingleLocationPage = () => {
       const fetchStateEvents = async () => {
         try {
           const response = await axiosSecure(`/eventsbystate?state=${stateName}`);
-          setEvents(response.data);
+          setEvents(response.data.events);
         } catch (error) {
           console.error("Error fetching events by state:", error);
         }

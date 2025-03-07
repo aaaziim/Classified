@@ -33,9 +33,9 @@ const SingleSubCategoryPage = () => {
           
           // Fetch services related to this subcategory
           const servicesResponse = await axiosSecure(`/servicesbysubcategory?subcategory=${foundSubcategory.name}`);
-          setServices(servicesResponse.data);
+          setServices(servicesResponse.data.services);
           const eventResponse = await axiosSecure(`/eventsbysubcategory?subcategory=${foundSubcategory.name}`);
-          setEvents(eventResponse.data);
+          setEvents(eventResponse.data.events);
         } else {
           setSubcategory("Unknown Subcategory");
         }
