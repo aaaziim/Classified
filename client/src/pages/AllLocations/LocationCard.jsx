@@ -32,14 +32,7 @@ const LocationCard = ({ location }) => {
   
   ))
 }
-{/* 
-<li className="block text-[#FA8649] text-sm hover:text-[#001C27] transition duration-300 absolute bottom-0">
-<Link to={`/category/${_id}`}>
-      <button className=" btn text-left font-medium text-[#014D48] text-lg focus:outline-none">
-      View More
-      </button>
-      </Link>
-</li> */}
+
       
       </ul>
     </div>

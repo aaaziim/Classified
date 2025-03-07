@@ -32,11 +32,14 @@ const SubCategoryServices = ({ subcategory }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
+    {
+        totalPages >1 ?  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
         {services.map((service) => (
           <AdCard key={service._id} service={service} />
         ))}
-      </div>
+      </div>:<p>No Service Found</p>
+  
+    }
 
       <Pagination page={page} setPage={setPage} totalPages={totalPages} />
     </div>
