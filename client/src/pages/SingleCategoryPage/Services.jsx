@@ -102,13 +102,14 @@ const fetchServicesbySubCategory = async (name) => {
     );
   }
   return (
-    <div className="px-4 py-6">
+    <>
+ <div className="px-4 py-6">
     <Helmet>
       <title>{category?.name || "Category"}</title>
     </Helmet>
 
   
-    <div className="flex flex-col lg:flex-row justify-between gap-6">
+    <div className="flex flex-col lg:flex-row  gap-6">
   <div >
   <h2 className="text-lg bg-[#014D48] font-semibold mb-2 cursor-pointer p-3 border border-[#014D48] rounded-lg transition duration-300 hover:bg-[#FA8649]  text-white hover:border-[#FA8649] active:bg-[#014D48] active:text-white text-center">Subcategories</h2>
         <ul className="space-y-2">
@@ -131,15 +132,19 @@ const fetchServicesbySubCategory = async (name) => {
   }
 
     
-    <Pagination
-      page={page}
-      setPage={setPage} 
-      totalPages={totalPages}
-    />
+   
     </div>
 
    
   </div>
+
+<Pagination
+      page={page}
+      setPage={setPage} 
+      totalPages={totalPages}
+    />
+    </>
+   
   )
 }
 
