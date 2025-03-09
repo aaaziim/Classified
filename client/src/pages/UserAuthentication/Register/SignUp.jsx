@@ -36,7 +36,6 @@ const SignUp = () => {
     }
   
   };
-
   const handleEmailSignIn = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -45,33 +44,30 @@ const SignUp = () => {
     const phone = e.target.phone.value;
     const address = e.target.address.value;
     const bio = e.target.bio.value;
-  
 
     try {
-      await createUser(email, password);
+        await createUser(email, password);
 
-      const profile = {
-        name,
-        phone,
-        email,
-        address,
-        bio
-      };
+        // Send user profile data to backend
+        const profile = { name, phone, email, address, bio };
+        try {
+            await axiosSecure.post(`/profile`, profile);
+        } catch (err) {
+            toast.error(err.response.data);
+        }
 
-      try{
-          const {data} = await axiosSecure.post(`/profile`, profile)
-         
-         } catch(err){ 
-            toast.error(err.response.data)
-         }
-
-      navigate("/profile");
-      toast.success("Sign-up Successful");
+        // Show toast message to verify email
+        
+        
+        // Do NOT navigate to profile or log the user in
     } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
+        console.log(err);
+        toast.error(err?.message);
     }
-  };
+};
+
+
+
 
   if (user || loading) return null;
 

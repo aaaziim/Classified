@@ -279,12 +279,6 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
 }
 
 
-
-
-
-
-
-
           </div>
          
         

@@ -113,7 +113,7 @@ const EventDetails = () => {
      </div>
      <div className='space-y-10 w-full md:w-1/3'>
        <SellerInfo author={author} />
-       <CategorySidebar />
+       {/* <CategorySidebar /> */}
      </div>
    </div>
   </>

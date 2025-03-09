@@ -22,12 +22,9 @@ const AllServices = () => {
   const [errorServices, setErrorServices] = useState('');
   const [loadingServices, setLoadingServices] = useState(true);
   
-  const [page, setPage] = useState(1); // Current page
-    const [totalPages, setTotalPages] = useState(1); // Total number of pages
-
-    const limit = 3; // Number of services per page
-
-
+  const [page, setPage] = useState(1); 
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 3;
   const axiosSecure = useAxiosSecure();
 
 

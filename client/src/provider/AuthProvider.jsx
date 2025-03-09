@@ -7,11 +7,14 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  sendEmailVerification, 
+  sendPasswordResetEmail,
   signOut,
   updateProfile,
 } from 'firebase/auth'
 import { app } from "../firebase/firebase.config.js"
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
@@ -21,20 +24,66 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const createUser = (email, password) => {
-    setLoading(true)
-    return createUserWithEmailAndPassword(auth, email, password)
-  }
+  const createUser = async (email, password) => {
+    setLoading(true);
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        await sendEmailVerification(userCredential.user);
+        toast.success("Please check your email and verify it before logging in.");
+        
+        // Sign out the user immediately after registration
+        await signOut(auth);
 
-  const signIn = (email, password) => {
-    setLoading(true)
-    return signInWithEmailAndPassword(auth, email, password)
+        setLoading(false);
+        return userCredential.user;
+    } catch (error) {
+        setLoading(false);
+        throw error; // Ensure errors are handled in the component
+    }
+};
+
+
+const signIn = async (email, password) => {
+  setLoading(true);
+  try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (!user.emailVerified) {
+          await signOut(auth); // Log out immediately
+          throw new Error("Email not verified. Please check your inbox and verify your email.");
+      }
+
+      setLoading(false);
+      return user;
+  } catch (error) {
+      setLoading(false);
+      throw error; // Ensure error handling in the component
   }
+};
+
 
   const signInWithGoogle = () => {
     setLoading(true)
     return signInWithPopup(auth, googleProvider)
   }
+
+
+
+
+
+  const resetPassword = async (email) => {
+    if (!email) {
+        throw new Error("Please enter your email.");
+    }
+    try {
+        await sendPasswordResetEmail(auth, email);
+        return "Password reset email sent. Check your inbox.";
+    } catch (error) {
+        throw new Error(error.message || "Failed to send reset email.");
+    }
+};
+
 
   const logOut = async () => {
     setLoading(true)
@@ -71,6 +120,7 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     updateUserProfile,
+    resetPassword
   }
 
   return (

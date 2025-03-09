@@ -20,8 +20,8 @@ const Services = ({id}) => {
     const [loadingServices, setLoadingServices] = useState(true);
  
      const [page, setPage] = useState(1); 
-            const [totalPages, setTotalPages] = useState(1);
-            const limit = 3;
+     const [totalPages, setTotalPages] = useState(1);
+     const limit = 3;
       
 
 
