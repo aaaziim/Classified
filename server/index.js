@@ -27,7 +27,23 @@ app.use(express.json())
 app.use(cookieParser())
 
 // Verify JWT Middleware
+const verifyToken = (req, res, next) => {
+  const token = req.cookies?.token;
 
+  if (!token) {
+    return res.status(401).send({ message: 'Unauthorized Access: No token provided' });
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).send({ message: 'Unauthorized Access: Invalid token' });
+    }
+
+    // Attach the decoded user information to the request object
+    req.user = decoded;
+    next();  // Pass control to the next middleware or route handler
+  });
+};
 
 
 //Middleware End
@@ -55,7 +71,34 @@ async function run() {
     const locationsCollection = client.db('Sidegurus').collection('locations')
  
  
+    app.post("/jwt", async(req, res)=>{
+      const user = req.body;
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET,{
+         expiresIn:"7d"
+      } )
+    
+      res
+      .cookie('token', token,{
+        httpOnly: true,
+        secure: process.env.NODE_ENV==='production',
+        sameSite:  process.env.NODE_ENV==='production'? 'none' : 'strict',
+      })
+      .send({success:true})
+    })
 
+
+    app.get("/logout", (req, res)=>{
+      res
+      .clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV==='production',
+        sameSite:  process.env.NODE_ENV==='production'? 'none' : 'strict',
+        maxAge: 0
+      })
+      .send({success:true})
+    })
+
+    
 // Categories API Start
 // Get API Categories
 
@@ -186,7 +229,7 @@ app.get("/services", async(req, res) => {
 
 // Get An Specific Services Posted by a user by user email
 
-    app.get("/services/:email",  async(req, res)=>{
+    app.get("/services/:email",verifyToken,  async(req, res)=>{
       const email = req.params.email
       
       const result = await servicesCollection.find({'author.email' : email}).toArray();
@@ -459,16 +502,13 @@ app.get("/event/:id", async(req, res)=>{
 
 // Get An Specific Events Posted by a user by user email
 
-app.get("/events/:email",  async(req, res)=>{
-const tokenEmail = req.user.email
+app.get("/events/:email",verifyToken,  async(req, res)=>{
+ 
 const email = req.params.email;
-if(tokenEmail !== email){
-  return res.status(403).send({message: "Forbidden Access"})
-}
-const result = await eventsCollection.find({'buyer.email' : email}).toArray();
+ 
+const result = await eventsCollection.find({'author.email' : email}).toArray();
 res.send(result)
 })
-
 
 
 
