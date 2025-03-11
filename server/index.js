@@ -188,7 +188,7 @@ app.get("/country/:slug", async (req, res) => {
 app.get("/services", async(req, res) => {
   let { page, limit } = req.query;
   page = parseInt(page) || 1; // Default to page 1
-  limit = parseInt(limit) || 10; // Default limit
+  limit = parseInt(limit)  // Default limit
 
   const skip = (page - 1) * limit;
 
@@ -226,7 +226,7 @@ app.get("/servicesbycategory", async (req, res) => {
     const { category } = req.query; // Corrected destructuring
     let { page, limit } = req.query;
     page = parseInt(page) || 1; // Default to page 1
-    limit = parseInt(limit) || 10; // Default limit
+    limit = parseInt(limit)  // Default limit
   
     const skip = (page - 1) * limit;
 
@@ -255,7 +255,7 @@ app.get("/servicesbysubcategory", async (req, res) => {
     const { subcategory, category } = req.query; // Get parameters
     let { page, limit } = req.query;
     page = parseInt(page) || 1; // Default to page 1
-    limit = parseInt(limit) || 10; // Default limit
+    limit = parseInt(limit)  // Default limit
   
     const skip = (page - 1) * limit;
 
@@ -286,7 +286,7 @@ app.get("/servicesbycountry", async (req, res) => {
     const { country } = req.query; // Corrected destructuring
     let { page, limit } = req.query;
   page = parseInt(page) || 1; // Default to page 1
-  limit = parseInt(limit) || 10; // Default limit
+  limit = parseInt(limit)  // Default limit
 
   const skip = (page - 1) * limit;
 
@@ -316,7 +316,7 @@ app.get("/servicesbystate", async (req, res) => {
     const { state } = req.query; // Corrected destructuring
     let { page, limit } = req.query;
     page = parseInt(page) || 1; // Default to page 1
-    limit = parseInt(limit) || 10; // Default limit
+    limit = parseInt(limit)  // Default limit
   
     const skip = (page - 1) * limit;
   
@@ -362,7 +362,7 @@ app.get("/servicesbycity", async (req, res) => {
 app.get("/servicesbyfilter", async (req, res) => {
   try {
     // Destructuring query parameters, with default value for `sort`
-    const { searchtext, category, subcategory, country, state, city, status, page = 1, limit = 10, sort = 'title' } = req.query;
+    const { searchtext, category, subcategory, country, state, city, status, page = 1, limit, sort = 'title' } = req.query;
 
     const pageNumber = parseInt(page); // Page number
     const limitNumber = parseInt(limit); // Limit per page
@@ -434,8 +434,14 @@ app.put("/service-report/:id",verifyToken, async(req, res)=>{
   const updatedService = req.body;
   console.log(updatedService)
   const result = await servicesCollection.updateOne({_id : new ObjectId(id)}, {$set : updatedService},{ upsert: true });
+  console.log(result)
   res.send(result)
 })
+
+
+
+
+
 
 // Delete API Services
 app.delete("/service/:id",verifyToken, async(req, res)=>{
@@ -457,7 +463,7 @@ app.delete("/service/:id",verifyToken, async(req, res)=>{
 app.get("/events", async(req, res)=>{
   let { page, limit } = req.query;
   page = parseInt(page) || 1; // Default to page 1
-  limit = parseInt(limit) || 10; // Default limit
+  limit = parseInt(limit)  // Default limit
 
   const skip = (page - 1) * limit;
   const result = await eventsCollection.find().skip(skip).limit(limit).toArray();
@@ -492,7 +498,7 @@ app.get("/eventsbycategory", async (req, res) => {
     const { category } = req.query; // Corrected destructuring
     let { page, limit } = req.query;
     page = parseInt(page) || 1; // Default to page 1
-    limit = parseInt(limit) || 10; // Default limit
+    limit = parseInt(limit)  // Default limit
   
     const skip = (page - 1) * limit;
 
@@ -519,7 +525,7 @@ app.get("/eventsbysubcategory", async (req, res) => {
     const { subcategory, category } = req.query; // Get parameters
     let { page, limit } = req.query;
     page = parseInt(page) || 1; // Default to page 1
-    limit = parseInt(limit) || 10; // Default limit
+    limit = parseInt(limit)  // Default limit
   
     const skip = (page - 1) * limit;
 
@@ -549,7 +555,7 @@ app.get("/eventsbycountry", async (req, res) => {
     const { country } = req.query; // Corrected destructuring
     let { page, limit } = req.query;
     page = parseInt(page) || 1; // Default to page 1
-    limit = parseInt(limit) || 10; // Default limit
+    limit = parseInt(limit)  // Default limit
   
     const skip = (page - 1) * limit;
   
@@ -578,7 +584,7 @@ app.get("/eventsbystate", async (req, res) => {
     const { state } = req.query; // Corrected destructuring
     let { page, limit } = req.query;
     page = parseInt(page) || 1; // Default to page 1
-    limit = parseInt(limit) || 10; // Default limit
+    limit = parseInt(limit)  // Default limit
   
     const skip = (page - 1) * limit;
   
@@ -629,7 +635,7 @@ app.get("/eventsbycity", async (req, res) => {
 app.get("/eventsbyfilter", async (req, res) => {
   try {
     // Destructuring query parameters, with default value for `sort`
-    const { searchtext, category, subcategory, country, state, city,status, page = 1, limit = 10, sort = 'title' } = req.query;
+    const { searchtext, category, subcategory, country, state, city,status, page = 1, limit , sort = 'title' } = req.query;
 
     const pageNumber = parseInt(page); // Page number
     const limitNumber = parseInt(limit); // Limit per page
@@ -698,6 +704,7 @@ app.put("/event-report/:id",verifyToken, async(req, res)=>{
   const id = req.params.id
   const updatedEvent = req.body;
   const result = await eventsCollection.updateOne({_id : new ObjectId(id)}, {$set : updatedEvent},{ upsert: true });
+  
   res.send(result)
 })
 // Delete API Events
