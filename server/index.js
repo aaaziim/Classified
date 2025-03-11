@@ -29,6 +29,7 @@ app.use(cookieParser())
 // Verify JWT Middleware
 const verifyToken = (req, res, next) => {
   const token = req.cookies?.token;
+  // console.log(token)
 
   if (!token) {
     return res.status(401).send({ message: 'Unauthorized Access: No token provided' });
@@ -41,8 +42,11 @@ const verifyToken = (req, res, next) => {
 
     // Attach the decoded user information to the request object
     req.user = decoded;
+    // console.log(req.user)
+    // console.log(decoded)
     next();  // Pass control to the next middleware or route handler
   });
+
 };
 
 
@@ -107,17 +111,12 @@ app.get("/categories", async(req, res)=>{
   res.send(result)
 })
 
-
 // Get An Category  by Id
-
 app.get("/category/:id", async(req, res)=>{
   const id = req.params.id;
   const result = await categoriesCollection.findOne({_id : new ObjectId(id)});
   res.send(result)
 })
-
-
-
 
 app.get("/singlecategory", async (req, res) => {
   try {
@@ -145,34 +144,20 @@ app.get("/singlecategory", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
-
-
-
 // Categories API End
-
-
-
-
 // Locations API Start
 // Get API Locations
-
 app.get("/locations", async(req, res)=>{
   const result = await locationsCollection.find().toArray();
   res.send(result)
 })
-
 // Get An Category  by Id
-
 app.get("/location/:id", async(req, res)=>{
   const id = req.params.id
   const result = await locationsCollection.
   findOne({_id : new ObjectId(id)});
   res.send(result)
 })
-
-
 app.get("/country/:slug", async (req, res) => {
   const slug = req.params.slug; // Get the slug from the request parameters
 
@@ -189,8 +174,6 @@ app.get("/country/:slug", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
 // Locations API End
 
 
@@ -199,7 +182,8 @@ app.get("/country/:slug", async (req, res) => {
 
 // Services API Starts
 
-// Get API Services
+
+// Get All Services
 
 app.get("/services", async(req, res) => {
   let { page, limit } = req.query;
@@ -216,29 +200,27 @@ app.get("/services", async(req, res) => {
       totalPages: Math.ceil(totalServices / limit), // Calculate total pages
   });
 });
-
-
 // Get An Specific Service by Id
-
     app.get("/service/:id", async(req, res)=>{
         const id = req.params.id
         const result = await servicesCollection.findOne({_id : new ObjectId(id)});
         res.send(result)
     })
-
-
-// Get An Specific Services Posted by a user by user email
-
-    app.get("/services/:email",verifyToken,  async(req, res)=>{
-      const email = req.params.email
+// Get Specific Services Posted by a user  
+    app.get("/servicesbyauser",verifyToken,  async(req, res)=>{
+      const user = req.user; 
+      console.log(user)
+      const email = user.email
+      if (!email) {
+        return res.status(400).json({ error: "Email query parameter is missing" });
+      }
+    // Extract user information from JWT token
+      
       
       const result = await servicesCollection.find({'author.email' : email}).toArray();
       res.send(result)
     })
-
-
-
- 
+// Get Specific Services Posted under a category
 app.get("/servicesbycategory", async (req, res) => {
   try {
     const { category } = req.query; // Corrected destructuring
@@ -267,9 +249,7 @@ app.get("/servicesbycategory", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
-
+// Get Specific Services Posted under a subcategory
 app.get("/servicesbysubcategory", async (req, res) => {
   try {
     const { subcategory, category } = req.query; // Get parameters
@@ -300,9 +280,7 @@ app.get("/servicesbysubcategory", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
-
+// Get Specific Services Posted under a country
 app.get("/servicesbycountry", async (req, res) => {
   try {
     const { country } = req.query; // Corrected destructuring
@@ -332,7 +310,7 @@ app.get("/servicesbycountry", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
+// Get Specific Services Posted under a state
 app.get("/servicesbystate", async (req, res) => {
   try {
     const { state } = req.query; // Corrected destructuring
@@ -360,9 +338,7 @@ app.get("/servicesbystate", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
-
+// Get Specific Services Posted under a city
 app.get("/servicesbycity", async (req, res) => {
   try {
     const { city } = req.query; // Corrected destructuring
@@ -382,11 +358,7 @@ app.get("/servicesbycity", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
- 
-
-
-
+// Get Specific Services Posted under certain conditions
 app.get("/servicesbyfilter", async (req, res) => {
   try {
     // Destructuring query parameters, with default value for `sort`
@@ -431,49 +403,47 @@ app.get("/servicesbyfilter", async (req, res) => {
   }
 });
 
-
-// Post API Services
-
+// Save Services
 app.post("/services", async(req, res)=>{
   const newService = req.body;
   const result = await servicesCollection.insertOne(newService)
   res.send(result)
 })
 
-// Put API Services
-
-app.put("/service-update/:id", async(req, res)=>{
+// Update Service by the author
+app.put("/service-update/:id",verifyToken, async(req, res)=>{
   const id = req.params.id
+  const user = req.user;
+  const userEmail = user.email
+  const service = await servicesCollection.findOne({_id : new ObjectId(id)});
+
+  console.log(userEmail, service)
+
+  if(userEmail !== service.author.email){
+    return res.status(403).json({error: "Unauthorized Access"})
+  }
   const updatedService = req.body;
   const result = await servicesCollection.updateOne({_id : new ObjectId(id)}, {$set : updatedService},{ upsert: true });
   res.send(result)
 })
 
-
 // Delete API Services
-
-app.delete("/service/:id", async(req, res)=>{
+app.delete("/service/:id",verifyToken, async(req, res)=>{
   const id = req.params.id
+  const user = req.user;
+  const userEmail = user.email
+  const service = await servicesCollection.findOne({_id : new ObjectId(id)});
+  if(userEmail !== service.author.email){
+    return res.status(403).json({error: "Unauthorized Access"})
+  }
+
   const result = await servicesCollection.deleteOne({_id : new ObjectId(id)});
   res.send(result)
 })
 
-
-
-
 // Services API Ends
-
-
-
-
-
-
-
-
 // Events API Starts
-
 // Get API Events
-
 app.get("/events", async(req, res)=>{
   let { page, limit } = req.query;
   page = parseInt(page) || 1; // Default to page 1
@@ -488,31 +458,23 @@ app.get("/events", async(req, res)=>{
 });
 })
 
-
- 
-
-
 // Get An Specific Event by Id
-
 app.get("/event/:id", async(req, res)=>{
   const id = req.params.id
   const result = await eventsCollection.findOne({_id : new ObjectId(id)});
   res.send(result)
 })
-
-// Get An Specific Events Posted by a user by user email
-
-app.get("/events/:email",verifyToken,  async(req, res)=>{
- 
-const email = req.params.email;
+// Get Specific Events Posted by a user by user email
+app.get("/eventsbyauser",verifyToken,  async(req, res)=>{
+  const user = req.user; 
+  const email = user.email
+  if (!email) {
+    return res.status(400).json({ error: "Email query parameter is missing" });
+  }
  
 const result = await eventsCollection.find({'author.email' : email}).toArray();
 res.send(result)
 })
-
-
-
-
 
 app.get("/eventsbycategory", async (req, res) => {
   try {
@@ -540,8 +502,6 @@ app.get("/eventsbycategory", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
 
 app.get("/eventsbysubcategory", async (req, res) => {
   try {
@@ -572,9 +532,6 @@ app.get("/eventsbysubcategory", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
-
 
 app.get("/eventsbycountry", async (req, res) => {
   try {
@@ -658,54 +615,6 @@ app.get("/eventsbycity", async (req, res) => {
   }
 });
 
-
-
-
-// app.get("/eventsbyfilter", async (req, res) => {
-//   try {
-//     const { searchtext, category, subcategory, country, state, city, sort = 'title' } = req.query;
-//     console.log("Filtering events:", { searchtext, category, subcategory, country, state, city });
-
-//     let query = {};
-
-//     // Apply filters only if they have a value
-//     if (category) query.category = category;
-//     if (subcategory) query.subcategory = subcategory;
-//     if (country) query.country = country; // Country is a string at the root level
-//     if (state) query.state = state; // State is directly stored, but in your example, it's null
-//     if (city) query.city = city; // City is also stored directly
-//     if (searchtext) query.title = { $regex: searchtext, $options: "i" };
-
-//     console.log("Final query:", query); // Log the constructed query
-
-//     let options = {};
-
-//     // Sorting
-//     if (sort) {
-//       options.sort = { [sort]: 1 }; // Ascending order
-//     }
-
-//     // Fetch services without pagination
-//     const events = await eventsCollection.find(query, options).toArray();
-
-//     console.log("Matching events count:", events.length);
-//     res.json(events); // Return the filtered services
-//   } catch (error) {
-//     console.error("Error fetching events by filter:", error);
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
-// });
-
-
-
-
-
-
-
-
-// Post API Events
-
-
 app.get("/eventsbyfilter", async (req, res) => {
   try {
     // Destructuring query parameters, with default value for `sort`
@@ -750,44 +659,42 @@ app.get("/eventsbyfilter", async (req, res) => {
   }
 });
 
-
-
 app.post("/events", async(req, res)=>{
   const newService = req.body;
   const result = await eventsCollection.insertOne(newService)
   res.send(result)
 })
-
 // Put API Events
 
-app.put("/event-update/:id", async(req, res)=>{
+app.put("/event-update/:id",verifyToken, async(req, res)=>{
   const id = req.params.id
+  const user = req.user;
+  const userEmail = user.email
+  const event = await eventsCollection.findOne({_id : new ObjectId(id)});
+  if(userEmail !== event.author.email){
+    return res.status(403).json({error: "Unauthorized Access"})
+  }
   const updatedEvent = req.body;
   const result = await eventsCollection.updateOne({_id : new ObjectId(id)}, {$set : updatedEvent},{ upsert: true });
   res.send(result)
 })
-
-
 // Delete API Events
-
-app.delete("/event/:id", async(req, res)=>{
+app.delete("/event/:id", verifyToken, async(req, res)=>{
   const id = req.params.id
+  const user = req.user;
+  const userEmail = user.email
+  const event = await eventsCollection.findOne({_id : new ObjectId(id)});
+  if(userEmail !== event.author.email){
+    return res.status(403).json({error: "Unauthorized Access"})
+  }
   const result = await eventsCollection.deleteOne({_id : new ObjectId(id)});
   res.send(result)
 })
-
-
-
 // Events API Ends
-
-
 // Profile API Start
-
-// Create Profile API
-
+// Create Profile 
 app.post("/profile", async (req, res) => {
   const newProfile = req.body;
-  
   // Check if profile already exists (based on a unique field, e.g., email or userId)
   const existingProfile = await profileCollection.findOne({ email: newProfile.email }); // Change to a relevant unique field
     // Insert the new profile if it doesn't exist
@@ -804,21 +711,18 @@ app.get("/profiles", async(req, res)=>{
   res.send(result)
 })
 
-
-
-
-
-app.get("/userprofile/:email", async (req, res) => {
+// Get userProfile
+app.get("/userprofile",verifyToken, async (req, res) => {
   try {
-    const email = req.params.email;
-    console.log(email);
-
+    const user = req.user; 
+  const email = user.email
+  if (!email) {
+    return res.status(400).json({ error: "Email query parameter is missing" });
+  }
     const result = await profileCollection.findOne({ email: email });
-
     if (!result) {
       return res.status(404).send({ message: "User not found" });
     }
-
     res.send(result);
   } catch (error) {
     console.error(error);
@@ -826,30 +730,28 @@ app.get("/userprofile/:email", async (req, res) => {
   }
 });
 
-
-
-app.put("/profile-update/:email", async (req, res) => {
+// Update userProfile
+app.put("/profile-update",verifyToken, async (req, res) => {
   try {
-    const email = req.params.email;
+    const email = req.user.email;
     const updatedProfile = req.body;
-
+    const profile = await profileCollection.findOne({email: email});
+    console.log(profile);
+    if(email !== profile.email){
+      return res.status(403).json({ error: "Unauthorized Access" });
+    }
     // Validate request body
     if (!updatedProfile || Object.keys(updatedProfile).length === 0) {
       return res.status(400).send({ message: "Invalid update data" });
     }
-
-    console.log(`Updating profile for: ${email}`);
-
     const result = await profileCollection.updateOne(
       { email: email }, // Filter
       { $set: updatedProfile }, // Update operation
       { upsert: true } // Options: Create if not found
     );
-
     if (result.matchedCount === 0 && result.upsertedCount === 0) {
       return res.status(404).send({ message: "User not found" });
     }
-
     res.send({ message: "Profile updated successfully", result });
   } catch (error) {
     console.error(error);
@@ -857,7 +759,30 @@ app.put("/profile-update/:email", async (req, res) => {
   }
 });
 
+// Delete user profile
 
+app.delete("/profile-delete", verifyToken, async (req, res) => {
+  try {
+
+
+    const email = req.user.email;
+    const profile = await profileCollection.findOne({email: email});
+    
+    // Update it by admin email upon completion
+    if(email !== profile.email){
+      return res.status(403).json({ error: "Unauthorized Access" });
+    }
+
+    const result = await profileCollection.deleteOne({ email: email });
+    if (result.deletedCount === 0) {
+      return res.status(404).send({ message: "User not found" });
+    }
+    res.send({ message: "Profile deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
 
 // Profile API End
 
