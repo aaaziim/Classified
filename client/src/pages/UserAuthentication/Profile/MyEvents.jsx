@@ -87,6 +87,8 @@ const MyEvents = () => {
         />
       </div>
 
+      {events &&
+
       <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48]">
         <div className="space-y-6">
           
@@ -96,6 +98,7 @@ const MyEvents = () => {
 
         </div>
       </div>
+}
     </div>
   )
 }

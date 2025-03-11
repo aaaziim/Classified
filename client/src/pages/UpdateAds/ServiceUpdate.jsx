@@ -97,13 +97,13 @@ const ServiceUpdate = () => {
       price: form.service_price.value,
       description: form.service_description.value,
       country: form.service_country.value,
-      state: form.service_state?.value || null,
-      city: form.service_city?.value || null,
+      state: form.service_state?.value || "",
+      city: form.service_city?.value || "",
     };
 
     if (updatedService.country !== "USA") {
-      updatedService.state = null;
-      updatedService.city = null;
+      updatedService.state = "";
+      updatedService.city = "";
     }
 
     try {

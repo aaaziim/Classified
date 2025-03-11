@@ -50,7 +50,7 @@ const CategorySidebar = ({category}) => {
         <ul className="mt-3 space-y-2">
          {
           scategory?.subcategories?.map(sub => (
-            <Link to={`/category/${scategory._id}`} key={sub.id}> 
+            <Link to={`/category/${scategory._id}/subcategory/${sub.id}`} key={sub.id}> 
             <li className="cursor-pointer p-1 w-full mb-1 border border-[#014D48] rounded-lg transition duration-300 hover:bg-[#FA8649] hover:text-white hover:border-[#FA8649] active:bg-[#014D48] active:text-white">
               
             
