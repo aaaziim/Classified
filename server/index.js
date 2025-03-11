@@ -362,11 +362,12 @@ app.get("/servicesbycity", async (req, res) => {
 app.get("/servicesbyfilter", async (req, res) => {
   try {
     // Destructuring query parameters, with default value for `sort`
-    const { searchtext, category, subcategory, country, state, city, page = 1, limit = 10, sort = 'title' } = req.query;
+    const { searchtext, category, subcategory, country, state, city, status, page = 1, limit = 10, sort = 'title' } = req.query;
 
     const pageNumber = parseInt(page); // Page number
     const limitNumber = parseInt(limit); // Limit per page
     const skip = (pageNumber - 1) * limitNumber; // Calculate the number of documents to skip
+ 
 
     let query = {};
 
@@ -376,9 +377,10 @@ app.get("/servicesbyfilter", async (req, res) => {
     if (country) query.country = country;
     if (state) query.state = state;
     if (city) query.city = city;
+    if (status) query.status = status;
     if (searchtext) query.title = { $regex: searchtext, $options: "i" };
 
-    console.log("Final query:", query); // Log the constructed query
+    
 
     let options = {
       sort: { [sort]: 1 }, // Ascending order by default
@@ -423,6 +425,14 @@ app.put("/service-update/:id",verifyToken, async(req, res)=>{
     return res.status(403).json({error: "Unauthorized Access"})
   }
   const updatedService = req.body;
+  const result = await servicesCollection.updateOne({_id : new ObjectId(id)}, {$set : updatedService},{ upsert: true });
+  res.send(result)
+})
+
+app.put("/service-report/:id",verifyToken, async(req, res)=>{
+  const id = req.params.id
+  const updatedService = req.body;
+  console.log(updatedService)
   const result = await servicesCollection.updateOne({_id : new ObjectId(id)}, {$set : updatedService},{ upsert: true });
   res.send(result)
 })
@@ -473,6 +483,7 @@ app.get("/eventsbyauser",verifyToken,  async(req, res)=>{
   }
  
 const result = await eventsCollection.find({'author.email' : email}).toArray();
+console.log("my events", result)
 res.send(result)
 })
 
@@ -618,7 +629,7 @@ app.get("/eventsbycity", async (req, res) => {
 app.get("/eventsbyfilter", async (req, res) => {
   try {
     // Destructuring query parameters, with default value for `sort`
-    const { searchtext, category, subcategory, country, state, city, page = 1, limit = 10, sort = 'title' } = req.query;
+    const { searchtext, category, subcategory, country, state, city,status, page = 1, limit = 10, sort = 'title' } = req.query;
 
     const pageNumber = parseInt(page); // Page number
     const limitNumber = parseInt(limit); // Limit per page
@@ -626,12 +637,15 @@ app.get("/eventsbyfilter", async (req, res) => {
 
     let query = {};
 
+    console.log(status)
+
     // Apply filters only if they have a value
     if (category) query.category = category;
     if (subcategory) query.subcategory = subcategory;
     if (country) query.country = country;
     if (state) query.state = state;
     if (city) query.city = city;
+    if (status) query.status = status;
     if (searchtext) query.title = { $regex: searchtext, $options: "i" };
 
     console.log("Final query:", query); // Log the constructed query
@@ -643,6 +657,7 @@ app.get("/eventsbyfilter", async (req, res) => {
     // Fetch services with pagination
     const events = await eventsCollection.find(query, options).skip(skip).limit(limitNumber).toArray();
     
+    console.log(events)
     // Fetch total count for pagination
     const totalEvents = await eventsCollection.countDocuments(query);
 
@@ -674,6 +689,13 @@ app.put("/event-update/:id",verifyToken, async(req, res)=>{
   if(userEmail !== event.author.email){
     return res.status(403).json({error: "Unauthorized Access"})
   }
+  const updatedEvent = req.body;
+  const result = await eventsCollection.updateOne({_id : new ObjectId(id)}, {$set : updatedEvent},{ upsert: true });
+  res.send(result)
+})
+//Report an Event
+app.put("/event-report/:id",verifyToken, async(req, res)=>{
+  const id = req.params.id
   const updatedEvent = req.body;
   const result = await eventsCollection.updateOne({_id : new ObjectId(id)}, {$set : updatedEvent},{ upsert: true });
   res.send(result)
