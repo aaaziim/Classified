@@ -46,7 +46,7 @@ if (errorService) return <div className="text-center text-[#FA8649]">{errorServi
 
 const {title, posted, price, country, state, city, category, subcategory, description, author } = service;
 
-const handleServiceUpdate = async () => {
+const handleServiceReport = async () => {
   const updatedService = {
     status: "reported",
   };
@@ -81,7 +81,7 @@ const handleServiceUpdate = async () => {
   </span>
 )} </p>
     </div>
-    <p onClick={handleServiceUpdate} className='flex  items-center gap-2 btn btn-warning'><MdReportProblem />Report Spam</p>
+    <p onClick={handleServiceReport} className='flex  items-center gap-2 btn btn-warning'><MdReportProblem />Report Spam</p>
      </div>
        <div className='flex justify-between gap-4'> 
          <p className='flex items-center gap-2 text-[#014D48]'>

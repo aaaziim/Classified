@@ -24,7 +24,7 @@ const MyEvents = () => {
       try {
         // Fetch categories from the API endpoint using the secure axios instance
         const response = await axiosSecure(`eventsbyauser`)
-        setEvents(response.data.events);
+        setEvents(response.data);
         setLoadingEvents(false);
       } catch (err) {
         setErrorEvents('Error loading events');

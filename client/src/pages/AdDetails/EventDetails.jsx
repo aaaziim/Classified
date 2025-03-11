@@ -10,7 +10,8 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../Components/LoadingSpinner";
-
+import toast from "react-hot-toast";
+import { MdReportProblem } from "react-icons/md";
 const EventDetails = () => {
 
   const { id } = useParams(); 
@@ -48,7 +49,19 @@ const EventDetails = () => {
   
 
 
-
+  const handleEventReport = async () => {
+    const updatedEvent = {
+      status: "reported",
+    };
+  
+    try {
+      await axiosSecure.put(`/event-report/${id}`, updatedEvent);
+      toast.success("Event reported");
+      
+    } catch (err) {
+      toast.error(err.response?.data || "Error reporting event");
+    }
+  };
 
 
 
@@ -71,19 +84,21 @@ const EventDetails = () => {
     
      <div className='w-full md:w-2/3 bg-[#FFE5D5] p-4 space-y-4 rounded-2xl'>
        <img className='w-full h-96' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2z-Qg3pe-RY9Lv8kQ4Ik3uFlebhYk4I9R0Q&s" alt="" />
-            <div>
-            <h1 className='text-2xl text-[#001C27] font-bold'>{title}</h1>
+
+        <div className='flex gap-2 justify-between'>
+           <div>
+           <h1 className='text-2xl text-[#001C27] font-bold'>{title}</h1>
             <p className='flex items-center gap-2 text-[#001C27]'>
                   <FaLocationArrow />
-                 
                   {(city || state || country) && (
-  <span>
-    {[city, state, country].filter(Boolean).join(", ")}
-  </span>
-)}
-
-                </p>
+         <span>
+           {[city, state, country].filter(Boolean).join(", ")}
+         </span>
+       )} </p>
+           </div>
+           <p onClick={handleEventReport} className='flex  items-center gap-2 btn btn-warning'><MdReportProblem />Report Spam</p>
             </div>
+           
        <div className='flex justify-between gap-4'>
        <p className='flex items-center gap-2 text-[#014D48]'>
              <MdOutlineDateRange />

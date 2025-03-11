@@ -21,6 +21,10 @@ const Dashboard = () => {
   const [errorServices, setErrorServices] = useState('');
   const [loadingServices, setLoadingServices] = useState(true);
 
+  const [reportedServices, setReportedServices] = useState([]);
+  const [reportedEvents, setReportedEvents] = useState([]);
+
+
   const [events, setEvents] = useState([]);
     const [loadingEvents, setLoadingEvents] = useState(true);
     const [errorEvents, setErrorEvents] = useState('');
@@ -63,9 +67,34 @@ const Dashboard = () => {
         }
       };
 
+      const fetchReportedServices= async () => {
+        try {
+          // Fetch categories from the API endpoint using the secure axios instance
+          const response = await axiosSecure(`servicesbyfilter?status=reported`)
+          setReportedServices(response.data.services);
+          setLoadingServices(false);
+        } catch (err) {
+          setErrorServices('Error loading services');
+          setLoadingServices(false);
+        }
+      };
+      const fetchReportedEvents = async () => {
+        try {
+          // Fetch categories from the API endpoint using the secure axios instance
+          const response = await axiosSecure(`eventsbyfilter?status=reported`)
+          setReportedEvents(response.data.events);
+          setLoadingEvents(false);
+        } catch (err) {
+          setErrorEvents('Error loading events');
+          setLoadingEvents(false);
+        }
+      };
+
       fetchProfiles()
       fetchServices()
       fetchEvents()
+      fetchReportedServices()
+      fetchReportedEvents()
 
 
 
@@ -92,7 +121,7 @@ const Dashboard = () => {
           
           if (response.status === 200) {
             Swal.fire('Deleted!', 'Your service has been deleted.', 'success');
-          } else {
+          }  else {
             Swal.fire('Error!', 'Something went wrong, please try again.', 'error');
           }
         } catch (error) {
@@ -174,9 +203,16 @@ const Dashboard = () => {
             <Tab
               className="cursor-pointer border-y-2 bg-[#001C27] border-white w-full text-lg py-2 px-4 rounded-md   transition relative hover:bg-[#014D48] text-white"
               selectedClassName="bg-dark-teal text-[#014D48]"
-              onClick={() => setActiveTab('reported-listings')}
+              onClick={() => setActiveTab('reported-services')}
             >
-              Reported Listings
+              Reported Services
+            </Tab>
+            <Tab
+              className="cursor-pointer border-y-2 bg-[#001C27] border-white w-full text-lg py-2 px-4 rounded-md   transition relative hover:bg-[#014D48] text-white"
+              selectedClassName="bg-dark-teal text-[#014D48]"
+              onClick={() => setActiveTab('reported-events')}
+            >
+              Reported Events
             </Tab>
           </TabList>
         </Tabs>
@@ -224,11 +260,29 @@ const Dashboard = () => {
           </div>
         )}
 
-        {activeTab === 'reported-listings' && (
+        {activeTab === 'reported-services' && (
           <div className="bg-white shadow-md rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4 text-dark-teal">Reported Listings</h2>
+             <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {reportedServices?.length} Reported Services </h2>
             <div className="bg-gray-200 p-4 rounded-lg">
-              <p className="text-dark-navy">Reported listings details will be shown here.</p>
+                {
+                    reportedServices?.map((service) => (
+                        <ServiceCard key={service._id} service={service} handleDelete={handleDelete} />
+                    ))
+                }
+            </div>
+          </div>
+        )}
+
+
+{activeTab === 'reported-events' && (
+          <div className="bg-white shadow-md rounded-lg p-6">
+             <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {reportedEvents?.length} Reported Events </h2>
+            <div className="bg-gray-200 p-4 rounded-lg">
+                {
+                    reportedEvents?.map((event) => (
+                        <EventCard key={event._id} event={event} handleDelete={handleEventDelete} />
+                    ))
+                }
             </div>
           </div>
         )}
