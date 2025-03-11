@@ -54,6 +54,7 @@ const ServiceUpdate = () => {
 
     fetchData();
   }, [id, axiosSecure]);
+  // Access Check: Triggered once on component mount
 
   if (loading) return <div className="text-center text-[#014D48]"><LoadingSpinner /></div>;
   if (error) return <div className="text-center text-[#FA8649]">{error}</div>;
@@ -113,6 +114,11 @@ const ServiceUpdate = () => {
       toast.error(err.response?.data || "Error updating service");
     }
   };
+
+  if(user.email !== service.author.email){
+    toast.error("You Don't Have Access to this")
+    navigate("/my-services")
+  }
 
   return (
     <div>

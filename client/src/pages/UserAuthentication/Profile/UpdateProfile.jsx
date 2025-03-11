@@ -70,6 +70,10 @@ const UpdateProfile = () => {
     }
   };
   
+  if(user.email !== profile.email){
+    toast.error("You Don't Have Access to this")
+    navigate("/profile")
+  }
 
 
 

@@ -116,6 +116,13 @@ const EventUpdate = () => {
     }
   };
 
+
+  if(user.email !== event.author.email){
+    toast.error("You Don't Have Access to this")
+    navigate("/my-events")
+  }
+
+
   return (
     <div>
       <Helmet>
