@@ -34,7 +34,7 @@ const SubCategoryServices = ({ subcategory }) => {
     <div>
     {
         totalPages >1 ?  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-        {services.map((service) => (
+        {services?.map((service) => (
           <AdCard key={service._id} service={service} />
         ))}
       </div>:<p>No Service Found</p>

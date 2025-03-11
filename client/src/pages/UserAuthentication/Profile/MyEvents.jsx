@@ -6,9 +6,10 @@ import LoadingSpinner from '../../Components/LoadingSpinner';
 import EventCard from './EventCard';
  
 import Swal from 'sweetalert2'; 
+import useAuth from '../../../hooks/useAuth';
 const MyEvents = () => {
 
-
+  const {user} = useAuth()
   const [events, setEvents] = useState([]);
 
   const [loadingEvents, setLoadingEvents] = useState(true);
@@ -22,7 +23,7 @@ const MyEvents = () => {
     const fetchEvents = async () => {
       try {
         // Fetch categories from the API endpoint using the secure axios instance
-        const response = await axiosSecure("/events")
+        const response = await axiosSecure(`eventsbyauser`)
         setEvents(response.data.events);
         setLoadingEvents(false);
       } catch (err) {
@@ -89,8 +90,8 @@ const MyEvents = () => {
       <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48]">
         <div className="space-y-6">
           
-     {
-      events.map((event, index)=><EventCard key={index} event={event} handleDelete={handleDelete}></EventCard> )
+     { 
+      events?.map((event, index)=><EventCard key={index} event={event} handleDelete={handleDelete}></EventCard> )
      }
 
         </div>

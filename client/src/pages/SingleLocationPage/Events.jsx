@@ -138,7 +138,7 @@ const Events = ({id}) => {
   <option  value="">
   Select State
 </option>
-{location.state.map((st,index) => (
+{location.state?.map((st,index) => (
 <option   key={index}  value={st.name}>
   {st.name}
 </option>
@@ -169,7 +169,7 @@ const Events = ({id}) => {
     {
   totalPages > 0?  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
       {
-          events.map((event, index) =><EventCard key={index} event={event}></EventCard>)
+          events?.map((event, index) =><EventCard key={index} event={event}></EventCard>)
          }
            </div> : <p>No Service Found</p>
 }

@@ -145,7 +145,7 @@ const ServiceUpdate = () => {
                 onChange={handleCategoryChange}
               >
                 <option value="">Select Category</option>
-                {categories.map((cat, index) => (
+                {categories?.map((cat, index) => (
                   <option key={index} value={cat.name}>
                     {cat.name}
                   </option>
@@ -199,7 +199,7 @@ const ServiceUpdate = () => {
                 onChange={handleCountryChange}
               >
                 <option value="">Select Country</option>
-                {locations.map((location, index) => (
+                {locations?.map((location, index) => (
                   <option key={index} value={location.name}>
                     {location.name}
                   </option>
@@ -242,7 +242,7 @@ const ServiceUpdate = () => {
                   <option value="">Select City</option>
                   {locations.find(loc => loc.name === adCountry)
                     ?.state.find(st => st.name === selectedState)
-                    ?.cities.map((city, index) => (
+                    ?.cities?.map((city, index) => (
                       <option key={index} value={city.name}>
                         {city.name}
                       </option>

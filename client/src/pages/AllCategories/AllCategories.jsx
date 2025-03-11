@@ -13,7 +13,7 @@ const AllCategories = () => {
        </Breadcrumb>
   
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-10">
-        {categories.map(category => (
+        {categories?.map(category => (
          <CategoryCard key={category.id} category={category} />
          
         ))}

@@ -160,7 +160,7 @@ if (errorServices) return <div className="text-center text-[#FA8649]">{errorServ
         }}
       >
         <option value=''>Select Category</option>
-        {categories.map((category, index) => (
+        {categories?.map((category, index) => (
           <option key={index} value={category.name}>
             {category.name}
           </option>

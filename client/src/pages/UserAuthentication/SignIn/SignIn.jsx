@@ -26,11 +26,13 @@ const SignIn = () => {
     try {
       const result = await signInWithGoogle();
       const user = result.user;
+  
       if (user) {
         const userProfile = {
           name: user.displayName,
           email: user.email,
         };
+        const { token } = await axiosSecure.post("/jwt", {email:user.email});
 
         // Send user profile to the backend
         const { data } = await axiosSecure.post("/profile", userProfile);
@@ -50,6 +52,7 @@ const SignIn = () => {
 
     try {
       await signIn(email, password);
+      const { token } = await axiosSecure.post("/jwt", {email});
       navigate(destination, { replace: true });
       toast.success("Sign-in Successful");
     } catch (err) {

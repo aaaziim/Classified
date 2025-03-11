@@ -164,7 +164,7 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
         }}
       >
         <option value=''>Select Category</option>
-        {categories.map((category, index) => (
+        {categories?.map((category, index) => (
           <option key={index} value={category.name}>
             {category.name}
           </option>
@@ -206,7 +206,7 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
       required
     >
       <option value=''>Select Country</option>
-      {locations.map((location, index) => (
+      {locations?.map((location, index) => (
         <option key={index} value={location.name}>
           {location.name}
         </option>
@@ -273,7 +273,7 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
 {
   totalPages > 0?  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
       {
-          events.map((event, index) =><EventCard key={index} event={event}></EventCard>)
+          events?.map((event, index) =><EventCard key={index} event={event}></EventCard>)
          }
            </div> : <p>No Service Found</p>
 }

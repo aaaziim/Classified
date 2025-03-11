@@ -1,32 +1,38 @@
-import axios from 'axios'
-import useAuth from './useAuth'
-import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
+import { useEffect } from 'react';
+ 
+import { useNavigate } from 'react-rOuter-dom';
+import useAuth from './useAuth';
 
 const axiosSecure = axios.create({
-
     baseURL: import.meta.env.VITE_API_URL,
-    withCredentials:true
+    withCredentials: true,
+});
 
-})
 const useAxiosSecure = () => {
-    const {logout} = useAuth();
-    const navigate = useNavigate()
-    axiosSecure.interceptors.response.use(
-        res=>{
-            return res
-        },
-        async error=>{
-            console.log('Error from axios interceptor ', error.response)
+    
 
-            if(error.response.status === 401 || error.response.status === 403 ){
-                await logout();
-                navigate("/login")
+    useEffect(() => {
+        const interceptor = axiosSecure.interceptors.response.use(
+            (response) => response, // Return response normally
+            async (error) => {
+                console.error('Axios Secure Error:', error.response);
+
+                if (error.response?.status === 401 || error.response?.status === 403) {
+                    console.log("Log Out")
+                }
+
+                return Promise.reject(error);
             }
-            return Promise.reject(error)
-        }
-    )
-  return axiosSecure
-}
+        );
 
-export default useAxiosSecure
+        // Cleanup function to remove interceptor when component unmounts
+        return () => {
+            axiosSecure.interceptors.response.eject(interceptor);
+        };
+    }, [ ]); // Run only when logOut or navigate changes
+
+    return axiosSecure;
+};
+
+export default useAxiosSecure;

@@ -35,7 +35,7 @@ const SubCategoryEvents = ({ subcategory }) => {
     <div>
         {
              totalPages >1 ? <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-             {events.map((event) => (
+             {events?.map((event) => (
                <EventCard key={event._id} event={event} />
              ))}
            </div>:<p>No Events Found</p>

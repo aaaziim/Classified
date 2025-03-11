@@ -114,7 +114,7 @@ const fetchServicesbySubCategory = async (name) => {
   <h2 className="text-lg bg-[#014D48] font-semibold mb-2 cursor-pointer p-3 border border-[#014D48] rounded-lg transition duration-300 hover:bg-[#FA8649]  text-white hover:border-[#FA8649] active:bg-[#014D48] active:text-white text-center">Subcategories</h2>
         <ul className="space-y-2">
           {
-            category.subcategories.map(subcategory =>   <li onClick={(e)=>fetchServicesbySubCategory(subcategory.name)} key={subcategory.id}  className="cursor-pointer p-3 border border-[#014D48] rounded-lg transition duration-300 hover:bg-[#FA8649] hover:text-white hover:border-[#FA8649] active:bg-[#014D48] active:text-white">
+            category.subcategories?.map(subcategory =>   <li onClick={(e)=>fetchServicesbySubCategory(subcategory.name)} key={subcategory.id}  className="cursor-pointer p-3 border border-[#014D48] rounded-lg transition duration-300 hover:bg-[#FA8649] hover:text-white hover:border-[#FA8649] active:bg-[#014D48] active:text-white">
             {subcategory.name}
               </li>)
           }
@@ -127,7 +127,7 @@ const fetchServicesbySubCategory = async (name) => {
 
   {
     totalPages >0 ?<div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-    {services.map(service =><AdCard key={service._id} service={service}></AdCard>)}
+    {services?.map(service =><AdCard key={service._id} service={service}></AdCard>)}
   </div> : <p>No Service Found</p>
   }
 

@@ -13,8 +13,9 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { app } from "../firebase/firebase.config.js"
-import axios from 'axios'
+
 import toast from 'react-hot-toast'
+import useAxiosSecure from '../hooks/useAxiosSecure.jsx'
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
@@ -23,6 +24,7 @@ const googleProvider = new GoogleAuthProvider()
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const axiosSecure = useAxiosSecure();
 
   const createUser = async (email, password) => {
     setLoading(true);
@@ -87,7 +89,7 @@ const signIn = async (email, password) => {
 
   const logOut = async () => {
     setLoading(true)
-    // await axios(`${import.meta.env.VITE_API_URL}/logout`, {withCredentials:true})
+    await axiosSecure("/logout");
     return signOut(auth)
   }
 
@@ -102,7 +104,7 @@ const signIn = async (email, password) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
-      console.log('CurrentUser-->', currentUser)
+     
       setLoading(false)
     })
     return () => {

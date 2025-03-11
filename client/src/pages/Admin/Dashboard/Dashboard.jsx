@@ -43,7 +43,7 @@ const Dashboard = () => {
         try {
           // Fetch categories from the API endpoint using the secure axios instance
           const response = await axiosSecure("/services")
-          setServices(response.data);
+          setServices(response.data.services);
           setLoadingServices(false);
         } catch (err) {
           setErrorServices('Error loading services');
@@ -55,7 +55,7 @@ const Dashboard = () => {
         try {
           // Fetch categories from the API endpoint using the secure axios instance
           const response = await axiosSecure("/events")
-          setEvents(response.data);
+          setEvents(response.data.events);
           setLoadingEvents(false);
         } catch (err) {
           setErrorEvents('Error loading Events');
@@ -189,7 +189,7 @@ const Dashboard = () => {
           <div className="bg-white shadow-md rounded-lg p-6 space-y-2">
             <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {profiles.length} Users Profile</h2>
             {
-                profiles.map((profile) => (
+                profiles?.map((profile) => (
                   <ProfileCard key={profile._id} profile={profile} />
                 ))
   
@@ -203,7 +203,7 @@ const Dashboard = () => {
             <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {services?.length} Services Listings</h2>
             <div className="bg-gray-200 p-4 rounded-lg">
                 {
-                    services.map((service) => (
+                    services?.map((service) => (
                         <ServiceCard key={service._id} service={service} handleDelete={handleDelete} />
                     ))
                 }

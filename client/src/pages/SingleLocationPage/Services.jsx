@@ -137,7 +137,7 @@ const Services = ({id}) => {
   <option  value="">
   Select State
 </option>
-{location.state.map((st,index) => (
+{location?.state?.map((st,index) => (
 <option   key={index}  value={st.name}>
   {st.name}
 </option>
@@ -168,7 +168,7 @@ const Services = ({id}) => {
     {
   totalPages > 0?  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">
       {
-          services.map((service, index) =><AdCard key={index} service={service}></AdCard>)
+          services?.map((service, index) =><AdCard key={index} service={service}></AdCard>)
          }
            </div> : <p>No Service Found</p>
 }

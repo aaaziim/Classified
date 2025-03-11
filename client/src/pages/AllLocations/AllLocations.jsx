@@ -14,7 +14,7 @@ const AllLocations = () => {
        </Breadcrumb>
   
       
-        {locations.map(location => (
+        {locations?.map(location => (
          <LocationCard key={location.id} location={location} />
          
         ))}

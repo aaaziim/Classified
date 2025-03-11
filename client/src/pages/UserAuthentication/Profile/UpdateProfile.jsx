@@ -20,7 +20,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axiosSecure(`/userprofile/${user.email}`);
+        const response = await axiosSecure(`/userprofile`);
         setProfile(response.data);
         setProfileLoading(false);
       } catch (err) {
@@ -62,7 +62,7 @@ const UpdateProfile = () => {
     };
   
     try {
-      const { data } = await axiosSecure.put(`/profile-update/${user.email}`, updatedProfile);
+      const { data } = await axiosSecure.put(`/profile-update`, updatedProfile);
       toast.success("Profile updated successfully");
       navigate("/profile");
     } catch (err) {

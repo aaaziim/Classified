@@ -17,7 +17,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         // Fetch categories from the API endpoint using the secure axios instance
-        const response = await axiosSecure(`/userprofile/${user.email}`)
+        const response = await axiosSecure(`/userprofile`)
         setProfile(response.data);
         setProfileLoading(false);
       } catch (err) {

@@ -95,7 +95,7 @@ const PostServices = () => {
                             >
                                 <option value=''>Select Category</option>
                                 {
-    categories.map((category, index) => (
+    categories?.map((category, index) => (
         <option 
             key={index} 
             value={category.name} 
@@ -141,7 +141,7 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
                             <select   onChange={(e) => setCountry(e.target.value)} name='service_country' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
                             <option value=''>Select Country</option>
                             {
-    locations.map((location, index) => (
+    locations?.map((location, index) => (
         <option 
             key={index} 
             value={location.name} 
@@ -191,7 +191,7 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
     stateIndex !== undefined &&
     stateIndex < locations[0].state.length &&
     locations[0].state[stateIndex].cities ? (
-        locations[0].state[stateIndex].cities.map((city, index) => (
+        locations[0].state[stateIndex].cities?.map((city, index) => (
             <option 
                 key={index} 
                 value={city.name} 

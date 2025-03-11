@@ -89,7 +89,7 @@ const SingleLocationPage = () => {
             {services.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-                  {services.map((service) => (
+                  {services?.map((service) => (
                     <AdCard key={service._id} service={service} />
                   ))}
                 </div>
@@ -113,7 +113,7 @@ const SingleLocationPage = () => {
             {events.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-                  {events.map((event) => (
+                  {events?.map((event) => (
                     <EventCard key={event._id} event={event} />
                   ))}
                 </div>

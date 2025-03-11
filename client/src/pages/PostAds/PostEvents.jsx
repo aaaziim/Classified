@@ -88,7 +88,7 @@ if (errorLocations) return <div className="text-center text-[#FA8649]">{errorLoc
               <select name='event_category' required className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]'  onChange={(e) => setCategoryIndex(e.target.selectedIndex - 1)} >
                 <option value=''>Select Category</option>
                 {
-    categories.map((category, index) => (
+    categories?.map((category, index) => (
         <option 
             key={index} 
             value={category.name} 
@@ -139,7 +139,7 @@ categories[categoryIndex].subcategories.map((subcategory, index) => (
                             <select   onChange={(e) => setCountry(e.target.value)} name='event_country' className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]' required>
                             <option value=''>Select Country</option>
                             {
-    locations.map((location, index) => (
+    locations?.map((location, index) => (
         <option 
             key={index} 
             value={location.name} 

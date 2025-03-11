@@ -51,7 +51,7 @@ const Home = () => {
   
   
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-10">
-        {categories.map(category => (
+        {categories?.map(category => (
           serviceCategories.includes(category.name) &&  <CategoryCard key={category.id} category={category} />
          
         ))}
