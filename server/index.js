@@ -4,7 +4,8 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser')
-
+const nodemailer = require('nodemailer')
+const bodyParser = require('body-parser')
 
 
 const port = process.env.PORT || 5000
@@ -25,6 +26,23 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
+app.use(bodyParser.json())
+
+
+
+// Create reusable transporter object using SMTP transport
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'azimskit@gmail.com', // replace with your email
+    pass: 'clyrgdbsroaxjzxs',  // replace with your email password
+  },
+})
+
+
+
+
+
 
 // Verify JWT Middleware
 const verifyToken = (req, res, next) => {
@@ -100,6 +118,27 @@ async function run() {
         maxAge: 0
       })
       .send({success:true})
+    })
+
+
+
+    app.post('/send-email', (req, res) => {
+      const { name, email, message } = req.body
+      console.log(name, email,message)
+    
+      const mailOptions = {
+        from: email,
+        to: 'azim210215@gmail.com',
+        subject: 'Contact Form Submission',
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+      }
+    
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return res.status(500).json({ success: false, message: error.message })
+        }
+        res.status(200).json({ success: true, message: 'Message sent successfully!' })
+      })
     })
 
     
@@ -434,7 +473,7 @@ app.put("/service-report/:id",verifyToken, async(req, res)=>{
   const updatedService = req.body;
   console.log(updatedService)
   const result = await servicesCollection.updateOne({_id : new ObjectId(id)}, {$set : updatedService},{ upsert: true });
-  console.log(result)
+ 
   res.send(result)
 })
 
