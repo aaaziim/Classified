@@ -7,6 +7,9 @@ import LoadingSpinner from '../../Components/LoadingSpinner';
 import ServiceCard from '../../UserAuthentication/Profile/ServiceCard';
 import Swal from 'sweetalert2';
 import EventCard from '../../UserAuthentication/Profile/EventCard';
+import ReportedEventCard from './ReportedEventCard';
+import toast from 'react-hot-toast';
+import ReportedServiceCard from './ReportedServiceCard';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('manage-users'); // State for active tab
@@ -72,6 +75,7 @@ const Dashboard = () => {
           // Fetch categories from the API endpoint using the secure axios instance
           const response = await axiosSecure(`servicesbyfilter?status=reported`)
           setReportedServices(response.data.services);
+        
           setLoadingServices(false);
         } catch (err) {
           setErrorServices('Error loading services');
@@ -159,7 +163,39 @@ const Dashboard = () => {
         }
       };
     
-  
+      const handleServiceApprove = async (_id) => {
+        const updatedService = {
+          status: "active",
+        };
+      
+        try {
+          await axiosSecure.put(`/service-report/${_id}`, updatedService);
+          toast.success("Service Approved");
+          setReportedServices(reportedServices.filter(service => service._id !== _id));
+          
+        } catch (err) {
+          toast.error(err.response?.data || "Error approving service");
+        }
+      };
+
+
+
+      const handleEventApprove = async (_id) => {
+        const updatedEvent = {
+          status: "active",
+        };
+      
+        try {
+          await axiosSecure.put(`/event-report/${_id}`, updatedEvent);
+          toast.success("Event Approved");
+          setReportedEvents(reportedEvents.filter(event => event._id !== _id));
+          
+        } catch (err) {
+          toast.error(err.response?.data || "Error approving event");
+        }
+      };
+    
+
 
 
 
@@ -266,7 +302,7 @@ const Dashboard = () => {
             <div className="bg-gray-200 p-4 rounded-lg">
                 {
                     reportedServices?.map((service) => (
-                        <ServiceCard key={service._id} service={service} handleDelete={handleDelete} />
+                        <ReportedServiceCard key={service._id} service={service} handleDelete={handleDelete} handleServiceApprove={handleServiceApprove} />
                     ))
                 }
             </div>
@@ -280,7 +316,7 @@ const Dashboard = () => {
             <div className="bg-gray-200 p-4 rounded-lg">
                 {
                     reportedEvents?.map((event) => (
-                        <EventCard key={event._id} event={event} handleDelete={handleEventDelete} />
+                        <ReportedEventCard key={event._id} event={event} handleDelete={handleEventDelete} handleEventApprove={handleEventApprove} />
                     ))
                 }
             </div>
