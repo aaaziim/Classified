@@ -10,9 +10,7 @@ const ProfileCard = ({profile}) => {
       <p className="text-dark-navy">{email}</p>
       <p className="text-dark-navy">{phone}</p>
     </div>
-    <button className="flex items-center bg-[#FA8649] text-white px-6 py-3 rounded-lg hover:bg-[#014D48] transition">
-      View
-    </button>
+   
   </div>
 </div>
 

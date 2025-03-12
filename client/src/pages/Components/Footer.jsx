@@ -14,8 +14,8 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-wrap justify-center mt-6 -mx-4 gap-4">
-            <Link to="/all-ads" className="text-[#001C27] hover:text-[#FA8649]">
-              All Ads
+            <Link to="/contact" className="text-[#001C27] hover:text-[#FA8649]">
+              Contact
             </Link>
             <Link to="/about" className="text-[#001C27] hover:text-[#FA8649]">
               About
@@ -29,11 +29,11 @@ const Footer = () => {
             <Link to="/service-update" className="text-[#001C27] hover:text-[#FA8649]">
               Update Service
             </Link>
-            <Link to="/event-update" className="text-[#001C27] hover:text-[#FA8649]">
-              Update Event
+            <Link to="/safety-guide" className="text-[#001C27] hover:text-[#FA8649]">
+              Safety Guide
             </Link>
-            <Link to="/ad-details" className="text-[#001C27] hover:text-[#FA8649]">
-              View Ads
+            <Link to="/provider-safety-guide" className="text-[#001C27] hover:text-[#FA8649]">
+            Provider Safety Guide
             </Link>
           </div>
         </div>

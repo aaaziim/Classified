@@ -32,6 +32,8 @@ import AllCategories from "../pages/AllCategories/AllCategories";
 import AllLocations from "../pages/AllLocations/AllLocations";
 import SingleSubCategoryPage from "../pages/SingleCategoryPage/SingleSubCategoryPage";
 import SingleStatePage from "../pages/SingleLocationPage/SingleStatePage";
+import SafetyGuides from "../pages/SafetyGuides/SafetyGuides";
+import SafetyGuideForProviders from "../pages/SafetyGuides/SafetyGuideForProviders";
 
 const routes = createBrowserRouter([
     {
@@ -51,6 +53,14 @@ const routes = createBrowserRouter([
             {
                 path:"/signup",
                 element:<SignUp></SignUp>
+            },
+            {
+                path:"/safety-guide",
+                element:<SafetyGuides></SafetyGuides>
+            },
+            {
+                path:"/provider-safety-guide",
+                element:<SafetyGuideForProviders></SafetyGuideForProviders>
             },
             {
                 path:"/profile",
