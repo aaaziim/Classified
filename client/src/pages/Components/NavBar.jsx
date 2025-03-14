@@ -1,20 +1,24 @@
 import { Link } from "react-router";
 import useAuth from "../../hooks/useAuth";
-
+import { FaUser } from "react-icons/fa";
 const Navbar = () => {
   const {user,logOut} = useAuth();
   
  
   const navItems= <>
+  
     <li><Link to="/all-services">Services</Link></li>
     <li><Link to="/all-events">Events</Link></li>
+    {user ?"" : (
+         <li> <Link to="/signin">Sign In</Link></li>
+        )}
  
   </>
     return (
-      <div className="navbar bg-[#014D48] text-white shadow-sm px-4">
+      <div className="navbar bg-[#014D48] text-white shadow-sm ">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost text-white lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost text-black lg:hidden -ml-2">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
             </svg>
@@ -36,9 +40,10 @@ const Navbar = () => {
         {user ? (
           <div className="dropdown dropdown-end z-50 px-2">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full border-2 border-white">
-                <img referrerPolicy="no-referrer" alt="User Profile Photo" src="" />
-              </div>
+            <div className="rounded-full border-2 border-white flex items-center justify-center p-2">
+  <FaUser />
+</div>
+
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#FFE5D5] text-[#001C27] rounded-box w-52">
              
@@ -50,9 +55,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-        ) : (
-          <Link className="px-4 text-white" to="/signin">Sign In</Link>
-        )}
+        ) :""}
         <Link to="/post">
           <button className="btn border-white  hover:bg-[#FA8649]">Post Ad</button>
         </Link>

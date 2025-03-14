@@ -4,7 +4,7 @@ import Footer from "../Components/Footer"
 
 const Layout = () => {
   return (
-    <div className="container px-4 mx-auto">
+    <div className="w-full md:container md:x-4 md:mx-auto">
     <Navbar></Navbar>
     <div className="min-h-[calc(100vh-400px)]">
        <Outlet></Outlet>

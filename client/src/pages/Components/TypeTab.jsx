@@ -1,38 +1,33 @@
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import AdCard from './AdCard';
-import { Link } from 'react-router';
-import EventCard from './EventCard';
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import AdCard from "./AdCard";
+import { Link } from "react-router";
+import EventCard from "./EventCard";
 import { useEffect, useState } from "react";
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import LoadingSpinner from './LoadingSpinner';
-import useServices from '../../hooks/useServices';
-import useEvents from '../../hooks/useEvents';
- 
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "./LoadingSpinner";
+import useServices from "../../hooks/useServices";
+import useEvents from "../../hooks/useEvents";
+
 const TypeTab = () => {
+  const [services, loadingServices, errorServices] = useServices();
 
+  const [events, loadingEvents, errorEvents] = useEvents();
 
-  const [services, loadingServices, errorServices ] = useServices()
+  if (loadingServices || loadingEvents)
+    return (
+      <div className="text-center text-[#014D48]">
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
 
-  
-   const [events, loadingEvents, errorEvents] = useEvents()
-
-
-
-  
-  if (loadingServices || loadingEvents) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
-
-
-  if (errorServices) return <div className="text-center text-[#FA8649]">{errorServices}</div>;
-  if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents}</div>;
-
-
-
-
-
+  if (errorServices)
+    return <div className="text-center text-[#FA8649]">{errorServices}</div>;
+  if (errorEvents)
+    return <div className="text-center text-[#FA8649]">{errorEvents}</div>;
 
   return (
-    <div className="my-4">
+    <div className="my-4 px-4">
       <Tabs>
         <TabList className="flex justify-center space-x-8 mb-6">
           <Tab
@@ -52,15 +47,14 @@ const TypeTab = () => {
         <div className="my-10">
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {
-                services?.map((service,i) => (
-                  i<6 && <AdCard key={service.id} service={service} />
-                ))
-              }
+              {services?.map(
+                (service, i) =>
+                  i < 6 && <AdCard key={service.id} service={service} />
+              )}
             </div>
             <div className="my-4 text-center">
               <Link to="/all-services">
-                <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition w-60">
+                <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition md:w-40">
                   All Services
                 </button>
               </Link>
@@ -69,17 +63,14 @@ const TypeTab = () => {
 
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {
-              events?.map((event,i) => (
-                i<6 &&  <EventCard key={event.id} event={event} />
-              ))
-
-  
-            }
+              {events?.map(
+                (event, i) =>
+                  i < 6 && <EventCard key={event.id} event={event} />
+              )}
             </div>
             <div className="my-4 text-center">
               <Link to="/all-events">
-                <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition w-60">
+                <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition md:w-40">
                   All Events
                 </button>
               </Link>
