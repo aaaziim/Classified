@@ -129,7 +129,8 @@ const EventUpdate = () => {
         <Breadcrumb title="Update Event" subTitle="Here you can update your event information" />
       </div>
 
-      <form onSubmit={handleEventUpdate} className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48] mb-4">
+   <div className="px-4">
+   <form onSubmit={handleEventUpdate} className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48] mb-4">
         <fieldset className="space-y-4">
           <legend className="text-lg font-semibold text-[#014D48] mb-4">Event Details</legend>
 
@@ -272,6 +273,7 @@ const EventUpdate = () => {
           Update Event
         </button>
       </form>
+   </div>
     </div>
   );
 };

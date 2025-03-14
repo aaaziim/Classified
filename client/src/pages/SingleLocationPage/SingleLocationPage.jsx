@@ -1,42 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import Breadcrumb from '../Components/Breadcrumb'
-import AdCard from '../Components/AdCard'
-import { useParams } from 'react-router'
-import useAxiosSecure from '../../hooks/useAxiosSecure'
-import LoadingSpinner from '../Components/LoadingSpinner'
+import React, { useEffect, useState } from "react";
+import Breadcrumb from "../Components/Breadcrumb";
+import AdCard from "../Components/AdCard";
+import { useParams } from "react-router";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "../Components/LoadingSpinner";
 import { Link } from "react-router";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import Services from './Services'
-import Events from './Events'
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import Services from "./Services";
+import Events from "./Events";
 const SingleLocationPage = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const axiosSecure = useAxiosSecure();
 
+  const [locationName, setLocationName] = useState("");
 
-    const [locationName, setLocationName] = useState("")
-  
+  useEffect(() => {
+    const fetchLocation = async () => {
+      const locationResponse = await axiosSecure(`/location/${id}`);
+      setLocationName(locationResponse.data.name);
+    };
 
- useEffect(() => {
-  const fetchLocation = async()=>{
-    const locationResponse = await axiosSecure(`/location/${id}`);
-      setLocationName(locationResponse.data.name)
-  }
-
-  fetchLocation()
-
-}, [id]); // Runs when `id` changes
-
-
-
-
-
+    fetchLocation();
+  }, [id]); // Runs when `id` changes
 
   return (
     <div className="px-4 py-6">
-   
       <div className="space-y-4 mb-6">
-        <Breadcrumb 
+        <Breadcrumb
           title={locationName}
           subTitle="Here you can update your service information"
         />
@@ -59,20 +50,17 @@ const SingleLocationPage = () => {
 
         <div className="my-10">
           <TabPanel>
-           <Services id={id}></Services>
+            <Services id={id}></Services>
           </TabPanel>
         </div>
         <div className="my-10">
           <TabPanel>
-       <Events id={id}></Events>
+            <Events id={id}></Events>
           </TabPanel>
         </div>
       </Tabs>
-
-      
-
     </div>
-  )
-}
+  );
+};
 
-export default SingleLocationPage
+export default SingleLocationPage;

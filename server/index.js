@@ -259,8 +259,8 @@ app.get("/services", async(req, res) => {
         const id = req.params.id
         const result = await servicesCollection.findOne({_id : new ObjectId(id)});
         console.log(result)
-        const images = result?.images;
-        if( images.length > 0){
+        const images = result?.images || [];
+        if( images?.length > 0){
             const imageUrls = images.map(image => `http://localhost:5000/${image}`);
             result.images = imageUrls; // Add image URLs to the result object
         }

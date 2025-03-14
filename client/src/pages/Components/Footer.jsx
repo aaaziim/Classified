@@ -26,9 +26,7 @@ const Footer = () => {
             <Link to="/cookies" className="text-[#001C27] hover:text-[#FA8649]">
               Cookies
             </Link>
-            <Link to="/service-update" className="text-[#001C27] hover:text-[#FA8649]">
-              Update Service
-            </Link>
+           
             <Link to="/safety-guide" className="text-[#001C27] hover:text-[#FA8649]">
               Safety Guide
             </Link>

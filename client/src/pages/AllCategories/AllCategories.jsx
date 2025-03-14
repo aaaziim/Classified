@@ -12,7 +12,7 @@ const AllCategories = () => {
        subTitle={"Here you can find"}>
        </Breadcrumb>
   
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-10">
+      <div className="grid grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-4 gap-4 my-10 px-4">
         {categories?.map(category => (
          <CategoryCard key={category.id} category={category} />
          

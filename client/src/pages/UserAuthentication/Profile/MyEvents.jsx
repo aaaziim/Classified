@@ -1,103 +1,105 @@
-import React, { useEffect, useState } from 'react'
-import Breadcrumb from '../../Components/Breadcrumb'
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import LoadingSpinner from '../../Components/LoadingSpinner';
-import EventCard from './EventCard';
- 
-import Swal from 'sweetalert2'; 
-import useAuth from '../../../hooks/useAuth';
-const MyEvents = () => {
+import React, { useEffect, useState } from "react";
+import Breadcrumb from "../../Components/Breadcrumb";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../Components/LoadingSpinner";
+import EventCard from "./EventCard";
 
-  const {user} = useAuth()
+import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
+const MyEvents = () => {
+  const { user } = useAuth();
   const [events, setEvents] = useState([]);
 
   const [loadingEvents, setLoadingEvents] = useState(true);
-  
-  const [errorEvents, setErrorEvents] = useState('');
+
+  const [errorEvents, setErrorEvents] = useState("");
 
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-  
     const fetchEvents = async () => {
       try {
         // Fetch categories from the API endpoint using the secure axios instance
-        const response = await axiosSecure(`eventsbyauser`)
+        const response = await axiosSecure(`eventsbyauser`);
         setEvents(response.data);
         setLoadingEvents(false);
       } catch (err) {
-        setErrorEvents('Error loading events');
+        setErrorEvents("Error loading events");
         setLoadingEvents(false);
       }
     };
 
- 
-    fetchEvents(); 
+    fetchEvents();
   }, [events]);
 
-  if ( loadingEvents  ) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
- 
-  if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents}</div>;
- 
+  if (loadingEvents)
+    return (
+      <div className="text-center text-[#014D48]">
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+
+  if (errorEvents)
+    return <div className="text-center text-[#FA8649]">{errorEvents}</div>;
+
   const handleDelete = async (_id) => {
     // Show confirmation modal
     const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'This action cannot be undone!',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "This action cannot be undone!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
     });
 
     // If confirmed, send delete request to API
     if (result.isConfirmed) {
       try {
-        const response = await axiosSecure.delete(`/event/${_id}`)
-        setEvents(events.filter(event => event._id !== _id));
-        
+        const response = await axiosSecure.delete(`/event/${_id}`);
+        setEvents(events.filter((event) => event._id !== _id));
+
         if (response.status === 200) {
-          Swal.fire('Deleted!', 'Your event has been deleted.', 'success');
+          Swal.fire("Deleted!", "Your event has been deleted.", "success");
         } else {
-          Swal.fire('Error!', 'Something went wrong, please try again.', 'error');
+          Swal.fire(
+            "Error!",
+            "Something went wrong, please try again.",
+            "error"
+          );
         }
       } catch (error) {
-        Swal.fire('Error!', 'Something went wrong, please try again.', 'error');
+        Swal.fire("Error!", "Something went wrong, please try again.", "error");
       }
     }
   };
 
-
-
-
-
-
-
   return (
     <div className="mb-6">
-    
-
       <div className="space-y-4 mb-6">
         <Breadcrumb
           title="My Events"
           subTitle="Here are the events you have listed."
         />
       </div>
-
-      {events &&
-
-      <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48]">
-        <div className="space-y-6">
-          
-     { 
-      events?.map((event, index)=><EventCard key={index} event={event} handleDelete={handleDelete}></EventCard> )
-     }
-
+<div className="px-4">
+  
+{events && (
+        <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48]">
+          <div className="space-y-6">
+            {events?.map((event, index) => (
+              <EventCard
+                key={index}
+                event={event}
+                handleDelete={handleDelete}
+              ></EventCard>
+            ))}
+          </div>
         </div>
-      </div>
-}
+      )}
+</div>
     </div>
-  )
-}
+  );
+};
 
-export default MyEvents
+export default MyEvents;

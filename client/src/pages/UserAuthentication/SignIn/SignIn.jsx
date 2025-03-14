@@ -85,24 +85,18 @@ const SignIn = () => {
   if (user || loading) return null;
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center min-h-[calc(100vh-300px)] p-4">
       
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
         <div
-          className="hidden bg-cover bg-center lg:block lg:w-1/2"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80')`,
-          }}
-        ></div>
+          className="hidden bg-cover bg-center  lg:w-1/2 lg:flex lg:justify-center lg:items-center"
+          
+        >
+          <h1 className="text-4xl font-extrabold">SideGurus.com</h1>
+        </div>
 
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-          <div className="flex justify-center mx-auto">
-            <img
-              className="w-auto h-7 sm:h-8"
-              src="https://merakiui.com/images/logo.svg"
-              alt="Logo"
-            />
-          </div>
+     
 
           <p className="mt-3 text-xl text-center text-[#014D48] font-semibold">
             Welcome back!
