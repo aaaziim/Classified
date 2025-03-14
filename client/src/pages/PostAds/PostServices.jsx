@@ -95,7 +95,6 @@ const PostServices = () => {
       toast.success("Service posted successfully");
       navigate("/my-services");
     } catch (err) {
-      console.error("Service post failed:", err);
       toast.error("Failed to post service.");
     }
   };
@@ -249,7 +248,7 @@ const PostServices = () => {
             ) : null}
 
             <label className="block">
-              <span className="text-[#001C27]">Upload Image</span>
+              <span className="text-[#001C27]">Upload Images</span>
               <input
                 type="file"
                 name="service_image"

@@ -12,6 +12,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { MdReportProblem } from "react-icons/md";
 import toast from "react-hot-toast";
+ 
+
 const AdDetails = () => {
   const { id } = useParams();
   const [service, setService] = useState([]);
@@ -76,10 +78,20 @@ console.log(images)
     <>
       <div className="flex flex-col justify-center md:flex-row gap-4 my-10 px-4">
         <div className="w-full md:w-2/3 bg-[#FFE5D5] p-4 space-y-4 rounded-2xl">
+        <Carousel
+        infiniteLoop={true}
+        className="rounded-lg"
+        showThumbs={false}
+        showStatus={false}
+        showIndicators={true}
+        useKeyboardArrows={true}
+      >
+      
         {images?.map((image, index) => (
-  <img key={index} className="w-full h-96" src={image} alt={`Image ${index}`} />
+  <GalleryImages key={index} image={image}></GalleryImages>
+  
 ))}
-
+</Carousel>
 
           <div className="flex gap-2 justify-between">
             <div>

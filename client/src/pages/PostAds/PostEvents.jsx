@@ -44,29 +44,62 @@ const PostEvents = () => {
       description: form.event_description.value,
       startDate: form.event_start_date.value,
       endDate: form.event_end_date.value,
-
       country: form.event_country.value,
       state: form.event_state?.value,
       city: form.event_city?.value,
-      image: form.event_image.value,
-      posted: new Date().toISOString(),
       author: {
         email: form.author_email.value,
         phone: form.author_phone.value,
         facebook: form.author_facebook.value,
         instagram: form.author_instagram.value,
       },
+      images: [], // Placeholder for uploaded image URLs
     };
+  
+    // Upload Image to Cloudinary
+    const imageFiles = form.event_image.files;
+  
+    if (imageFiles.length > 0) {
+      const imageUploadPromises = [...imageFiles].map(async (file) => {
+        const imageData = new FormData();
+        imageData.append("file", file);
+        imageData.append("upload_preset", "SideGuru"); // Replace with your Cloudinary preset
+        imageData.append("folder", "ads");
+  
+        try {
+          const response = await fetch(
+            "https://api.cloudinary.com/v1_1/dcct2k1cz/image/upload",
+            {
+              method: "POST",
+              body: imageData,
+            }
+          );
+    
+          const data = await response.json();
+          return data.secure_url; // Return the uploaded image URL
+        } catch (err) {
+          console.error("Image upload failed:", err);
+          toast.error("Image upload failed.");
+          return null;
+        }
+      });
+  
+      // Wait for all image uploads to complete
+      const uploadedImageUrls = await Promise.all(imageUploadPromises);
+  
+      // Remove any failed uploads (null values)
+      event.images = uploadedImageUrls.filter((url) => url !== null);
+    }
+  
     try {
       const { data } = await axiosSecure.post(`/events`, event);
-      console.log(data);
       toast.success("Event posted successfully");
       navigate("/my-events");
     } catch (err) {
       toast.error(err.response.data);
     }
   };
-
+  
   return (
     <div className="space-y-4 mb-4">
       <Breadcrumb title={"Post an Event"} />
@@ -162,6 +195,15 @@ const PostEvents = () => {
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]"
               />
             </label>
+            <label className="block">
+              <span className="text-[#001C27]">Upload Images</span>
+              <input
+                type="file"
+                name="event_image"
+                required
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]" multiple
+              />
+            </label>
 
             <label className="block">
               <span className="text-[#001C27]">Country</span>
@@ -228,15 +270,7 @@ const PostEvents = () => {
                 </select>
               </label>
             ) : null}
-            <label className="block">
-              <span className="text-[#001C27]">Upload Image</span>
-              <input
-                type="file"
-                name="event_image"
-                required
-                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]"
-              />
-            </label>
+           
           </div>
         </fieldset>
 

@@ -12,6 +12,11 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import toast from "react-hot-toast";
 import { MdReportProblem } from "react-icons/md";
+import GalleryImages from "../Components/GalleryImages";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
+
 const EventDetails = () => {
   const { id } = useParams();
   const [event, setEvent] = useState([]);
@@ -57,6 +62,7 @@ const EventDetails = () => {
     startDate,
     endDate,
     author,
+    images
   } = event;
 
   const handleEventReport = async () => {
@@ -76,12 +82,20 @@ const EventDetails = () => {
     <>
       <div className="flex flex-col justify-center md:flex-row gap-4 my-10 px-4">
         <div className="w-full md:w-2/3 bg-[#FFE5D5] p-4 space-y-4 rounded-2xl">
-          <img
-            className="w-full h-96"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2z-Qg3pe-RY9Lv8kQ4Ik3uFlebhYk4I9R0Q&s"
-            alt=""
-          />
-
+        <Carousel
+        infiniteLoop={true}
+        className="rounded-lg"
+        showThumbs={false}
+        showStatus={false}
+        showIndicators={true}
+        useKeyboardArrows={true}
+      >
+      
+        {images?.map((image, index) => (
+  <GalleryImages key={index} image={image}></GalleryImages>
+  
+))}
+</Carousel>
           <div className="flex gap-2 justify-between">
             <div>
               <h1 className="text-2xl text-[#001C27] font-bold">{title}</h1>
@@ -117,7 +131,7 @@ const EventDetails = () => {
                 clipPath: "polygon(0 0, 100% 0, 90% 50%, 100% 100%, 0 100%)",
               }}
             >
-              Ticket: $220
+              Ticket: ${price}
             </p>
           </div>
 
