@@ -12,7 +12,11 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { MdReportProblem } from "react-icons/md";
 import toast from "react-hot-toast";
- 
+
+import GalleryImages from "../Components/GalleryImages";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
 
 const AdDetails = () => {
   const { id } = useParams();

@@ -2,11 +2,14 @@ import React from 'react'
 import { Link } from 'react-router';
 
 const ServiceCard = ({service,handleDelete}) => {
-    const {title, description, _id} = service;
+    const {title, description, _id, images} = service;
   return (
     <div className="flex flex-col md:flex-row mb-4 items-center justify-between p-4 bg-[#FFE5D5] rounded-lg shadow-md hover:shadow-lg transition space-y-2">
     <div className="flex items-center space-x-4">
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/005/048/106/small_2x/black-and-yellow-grunge-modern-thumbnail-background-free-vector.jpg" alt="Service Thumbnail" className="w-16 h-16 object-cover rounded-lg border border-[#014D48]" />
+    {
+      images &&   <img alt="Service Thumbnail" className="w-16 h-16 object-cover rounded-lg border border-[#014D48]"  src={images[0]} />
+    }
+   
       <div>
         <h3 className="text-lg font-semibold text-[#014D48]">{title}</h3>
         <p className="text-[#001C27]">{description.slice(0,50)}...</p>
