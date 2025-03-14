@@ -70,13 +70,16 @@ const AdDetails = () => {
       toast.error(err.response?.data || "Error reporting service");
     }
   };
-
-  const img = images[0];
+console.log(images)
+ 
   return (
     <>
       <div className="flex flex-col justify-center md:flex-row gap-4 my-10 px-4">
         <div className="w-full md:w-2/3 bg-[#FFE5D5] p-4 space-y-4 rounded-2xl">
-          {images && <img className="w-full h-96" src={img} alt="" />}
+        {images?.map((image, index) => (
+  <img key={index} className="w-full h-96" src={image} alt={`Image ${index}`} />
+))}
+
 
           <div className="flex gap-2 justify-between">
             <div>

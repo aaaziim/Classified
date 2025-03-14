@@ -35,72 +35,36 @@ const PostServices = () => {
   const handleAdPostService = async (e) => {
     e.preventDefault();
     const form = e.target;
-  
-    // Create an object to store form data
-    const serviceData = {
+
+    const service = {
       title: form.service_title.value,
       category: form.service_category.value,
       subcategory: form.service_subcategory.value,
       price: form.service_price.value,
       description: form.service_description.value,
+
       country: form.service_country.value,
       state: form.service_state?.value,
       city: form.service_city?.value,
+
+      posted: new Date().toISOString(),
       author: {
         email: form.author_email.value,
         phone: form.author_phone.value,
         facebook: form.author_facebook.value,
         instagram: form.author_instagram.value,
       },
-      images: [], // Placeholder for uploaded image URLs
     };
-  
-    // Upload Image to Cloudinary
-    const imageFiles = form.service_image.files;
-    
-    if (imageFiles.length > 0) {
-      const imageUploadPromises = [...imageFiles].map(async (file) => {
-        const imageData = new FormData();
-        imageData.append("file", file);
-        imageData.append("upload_preset", "SideGuru"); // Replace with your Cloudinary preset
-        imageData.append("folder", "ads");
-  
-        try {
-          const response = await fetch(
-            "https://api.cloudinary.com/v1_1/dcct2k1cz/image/upload",
-            {
-              method: "POST",
-              body: imageData,
-            }
-          );
-  
-          const data = await response.json();
-          return data.secure_url; // Return the uploaded image URL
-        } catch (err) {
-          console.error("Image upload failed:", err);
-          toast.error("Image upload failed.");
-          return null;
-        }
-      });
-  
-      // Wait for all image uploads to complete
-      const uploadedImageUrls = await Promise.all(imageUploadPromises);
-  
-      // Remove any failed uploads (null values)
-      serviceData.images = uploadedImageUrls.filter((url) => url !== null);
-    }
-  
+
     try {
-      const { data } = await axiosSecure.post(`/services`, serviceData);
+      const { data } = await axiosSecure.post(`/services`, service);
+      console.log(data);
       toast.success("Service posted successfully");
       navigate("/my-services");
     } catch (err) {
-      console.error("Service post failed:", err);
-      toast.error("Failed to post service.");
+      toast.error(err.response.data);
     }
   };
-  
-  
 
   return (
     <div className="space-y-4 mb-4 ">
@@ -253,7 +217,7 @@ const PostServices = () => {
               <input
                 type="file"
                 name="service_image"
-                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" multiple  
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
               />
             </label>
           </div>
