@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Breadcrumb from '../Components/Breadcrumb';
-import { Helmet } from 'react-helmet-async';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import LoadingSpinner from '../Components/LoadingSpinner';
 import toast from 'react-hot-toast';
@@ -73,9 +72,7 @@ const PostServices = () => {
 
     return (
         <div className='space-y-4 mb-4'>
-            <Helmet>
-                <title>Post Service</title>
-            </Helmet>
+         
 
             <Breadcrumb title={'Post a Service'} />
 

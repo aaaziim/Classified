@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumb from '../../Components/Breadcrumb'
-import { Helmet } from 'react-helmet-async'
 import toast from 'react-hot-toast'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import useAuth from '../../../hooks/useAuth'
@@ -79,10 +78,7 @@ const UpdateProfile = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>Update Profile</title>
-      </Helmet>
-
+    
       <div className="space-y-4 mb-6">
         <Breadcrumb title="Update Profile" subTitle="Update your personal information below." />
       </div>

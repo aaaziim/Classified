@@ -6,7 +6,8 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser')
 const nodemailer = require('nodemailer')
 const bodyParser = require('body-parser')
-
+const multer = require('multer');
+const path = require('path');
 
 const port = process.env.PORT || 5000
 
@@ -15,12 +16,12 @@ const app = express()
 
 
 //Middleware Start
+// Define CORS options
 const corsOptions = {
-    origin: [ 'http://localhost:5173', 'http://localhost:5174' ],
-    credentials: true,
-    optionSuccessStatus: 200,
-}
-
+  origin: ['http://localhost:5173', 'http://localhost:5174', 'https://classified-b08c3.web.app'],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
 
 
 app.use(cors(corsOptions))
@@ -28,6 +29,20 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.json())
 
+
+// Set up multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads/'); // Specify the directory to store uploaded files
+  },
+  filename: (req, file, cb) => {
+      const fileExtension = path.extname(file.originalname);
+      cb(null, Date.now() + fileExtension); // Append the timestamp to avoid name conflicts
+  }
+});
+
+// Create multer upload instance with single or multiple files support
+const upload = multer({ storage: storage });
 
 
 // Create reusable transporter object using SMTP transport
@@ -41,7 +56,7 @@ const transporter = nodemailer.createTransport({
 
 
 
-
+app.use('/uploads', express.static(process.cwd() + '/uploads'))
 
 
 // Verify JWT Middleware
@@ -243,6 +258,13 @@ app.get("/services", async(req, res) => {
     app.get("/service/:id", async(req, res)=>{
         const id = req.params.id
         const result = await servicesCollection.findOne({_id : new ObjectId(id)});
+        console.log(result)
+        const images = result?.images;
+        if( images.length > 0){
+            const imageUrls = images.map(image => `http://localhost:5000/${image}`);
+            result.images = imageUrls; // Add image URLs to the result object
+        }
+        
         res.send(result)
     })
 // Get Specific Services Posted by a user  
@@ -445,11 +467,38 @@ app.get("/servicesbyfilter", async (req, res) => {
 });
 
 // Save Services
-app.post("/services", async(req, res)=>{
-  const newService = req.body;
-  const result = await servicesCollection.insertOne(newService)
-  res.send(result)
-})
+// app.post("/services", async(req, res)=>{
+//   const newService = req.body;
+//   const result = await servicesCollection.insertOne(newService)
+//   res.send(result)
+// })
+app.post("/services", upload.array('service_images', 10), async (req, res) => {
+  // Extract the form data
+  const author = JSON.parse(req.body.author)
+  console.log(author)
+  const newService = {
+      title: req.body.title,
+      category: req.body.category,
+      subcategory: req.body.subcategory,
+      price: req.body.price,
+      description: req.body.description,
+      country: req.body.country,
+      state: req.body.state,
+      city: req.body.city,
+      posted: new Date().toISOString(),
+      author:author,
+      images: req.files.map(file => 
+         "http://localhost:5000/" + file.path
+  )  // Store the file paths
+  };
+console.log(newService)
+  try {
+      const result = await servicesCollection.insertOne(newService);
+      res.send(result);
+  } catch (err) {
+      res.status(500).send({ error: 'Failed to save service' });
+  }
+});
 
 // Update Service by the author
 app.put("/service-update/:id",verifyToken, async(req, res)=>{
@@ -761,22 +810,59 @@ app.delete("/event/:id", verifyToken, async(req, res)=>{
 // Events API Ends
 // Profile API Start
 // Create Profile 
-app.post("/profile", async (req, res) => {
-  const newProfile = req.body;
-  // Check if profile already exists (based on a unique field, e.g., email or userId)
-  const existingProfile = await profileCollection.findOne({ email: newProfile.email }); // Change to a relevant unique field
-    // Insert the new profile if it doesn't exist
-  if (!existingProfile) {
-     const result = await profileCollection.insertOne(newProfile);
-  res.status(201).json(result);
-  }
+// app.post("/profile", async (req, res) => {
+// try{
+//   const newProfile = req.body;
+//   // Check if profile already exists (based on a unique field, e.g., email or userId)
+//   const existingProfile = await profileCollection.findOne({ email: newProfile.email }); // Change to a relevant unique field
+//     // Insert the new profile if it doesn't exist
+//   if (!existingProfile) {
+//      const result = await profileCollection.insertOne(newProfile);
+//   res.status(201).json(result);
+//   }
+// }catch (err) {
+//     console.error(err);
+//     res.status(500).send({ message: "Internal Server Error" });
+//   }
+  
+// }
+// });
 
+
+app.post("/profile", async (req, res) => {
+  try {
+    const newProfile = req.body;
+
+    // Check if profile already exists (based on a unique field, e.g., email)
+    const existingProfile = await profileCollection.findOne({ email: newProfile.email });
+
+    // If profile doesn't exist, insert the new profile
+    if (!existingProfile) {
+      const result = await profileCollection.insertOne(newProfile);
+
+      // Respond with the inserted profile details (you can customize this based on your needs)
+      res.status(201).send({
+        message: "Profile created successfully",
+        profile: result.ops[0], // Assuming you are using MongoDB and inserting a single document
+      });
+    }
+  } catch (err) {
+    console.error("Error creating profile:", err);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
 });
 
 // Get All Profiles API
 app.get("/profiles", async(req, res)=>{
-  const result = await profileCollection.find().sort({ name: 1 }).toArray();
+  try{
+    const result = await profileCollection.find().sort({ name: 1 }).toArray();
   res.send(result)
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+  
 })
 
 // Get userProfile
@@ -899,5 +985,4 @@ app.get("/", (req, res)=>{
 })
 
 app.listen(port, ()=>console.log(`Server is listening on port ${port}`))
-
 

@@ -1,7 +1,6 @@
 import Banner from "../Components/Banner";
 import CategorySlider from "../Components/CategorySlider";
 import TypeTab from "../Components/TypeTab";
-import { Helmet } from 'react-helmet-async';
 import CategoryCard from "./CategoryCard";
 import LocationCard from "./LocationCard";
 import { Link } from 'react-router-dom';
@@ -37,9 +36,7 @@ const Home = () => {
 
   return (
     <div className="text-[#001C27]">
-      <Helmet>
-        <title>Home</title>
-      </Helmet>
+   
 
       <Banner />
 

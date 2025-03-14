@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from "../../../hooks/useAuth";
 import { useEffect } from "react";
@@ -36,9 +35,14 @@ const SignIn = () => {
 
         // Send user profile to the backend
         const { data } = await axiosSecure.post("/profile", userProfile);
+
+        if(data.status === 409){
+          toast.success("Sign In Successful");
+
+        }
       }
       navigate(destination, { replace: true });
-      toast.success("Sign-in Successful");
+      
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
@@ -82,9 +86,7 @@ const SignIn = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <Helmet>
-        <title>Sign In</title>
-      </Helmet>
+      
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
         <div
           className="hidden bg-cover bg-center lg:block lg:w-1/2"

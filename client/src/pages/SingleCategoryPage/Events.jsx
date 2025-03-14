@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import Breadcrumb from "../Components/Breadcrumb";
@@ -106,10 +105,7 @@ const fetchEventsbySubCategory = async (name) => {
 
     <>
       <div className="px-4 py-6">
-    <Helmet>
-      <title>{category?.name || "Category"}</title>
-    </Helmet>
-
+   
   
     <div className="flex flex-col lg:flex-row  gap-6">
   <div >

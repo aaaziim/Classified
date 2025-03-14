@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react"; 
 import toast from "react-hot-toast";
@@ -73,9 +72,7 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <Helmet>
-        <title>Sign Up</title>
-      </Helmet>
+      
 
       <div className="flex w-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg border border-[#014D48]">
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">

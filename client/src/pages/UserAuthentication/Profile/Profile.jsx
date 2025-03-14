@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import Breadcrumb from '../../Components/Breadcrumb'
 import useAuth from '../../../hooks/useAuth'
@@ -50,10 +49,7 @@ const Profile = () => {
   const {name, email, phone, address, bio} = profile;
   return (
     <div className="mb-6">
-      <Helmet>
-        <title>Profile</title>
-      </Helmet>
-
+    
       <div className="space-y-4 mb-6">
         <Breadcrumb title="Profile" />
       </div>

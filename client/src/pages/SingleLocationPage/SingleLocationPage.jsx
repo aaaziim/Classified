@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
 import Breadcrumb from '../Components/Breadcrumb'
 import AdCard from '../Components/AdCard'
 import { useParams } from 'react-router'
@@ -35,10 +34,7 @@ const SingleLocationPage = () => {
 
   return (
     <div className="px-4 py-6">
-      <Helmet>
-        <title>Location</title>
-      </Helmet>
-
+   
       <div className="space-y-4 mb-6">
         <Breadcrumb 
           title={locationName}

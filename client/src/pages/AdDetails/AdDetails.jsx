@@ -6,7 +6,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { MdCategory } from "react-icons/md";
 import SellerInfo from './SellerInfo';
 import CategorySidebar from './CategorySidebar';
-import { Helmet } from 'react-helmet-async';
+ 
 import { useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import LoadingSpinner from '../Components/LoadingSpinner';
@@ -44,7 +44,7 @@ useEffect(() => {
 if (loadingService) return <div className="text-center text-[#014D48]"><LoadingSpinner></LoadingSpinner></div>;
 if (errorService) return <div className="text-center text-[#FA8649]">{errorService}</div>;
 
-const {title, posted, price, country, state, city, category, subcategory, description, author } = service;
+const {title, posted, price, country, state, city, category, subcategory, description, author,images } = service;
 
 const handleServiceReport = async () => {
   const updatedService = {
@@ -60,16 +60,15 @@ const handleServiceReport = async () => {
   }
 };
 
+const img = images[0]
   return (
   <>
-   <Helmet>
-      <title>Ad Details</title>
-   </Helmet>
+ 
    <div className='flex flex-col justify-center md:flex-row gap-4 my-10'>
      <div className='w-full md:w-2/3 bg-[#FFE5D5] p-4 space-y-4 rounded-2xl'>
 
-     
-       <img className='w-full h-96' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2z-Qg3pe-RY9Lv8kQ4Ik3uFlebhYk4I9R0Q&s" alt="" />
+    { images &&<img className='w-full h-96' src={img} alt="" />}
+       
        <div className='flex gap-2 justify-between'>
     <div>
     <h1 className='text-2xl text-[#001C27] font-bold'>{title}</h1>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
 import Breadcrumb from '../Components/Breadcrumb'
 
 const Privacy = () => {
@@ -11,9 +10,8 @@ const Privacy = () => {
        subTitle={"Here you can read safety information"}>
        </Breadcrumb>
     </div>
-        <Helmet>
-                          <title>Privacy</title>
-          </Helmet>
+   
+   
     </div>
   )
 }

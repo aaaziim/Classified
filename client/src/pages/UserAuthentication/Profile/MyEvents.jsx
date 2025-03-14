@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumb from '../../Components/Breadcrumb'
-import { Helmet } from 'react-helmet-async'
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../Components/LoadingSpinner';
 import EventCard from './EventCard';
@@ -76,9 +75,7 @@ const MyEvents = () => {
 
   return (
     <div className="mb-6">
-      <Helmet>
-        <title>My Events</title>
-      </Helmet>
+    
 
       <div className="space-y-4 mb-6">
         <Breadcrumb

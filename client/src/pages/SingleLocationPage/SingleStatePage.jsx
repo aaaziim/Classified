@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Breadcrumb from '../Components/Breadcrumb';
 import { useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
@@ -56,9 +55,7 @@ const SingleLocationPage = () => {
 
   return (
     <div className="px-4 py-6">
-      <Helmet>
-        <title>{stateName}</title>
-      </Helmet>
+      
 
       <div className="space-y-4 mb-6">
         <Breadcrumb 

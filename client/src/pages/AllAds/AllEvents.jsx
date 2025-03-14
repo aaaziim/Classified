@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import LoadingSpinner from '../Components/LoadingSpinner'
 import AdCard from '../Components/AdCard'
-import { Helmet } from 'react-helmet-async'
 import Breadcrumb from '../Components/Breadcrumb'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import Pagination from '../Components/Pagination'
@@ -115,9 +114,8 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
 
   return (
     <div>
-        <Helmet>
-                          <title>Events</title>
-          </Helmet>
+       
+       
           <div className='space-y-4 mb-4'>
       <Breadcrumb
        title={"Events"}

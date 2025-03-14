@@ -5,7 +5,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { MdCategory } from "react-icons/md";
 import SellerInfo from './SellerInfo';
 import CategorySidebar from './CategorySidebar';
-import { Helmet } from 'react-helmet-async';
+
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -77,9 +77,7 @@ const EventDetails = () => {
 
   return (
   <>
-   <Helmet>
-      <title>Event Details</title>
-   </Helmet>
+  
    <div className='flex flex-col justify-center md:flex-row gap-4 my-10'>
     
      <div className='w-full md:w-2/3 bg-[#FFE5D5] p-4 space-y-4 rounded-2xl'>

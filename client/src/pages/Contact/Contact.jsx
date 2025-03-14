@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Helmet } from 'react-helmet-async'
 import Breadcrumb from '../Components/Breadcrumb'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 
@@ -45,9 +44,7 @@ const Contact = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>Contact</title>
-      </Helmet>
+    
       <div className='space-y-4 mb-4'>
         <Breadcrumb title="Contact Us" subTitle="Send us a message" />
         <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-md mt-8">

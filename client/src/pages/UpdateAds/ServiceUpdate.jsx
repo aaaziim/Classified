@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Breadcrumb from '../Components/Breadcrumb';
-import { Helmet } from 'react-helmet-async';
 import LoadingSpinner from '../Components/LoadingSpinner';
 import { useNavigate, useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
@@ -122,9 +121,7 @@ const ServiceUpdate = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>Update Service</title>
-      </Helmet>
+
 
       <div className="space-y-4 mb-6">
         <Breadcrumb title="Update Service" subTitle="Here you can update your service information" />

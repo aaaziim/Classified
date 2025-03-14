@@ -1,6 +1,5 @@
  
 import Breadcrumb from '../Components/Breadcrumb';
-import { Helmet } from 'react-helmet-async';
 import React, { useEffect, useState } from 'react';
   
 import useAxiosSecure from '../../hooks/useAxiosSecure';
@@ -70,9 +69,7 @@ if (errorLocations) return <div className="text-center text-[#FA8649]">{errorLoc
  
   return (
     <div className='space-y-4 mb-4'>
-      <Helmet>
-        <title>Post Event</title>
-      </Helmet>
+     
       <Breadcrumb title={'Post an Event'} />
 
       <form onSubmit={handleAdPostEvent} className='max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border-2 border-[#014D48]'>
