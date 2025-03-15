@@ -92,6 +92,35 @@ const ServiceUpdate = () => {
     }
   };
 
+  // const handleServiceUpdate = async (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+
+  //   const updatedService = {
+  //     title: form.service_title.value,
+  //     category: selectedCategory,
+  //     subcategory: selectedSubcategory,
+  //     price: form.service_price.value,
+  //     description: form.service_description.value,
+  //     country: form.service_country.value,
+  //     state: form.service_state?.value || "",
+  //     city: form.service_city?.value || "",
+  //   };
+
+  //   if (updatedService.country !== "USA") {
+  //     updatedService.state = "";
+  //     updatedService.city = "";
+  //   }
+
+  //   try {
+  //     await axiosSecure.put(`/service-update/${id}`, updatedService);
+  //     toast.success("Service updated successfully");
+  //     navigate("/my-services");
+  //   } catch (err) {
+  //     toast.error(err.response?.data || "Error updating service");
+  //   }
+  // };
+
   const handleServiceUpdate = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -105,12 +134,49 @@ const ServiceUpdate = () => {
       country: form.service_country.value,
       state: form.service_state?.value || "",
       city: form.service_city?.value || "",
+      author: {
+        email: form.author_email.value,
+        phone: form.author_phone.value,
+        facebook: form.author_facebook.value,
+        instagram: form.author_instagram.value,
+      },
+       // Check if new images were uploaded; if not, use existing images
+       images: service.images || [] // Use existing images if no new ones are uploaded
     };
 
-    if (updatedService.country !== "USA") {
-      updatedService.state = "";
-      updatedService.city = "";
+    const imageFiles = form.service_image.files;
+    if (imageFiles.length > 0) {
+      // Upload new images to Cloudinary
+      const imageUploadPromises = [...imageFiles].map(async (file) => {
+        const imageData = new FormData();
+        imageData.append("file", file);
+        imageData.append("upload_preset", "SideGuru"); // Cloudinary preset
+        imageData.append("folder", "ads");
+  
+        try {
+          const response = await fetch(
+            "https://api.cloudinary.com/v1_1/dcct2k1cz/image/upload",
+            {
+              method: "POST",
+              body: imageData,
+            }
+          );
+          const data = await response.json();
+          return data.secure_url; // Return the uploaded image URL
+        } catch (err) {
+          console.error("Image upload failed:", err);
+          toast.error("Image upload failed.");
+          return null;
+        }
+      });
+  
+      // Wait for all image uploads to complete
+      const uploadedImageUrls = await Promise.all(imageUploadPromises);
+  
+      // Filter out any failed uploads (null values)
+      updatedService.images = uploadedImageUrls.filter((url) => url !== null);
     }
+ 
 
     try {
       await axiosSecure.put(`/service-update/${id}`, updatedService);
@@ -220,11 +286,11 @@ const ServiceUpdate = () => {
 
             {/* Image Upload */}
             <label className="block">
-              <span className="text-[#001C27]">Upload Image</span>
+              <span className="text-[#001C27]">Upload Images</span>
               <input
                 type="file"
                 name="service_image"
-                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" multiple  
               />
             </label>
 
@@ -295,6 +361,52 @@ const ServiceUpdate = () => {
             )}
           </div>
         </fieldset>
+        <fieldset className="space-y-4 mt-6">
+          <legend className="text-lg font-semibold text-[#014D48] mb-4">
+            Author Information
+          </legend>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <label className="block">
+              <span className="text-[#001C27]">Email</span>
+              <input
+                type="email"
+                name="author_email"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                defaultValue={user.email}
+                disabled
+                required
+              />
+            </label>
+            <label className="block">
+              <span className="text-[#001C27]">Phone</span>
+              <input
+                type="text"
+                name="author_phone"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                required   defaultValue={service.author.phone}
+              />
+            </label>
+            <label className="block">
+              <span className="text-[#001C27]">Facebook</span>
+              <input
+                type="url"
+                name="author_facebook"
+                defaultValue={service.author.facebook}
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+              />
+            </label>
+            <label className="block">
+              <span className="text-[#001C27]">Instagram</span>
+              <input
+                type="url"
+                name="author_instagram"
+                defaultValue={service.author.instagram}
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+              />
+            </label>
+          </div>
+        </fieldset>
+
 
         <button
           type="submit"

@@ -127,8 +127,8 @@ const EventUpdate = () => {
       endDate: form.event_end_date.value,
       description: form.event_description.value,
       country: form.event_country.value,
-      state: form.event_state?.value,
-      city: form.event_city?.value,
+      state: form.event_state?.value || "",
+      city: form.event_city?.value || "",
       author: {
         email: form.author_email.value,
         phone: form.author_phone.value,
@@ -173,11 +173,11 @@ const EventUpdate = () => {
       updatedEvent.images = uploadedImageUrls.filter((url) => url !== null);
     }
   
-    // If the country isn't "USA", reset state and city
-    if (updatedEvent.country !== "USA") {
-      updatedEvent.state = "";
-      updatedEvent.city = "";
-    }
+    // // If the country isn't "USA", reset state and city
+    // if (updatedEvent.country !== "USA") {
+    //   updatedEvent.state = "";
+    //   updatedEvent.city = "";
+    // }
   
     try {
       await axiosSecure.put(`/event-update/${id}`, updatedEvent);

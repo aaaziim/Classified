@@ -147,6 +147,14 @@ const PostServices = () => {
                 required
               ></textarea>
             </label>
+            <label className="block">
+              <span className="text-[#001C27]">Upload Image</span>
+              <input
+                type="file"
+                name="service_image"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+              />
+            </label>
 
             <label className="block">
               <span className="text-[#001C27]">Country</span>
@@ -212,14 +220,7 @@ const PostServices = () => {
               </label>
             ) : null}
 
-            <label className="block">
-              <span className="text-[#001C27]">Upload Image</span>
-              <input
-                type="file"
-                name="service_image"
-                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
-              />
-            </label>
+           
           </div>
         </fieldset>
 
