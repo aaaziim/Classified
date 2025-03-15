@@ -122,6 +122,7 @@ const Dashboard = () => {
         try {
           const response = await axiosSecure.delete(`/service/${_id}`)
           setServices(services.filter(service => service._id !== _id));
+          setReportedServices(reportedServices.filter(service => service._id !== _id));
           
           if (response.status === 200) {
             Swal.fire('Deleted!', 'Your service has been deleted.', 'success');
@@ -151,6 +152,8 @@ const Dashboard = () => {
           try {
             const response = await axiosSecure.delete(`/event/${_id}`)
             setEvents(events.filter(event => event._id !== _id));
+          setReportedEvents(reportedEvents.filter(service => service._id !== _id));
+
             
             if (response.status === 200) {
               Swal.fire('Deleted!', 'Your event has been deleted.', 'success');
