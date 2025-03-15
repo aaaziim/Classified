@@ -83,11 +83,41 @@ const EventUpdate = () => {
       setStateIndex(newStateIndex);
     }
   };
+  // const handleEventUpdate = async (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+
+  //   const updatedEvent = {
+  //     title: form.event_title.value,
+  //     category: selectedCategory,
+  //     subcategory: selectedSubcategory,
+  //     price: form.event_price.value,
+  //     startDate: form.event_start_date.value,
+  //     endDate: form.event_end_date.value,
+  //     description: form.event_description.value,
+  //     country: form.event_country.value,
+  //     state: form.event_state?.value || null,
+  //     city: form.event_city?.value || null,
+  //   };
+
+  //   if (updatedEvent.country !== "USA") {
+  //     updatedEvent.state = null;
+  //     updatedEvent.city = null;
+  //   }
+
+  //   try {
+  //     await axiosSecure.put(`/event-update/${id}`, updatedEvent);
+  //     toast.success("Event updated successfully");
+  //     navigate("/my-events");
+  //   } catch (err) {
+  //     toast.error(err.response?.data || "Error updating event");
+  //   }
+  // };
 
   const handleEventUpdate = async (e) => {
     e.preventDefault();
     const form = e.target;
-
+  
     const updatedEvent = {
       title: form.event_title.value,
       category: selectedCategory,
@@ -97,15 +127,58 @@ const EventUpdate = () => {
       endDate: form.event_end_date.value,
       description: form.event_description.value,
       country: form.event_country.value,
-      state: form.event_state?.value || null,
-      city: form.event_city?.value || null,
+      state: form.event_state?.value,
+      city: form.event_city?.value,
+      author: {
+        email: form.author_email.value,
+        phone: form.author_phone.value,
+        facebook: form.author_facebook.value,
+        instagram: form.author_instagram.value,
+      },
+      // Check if new images were uploaded; if not, use existing images
+      images: event.images || [] // Use existing images if no new ones are uploaded
     };
-
-    if (updatedEvent.country !== "USA") {
-      updatedEvent.state = null;
-      updatedEvent.city = null;
+  
+    // Check if new images are uploaded
+    const imageFiles = form.event_image.files;
+    if (imageFiles.length > 0) {
+      // Upload new images to Cloudinary
+      const imageUploadPromises = [...imageFiles].map(async (file) => {
+        const imageData = new FormData();
+        imageData.append("file", file);
+        imageData.append("upload_preset", "SideGuru"); // Cloudinary preset
+        imageData.append("folder", "ads");
+  
+        try {
+          const response = await fetch(
+            "https://api.cloudinary.com/v1_1/dcct2k1cz/image/upload",
+            {
+              method: "POST",
+              body: imageData,
+            }
+          );
+          const data = await response.json();
+          return data.secure_url; // Return the uploaded image URL
+        } catch (err) {
+          console.error("Image upload failed:", err);
+          toast.error("Image upload failed.");
+          return null;
+        }
+      });
+  
+      // Wait for all image uploads to complete
+      const uploadedImageUrls = await Promise.all(imageUploadPromises);
+  
+      // Filter out any failed uploads (null values)
+      updatedEvent.images = uploadedImageUrls.filter((url) => url !== null);
     }
-
+  
+    // If the country isn't "USA", reset state and city
+    if (updatedEvent.country !== "USA") {
+      updatedEvent.state = "";
+      updatedEvent.city = "";
+    }
+  
     try {
       await axiosSecure.put(`/event-update/${id}`, updatedEvent);
       toast.success("Event updated successfully");
@@ -114,12 +187,14 @@ const EventUpdate = () => {
       toast.error(err.response?.data || "Error updating event");
     }
   };
+  
 
 
   if(user.email !== event.author.email){
     toast.error("You Don't Have Access to this")
     navigate("/my-events")
   }
+  console.log(event.images)
 
 
   return (
@@ -129,8 +204,7 @@ const EventUpdate = () => {
         <Breadcrumb title="Update Event" subTitle="Here you can update your event information" />
       </div>
 
-   <div className="px-4">
-   <form onSubmit={handleEventUpdate} className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48] mb-4">
+      <form onSubmit={handleEventUpdate} className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48] mb-4">
         <fieldset className="space-y-4">
           <legend className="text-lg font-semibold text-[#014D48] mb-4">Event Details</legend>
 
@@ -199,8 +273,8 @@ const EventUpdate = () => {
 
             {/* Image Upload */}
             <label className="block">
-              <span className="text-[#001C27]">Upload Image</span>
-              <input type="file" name="event_image" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" />
+              <span className="text-[#001C27]">Upload Images</span>
+              <input type="file" name="event_image" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" multiple />
             </label>
 
             {/* Country Selection */}
@@ -268,12 +342,54 @@ const EventUpdate = () => {
 
           </div>
         </fieldset>
-
+        <fieldset className="space-y-4 mt-6">
+          <legend className="text-lg font-semibold text-[#001C27] mb-4">
+            Host Information
+          </legend>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <label className="block">
+              <span className="text-[#001C27]">Email</span>
+              <input
+                type="email"
+                name="author_email"
+                required
+                defaultValue={user.email}
+                disabled
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]"
+              />
+            </label>
+            <label className="block">
+              <span className="text-[#001C27]">Phone</span>
+              <input
+                type="text"
+                name="author_phone"
+                required
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]"  defaultValue={event.author.phone}
+              />
+            </label>
+            <label className="block">
+              <span className="text-[#001C27]">Facebook</span>
+              <input
+                type="url"
+                name="author_facebook"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]" defaultValue={event.author.facebook}
+              />
+            </label>
+            <label className="block">
+              <span className="text-[#001C27]">Instagram</span>
+              <input
+                type="url"
+                name="author_instagram"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]" defaultValue={event.author.instagram}
+              />
+            </label>
+          </div>
+        </fieldset>
         <button type="submit" className="w-full bg-[#FA8649] text-white py-2 rounded-lg hover:bg-[#E06D36] transition mt-6">
           Update Event
         </button>
       </form>
-   </div>
+      
     </div>
   );
 };
