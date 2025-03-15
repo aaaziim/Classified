@@ -244,7 +244,7 @@ async function run() {
       const result = await servicesCollection.findOne({
         _id: new ObjectId(id),
       });
-      console.log(result);
+     
       // const images = result?.images || [];
       // if( images?.length > 0){
       //     const imageUrls = images.map(image => `http://localhost:5000/${image}`);
@@ -583,11 +583,13 @@ async function run() {
     //   res.send(result);
     // });
 
-    app.put("/service-update/:id", async (req, res) => {
+    app.put("/service-update/:id", verifyToken, async (req, res) => {
       try {
+       
+
         const serviceId = req.params.id; // Get service ID from URL parameter
-        const user = req.user;
-        const userEmail = user.email;
+        
+        const userEmail = req.user.email;
         const service = await servicesCollection.findOne({
         _id: new ObjectId(serviceId),
       });
@@ -638,9 +640,9 @@ async function run() {
         if (result.modifiedCount === 0) {
           return res.status(404).send({ error: "Service not found" });
         }
-    
-        console.log(result);
-        res.send({ message: "Service updated successfully", result });
+       
+     
+        res.send(result );
       } catch (err) {
         console.error("Error updating service:", err);
         res.status(500).send({ error: "Failed to update service" });
@@ -1011,7 +1013,7 @@ async function run() {
     // });
 
 
-    app.put("/event-update/:id", async (req, res) => {
+    app.put("/event-update/:id",verifyToken, async (req, res) => {
   try {
     const eventId = req.params.id;  // Get event ID from URL parameter
     const user = req.user;
