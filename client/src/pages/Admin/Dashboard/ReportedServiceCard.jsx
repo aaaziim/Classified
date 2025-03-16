@@ -23,11 +23,11 @@ const ReportedServiceCard = ({service,handleDelete,handleServiceApprove}) => {
         View
       </button>
      </Link>
-     {/* <Link to={`/service-update/${_id}`} >
+     <Link to={`/service-update/${_id}`} >
           <button className="px-4 py-2 bg-[#FA8649] text-white rounded-lg shadow hover:bg-[#E06D36] transition">
             Edit
           </button>
-          </Link> */}
+          </Link>
       <button onClick={()=>handleDelete(_id)}  className="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition">
         Delete
       </button>

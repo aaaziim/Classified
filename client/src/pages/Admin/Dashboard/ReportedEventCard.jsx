@@ -25,11 +25,11 @@ const ReportedEventCard = ({event, handleDelete, handleEventApprove}) => {
         View
       </button>
      </Link>
-      {/* <Link to={`/event-update/${_id}`} >
+      <Link to={`/event-update/${_id}`} >
       <button className="px-4 py-2 bg-[#FA8649] text-white rounded-lg shadow hover:bg-[#E06D36] transition">
         Edit
       </button>
-      </Link> */}
+      </Link>
       <button onClick={()=>handleDelete(_id)} className="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition">
         Delete
       </button>

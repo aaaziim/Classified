@@ -148,21 +148,29 @@ const Dashboard = () => {
   
     const makeAdmin = async (email) => {
       try {
-        await axiosSecure.put(`/make-admin/${email}`);
-        toast.success("User promoted to Admin");
-        fetchProfiles(); // Refresh the user list
+        const result = await axiosSecure.put(`/make-admin/${email}`);
+        if(result.status === 200){
+          toast.success("User promoted to admin");
+          fetchProfiles(); // Refresh the user list
+        }
+       
+        
       } catch (err) {
-        toast.error("Error promoting user");
+        toast.error("Only Admin can promote a user");
       }
     };
     
     const removeAdmin = async (email) => {
       try {
-        await axiosSecure.put(`/remove-admin/${email}`);
-        toast.success("Admin rights removed");
-        fetchProfiles(); // Refresh the user list
+        const result = await axiosSecure.put(`/remove-admin/${email}`);
+        if(result.status === 200){
+          toast.success("Admin rights removed");
+          fetchProfiles(); // Refresh the user list
+        }
+
+       
       } catch (err) {
-        toast.error("Error removing admin");
+        toast.error("Only Admin can remove admin");
       }
     };
     
@@ -203,12 +211,12 @@ const Dashboard = () => {
         };
       
         try {
-          await axiosSecure.put(`/service-report/${_id}`, updatedService);
+          await axiosSecure.put(`/service-report-close/${_id}`, updatedService);
           toast.success("Service Approved");
           setReportedServices(reportedServices.filter(service => service._id !== _id));
           
         } catch (err) {
-          toast.error(err.response?.data || "Error approving service");
+          toast.error(err.response?.data || "Only Admin can approve service");
         }
       };
 
@@ -220,12 +228,12 @@ const Dashboard = () => {
         };
       
         try {
-          await axiosSecure.put(`/event-report/${_id}`, updatedEvent);
+          await axiosSecure.put(`/event-report-close/${_id}`, updatedEvent);
           toast.success("Event Approved");
           setReportedEvents(reportedEvents.filter(event => event._id !== _id));
           
         } catch (err) {
-          toast.error(err.response?.data || "Error approving event");
+          toast.error(err.response?.data || "Only Admin can approve event");
         }
       };
     
@@ -239,9 +247,9 @@ const Dashboard = () => {
   if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents}</div>;
   
 
-  if (!isAdmin) {
-    return <Navigate to="/" />;
-  }
+  // if (!isAdmin) {
+  //   return <Navigate to="/" />;
+  // }
   
 
 
@@ -299,17 +307,7 @@ const Dashboard = () => {
             <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {profiles.length} Users Profile</h2>
             {profiles.map((profile) => (
   <div key={profile._id} className="flex justify-between p-4 border-b">
-    <ProfileCard profile={profile} />
-    
-    {profile.isAdmin ? (
-      <button onClick={() => removeAdmin(profile.email)} className="bg-red-500 text-white px-3 py-1 rounded">
-        Remove Admin
-      </button>
-    ) : (
-      <button onClick={() => makeAdmin(profile.email)} className="bg-green-500 text-white px-3 py-1 rounded">
-        Make Admin
-      </button>
-    )}
+    <ProfileCard profile={profile} makeAdmin={makeAdmin} removeAdmin={removeAdmin}/>
   </div>
 ))}
 

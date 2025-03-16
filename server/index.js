@@ -733,7 +733,20 @@ async function run() {
     });
     
 
-    app.put("/service-report/:id", verifyToken, verifyAdmin, async (req, res) => {
+    app.put("/service-report/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedService = req.body;
+     
+      
+      const result = await servicesCollection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: updatedService },
+        { upsert: true }
+      );
+
+      res.send(result);
+    });
+    app.put("/service-report-close/:id", verifyAdmin, verifyAdmin, async (req, res) => {
       const id = req.params.id;
       const updatedService = req.body;
      
@@ -1183,7 +1196,18 @@ async function run() {
 });
 
     //Report an Event
-    app.put("/event-report/:id", verifyToken, async (req, res) => {
+    app.put("/event-report/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedEvent = req.body;
+      const result = await eventsCollection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: updatedEvent },
+        { upsert: true }
+      );
+
+      res.send(result);
+    });
+    app.put("/event-report-close/:id", verifyAdmin, async (req, res) => {
       const id = req.params.id;
       const updatedEvent = req.body;
       const result = await eventsCollection.updateOne(
