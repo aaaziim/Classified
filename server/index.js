@@ -746,7 +746,7 @@ async function run() {
 
       res.send(result);
     });
-    app.put("/service-report-close/:id", verifyAdmin, verifyAdmin, async (req, res) => {
+    app.put("/service-report-close/:id",verifyToken, verifyAdmin, async (req, res) => {
       const id = req.params.id;
       const updatedService = req.body;
      
@@ -1207,7 +1207,7 @@ async function run() {
 
       res.send(result);
     });
-    app.put("/event-report-close/:id", verifyAdmin, async (req, res) => {
+    app.put("/event-report-close/:id",verifyToken, verifyAdmin, async (req, res) => {
       const id = req.params.id;
       const updatedEvent = req.body;
       const result = await eventsCollection.updateOne(
