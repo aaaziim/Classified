@@ -31,7 +31,7 @@ const Services = ({ id }) => {
         const locationResponse = await axiosSecure(`/location/${id}`);
         setLocation(locationResponse.data);
         const name = locationResponse.data.name;
-        console.log(name);
+        
 
         // Now that location is set, fetch services
         const serviceResponse = await axiosSecure(
@@ -54,7 +54,6 @@ const Services = ({ id }) => {
   }, [id, page]); // Runs when `id` changes
 
   const fetchServicesbyState = async (name) => {
-    console.log(name);
     try {
       // Fetch categories from the API endpoint using the secure axios instance
       const response = await axiosSecure(
@@ -72,7 +71,6 @@ const Services = ({ id }) => {
   };
 
   const fetchServicesbyCity = async (name) => {
-    console.log(name);
     try {
       // Fetch categories from the API endpoint using the secure axios instance
       const response = await axiosSecure(

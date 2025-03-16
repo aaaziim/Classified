@@ -30,7 +30,6 @@ const SignUp = () => {
       
       toast.success("Sign-in Successful");
     } catch (err) {
-      console.log(err);
       toast.error(err?.message);
     }
   
@@ -60,7 +59,6 @@ const SignUp = () => {
         
         // Do NOT navigate to profile or log the user in
     } catch (err) {
-        console.log(err);
         toast.error(err?.message);
     }
 };

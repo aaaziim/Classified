@@ -32,7 +32,7 @@ const Services = ({id}) => {
       const categoryResponse = await axiosSecure(`/category/${id}`);
       setCategory(categoryResponse.data);
       const name = categoryResponse.data.name
-      console.log(name)
+    
 
       // Now that category is set, fetch services
       const serviceResponse = await axiosSecure(`/servicesbycategory?category=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);
@@ -55,7 +55,7 @@ const Services = ({id}) => {
 
 
 const fetchServicesbySubCategory = async (name) => {
-  console.log(name)
+
   try {
     // Fetch categories from the API endpoint using the secure axios instance
     const response = await axiosSecure(`/servicesbysubcategory?subcategory=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);

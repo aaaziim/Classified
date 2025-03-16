@@ -194,7 +194,6 @@ const EventUpdate = () => {
     toast.error("You Don't Have Access to this")
     navigate("/my-events")
   }
-  console.log(event.images)
 
 
   return (

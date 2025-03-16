@@ -32,7 +32,7 @@ const Events = ({ id }) => {
         const locationResponse = await axiosSecure(`/location/${id}`);
         setLocation(locationResponse.data);
         const name = locationResponse.data.name;
-        console.log(name);
+        
 
         // Now that location is set, fetch events
         const eventResponse = await axiosSecure(
@@ -55,7 +55,7 @@ const Events = ({ id }) => {
   }, [id, page]); // Runs when `id` changes
 
   const fetchEventsbyState = async (name) => {
-    console.log(name);
+ 
     try {
       // Fetch categories from the API endpoint using the secure axios instance
       const response = await axiosSecure(
@@ -73,7 +73,7 @@ const Events = ({ id }) => {
   };
 
   const fetchEventsbyCity = async (name) => {
-    console.log(name);
+    
     try {
       // Fetch categories from the API endpoint using the secure axios instance
       const response = await axiosSecure(

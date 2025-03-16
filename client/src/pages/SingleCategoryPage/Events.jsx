@@ -33,7 +33,7 @@ const Events = ({id}) => {
       const categoryResponse = await axiosSecure(`/category/${id}`);
       setCategory(categoryResponse.data);
       const name = categoryResponse.data.name
-      console.log(name)
+     
 
       // Now that category is set, fetch events
       const eventResponse = await axiosSecure(`/eventsbycategory?category=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);
@@ -56,7 +56,7 @@ const Events = ({id}) => {
 
 
 const fetchEventsbySubCategory = async (name) => {
-  console.log(name)
+  
   try {
     // Fetch categories from the API endpoint using the secure axios instance
     const response = await axiosSecure(`/eventsbysubcategory?subcategory=${encodeURIComponent(name)}&page=${page}&limit=${limit}`);

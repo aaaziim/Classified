@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import placeholder from "../../assets/images/placeholder.webp"
 const AdCard = ({service}) => {
-  console.log(service.title)
+  
   const {title, description, _id, images} = service;
   return (
  <>

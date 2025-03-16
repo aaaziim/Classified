@@ -77,7 +77,7 @@ const navigate = useNavigate()
 
 
 const fetchEventsWithFilter = async (searchText, category, subcategory, country, state, city) => {
-  console.log(searchText, category, subcategory, country, state, city);
+
 
   try {
     // Build the query string dynamically, ensuring that each parameter is properly encoded

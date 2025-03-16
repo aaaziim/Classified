@@ -58,7 +58,7 @@ const PostServices = () => {
 
     try {
       const { data } = await axiosSecure.post(`/services`, service);
-      console.log(data);
+      
       toast.success("Service posted successfully");
       navigate("/my-services");
     } catch (err) {

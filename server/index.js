@@ -40,7 +40,8 @@ app.use("/uploads", express.static(process.cwd() + "/uploads"));
 // Verify JWT Middleware
 const verifyToken = (req, res, next) => {
   const token = req.cookies?.token;
-  // console.log(token)
+
+  
 
   if (!token) {
     return res
@@ -57,8 +58,8 @@ const verifyToken = (req, res, next) => {
 
     // Attach the decoded user information to the request object
     req.user = decoded;
-    // console.log(req.user)
-    // console.log(decoded)
+  
+    
     next(); // Pass control to the next middleware or route handler
   });
 };
@@ -116,7 +117,7 @@ async function run() {
 
     app.post("/send-email", (req, res) => {
       const { name, email, message } = req.body;
-      console.log(name, email, message);
+   
 
       const mailOptions = {
         from: email,
@@ -157,7 +158,8 @@ async function run() {
     app.get("/singlecategory", async (req, res) => {
       try {
         const { category } = req.query;
-        console.log("Category received from query:", category); // Log category received
+ 
+        
 
         if (!category) {
           return res
@@ -172,7 +174,8 @@ async function run() {
         const cat = await categoriesCollection.findOne(query);
 
         if (!cat) {
-          console.log("No category found matching query.");
+         
+          
           return res.status(404).json({ error: "Category not found" });
         }
 
@@ -404,7 +407,8 @@ async function run() {
     app.get("/servicesbycity", async (req, res) => {
       try {
         const { city } = req.query; // Corrected destructuring
-        console.log("city filter:", city);
+       
+        
 
         let query = {};
 
@@ -488,7 +492,8 @@ async function run() {
     // app.post("/services", upload.array('service_images', 10), async (req, res) => {
     //   // Extract the form data
     //   const author = JSON.parse(req.body.author)
-    //   console.log(author)
+  
+    
     //   const newService = {
     //       title: req.body.title,
     //       category: req.body.category,
@@ -504,7 +509,8 @@ async function run() {
     //          "http://localhost:5000/" + file.path
     //   )  // Store the file paths
     //   };
-    // console.log(newService)
+
+    
     //   try {
     //       const result = await servicesCollection.insertOne(newService);
     //       res.send(result);
@@ -528,12 +534,15 @@ async function run() {
           images,
         } = req.body;
 
-        console.log("Request Images:", images);
+  
+        
 
         // Ensure service_images is an array and is provided
-        console.log("service_images received:", images);
+       
+        
         const simages = Array.isArray(images) ? images : [];
-        console.log("images array:", simages);
+       
+        
 
         // Ensure author is parsed correctly if it's a stringified JSON
         const authorData =
@@ -555,7 +564,8 @@ async function run() {
 
         // Insert new service into the database
         const result = await servicesCollection.insertOne(newService);
-        console.log(result);
+       
+        
         res.send(result);
       } catch (err) {
         console.error("Error posting service:", err);
@@ -609,11 +619,12 @@ async function run() {
           images,
         } = req.body;
     
-        console.log("Request Images:", images);
-    
+        
+        
         // Ensure images is an array and is provided
         const serviceImages = Array.isArray(images) ? images : [];
-        console.log("images array:", serviceImages);
+      
+        
     
         const authorData = typeof author === "string" ? JSON.parse(author) : author;
     
@@ -653,7 +664,8 @@ async function run() {
     app.put("/service-report/:id", verifyToken, async (req, res) => {
       const id = req.params.id;
       const updatedService = req.body;
-      console.log(updatedService);
+     
+      
       const result = await servicesCollection.updateOne(
         { _id: new ObjectId(id) },
         { $set: updatedService },
@@ -855,7 +867,8 @@ async function run() {
     app.get("/eventsbycity", async (req, res) => {
       try {
         const { city } = req.query; // Corrected destructuring
-        console.log("city filter:", city);
+       
+        
 
         let query = {};
 
@@ -894,7 +907,8 @@ async function run() {
 
         let query = {};
 
-        console.log(status);
+       
+        
 
         // Apply filters only if they have a value
         if (category) query.category = category;
@@ -905,7 +919,8 @@ async function run() {
         if (status) query.status = status;
         if (searchtext) query.title = { $regex: searchtext, $options: "i" };
 
-        console.log("Final query:", query); // Log the constructed query
+      
+        
 
         let options = {
           sort: { [sort]: 1 }, // Ascending order by default
@@ -918,7 +933,7 @@ async function run() {
           .limit(limitNumber)
           .toArray();
 
-        console.log(events);
+          
         // Fetch total count for pagination
         const totalEvents = await eventsCollection.countDocuments(query);
 
@@ -958,12 +973,15 @@ async function run() {
           images,
         } = req.body;
   
-        console.log("Request Images:", images);
+    
+        
   
         // Ensure images is an array and is provided
-        console.log("service_images received:", images);
+   
+        
         const simages = Array.isArray(images) ? images : [];
-        console.log("images array:", simages);
+       
+        
   
         const authorData =
             typeof author === "string" ? JSON.parse(author) : author;
@@ -985,7 +1003,8 @@ async function run() {
         }
   
         const result = await eventsCollection.insertOne(newEvent);
-        console.log(result);
+      
+        
   
         res.send(result);
       } catch(err){
@@ -1037,12 +1056,15 @@ async function run() {
       images,
     } = req.body;
 
-    console.log("Request Images:", images);
+
+    
 
     // Ensure images is an array and is provided
-    console.log("service_images received:", images);
+
+    
     const simages = Array.isArray(images) ? images : [];
-    console.log("images array:", simages);
+
+    
 
     const authorData =
       typeof author === "string" ? JSON.parse(author) : author;
@@ -1073,7 +1095,8 @@ async function run() {
       return res.status(404).send({ error: "Event not found" });
     }
 
-    console.log(result);
+
+    
     res.send({ message: "Event updated successfully", result });
   } catch (err) {
     console.error("Error updating event:", err);
@@ -1194,7 +1217,8 @@ async function run() {
         const email = req.user.email;
         const updatedProfile = req.body;
         const profile = await profileCollection.findOne({ email: email });
-        console.log(profile);
+        
+        
         if (email !== profile.email) {
           return res.status(403).json({ error: "Unauthorized Access" });
         }

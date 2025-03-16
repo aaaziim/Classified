@@ -47,9 +47,9 @@ const Home = () => {
 
         <div className="grid grid-cols-1 justify-items-center  md:grid-cols-2 lg:grid-cols-4 gap-4 my-10 px-2">
           {categories?.map(
-            (category) =>
+            (category, i) =>
               serviceCategories.includes(category.name) && (
-                <CategoryCard key={category.id} category={category} />
+                <CategoryCard key={i} category={category} />
               )
           )}
         </div>

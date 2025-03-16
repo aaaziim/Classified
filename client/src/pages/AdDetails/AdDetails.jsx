@@ -76,7 +76,7 @@ const AdDetails = () => {
       toast.error(err.response?.data || "Error reporting service");
     }
   };
-console.log(images)
+ 
  
   return (
     <>
