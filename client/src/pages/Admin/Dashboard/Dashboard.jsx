@@ -10,8 +10,11 @@ import EventCard from '../../UserAuthentication/Profile/EventCard';
 import ReportedEventCard from './ReportedEventCard';
 import toast from 'react-hot-toast';
 import ReportedServiceCard from './ReportedServiceCard';
+import { Navigate } from 'react-router';
 
 const Dashboard = () => {
+
+  const [isAdmin, setIsAdmin] = useState(false);
   const [activeTab, setActiveTab] = useState('manage-users'); // State for active tab
 
   const axiosSecure = useAxiosSecure();
@@ -32,67 +35,75 @@ const Dashboard = () => {
     const [loadingEvents, setLoadingEvents] = useState(true);
     const [errorEvents, setErrorEvents] = useState('');
 
-  useEffect(()=>{
+    const fetchAdminStatus = async () => {
+      const user = await axiosSecure.get("/userprofile");
+      setIsAdmin(user.data.isAdmin);
+      console.log(user.data)
+    };
+
     const fetchProfiles = async () => {
-        try {
-          // Fetch categories from the API endpoint using the secure axios instance
-          const response = await axiosSecure("/profiles")
-          setProfiles(response.data);
-          setLoadingProfiles(false);
-        } catch (err) {
-        errorProfiles('Error loading categories');
-          loadingProfiles(false);
-        }
-      };
+      try {
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure("/profiles")
+        setProfiles(response.data);
+        setLoadingProfiles(false);
+      } catch (err) {
+      errorProfiles('Error loading categories');
+        loadingProfiles(false);
+      }
+    };
 
+    
+  const fetchServices = async () => {
+      try {
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure("/services")
+        setServices(response.data.services);
+        setLoadingServices(false);
+      } catch (err) {
+        setErrorServices('Error loading services');
+        setLoadingServices(false);
+      }
+    };
+
+    const fetchEvents = async () => {
+      try {
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure("/events")
+        setEvents(response.data.events);
+        setLoadingEvents(false);
+      } catch (err) {
+        setErrorEvents('Error loading Events');
+        setLoadingEvents(false);
+      }
+    };
+
+    const fetchReportedServices= async () => {
+      try {
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure(`servicesbyfilter?status=reported`)
+        setReportedServices(response.data.services);
       
-    const fetchServices = async () => {
-        try {
-          // Fetch categories from the API endpoint using the secure axios instance
-          const response = await axiosSecure("/services")
-          setServices(response.data.services);
-          setLoadingServices(false);
-        } catch (err) {
-          setErrorServices('Error loading services');
-          setLoadingServices(false);
-        }
-      };
-
-      const fetchEvents = async () => {
-        try {
-          // Fetch categories from the API endpoint using the secure axios instance
-          const response = await axiosSecure("/events")
-          setEvents(response.data.events);
-          setLoadingEvents(false);
-        } catch (err) {
-          setErrorEvents('Error loading Events');
-          setLoadingEvents(false);
-        }
-      };
-
-      const fetchReportedServices= async () => {
-        try {
-          // Fetch categories from the API endpoint using the secure axios instance
-          const response = await axiosSecure(`servicesbyfilter?status=reported`)
-          setReportedServices(response.data.services);
-        
-          setLoadingServices(false);
-        } catch (err) {
-          setErrorServices('Error loading services');
-          setLoadingServices(false);
-        }
-      };
-      const fetchReportedEvents = async () => {
-        try {
-          // Fetch categories from the API endpoint using the secure axios instance
-          const response = await axiosSecure(`eventsbyfilter?status=reported`)
-          setReportedEvents(response.data.events);
-          setLoadingEvents(false);
-        } catch (err) {
-          setErrorEvents('Error loading events');
-          setLoadingEvents(false);
-        }
-      };
+        setLoadingServices(false);
+      } catch (err) {
+        setErrorServices('Error loading services');
+        setLoadingServices(false);
+      }
+    };
+    const fetchReportedEvents = async () => {
+      try {
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure(`eventsbyfilter?status=reported`)
+        setReportedEvents(response.data.events);
+        setLoadingEvents(false);
+      } catch (err) {
+        setErrorEvents('Error loading events');
+        setLoadingEvents(false);
+      }
+    };
+  useEffect(()=>{
+  
+    fetchAdminStatus();
 
       fetchProfiles()
       fetchServices()
@@ -135,6 +146,26 @@ const Dashboard = () => {
       }
     };
   
+    const makeAdmin = async (email) => {
+      try {
+        await axiosSecure.put(`/make-admin/${email}`);
+        toast.success("User promoted to Admin");
+        fetchProfiles(); // Refresh the user list
+      } catch (err) {
+        toast.error("Error promoting user");
+      }
+    };
+    
+    const removeAdmin = async (email) => {
+      try {
+        await axiosSecure.put(`/remove-admin/${email}`);
+        toast.success("Admin rights removed");
+        fetchProfiles(); // Refresh the user list
+      } catch (err) {
+        toast.error("Error removing admin");
+      }
+    };
+    
 
     const handleEventDelete = async (_id) => {
         // Show confirmation modal
@@ -208,7 +239,10 @@ const Dashboard = () => {
   if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents}</div>;
   
 
-
+  if (!isAdmin) {
+    return <Navigate to="/" />;
+  }
+  
 
 
   return (
@@ -263,12 +297,28 @@ const Dashboard = () => {
         {activeTab === 'manage-users' && (
           <div className="bg-white shadow-md rounded-lg p-6 space-y-2">
             <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {profiles.length} Users Profile</h2>
-            {
+            {profiles.map((profile) => (
+  <div key={profile._id} className="flex justify-between p-4 border-b">
+    <ProfileCard profile={profile} />
+    
+    {profile.isAdmin ? (
+      <button onClick={() => removeAdmin(profile.email)} className="bg-red-500 text-white px-3 py-1 rounded">
+        Remove Admin
+      </button>
+    ) : (
+      <button onClick={() => makeAdmin(profile.email)} className="bg-green-500 text-white px-3 py-1 rounded">
+        Make Admin
+      </button>
+    )}
+  </div>
+))}
+
+            {/* {
                 profiles?.map((profile) => (
                   <ProfileCard key={profile._id} profile={profile} />
                 ))
   
-            }
+            } */}
 
           </div>
         )}

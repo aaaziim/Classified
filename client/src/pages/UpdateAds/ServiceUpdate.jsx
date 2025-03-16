@@ -15,6 +15,7 @@ const ServiceUpdate = () => {
   const [service, setService] = useState({});
   const [categories, setCategories] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [profile, setProfile] = useState({})
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -27,6 +28,12 @@ const ServiceUpdate = () => {
   const [selectedCity, setSelectedCity] = useState("");
 
   useEffect(() => {
+
+    const getProfile = async () =>{
+        const result = await axiosSecure(`/userprofilebyemail/${user.email}`)
+        setProfile(result);
+        
+    }
     const fetchData = async () => {
       try {
         const [serviceRes, categoriesRes, locationsRes] = await Promise.all([
@@ -50,7 +57,7 @@ const ServiceUpdate = () => {
         setLoading(false);
       }
     };
-
+    getProfile()
     fetchData();
   }, [id, axiosSecure]);
   // Access Check: Triggered once on component mount
@@ -186,8 +193,8 @@ const ServiceUpdate = () => {
       toast.error(err.response?.data || "Error updating service");
     }
   };
-
-  if (service?.author && user.email !== service.author.email) {
+ 
+  if (service?.author?.email !== user?.email && !profile.data.isAdmin) {
     toast.error("You Don't Have Access to this");
     navigate("/my-services");
   }
@@ -372,7 +379,7 @@ const ServiceUpdate = () => {
                 type="email"
                 name="author_email"
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
-                defaultValue={user.email}
+                defaultValue={service.author.email}
                 disabled
                 required
               />

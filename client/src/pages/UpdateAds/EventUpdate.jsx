@@ -25,8 +25,14 @@ const EventUpdate = () => {
   const [stateIndex, setStateIndex] = useState(-1);
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
-
+ const [profile, setProfile] = useState({})
   useEffect(() => {
+    
+    const getProfile = async () =>{
+      const result = await axiosSecure(`/userprofilebyemail/${user.email}`)
+      setProfile(result);
+      
+  }
     const fetchData = async () => {
       try {
         const [eventRes, categoriesRes, locationsRes] = await Promise.all([
@@ -50,7 +56,7 @@ const EventUpdate = () => {
         setLoading(false);
       }
     };
-
+    getProfile()
     fetchData();
   }, [id, axiosSecure]);
 
@@ -190,7 +196,7 @@ const EventUpdate = () => {
   
 
 
-  if(user.email !== event.author.email){
+  if(user.email !== event.author.email && !profile.data.isAdmin){
     toast.error("You Don't Have Access to this")
     navigate("/my-events")
   }
@@ -352,7 +358,7 @@ const EventUpdate = () => {
                 type="email"
                 name="author_email"
                 required
-                defaultValue={user.email}
+                defaultValue={event.author.email}
                 disabled
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]"
               />

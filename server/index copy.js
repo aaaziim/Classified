@@ -89,104 +89,6 @@ async function run() {
       .collection("categories");
     const locationsCollection = client.db("Sidegurus").collection("locations");
 
-
-
-
-    const verifyAdmin = async (req, res, next) => {
-      const adminEmail = req.user.email;
-      const user = await profileCollection.findOne({ email: adminEmail });
-    
-      if (!user || !user.isAdmin) {
-        return res.status(403).send({ message: "Access denied: Admins only" });
-      }
-      next();
-    };
-    
-    const verifyAdminOrAuthor = async (req, res, next) => {
-      const userEmail = req.user.email;
-      const { id } = req.params; // Get the service/event ID
-    
-      // Find the service or event in both collections
-      const service = await servicesCollection.findOne({ _id: new ObjectId(id) });
-      const event = await eventsCollection.findOne({ _id: new ObjectId(id) });
-    
-      if (!service && !event) {
-        return res.status(404).send({ message: "Service or Event not found" });
-      }
-    
-      // Get user role from profileCollection
-      const user = await profileCollection.findOne({ email: userEmail });
-    
-      if (!user) {
-        return res.status(403).send({ message: "User not found" });
-      }
-    
-      // Check if the user is an admin OR the author of the post
-      if (user.isAdmin || (service && service.author.email === userEmail) || (event && event.author.email === userEmail)) {
-        next();
-      } else {
-        res.status(403).send({ message: "Unauthorized: Only admin or author can modify this" });
-      }
-    };
-    
-
-
-
-
-    app.put("/make-admin/:email", verifyToken, verifyAdmin, async (req, res) => {
-      const { email } = req.params;
-    
-      const user = await profileCollection.findOne({ email });
-      if (!user) {
-        return res.status(404).send({ message: "User not found" });
-      }
-    
-      await profileCollection.updateOne({ email }, { $set: { isAdmin: true } });
-      res.send({ message: "User promoted to Admin" });
-    });
-
-    app.put("/remove-admin/:email", verifyToken, verifyAdmin, async (req, res) => {
-      const { email } = req.params;
-    
-      const user = await profileCollection.findOne({ email });
-      if (!user) {
-        return res.status(404).send({ message: "User not found" });
-      }
-    
-      await profileCollection.updateOne({ email }, { $set: { isAdmin: false } });
-      res.send({ message: "Admin rights removed" });
-    });
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     app.post("/jwt", async (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
@@ -671,16 +573,39 @@ async function run() {
       }
     });
 
+    // // Update Service by the author
+    // app.put("/service-update/:id", verifyToken, async (req, res) => {
+    //   const id = req.params.id;
+    //   const user = req.user;
+    //   const userEmail = user.email;
+    //   const service = await servicesCollection.findOne({
+    //     _id: new ObjectId(id),
+    //   });
+    //   if (userEmail !== service.author.email) {
+    //     return res.status(403).json({ error: "Unauthorized Access" });
+    //   }
+    //   const updatedService = req.body;
+    //   const result = await servicesCollection.updateOne(
+    //     { _id: new ObjectId(id) },
+    //     { $set: updatedService },
+    //     { upsert: true }
+    //   );
+    //   res.send(result);
+    // });
 
-
-    app.put("/service-update/:id", verifyToken,verifyAdminOrAuthor, async (req, res) => {
+    app.put("/service-update/:id", verifyToken, async (req, res) => {
       try {
+       
+
         const serviceId = req.params.id; // Get service ID from URL parameter
+        
         const userEmail = req.user.email;
         const service = await servicesCollection.findOne({
         _id: new ObjectId(serviceId),
       });
-  
+      if (userEmail !== service.author.email) {
+        return res.status(403).json({ error: "Unauthorized Access" });
+      }
         const {
           title,
           category,
@@ -695,9 +620,12 @@ async function run() {
         } = req.body;
     
         
+        
         // Ensure images is an array and is provided
         const serviceImages = Array.isArray(images) ? images : [];
       
+        
+    
         const authorData = typeof author === "string" ? JSON.parse(author) : author;
     
         const updatedService = {
@@ -733,7 +661,7 @@ async function run() {
     });
     
 
-    app.put("/service-report/:id", verifyToken, verifyAdmin, async (req, res) => {
+    app.put("/service-report/:id", verifyToken, async (req, res) => {
       const id = req.params.id;
       const updatedService = req.body;
      
@@ -748,30 +676,22 @@ async function run() {
     });
 
     // Delete API Services
-    // app.delete("/service/:id", verifyToken, async (req, res) => {
-    //   const id = req.params.id;
-    //   const user = req.user;
-    //   const userEmail = user.email;
-    //   const service = await servicesCollection.findOne({
-    //     _id: new ObjectId(id),
-    //   });
-    //   if (userEmail !== service.author.email) {
-    //     return res.status(403).json({ error: "Unauthorized Access" });
-    //   }
+    app.delete("/service/:id", verifyToken, async (req, res) => {
+      const id = req.params.id;
+      const user = req.user;
+      const userEmail = user.email;
+      const service = await servicesCollection.findOne({
+        _id: new ObjectId(id),
+      });
+      if (userEmail !== service.author.email) {
+        return res.status(403).json({ error: "Unauthorized Access" });
+      }
 
-    //   const result = await servicesCollection.deleteOne({
-    //     _id: new ObjectId(id),
-    //   });
-    //   res.send(result);
-    // });
-    // Check with postman
-
-    app.delete("/service/:id", verifyToken, verifyAdminOrAuthor, async (req, res) => {
-      const { id } = req.params;
-      await servicesCollection.deleteOne({ _id: new ObjectId(id) });
-      res.send({ message: "Service deleted successfully" });
+      const result = await servicesCollection.deleteOne({
+        _id: new ObjectId(id),
+      });
+      res.send(result);
     });
-    
 
     // Services API Ends
     // Events API Starts
@@ -1112,13 +1032,15 @@ async function run() {
     // });
 
 
-    app.put("/event-update/:id",verifyToken,verifyAdminOrAuthor, async (req, res) => {
+    app.put("/event-update/:id",verifyToken, async (req, res) => {
   try {
     const eventId = req.params.id;  // Get event ID from URL parameter
     const user = req.user;
     const userEmail = user.email;
     const event = await eventsCollection.findOne({ _id: new ObjectId(eventId) });
-    
+      if (userEmail !== event.author.email) {
+        return res.status(403).json({ error: "Unauthorized Access" });
+      }
     const {
       title,
       category,
@@ -1195,38 +1117,39 @@ async function run() {
       res.send(result);
     });
     // Delete API Events
-    // app.delete("/event/:id", verifyToken, async (req, res) => {
-    //   const id = req.params.id;
-    //   const user = req.user;
-    //   const userEmail = user.email;
-    //   const event = await eventsCollection.findOne({ _id: new ObjectId(id) });
-    //   if (userEmail !== event.author.email) {
-    //     return res.status(403).json({ error: "Unauthorized Access" });
-    //   }
-    //   const result = await eventsCollection.deleteOne({
-    //     _id: new ObjectId(id),
-    //   });
-    //   res.send(result);
-    // });
-
-    // Check with postman
-
-    app.delete("/event/:id", verifyToken, verifyAdminOrAuthor, async (req, res) => {
-      const { id } = req.params;
-      await eventsCollection.deleteOne({ _id: new ObjectId(id) });
-      res.send({ message: "Event deleted successfully" });
+    app.delete("/event/:id", verifyToken, async (req, res) => {
+      const id = req.params.id;
+      const user = req.user;
+      const userEmail = user.email;
+      const event = await eventsCollection.findOne({ _id: new ObjectId(id) });
+      if (userEmail !== event.author.email) {
+        return res.status(403).json({ error: "Unauthorized Access" });
+      }
+      const result = await eventsCollection.deleteOne({
+        _id: new ObjectId(id),
+      });
+      res.send(result);
     });
-
-
-
-
-
-
-
-
     // Events API Ends
     // Profile API Start
+    // Create Profile
+    // app.post("/profile", async (req, res) => {
+    // try{
+    //   const newProfile = req.body;
+    //   // Check if profile already exists (based on a unique field, e.g., email or userId)
+    //   const existingProfile = await profileCollection.findOne({ email: newProfile.email }); // Change to a relevant unique field
+    //     // Insert the new profile if it doesn't exist
+    //   if (!existingProfile) {
+    //      const result = await profileCollection.insertOne(newProfile);
+    //   res.status(201).json(result);
+    //   }
+    // }catch (err) {
+    //     console.error(err);
+    //     res.status(500).send({ message: "Internal Server Error" });
+    //   }
 
+    // }
+    // });
 
     app.post("/profile", async (req, res) => {
       try {
@@ -1277,19 +1200,6 @@ async function run() {
             .status(400)
             .json({ error: "Email query parameter is missing" });
         }
-        const result = await profileCollection.findOne({ email: email });
-        if (!result) {
-          return res.status(404).send({ message: "User not found" });
-        }
-        res.send(result);
-      } catch (error) {
-        console.error(error);
-        res.status(500).send({ message: "Internal Server Error" });
-      }
-    });
-    app.get("/userprofilebyemail/:email", verifyToken, async (req, res) => {
-      try {
-        const { email } = req.params;
         const result = await profileCollection.findOne({ email: email });
         if (!result) {
           return res.status(404).send({ message: "User not found" });
