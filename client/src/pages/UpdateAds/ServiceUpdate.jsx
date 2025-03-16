@@ -30,7 +30,7 @@ const ServiceUpdate = () => {
   useEffect(() => {
 
     const getProfile = async () =>{
-        const result = await axiosSecure(`/userprofilebyemail/${user.email}`)
+        const result = await axiosSecure(`/userprofile`)
         setProfile(result);
         
     }

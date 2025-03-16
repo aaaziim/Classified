@@ -1311,19 +1311,19 @@ async function run() {
         res.status(500).send({ message: "Internal Server Error" });
       }
     });
-    app.get("/userprofilebyemail/:email", verifyToken, async (req, res) => {
-      try {
-        const { email } = req.params;
-        const result = await profileCollection.findOne({ email: email });
-        if (!result) {
-          return res.status(404).send({ message: "User not found" });
-        }
-        res.send(result);
-      } catch (error) {
-        console.error(error);
-        res.status(500).send({ message: "Internal Server Error" });
-      }
-    });
+    // app.get("/userprofilebyemail/:email", verifyToken, async (req, res) => {
+    //   try {
+    //     const { email } = req.params;
+    //     const result = await profileCollection.findOne({ email: email });
+    //     if (!result) {
+    //       return res.status(404).send({ message: "User not found" });
+    //     }
+    //     res.send(result);
+    //   } catch (error) {
+    //     console.error(error);
+    //     res.status(500).send({ message: "Internal Server Error" });
+    //   }
+    // });
 
     // Update userProfile
     app.put("/profile-update", verifyToken, async (req, res) => {

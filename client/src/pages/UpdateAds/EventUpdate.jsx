@@ -29,7 +29,7 @@ const EventUpdate = () => {
   useEffect(() => {
     
     const getProfile = async () =>{
-      const result = await axiosSecure(`/userprofilebyemail/${user.email}`)
+      const result = await axiosSecure(`/userprofile`)
       setProfile(result);
       
   }
@@ -89,36 +89,7 @@ const EventUpdate = () => {
       setStateIndex(newStateIndex);
     }
   };
-  // const handleEventUpdate = async (e) => {
-  //   e.preventDefault();
-  //   const form = e.target;
 
-  //   const updatedEvent = {
-  //     title: form.event_title.value,
-  //     category: selectedCategory,
-  //     subcategory: selectedSubcategory,
-  //     price: form.event_price.value,
-  //     startDate: form.event_start_date.value,
-  //     endDate: form.event_end_date.value,
-  //     description: form.event_description.value,
-  //     country: form.event_country.value,
-  //     state: form.event_state?.value || null,
-  //     city: form.event_city?.value || null,
-  //   };
-
-  //   if (updatedEvent.country !== "USA") {
-  //     updatedEvent.state = null;
-  //     updatedEvent.city = null;
-  //   }
-
-  //   try {
-  //     await axiosSecure.put(`/event-update/${id}`, updatedEvent);
-  //     toast.success("Event updated successfully");
-  //     navigate("/my-events");
-  //   } catch (err) {
-  //     toast.error(err.response?.data || "Error updating event");
-  //   }
-  // };
 
   const handleEventUpdate = async (e) => {
     e.preventDefault();
@@ -179,11 +150,7 @@ const EventUpdate = () => {
       updatedEvent.images = uploadedImageUrls.filter((url) => url !== null);
     }
   
-    // // If the country isn't "USA", reset state and city
-    // if (updatedEvent.country !== "USA") {
-    //   updatedEvent.state = "";
-    //   updatedEvent.city = "";
-    // }
+ 
   
     try {
       await axiosSecure.put(`/event-update/${id}`, updatedEvent);
