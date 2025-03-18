@@ -1,8 +1,10 @@
 import { Link } from "react-router";
+import DynamicTitlePage from "../Components/DynamicTitlePage";
 
 const ErrorPage = () => {
   return (
     <section className="bg-white">
+      <DynamicTitlePage title={`Page not found | SideGurus`} />
      
       <div className="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
         <div className="w-full lg:w-1/2">

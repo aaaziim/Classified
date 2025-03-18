@@ -4,6 +4,7 @@ import LoadingSpinner from "../Components/LoadingSpinner";
 import Breadcrumb from "../Components/Breadcrumb";
 import AdCard from "../Components/AdCard";
 import Pagination from "../Components/Pagination";
+import DynamicTitlePage from "../Components/DynamicTitlePage";
 
 const Services = ({id}) => {
     const axiosSecure = useAxiosSecure();
@@ -20,7 +21,7 @@ const Services = ({id}) => {
  
      const [page, setPage] = useState(1); 
      const [totalPages, setTotalPages] = useState(1);
-     const limit = 3;
+     const limit = 12;
       
 
 
@@ -103,7 +104,7 @@ const fetchServicesbySubCategory = async (name) => {
   return (
     <>
  <div className="px-4 py-6">
-   
+
     <div className="flex flex-col lg:flex-row  gap-6">
   <div >
   <h2 className="text-lg bg-[#014D48] font-semibold mb-2 cursor-pointer p-3 border border-[#014D48] rounded-lg transition duration-300 hover:bg-[#FA8649]  text-white hover:border-[#FA8649] active:bg-[#014D48] active:text-white text-center">Subcategories</h2>

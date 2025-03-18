@@ -11,6 +11,7 @@ import ReportedEventCard from './ReportedEventCard';
 import toast from 'react-hot-toast';
 import ReportedServiceCard from './ReportedServiceCard';
 import { Navigate } from 'react-router';
+import DynamicTitlePage from '../../Components/DynamicTitlePage';
 
 const Dashboard = () => {
 
@@ -256,6 +257,8 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
       {/* Sidebar */}
+      <DynamicTitlePage title={`Admin | SideGurus`} />
+
       <div className="w-full lg:w-64 bg-dark-navy bg-[#FA8649] text-[#014D48]">
         <h1 className="text-2xl font-bold mb-6 text-center p-6 bg-[#FFE5D5]">Admin Dashboard</h1>
         <Tabs>

@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import DynamicTitlePage from '../../Components/DynamicTitlePage';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -86,6 +87,7 @@ const SignIn = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-300px)] p-4">
+       <DynamicTitlePage title={`Sign In | SideGurus`} />
       
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
         <div

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const SellerInfo = ({ author }) => {
   const { email, phone, facebook, instagram } = author;
@@ -43,6 +44,18 @@ const SellerInfo = ({ author }) => {
           </div>
         </div>
       </div>
+
+      <div className="bg-[#FFE5D5] p-6 rounded-2xl shadow-lg border border-[#FA8649] text-[#001C27] my-10">
+      <h2 className="text-xl font-semibold mb-3">Stay Safe When Using Our Platform</h2>
+      <p className="text-sm text-[#001C27] mb-4">
+        Always verify offers and avoid sharing personal details. Read our safety guidelines to stay protected.
+      </p>
+      <Link className="flex justify-center" to="/safety-guide">
+        <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition md:w-40">
+          Safety Guides
+        </button>
+      </Link>
+    </div>
     </div>
   );
 };

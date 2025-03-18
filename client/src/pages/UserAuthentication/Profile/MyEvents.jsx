@@ -6,6 +6,7 @@ import EventCard from "./EventCard";
 
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import DynamicTitlePage from "../../Components/DynamicTitlePage";
 const MyEvents = () => {
   const { user } = useAuth();
   const [events, setEvents] = useState([]);
@@ -76,6 +77,7 @@ const MyEvents = () => {
 
   return (
     <div className="mb-6">
+       <DynamicTitlePage title={`My Events | SideGurus`} />
       <div className="space-y-4 mb-6">
         <Breadcrumb
           title="My Events"

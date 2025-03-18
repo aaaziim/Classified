@@ -9,6 +9,7 @@ import useAuth from '../../hooks/useAuth'
 import useCategory from '../../hooks/useCategory'
 import useLocations from '../../hooks/useLocations'
 import useServices from '../../hooks/useServices'
+import DynamicTitlePage from '../Components/DynamicTitlePage'
 
 const AllServices = () => {
 
@@ -23,7 +24,7 @@ const AllServices = () => {
   
   const [page, setPage] = useState(1); 
   const [totalPages, setTotalPages] = useState(1);
-  const limit = 3;
+  const limit = 12;
   const axiosSecure = useAxiosSecure();
 
 
@@ -110,6 +111,7 @@ if (errorServices) return <div className="text-center text-[#FA8649]">{errorServ
 
   return (
     <div>
+      <DynamicTitlePage title={`Services | SideGurus`} />
       
           <div className='space-y-4 mb-4'>
       <Breadcrumb
@@ -132,8 +134,8 @@ if (errorServices) return <div className="text-center text-[#FA8649]">{errorServ
           className='px-6 py-2 text-[#001C27] w-full placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
           type='text'
           name='search'
-          placeholder='Enter Job Title'
-          aria-label='Enter Job Title'
+          placeholder='Enter Title'
+          aria-label='Enter Title'
         />
 
         <input type='submit' value="Search" className='px-1 md:px-4 py-3 mx-2 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#014D48] rounded-md hover:bg-[#001C27] focus:bg-[#001C27] focus:outline-none'/>

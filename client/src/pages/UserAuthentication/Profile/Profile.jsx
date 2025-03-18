@@ -4,6 +4,7 @@ import Breadcrumb from "../../Components/Breadcrumb";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../Components/LoadingSpinner";
+import DynamicTitlePage from "../../Components/DynamicTitlePage";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -42,6 +43,7 @@ const Profile = () => {
   const { name, email, phone, address, bio } = profile;
   return (
     <div className="mb-6">
+       <DynamicTitlePage title={`Profile | SideGurus`} />
       <div className="space-y-4 mb-6">
         <Breadcrumb title="Profile" />
       </div>

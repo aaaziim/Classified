@@ -2,11 +2,14 @@ import React from 'react'
 import Breadcrumb from '../Components/Breadcrumb'
 import useCategory from '../../hooks/useCategory'
 import CategoryCard from '../Home/CategoryCard'
+import DynamicTitlePage from '../Components/DynamicTitlePage'
 
 const AllCategories = () => {
     const [categories] = useCategory()
   return (
     <div>
+      <DynamicTitlePage title={`Categories | SideGurus`} />
+
            <Breadcrumb
        title={"Categories"}
        subTitle={"Here you can find"}>

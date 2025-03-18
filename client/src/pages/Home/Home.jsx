@@ -11,6 +11,7 @@ import LoadingSpinner from "../Components/LoadingSpinner";
 import useCategory from "../../hooks/useCategory";
 import useLocations from "../../hooks/useLocations";
 import SectionHeading from "../Components/SectionHeading";
+import DynamicTitlePage from "../Components/DynamicTitlePage";
 
 const Home = () => {
   const [categories, loadingCategories, errorCategories] = useCategory();
@@ -38,6 +39,7 @@ const Home = () => {
 
   return (
     <div className="text-[#001C27]">
+      <DynamicTitlePage title="Home | SideGurus" />
       <Banner />
       <div className="my-10">
         <SectionHeading

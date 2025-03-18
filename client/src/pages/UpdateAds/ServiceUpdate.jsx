@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import DynamicTitlePage from "../Components/DynamicTitlePage";
 
 const ServiceUpdate = () => {
   const { user } = useAuth();
@@ -201,6 +202,7 @@ const ServiceUpdate = () => {
   
   return (
     <div>
+       <DynamicTitlePage title={`Update | ${service.title} | SideGurus`} />
       <div className="space-y-4 mb-6">
         <Breadcrumb
           title="Update Service"

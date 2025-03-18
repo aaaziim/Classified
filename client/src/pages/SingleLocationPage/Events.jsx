@@ -6,6 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import Pagination from "../Components/Pagination";
 import EventCard from "../Components/EventCard";
+import { Link } from "react-router";
 
 const Events = ({ id }) => {
   const axiosSecure = useAxiosSecure();
@@ -23,7 +24,7 @@ const Events = ({ id }) => {
 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const limit = 3;
+  const limit = 12;
 
   useEffect(() => {
     const fetchLocationAndEvents = async () => {
@@ -155,6 +156,11 @@ const Events = ({ id }) => {
                 </select>
               </div>
             )}
+              <Link className="flex justify-center my-4" to="/all-locations">
+          <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition md:w-40">
+           All Locations
+          </button>
+        </Link>
         </div>
         {totalPages > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4 flex-1">

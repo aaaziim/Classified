@@ -5,6 +5,7 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 import ServiceCard from "./ServiceCard";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import DynamicTitlePage from "../../Components/DynamicTitlePage";
 const MyServices = () => {
   const { user } = useAuth();
 
@@ -76,6 +77,7 @@ const MyServices = () => {
 
   return (
     <div className="mb-6">
+       <DynamicTitlePage title={`My Services | SideGurus`} />
       <div className="space-y-4 mb-6">
         <Breadcrumb
           title="My Services"

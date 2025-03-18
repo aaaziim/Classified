@@ -12,6 +12,7 @@ import EventCard from "../Components/EventCard";
 import Pagination from "../Components/Pagination";
 import SubCategoryEvents from "./SubCategoryEvents";
 import SubCategoryServices from "./SubCategoryServices";
+import DynamicTitlePage from "../Components/DynamicTitlePage";
 
 const SingleSubCategoryPage = () => {
   const { id, subId  } = useParams();
@@ -24,7 +25,7 @@ const SingleSubCategoryPage = () => {
        const [pageEvent, setPageEvent] = useState(1); 
        const [totalPages, setTotalPages] = useState(1);
        const [totalEventPages, setTotalEventPages] = useState(1);
-       const limit = 3;
+       const limit = 12;
 
   useEffect(() => {
     const fetchSubCategory = async () => {
@@ -57,6 +58,8 @@ const SingleSubCategoryPage = () => {
   return (
   <>
     <div className="space-y-4 mb-6">
+ <DynamicTitlePage title={`${subcategory} | SideGurus`} />
+
       <Breadcrumb
         title={ subcategory}
         subTitle="Here you can update your service information"

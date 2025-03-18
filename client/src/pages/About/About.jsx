@@ -1,12 +1,15 @@
 import React from 'react'
 import HowItWorks from './HowItWorks'
 import Breadcrumb from '../Components/Breadcrumb'
+import DynamicTitlePage from '../Components/DynamicTitlePage'
 
 const About = () => {
   return (
     <div>
     
           <div className='space-y-4 mb-4'>
+      <DynamicTitlePage title="About | SideGurus" />
+
       <Breadcrumb
        title={"About Us"}
        subTitle={"Welcome to Website, where talent meets opportunity!"}>

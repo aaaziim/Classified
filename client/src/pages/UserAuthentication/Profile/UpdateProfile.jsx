@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import useAuth from '../../../hooks/useAuth'
 import { useNavigate } from 'react-router'
 import LoadingSpinner from '../../Components/LoadingSpinner'
+import DynamicTitlePage from '../../Components/DynamicTitlePage'
 
 const UpdateProfile = () => {
 
@@ -78,7 +79,7 @@ const UpdateProfile = () => {
 
   return (
     <div>
-    
+     <DynamicTitlePage title={`Update Profile | SideGurus`} />
       <div className="space-y-4 mb-6">
         <Breadcrumb title="Update Profile" subTitle="Update your personal information below." />
       </div>

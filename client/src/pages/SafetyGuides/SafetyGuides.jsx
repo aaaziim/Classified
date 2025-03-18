@@ -1,13 +1,16 @@
 import React from 'react'
 import Breadcrumb from '../Components/Breadcrumb'
+import DynamicTitlePage from '../Components/DynamicTitlePage'
 
 const SafetyGuides = () => {
   return (
     <>
      <div>
          <div className='space-y-4 mb-4'>
+         <DynamicTitlePage title={`Customer Safety Guidelines for Services Booked Online | SideGurus`} />
+
       <Breadcrumb
-       title={"Safety Page"}
+       title={"Customer Safety Guidelines for Services Booked Online"}
        subTitle={"We take your safety seriously, and you should too."}>
        </Breadcrumb>
     </div>
@@ -15,7 +18,7 @@ const SafetyGuides = () => {
           <div className="bg-white text-gray-900 p-6 max-w-4xl mx-auto">
  
     <div className="mt-6 space-y-4">
-      <h2 className="text-2xl font-semibold text-orange-600">Customer Safety Guidelines for Services Booked Online</h2>
+    
       <p>At Website, your safety is our top priority. When connecting with service providers or clients online, it’s important to take precautions to ensure a safe and secure experience. Here are essential safety tips and tricks to follow when arranging to meet someone for your specific needs:</p>
 
     </div>

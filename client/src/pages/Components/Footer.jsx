@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-
+import logo from "../../assets/images/logopng.png";
 const Footer = () => {
     return (
       <footer className="bg-white shadow-sm">
@@ -7,10 +7,10 @@ const Footer = () => {
       <div className="container px-6 py-8 mx-auto">
         <div className="flex flex-col items-center text-center">
           <div className="flex gap-2 items-center">
-            <img className="w-auto h-7" src="" alt="Brand Logo" />
-            <Link to="/" className="text-[#014D48] font-semibold">
-              ClassifiedAds
-            </Link>
+          <div className="flex justify-center">
+      <Link to="/"> <img className="max-w-sm max-h-32 " src={logo} alt="" /></Link>
+      </div>
+             
           </div>
 
           <div className="flex flex-wrap justify-center mt-6 -mx-4 gap-4">
@@ -20,19 +20,13 @@ const Footer = () => {
             <Link to="/about" className="text-[#001C27] hover:text-[#FA8649]">
               About
             </Link>
-            <Link to="/privacy" className="text-[#001C27] hover:text-[#FA8649]">
-              Privacy
-            </Link>
-            <Link to="/cookies" className="text-[#001C27] hover:text-[#FA8649]">
-              Cookies
-            </Link>
-           
             <Link to="/safety-guide" className="text-[#001C27] hover:text-[#FA8649]">
               Safety Guide
             </Link>
-            <Link to="/provider-safety-guide" className="text-[#001C27] hover:text-[#FA8649]">
-            Provider Safety Guide
+            <Link to="/privacy" className="text-[#001C27] hover:text-[#FA8649]">
+              Privacy
             </Link>
+             
           </div>
         </div>
 

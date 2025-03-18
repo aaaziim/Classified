@@ -9,6 +9,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Services from "./Services";
 import Events from "./Events";
+import DynamicTitlePage from "../Components/DynamicTitlePage";
 const SingleLocationPage = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
@@ -26,6 +27,8 @@ const SingleLocationPage = () => {
 
   return (
     <div className="px-4 py-6">
+       <DynamicTitlePage title={`${locationName} | SideGurus`} />
+
       <div className="space-y-4 mb-6">
         <Breadcrumb
           title={locationName}

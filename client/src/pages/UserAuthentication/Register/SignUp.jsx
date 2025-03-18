@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import DynamicTitlePage from "../../Components/DynamicTitlePage";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-300px)] p-4">
-      
+       <DynamicTitlePage title={`Sign Up | SideGurus`} />
 
       <div className="flex w-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg ">
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">

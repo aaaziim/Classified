@@ -1,11 +1,14 @@
 import React from 'react'
 import Breadcrumb from '../Components/Breadcrumb'
+import DynamicTitlePage from '../Components/DynamicTitlePage'
 
 const SafetyGuideForProviders = () => {
   return (
     <>
       <div >
         <div className='space-y-4 mb-4'>
+        <DynamicTitlePage title={`Service Providers Marketing and Safety Guidelines | SideGurus`} />
+
           <Breadcrumb
             title={"Service Providers Marketing and Safety Guidelines"}
             subTitle={"When offering your services on a platform, it’s important to prioritize your safety and professional integrity. Here is a detailed list of safety tips to follow to ensure a secure and positive experience when meeting new clients and marketing your services."}>

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import DynamicTitlePage from '../Components/DynamicTitlePage';
 
 const EventUpdate = () => {
   const { user } = useAuth();
@@ -171,6 +172,7 @@ const EventUpdate = () => {
 
   return (
     <div>
+       <DynamicTitlePage title={`Update | ${event.title} | SideGurus`} />
       
       <div className="space-y-4 mb-6">
         <Breadcrumb title="Update Event" subTitle="Here you can update your event information" />

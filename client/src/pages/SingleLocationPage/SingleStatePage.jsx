@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Breadcrumb from '../Components/Breadcrumb';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import AdCard from '../Components/AdCard';
 import EventCard from '../Components/EventCard';
 import Pagination from '../Components/Pagination';
+import DynamicTitlePage from '../Components/DynamicTitlePage';
 
 const SingleLocationPage = () => {
   const { stateName } = useParams(); // Get state from URL
@@ -22,7 +23,7 @@ const SingleLocationPage = () => {
   const [eventPage, setEventPage] = useState(1);
   const [eventTotalPages, setEventTotalPages] = useState(1);
 
-  const limit = 3; // Number of items per page
+  const limit = 12; // Number of items per page
 
   useEffect(() => {
     const fetchStateServices = async () => {
@@ -55,7 +56,8 @@ const SingleLocationPage = () => {
 
   return (
     <div className="px-4 py-6">
-      
+       <DynamicTitlePage title={`${stateName} | SideGurus`} />
+
 
       <div className="space-y-4 mb-6">
         <Breadcrumb 
@@ -101,11 +103,17 @@ const SingleLocationPage = () => {
             ) : (
               <p className="text-center text-gray-500">No Services Found</p>
             )}
+             <Link className="flex justify-center my-4" to="/all-locations">
+          <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition md:w-40">
+           All Locations
+          </button>
+        </Link>
           </TabPanel>
         </div>
 
         {/* Events Section */}
         <div className="my-10">
+       
           <TabPanel>
             {events.length > 0 ? (
               <>
@@ -125,6 +133,11 @@ const SingleLocationPage = () => {
             ) : (
               <p className="text-center text-gray-500">No Events Found</p>
             )}
+             <Link className="flex justify-center my-4" to="/all-locations">
+          <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition md:w-40">
+           All Locations
+          </button>
+        </Link>
           </TabPanel>
         </div>
       </Tabs>

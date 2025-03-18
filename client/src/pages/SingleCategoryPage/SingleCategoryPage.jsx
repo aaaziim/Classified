@@ -7,6 +7,7 @@ import Services from "./Services";
 import Events from "./Events";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Breadcrumb from "../Components/Breadcrumb";
+import DynamicTitlePage from "../Components/DynamicTitlePage";
 
 const SingleCategoryPage = () => {
   const { id } = useParams();
@@ -26,6 +27,8 @@ const SingleCategoryPage = () => {
   return (
   <>
     <div className="space-y-4 mb-6">
+ <DynamicTitlePage title={`${category} | SideGurus`} />
+
       <Breadcrumb
         title={ category}
         subTitle="Here you can update your service information"

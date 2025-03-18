@@ -10,6 +10,7 @@ import useCategory from '../../hooks/useCategory'
 import useLocations from '../../hooks/useLocations'
 import useEvents from '../../hooks/useEvents'
 import EventCard from '../Components/EventCard'
+import DynamicTitlePage from '../Components/DynamicTitlePage'
 
 const AllEvents = () => {
 
@@ -25,7 +26,7 @@ const AllEvents = () => {
   const [page, setPage] = useState(1); // Current page
     const [totalPages, setTotalPages] = useState(1); // Total number of pages
 
-    const limit = 3; // Number of events per page
+    const limit = 12; // Number of events per page
 
 
   const axiosSecure = useAxiosSecure();
@@ -114,6 +115,7 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
 
   return (
     <div>
+      <DynamicTitlePage title={`Events | SideGurus`} />
        
        
           <div className='space-y-4 mb-4'>
@@ -137,8 +139,8 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
           className='px-6 py-2 text-[#001C27] w-full placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
           type='text'
           name='search'
-          placeholder='Enter Job Title'
-          aria-label='Enter Job Title'
+          placeholder='Enter Title'
+          aria-label='Enter Title'
         />
 
         <input type='submit' value="Search" className='px-1 md:px-4 py-3 mx-2 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#014D48] rounded-md hover:bg-[#001C27] focus:bg-[#001C27] focus:outline-none'/>

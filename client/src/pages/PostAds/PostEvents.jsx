@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import useCategory from "../../hooks/useCategory";
 import useLocations from "../../hooks/useLocations";
+import DynamicTitlePage from "../Components/DynamicTitlePage";
 
 const PostEvents = () => {
   const { user } = useAuth();
@@ -102,6 +103,8 @@ const PostEvents = () => {
   
   return (
     <div className="space-y-4 mb-4">
+            <DynamicTitlePage title={`Post Event | SideGurus`} />
+
       <Breadcrumb title={"Post an Event"} />
 
       <div className="px-4">

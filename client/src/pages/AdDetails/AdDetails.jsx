@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import GalleryImages from "../Components/GalleryImages";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import DynamicTitlePage from "../Components/DynamicTitlePage";
 
 
 const AdDetails = () => {
@@ -80,7 +81,10 @@ const AdDetails = () => {
  
   return (
     <>
+      <DynamicTitlePage title={`${title} | SideGurus`} />
+
       <div className="flex flex-col justify-center md:flex-row gap-4 my-10 px-4">
+
         <div className="w-full md:w-2/3 bg-[#FFE5D5] p-4 space-y-4 rounded-2xl">
         <Carousel
         infiniteLoop={true}

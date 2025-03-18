@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Breadcrumb from '../Components/Breadcrumb'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
+import DynamicTitlePage from '../Components/DynamicTitlePage'
 
 const Contact = () => {
   const axiosSecure = useAxiosSecure()
@@ -44,6 +45,7 @@ const Contact = () => {
 
   return (
     <div>
+      <DynamicTitlePage title={`Contact | SideGurus`} />
     
       <div className='space-y-4 mb-4'>
         <Breadcrumb title="Contact Us" subTitle="Send us a message" />
