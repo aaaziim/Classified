@@ -307,6 +307,13 @@ const Dashboard = () => {
               Manage Users
             </Tab>
             <Tab
+              className="cursor-pointer border-y-2 bg-[#001C27] border-white w-full text-lg py-2 px-4 rounded-md   transition relative hover:bg-[#014D48] text-white"
+              selectedClassName="bg-dark-teal text-[#014D48]"
+              onClick={() => setActiveTab('admins')}
+            >
+              Manage Admins
+            </Tab>
+            <Tab
               className="cursor-pointer bg-[#001C27] border-y-2 border-white w-full text-lg py-2 px-4 rounded-md  transition relative hover:bg-[#014D48] text-white"
               selectedClassName="bg-dark-teal text-[#014D48]"
               onClick={() => setActiveTab('manage-services')}
@@ -334,13 +341,7 @@ const Dashboard = () => {
             >
               Reported Events
             </Tab>
-            <Tab
-              className="cursor-pointer border-y-2 bg-[#001C27] border-white w-full text-lg py-2 px-4 rounded-md   transition relative hover:bg-[#014D48] text-white"
-              selectedClassName="bg-dark-teal text-[#014D48]"
-              onClick={() => setActiveTab('admins')}
-            >
-              Manage Admins
-            </Tab>
+      
           </TabList>
         </Tabs>
       </div>
@@ -348,6 +349,38 @@ const Dashboard = () => {
       {/* Main Content */}
       <div className="flex-1 p-6">
         {/* Active Tab Content */}
+        {activeTab === 'admins' && (
+          <div className="bg-white shadow-md rounded-lg p-6 space-y-2">
+            <div className='bg-[#014D48] text-white shadow-sm rounded-2xl'>
+            <h2 className="text-3xl  mb-4 text-white text-center font-bold py-4">Add Admin</h2>
+            <form onSubmit={handleAdminSubmit} className="space-y-4 mb-10 text-white mx-10 pb-4">
+      <label className="block">
+        <span  >Name</span>
+        <input type="text" name="name" required className="mt-1 block w-full border border-white rounded-lg p-2  " />
+      </label>
+      <label className="block">
+        <span  >Email</span>
+        <input type="email" name="email" required className="mt-1 block w-full border border-white rounded-lg p-2  " />
+      </label>
+      
+       
+      
+      <button type="submit" className="w-full bg-black text-white py-2 rounded-lg hover:bg-[#012F2B] transition">
+        Add Admin
+      </button>
+    </form>
+            </div>
+            <div >
+            <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {admins.length} Users Profile</h2>
+            {admins.map((profile) => (
+  <div key={profile._id} className="flex justify-between p-4 border-b">
+    <ProfileCard profile={profile}   removeAdmin={removeAdmin}/>
+  </div>
+))}
+            </div>
+          </div>
+        )}
+
         {activeTab === 'manage-users' && (
           <div className="bg-white shadow-md rounded-lg p-6 space-y-2">
             <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {profiles.length} Users Profile</h2>
@@ -412,37 +445,6 @@ const Dashboard = () => {
           </div>
         )}
 
-{activeTab === 'admins' && (
-          <div className="bg-white shadow-md rounded-lg p-6 space-y-2">
-            <div className='bg-[#014D48] text-white shadow-sm rounded-2xl'>
-            <h2 className="text-xl font-semibold mb-4 text-white text-center">Add Admin</h2>
-            <form onSubmit={handleAdminSubmit} className="space-y-4 mb-10 text-white mx-10 pb-4">
-      <label className="block">
-        <span  >Name</span>
-        <input type="text" name="name" required className="mt-1 block w-full border border-white rounded-lg p-2  " />
-      </label>
-      <label className="block">
-        <span  >Email</span>
-        <input type="email" name="email" required className="mt-1 block w-full border border-white rounded-lg p-2  " />
-      </label>
-      
-       
-      
-      <button type="submit" className="w-full bg-black text-white py-2 rounded-lg hover:bg-[#012F2B] transition">
-        Add Admin
-      </button>
-    </form>
-            </div>
-            <div >
-            <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {admins.length} Users Profile</h2>
-            {admins.map((profile) => (
-  <div key={profile._id} className="flex justify-between p-4 border-b">
-    <ProfileCard profile={profile}   removeAdmin={removeAdmin}/>
-  </div>
-))}
-            </div>
-          </div>
-        )}
 
 
       </div>
