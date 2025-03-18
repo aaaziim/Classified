@@ -20,9 +20,10 @@ const Dashboard = () => {
 
   const axiosSecure = useAxiosSecure();
   const [profiles, setProfiles] = useState([])
+  const [admins, setAdmins] = useState([])
   const [loadingProfiles, setLoadingProfiles] = useState(true)
   const [errorProfiles, setErrorProfiles] = useState("")
-
+  const [loading, setLoading] = useState(false);
 
   const [services, setServices] = useState([]);
   const [errorServices, setErrorServices] = useState('');
@@ -41,6 +42,19 @@ const Dashboard = () => {
       setIsAdmin(user.data.isAdmin);
       console.log(user.data)
     };
+
+    const fetchAdmins = async () => {
+      try {
+        // Fetch categories from the API endpoint using the secure axios instance
+        const response = await axiosSecure.get("/admins")
+        console.log(response.data)
+        setAdmins(response.data);
+         
+      } catch (err) {
+      console.log('Error loading categories');
+     
+      }
+    }
 
     const fetchProfiles = async () => {
       try {
@@ -105,7 +119,7 @@ const Dashboard = () => {
   useEffect(()=>{
   
     fetchAdminStatus();
-
+    fetchAdmins();
       fetchProfiles()
       fetchServices()
       fetchEvents()
@@ -146,27 +160,49 @@ const Dashboard = () => {
         }
       }
     };
+
+    const handleAdminSubmit = async (e) => {
+      e.preventDefault();
+      setLoading(true);
   
-    const makeAdmin = async (email) => {
+      const adminData = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+      };
+  
       try {
-        const result = await axiosSecure.put(`/make-admin/${email}`);
-        if(result.status === 200){
-          toast.success("User promoted to admin");
-          fetchProfiles(); // Refresh the user list
-        }
-       
-        
+        const { data } = await axiosSecure.post('/add-admin', adminData);
+        toast.success(data.message);
+        fetchAdmins();
+        e.target.reset() // Refresh the user list
       } catch (err) {
-        toast.error("Only Admin can promote a user");
+        toast.error('Failed to add admin: ' + err.message);
+      } finally {
+        setLoading(false);
       }
     };
+  
+    // const makeAdmin = async (email) => {
+    //   try {
+    //     const result = await axiosSecure.put(`/make-admin/${email}`);
+    //     if(result.status === 200){
+    //       toast.success("User promoted to admin");
+    //       fetchProfiles(); // Refresh the user list
+    //     }
+       
+        
+    //   } catch (err) {
+    //     toast.error("Only Admin can promote a user");
+    //   }
+    // };
     
     const removeAdmin = async (email) => {
       try {
         const result = await axiosSecure.put(`/remove-admin/${email}`);
         if(result.status === 200){
           toast.success("Admin rights removed");
-          fetchProfiles(); // Refresh the user list
+          fetchProfiles(); 
+          fetchAdmins(); // Refresh the user list
         }
 
        
@@ -298,6 +334,13 @@ const Dashboard = () => {
             >
               Reported Events
             </Tab>
+            <Tab
+              className="cursor-pointer border-y-2 bg-[#001C27] border-white w-full text-lg py-2 px-4 rounded-md   transition relative hover:bg-[#014D48] text-white"
+              selectedClassName="bg-dark-teal text-[#014D48]"
+              onClick={() => setActiveTab('admins')}
+            >
+              Manage Admins
+            </Tab>
           </TabList>
         </Tabs>
       </div>
@@ -310,17 +353,9 @@ const Dashboard = () => {
             <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {profiles.length} Users Profile</h2>
             {profiles.map((profile) => (
   <div key={profile._id} className="flex justify-between p-4 border-b">
-    <ProfileCard profile={profile} makeAdmin={makeAdmin} removeAdmin={removeAdmin}/>
+    <ProfileCard profile={profile}   removeAdmin={removeAdmin}/>
   </div>
 ))}
-
-            {/* {
-                profiles?.map((profile) => (
-                  <ProfileCard key={profile._id} profile={profile} />
-                ))
-  
-            } */}
-
           </div>
         )}
 
@@ -376,6 +411,40 @@ const Dashboard = () => {
             </div>
           </div>
         )}
+
+{activeTab === 'admins' && (
+          <div className="bg-white shadow-md rounded-lg p-6 space-y-2">
+            <div className='bg-[#014D48] text-white shadow-sm rounded-2xl'>
+            <h2 className="text-xl font-semibold mb-4 text-white text-center">Add Admin</h2>
+            <form onSubmit={handleAdminSubmit} className="space-y-4 mb-10 text-white mx-10 pb-4">
+      <label className="block">
+        <span  >Name</span>
+        <input type="text" name="name" required className="mt-1 block w-full border border-white rounded-lg p-2  " />
+      </label>
+      <label className="block">
+        <span  >Email</span>
+        <input type="email" name="email" required className="mt-1 block w-full border border-white rounded-lg p-2  " />
+      </label>
+      
+       
+      
+      <button type="submit" className="w-full bg-black text-white py-2 rounded-lg hover:bg-[#012F2B] transition">
+        Add Admin
+      </button>
+    </form>
+            </div>
+            <div >
+            <h2 className="text-xl font-semibold mb-4 text-dark-teal">Total : {admins.length} Users Profile</h2>
+            {admins.map((profile) => (
+  <div key={profile._id} className="flex justify-between p-4 border-b">
+    <ProfileCard profile={profile}   removeAdmin={removeAdmin}/>
+  </div>
+))}
+            </div>
+          </div>
+        )}
+
+
       </div>
     </div>
   );

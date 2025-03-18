@@ -58,9 +58,7 @@ const Navbar = () => {
               {navItems}
             </ul>
           </div>
-          <Link to="/">
-            <span className="font-bold text-white text-lg">SideGurus.com</span>
-          </Link>
+        
         </div>
 
         <div className="navbar-center hidden lg:flex">

@@ -47,7 +47,7 @@ const Home = () => {
           subHeading={"Find what interests you the most"}
         ></SectionHeading>
 
-        <div className="grid grid-cols-1 justify-items-center  md:grid-cols-2 lg:grid-cols-4 gap-4 my-10 px-2">
+        <div className="grid grid-cols-1 justify-items-center  md:grid-cols-2 lg:grid-cols-3 gap-4 my-10 px-2">
           {categories?.map(
             (category, i) =>
               serviceCategories.includes(category.name) && (

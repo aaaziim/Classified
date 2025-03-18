@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProfileCard = ({profile,makeAdmin,removeAdmin}) => {
+const ProfileCard = ({profile,removeAdmin}) => {
     const { name, email, phone, isAdmin } = profile;
   return (
 <div className="bg-gray-200 p-4 rounded-lg w-full ">
@@ -16,9 +16,7 @@ const ProfileCard = ({profile,makeAdmin,removeAdmin}) => {
         Remove Admin
       </button>
     ) : (
-      <button onClick={() => makeAdmin(profile.email)} className="bg-green-500 text-white px-3 py-1 rounded">
-        Make Admin
-      </button>
+     ""
     )}
    
   </div>
