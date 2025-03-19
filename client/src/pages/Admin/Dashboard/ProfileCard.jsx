@@ -12,7 +12,7 @@ const ProfileCard = ({profile,removeAdmin}) => {
     </div>
 
     {isAdmin ? (
-      <button onClick={() => removeAdmin(profile.email)} className="bg-red-500 text-white px-3 py-1 rounded">
+      <button onClick={() => removeAdmin(profile?.email)} className="bg-red-500 text-white px-3 py-1 rounded">
         Remove Admin
       </button>
     ) : (
