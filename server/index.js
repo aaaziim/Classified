@@ -129,21 +129,61 @@ async function run() {
       }
     };
     
+// Add AdminFrom Dashboard
+app.post("/add-admin", verifyToken, verifyAdmin, async (req, res) => {
+  try {
+    const { name, email } = req.body;
 
-
-
-
-    app.put("/make-admin/:email", verifyToken, verifyAdmin, async (req, res) => {
-      const { email } = req.params;
+    // Check if the user already exists
+    const existingUser = await profileCollection.findOne({ email });
     
-      const user = await profileCollection.findOne({ email });
-      if (!user) {
-        return res.status(404).send({ message: "User not found" });
-      }
-    
+    if (existingUser) {
+      // Update existing user role to admin
       await profileCollection.updateOne({ email }, { $set: { isAdmin: true } });
-      res.send({ message: "User promoted to Admin" });
-    });
+      return res.send({ message: "User role updated to Admin" });
+    }
+
+    // Create a new admin object
+    const newAdmin = {
+      name,
+      email,
+      isAdmin: true,
+      createdAt: new Date()
+    };
+
+    // Insert into database
+    const result = await profileCollection.insertOne(newAdmin);
+    res.status(201).send({ message: "Admin added successfully", result});
+  } catch (err) {
+    console.error("Error adding admin:", err);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+
+//Get Admins
+app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
+  try {
+    const admins = await profileCollection.find({ isAdmin: true }).toArray();
+    res.send(admins);
+  } catch (err) {
+    console.error("Error fetching admins:", err);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+
+    // app.put("/make-admin/:email", verifyToken, verifyAdmin, async (req, res) => {
+    //   const { email } = req.params;
+    
+    //   const user = await profileCollection.findOne({ email });
+    //   if (!user) {
+    //     return res.status(404).send({ message: "User not found" });
+    //   }
+    
+    //   await profileCollection.updateOne({ email }, { $set: { isAdmin: true } });
+    //   res.send({ message: "User promoted to Admin" });
+    // });
 
     app.put("/remove-admin/:email", verifyToken, verifyAdmin, async (req, res) => {
       const { email } = req.params;

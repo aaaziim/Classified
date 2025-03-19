@@ -19,7 +19,7 @@ const SafetyGuides = () => {
  
     <div className="mt-6 space-y-4">
     
-      <p>At Website, your safety is our top priority. When connecting with service providers or clients online, it’s important to take precautions to ensure a safe and secure experience. Here are essential safety tips and tricks to follow when arranging to meet someone for your specific needs:</p>
+      <p>At SideGurus.com, your safety is our top priority. When connecting with service providers or clients online, it’s important to take precautions to ensure a safe and secure experience. Here are essential safety tips and tricks to follow when arranging to meet someone for your specific needs:</p>
 
     </div>
 <div className='space-y-10 mt-10'>

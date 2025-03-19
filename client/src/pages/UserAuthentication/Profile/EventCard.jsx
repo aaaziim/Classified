@@ -18,7 +18,9 @@ const EventCard = ({event, handleDelete}) => {
      
       <div>
         <h3 className="text-lg font-semibold text-[#014D48]">{title}</h3>
-        <p className="text-[#001C27]">{description}...</p>
+        <p className="text-[#001C27]">
+        {description?.slice(0,20)} ...
+        </p>
       </div>
     </div>
     <div className="flex gap-4 flex-row flex-wrap ">

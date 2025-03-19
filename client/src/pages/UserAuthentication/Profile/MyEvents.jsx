@@ -86,7 +86,7 @@ const MyEvents = () => {
       </div>
 <div className="px-4">
   
-{events && (
+{events?.length>0 ? (
         <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48]">
           <div className="space-y-6">
             {events?.map((event, index) => (
@@ -98,7 +98,7 @@ const MyEvents = () => {
             ))}
           </div>
         </div>
-      )}
+      ):<p>No Event Posted</p>}
 </div>
     </div>
   );

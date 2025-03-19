@@ -15,7 +15,7 @@ const Privacy = () => {
       </div>
       <div className="bg-[#FFE5D5] text-[#014D48] p-6 min-h-screen flex justify-center items-center">
       <div className="max-w-3xl bg-[#FFFFFF] p-8 shadow-lg rounded-lg">
-        <h1 className="text-2xl font-bold mb-4">Effective Date: [Insert Date]</h1>
+        <h1 className="text-2xl font-bold mb-4">Effective Date: 22nd March 2025</h1>
         <p className="mb-4">
           Welcome to SideGurus.com, where local talent connects with opportunity.
           Your privacy matters to us, and we are committed to safeguarding your
@@ -74,10 +74,10 @@ const Privacy = () => {
         Security is a top priority at SideGurus.com. We implement measures to protect user data from unauthorized access, theft, or misuse. While we take every precaution, no platform can guarantee 100% security. Users should also take responsibility for safeguarding their accounts by using strong passwords and avoiding suspicious communications.
         </p>
 
-        <h2 className="text-xl font-semibold mt-6 mb-2">Cookies & Tracking</h2>
+        {/* <h2 className="text-xl font-semibold mt-6 mb-2">Cookies & Tracking</h2>
         <p className="mb-4">
         To improve your experience, we use cookies and similar technologies for website functionality and fraud prevention. You can adjust your browser settings to disable cookies, but this may affect certain site features.
-        </p>
+        </p> */}
 
         <h2 className="text-xl font-semibold mt-6 mb-2">Age Restrictions</h2>
         <p className="mb-4">

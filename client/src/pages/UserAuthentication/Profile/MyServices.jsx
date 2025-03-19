@@ -85,7 +85,7 @@ const MyServices = () => {
         />
       </div>
      <div className="px-4">
-     {services && (
+     {services?.length>0 ? (
         <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg border border-[#014D48]">
           <div className="space-y-6">
             {services?.map((service, index) => (
@@ -97,7 +97,7 @@ const MyServices = () => {
             ))}
           </div>
         </div>
-      )}
+      ): <p>No Service Posted </p>}
      </div>
     </div>
   );

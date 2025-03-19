@@ -40,15 +40,13 @@ const SignUp = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const name = e.target.name.value;
-    const phone = e.target.phone.value;
-    const address = e.target.address.value;
-    const bio = e.target.bio.value;
+   
 
     try {
         await createUser(email, password);
 
         // Send user profile data to backend
-        const profile = { name, phone, email, address, bio };
+        const profile = { name,   email };
         try {
             await axiosSecure.post(`/profile`, profile);
         } catch (err) {
@@ -129,36 +127,11 @@ const SignUp = () => {
               />
             </div>
 
-            <div>
-              <label className="block mb-1 text-sm font-medium text-[#001C27]">Phone</label>
-              <input
-                name="phone"
-                className="w-full border border-[#014D48] rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
-                type="text"
-                required
-              />
-            </div>
+         
 
-            <div>
-              <label className="block mb-1 text-sm font-medium text-[#001C27]">Address</label>
-              <input
-                name="address"
-                className="w-full border border-[#014D48] rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
-                type="text"
-                required
-              />
-            </div>
-
+      
             
-            <div>
-              <label className="block mb-1 text-sm font-medium text-[#001C27]">Bio</label>
-              <input
-                name="bio"
-                className="w-full border border-[#014D48] rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
-                type="text"
-                required
-              />
-            </div>
+      
 
             <div>
               <label className="block mb-1 text-sm font-medium text-[#001C27]">Email Address</label>

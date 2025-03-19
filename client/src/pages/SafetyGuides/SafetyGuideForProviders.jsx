@@ -172,7 +172,7 @@ const SafetyGuideForProviders = () => {
 
 </div>
           <div className="mt-6">
-            <p>By following these tips, service providers can safely and effectively promote their skills, connect with trustworthy clients, and grow their businesses. At Website, we’re committed to creating a professional, reliable, and secure space for local service providers to thrive.</p>
+            <p>By following these tips, service providers can safely and effectively promote their skills, connect with trustworthy clients, and grow their businesses. At SideGurus.com, we’re committed to creating a professional, reliable, and secure space for local service providers to thrive.</p>
             <p>Your skills are valuable—market them safely and confidently!</p>
             <p>Any concerns for spam, scammers, safety, or fraud, report your claims <a href="#" className="text-teal-600">here</a>.</p>
           </div>
