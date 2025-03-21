@@ -184,7 +184,9 @@ const SignUp = () => {
           className="hidden bg-cover bg-center  lg:w-1/2 lg:flex lg:justify-center lg:items-center"
           
         >
-          <h1 className="text-4xl font-extrabold">SideGurus.com</h1>
+          <h1 className="text-4xl font-extrabold"><span className="text-[#014D48] font-semibold text-2xl">
+              SideGurus.com
+            </span></h1>
         </div>
       </div>
     </div>

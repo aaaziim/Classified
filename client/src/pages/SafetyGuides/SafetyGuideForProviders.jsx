@@ -1,6 +1,7 @@
 import React from 'react'
 import Breadcrumb from '../Components/Breadcrumb'
 import DynamicTitlePage from '../Components/DynamicTitlePage'
+import { Link } from "react-router";
 
 const SafetyGuideForProviders = () => {
   return (
@@ -172,9 +173,11 @@ const SafetyGuideForProviders = () => {
 
 </div>
           <div className="mt-6">
-            <p>By following these tips, service providers can safely and effectively promote their skills, connect with trustworthy clients, and grow their businesses. At SideGurus.com, we’re committed to creating a professional, reliable, and secure space for local service providers to thrive.</p>
+            <p>By following these tips, service providers can safely and effectively promote their skills, connect with trustworthy clients, and grow their businesses. At <span className="text-[#014D48] font-semibold text-2xl">
+              SideGurus.com
+            </span>, we’re committed to creating a professional, reliable, and secure space for local service providers to thrive.</p>
             <p>Your skills are valuable—market them safely and confidently!</p>
-            <p>Any concerns for spam, scammers, safety, or fraud, report your claims <a href="#" className="text-teal-600">here</a>.</p>
+            <p className='text-center text-2xl font-bold py-2'>Any concerns for spam, scammers, safety, or fraud, report your claims <Link to="/contact" className="text-teal-600">Contact here</Link>.</p>
           </div>
         </div>
       </div>
