@@ -109,6 +109,7 @@ const EventUpdate = () => {
       city: form.event_city?.value || "",
       author: {
         email: form.author_email.value,
+        business_email: form.author_business_email.value,
         phone: form.author_phone.value,
         facebook: form.author_facebook.value,
         instagram: form.author_instagram.value,
@@ -330,6 +331,15 @@ const EventUpdate = () => {
                 defaultValue={event.author.email}
                 disabled
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]"
+              />
+            </label>
+            <label className="block">
+              <span className="text-[#001C27]">Business Email</span>
+              <input
+                type="email"
+                name="author_business_email"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                defaultValue={event?.author?.business_email}
               />
             </label>
             <label className="block">

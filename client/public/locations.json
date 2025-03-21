@@ -852,6 +852,11 @@
     "id": 12,
     "name": "Morocco",
     "slug": "morocco"
+  },
+  {
+    "id": 13,
+    "name": "Philippines",
+    "slug": "philippines"
   }
 ]
 

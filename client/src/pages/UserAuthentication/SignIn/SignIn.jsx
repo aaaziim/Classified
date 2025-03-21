@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import DynamicTitlePage from '../../Components/DynamicTitlePage';
+import DynamicTitlePage from "../../Components/DynamicTitlePage";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ const SignIn = () => {
   const { signIn, signInWithGoogle, resetPassword, user, loading } = useAuth();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -26,24 +28,22 @@ const SignIn = () => {
     try {
       const result = await signInWithGoogle();
       const user = result.user;
-  
+
       if (user) {
         const userProfile = {
           name: user.displayName,
           email: user.email,
         };
-        const { token } = await axiosSecure.post("/jwt", {email:user.email});
+        const { token } = await axiosSecure.post("/jwt", { email: user.email });
 
         // Send user profile to the backend
         const { data } = await axiosSecure.post("/profile", userProfile);
 
-        if(data.status === 409){
+        if (data.status === 409) {
           toast.success("Sign In Successful");
-
         }
       }
       navigate(destination, { replace: true });
-      
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
@@ -57,7 +57,7 @@ const SignIn = () => {
 
     try {
       await signIn(email, password);
-      const { token } = await axiosSecure.post("/jwt", {email});
+      const { token } = await axiosSecure.post("/jwt", { email });
       navigate(destination, { replace: true });
       toast.success("Sign-in Successful");
     } catch (err) {
@@ -87,21 +87,18 @@ const SignIn = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-300px)] p-4">
-       <DynamicTitlePage title={`Sign In | SideGurus`} />
-      
+      <DynamicTitlePage title={`Sign In | SideGurus`} />
+
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
-        <div
-          className="hidden bg-cover bg-center  lg:w-1/2 lg:flex lg:justify-center lg:items-center"
-          
-        >
-          <h1 className="text-4xl font-extrabold"><span className="text-[#014D48] font-semibold text-2xl">
+        <div className="hidden bg-cover bg-center  lg:w-1/2 lg:flex lg:justify-center lg:items-center">
+          <h1 className="text-4xl font-extrabold">
+            <span className="text-[#014D48] font-semibold text-xl">
               SideGurus.com
-            </span></h1>
+            </span>
+          </h1>
         </div>
 
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-     
-
           <p className="mt-3 text-xl text-center text-[#014D48] font-semibold">
             Welcome back!
           </p>
@@ -168,12 +165,21 @@ const SignIn = () => {
                   Forgot Password?
                 </p>
               </div>
-              <input
-                name="password"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-[#014D48] focus:ring-[#014D48] focus:ring-opacity-40 focus:outline-none focus:ring"
-                type="password"
-                required
-              />
+              <div className="relative">
+                <input
+                  name="password"
+                  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-[#014D48] focus:ring-[#014D48] focus:ring-opacity-40 focus:outline-none focus:ring"
+                  type={showPassword ? "text" : "password"}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
 
             <div className="mt-6">
@@ -185,9 +191,12 @@ const SignIn = () => {
               </button>
             </div>
           </form>
-             <div className="flex items-center justify-between mt-4">
+          <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b border-gray-400 md:w-1/4"></span>
-            <Link to="/signup" className="text-xs text-[#001C27] uppercase hover:underline">
+            <Link
+              to="/signup"
+              className="text-xs text-[#001C27] uppercase hover:underline"
+            >
               or sign up
             </Link>
             <span className="w-1/5 border-b border-gray-400 md:w-1/4"></span>
@@ -198,9 +207,13 @@ const SignIn = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg w-80">
-            <h3 className="text-lg text-center text-[#014D48]">Reset Password</h3>
+            <h3 className="text-lg text-center text-[#014D48]">
+              Reset Password
+            </h3>
             <div className="mt-4">
-              <label className="block mb-2 text-sm font-medium text-[#014D48]">Enter your email</label>
+              <label className="block mb-2 text-sm font-medium text-[#014D48]">
+                Enter your email
+              </label>
               <input
                 type="email"
                 value={email}

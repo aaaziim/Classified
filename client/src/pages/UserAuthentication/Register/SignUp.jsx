@@ -1,14 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react"; 
+import { useEffect, useState } from "react"; 
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import DynamicTitlePage from "../../Components/DynamicTitlePage";
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const SignUp = () => {
   const navigate = useNavigate();
   const { createUser, signInWithGoogle, user, loading } = useAuth();
   const axiosSecure = useAxiosSecure()
+  const [showPassword, setShowPassword] = useState(false);
+  
   useEffect(() => {
     if (user) {
       navigate("/");
@@ -145,12 +147,21 @@ const SignUp = () => {
 
             <div>
               <label className="block mb-1 text-sm font-medium text-[#001C27]">Password</label>
-              <input
-                name="password"
-                className="w-full border border-[#014D48] rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
-                type="password"
-                required
-              />
+              <div className="relative">
+                <input
+                  name="password"
+                  className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-[#014D48] focus:ring-[#014D48] focus:ring-opacity-40 focus:outline-none focus:ring"
+                  type={showPassword ? "text" : "password"}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
 
             <div className="flex items-center">
@@ -184,7 +195,7 @@ const SignUp = () => {
           className="hidden bg-cover bg-center  lg:w-1/2 lg:flex lg:justify-center lg:items-center"
           
         >
-          <h1 className="text-4xl font-extrabold"><span className="text-[#014D48] font-semibold text-2xl">
+          <h1 className="text-4xl font-extrabold"><span className="text-[#014D48] font-semibold text-xl">
               SideGurus.com
             </span></h1>
         </div>

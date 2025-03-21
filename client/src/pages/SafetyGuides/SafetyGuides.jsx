@@ -19,7 +19,7 @@ const SafetyGuides = () => {
  
     <div className="mt-6 space-y-4">
     
-      <p>At <span className="text-[#014D48] font-semibold text-2xl">
+      <p>At <span className="text-[#014D48] font-semibold text-xl">
               SideGurus.com
             </span>, your safety is our top priority. When connecting with service providers or clients online, it’s important to take precautions to ensure a safe and secure experience. Here are essential safety tips and tricks to follow when arranging to meet someone for your specific needs:</p>
 
@@ -29,13 +29,13 @@ const SafetyGuides = () => {
 <div>
       <h3 className="text-xl font-semibold text-teal-700">1. Verify Before You Meet</h3>
       <ul className="list-disc list-inside ml-4">
-        <li><strong>Set Up a Virtual Consultation:</strong> Use Zoom, FaceTime, or any video conferencing platform to speak face-to-face with the provider or client before meeting in person. This allows you to:
+        <li><strong>Set Up a Virtual Consultation:</strong> Use Zoom, FaceTime, or any video conferencing platform to speak face-to-face with the provider or client before meeting in person.<br></br> <strong>This allows you to:</strong>
         </li>
      
-          <ul className="list-disc list-inside ml-4">
+        <ol className="list-decimal list-inside ml-4">
         <li>Verify their identity.</li>
         <li>Discuss your specific needs or expectations for the service.</li>
-          </ul>
+          </ol>
       
         <li><strong>Check Reviews and Ratings:</strong> If the provider or client has reviews or testimonials on other platforms, take the time to read them to gain confidence in their credibility. 
         </li>
@@ -82,10 +82,10 @@ const SafetyGuides = () => {
   <ul className="list-disc list-inside ml-4">
     <li>
       <strong>Tell Someone Where You’re Going:</strong> Let a trusted friend or family member know:
-      <ul className="list-disc list-inside ml-4">
+      <ol className="list-inside list-decimal ml-4">
         <li>Who you’re meeting.</li>
         <li>The location, date, and time of the meeting.</li>
-      </ul>
+      </ol>
     </li>
     <li>
       <strong>Share Your Location:</strong> Use location-sharing apps (like Google Maps or iPhone’s “Find My”) so someone can track your whereabouts during the meeting.
@@ -175,10 +175,10 @@ const SafetyGuides = () => {
   <ul className="list-disc list-inside ml-4">
     <li>
       <strong>Have an Exit Strategy:</strong> If at any point you feel uncomfortable, have a plan to leave immediately. For example:
-      <ul className="list-disc list-inside ml-4">
+      <ol className="list-decimal list-inside ml-4">
         <li>Park your car nearby and facing outward.</li>
         <li>Use phrases like, “I need to step out and check with someone” or “I’ll need more time to think this over.”</li>
-      </ul>
+      </ol>
     </li>
   </ul>
 </div>
@@ -187,7 +187,7 @@ const SafetyGuides = () => {
     Remember
   </h3>
   <p>
-    Your safety comes first! By following these tips, you can confidently connect with trusted professionals while protecting yourself. At    <span className="text-[#014D48] font-semibold text-2xl">
+    Your safety comes first! By following these tips, you can confidently connect with trusted professionals while protecting yourself. At    <span className="text-[#014D48] font-semibold text-xl">
               SideGurus.com
             </span>, we aim to create a platform where both clients and service providers feel secure and supported.
   </p>

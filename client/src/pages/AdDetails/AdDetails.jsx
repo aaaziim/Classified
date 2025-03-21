@@ -124,7 +124,8 @@ const AdDetails = () => {
           <div className="flex justify-between gap-4">
             <p className="flex items-center gap-2 text-[#014D48]">
               <MdOutlineDateRange />
-              <span>{posted}</span>
+              <span><p>{new Date(posted).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              </span>
             </p>
             <p
               className="bg-[#FA8649] max-w-fit px-4 py-2 text-white font-bold relative"
@@ -143,10 +144,7 @@ const AdDetails = () => {
                 {category} | {subcategory}
               </span>
             </p>
-            {/* <p className='flex items-center gap-2 text-[#001C27]'>
-           <MdCategory />
-           <span>SubCategory: </span>
-         </p> */}
+        
           </div>
           <p className="text-2xl font-semibold text-[#001C27]">Description:</p>
           <p className="text-xl text-justify text-[#001C27]">

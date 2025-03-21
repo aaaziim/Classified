@@ -14,9 +14,8 @@ import toast from "react-hot-toast";
 import { MdReportProblem } from "react-icons/md";
 import GalleryImages from "../Components/GalleryImages";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+import { Carousel } from "react-responsive-carousel";
 import DynamicTitlePage from "../Components/DynamicTitlePage";
-
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -63,7 +62,7 @@ const EventDetails = () => {
     startDate,
     endDate,
     author,
-    images
+    images,
   } = event;
 
   const handleEventReport = async () => {
@@ -82,23 +81,21 @@ const EventDetails = () => {
   return (
     <>
       <div className="flex flex-col justify-center md:flex-row gap-4 my-10 px-4">
-      <DynamicTitlePage title={`${title} | SideGurus`} />
+        <DynamicTitlePage title={`${title} | SideGurus`} />
 
         <div className="w-full md:w-2/3 bg-[#FFE5D5] p-4 space-y-4 rounded-2xl">
-        <Carousel
-        infiniteLoop={true}
-        className="rounded-lg"
-        showThumbs={false}
-        showStatus={false}
-        showIndicators={true}
-        useKeyboardArrows={true}
-      >
-      
-        {images?.map((image, index) => (
-  <GalleryImages key={index} image={image}></GalleryImages>
-  
-))}
-</Carousel>
+          <Carousel
+            infiniteLoop={true}
+            className="rounded-lg"
+            showThumbs={false}
+            showStatus={false}
+            showIndicators={true}
+            useKeyboardArrows={true}
+          >
+            {images?.map((image, index) => (
+              <GalleryImages key={index} image={image}></GalleryImages>
+            ))}
+          </Carousel>
           <div className="flex gap-2 justify-between">
             <div>
               <h1 className="text-2xl text-[#001C27] font-bold">{title}</h1>
@@ -124,7 +121,8 @@ const EventDetails = () => {
             <p className="flex items-center gap-2 text-[#014D48]">
               <MdOutlineDateRange />
               <span>
-                {startDate} to {endDate}
+              <p>{new Date(startDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} to {new Date(endDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
               </span>
             </p>
 
