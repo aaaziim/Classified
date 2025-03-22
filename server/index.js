@@ -173,17 +173,6 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 });
 
 
-    // app.put("/make-admin/:email", verifyToken, verifyAdmin, async (req, res) => {
-    //   const { email } = req.params;
-    
-    //   const user = await profileCollection.findOne({ email });
-    //   if (!user) {
-    //     return res.status(404).send({ message: "User not found" });
-    //   }
-    
-    //   await profileCollection.updateOne({ email }, { $set: { isAdmin: true } });
-    //   res.send({ message: "User promoted to Admin" });
-    // });
 
     app.put("/remove-admin/:email", verifyToken, verifyAdmin, async (req, res) => {
       const { email } = req.params;
@@ -198,35 +187,6 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
     });
     
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     app.post("/jwt", async (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
@@ -259,7 +219,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
       const mailOptions = {
         from: email,
-        to: "azim210215@gmail.com",
+        to: "sidegurusservices@gmail.com",
         subject: "Contact Form Submission",
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       };
@@ -369,6 +329,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
       const result = await servicesCollection
         .find()
+        .sort({ _id: -1 })
         .skip(skip)
         .limit(limit)
         .toArray();
@@ -385,12 +346,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       const result = await servicesCollection.findOne({
         _id: new ObjectId(id),
       });
-     
-      // const images = result?.images || [];
-      // if( images?.length > 0){
-      //     const imageUrls = images.map(image => `http://localhost:5000/${image}`);
-      //     result.images = imageUrls; // Add image URLs to the result object
-      // }
+ 
 
       res.send(result);
     });
@@ -408,6 +364,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
       const result = await servicesCollection
         .find({ "author.email": email })
+        .sort({ _id: -1 })
         .toArray();
       res.send(result);
     });
@@ -429,6 +386,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
         const services = await servicesCollection
           .find(query)
+        .sort({ _id: -1 })
           .skip(skip)
           .limit(limit)
           .toArray();
@@ -464,6 +422,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
         const services = await servicesCollection
           .find(query)
+        .sort({ _id: -1 })
           .skip(skip)
           .limit(limit)
           .toArray();
@@ -496,6 +455,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
         const services = await servicesCollection
           .find(query)
+        .sort({ _id: -1 })
           .skip(skip)
           .limit(limit)
           .toArray();
@@ -528,6 +488,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
         const services = await servicesCollection
           .find(query)
+          .sort({ _id: -1 })
           .skip(skip)
           .limit(limit)
           .toArray();
@@ -554,7 +515,10 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
           query.city = city; // Match city exactly
         }
 
-        const services = await servicesCollection.find(query).toArray();
+        const services = await servicesCollection
+        .find(query)
+        .sort({ _id: -1 })
+        .toArray();
 
         res.json(services);
       } catch (error) {
@@ -601,6 +565,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         // Fetch services with pagination
         const services = await servicesCollection
           .find(query, options)
+          .sort({ _id: -1 })
           .skip(skip)
           .limit(limitNumber)
           .toArray();
@@ -620,42 +585,6 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
       }
     });
-
-    // Save Services
-    // app.post("/services", async(req, res)=>{
-    //   const newService = req.body;
-    //   const result = await servicesCollection.insertOne(newService)
-    //   res.send(result)
-    // })
-    // app.post("/services", upload.array('service_images', 10), async (req, res) => {
-    //   // Extract the form data
-    //   const author = JSON.parse(req.body.author)
-  
-    
-    //   const newService = {
-    //       title: req.body.title,
-    //       category: req.body.category,
-    //       subcategory: req.body.subcategory,
-    //       price: req.body.price,
-    //       description: req.body.description,
-    //       country: req.body.country,
-    //       state: req.body.state,
-    //       city: req.body.city,
-    //       posted: new Date().toISOString(),
-    //       author:author,
-    //       images: req.files.map(file =>
-    //          "http://localhost:5000/" + file.path
-    //   )  // Store the file paths
-    //   };
-
-    
-    //   try {
-    //       const result = await servicesCollection.insertOne(newService);
-    //       res.send(result);
-    //   } catch (err) {
-    //       res.status(500).send({ error: 'Failed to save service' });
-    //   }
-    // });
 
     app.post("/services", async (req, res) => {
       try {
@@ -800,24 +729,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       res.send(result);
     });
 
-    // Delete API Services
-    // app.delete("/service/:id", verifyToken, async (req, res) => {
-    //   const id = req.params.id;
-    //   const user = req.user;
-    //   const userEmail = user.email;
-    //   const service = await servicesCollection.findOne({
-    //     _id: new ObjectId(id),
-    //   });
-    //   if (userEmail !== service.author.email) {
-    //     return res.status(403).json({ error: "Unauthorized Access" });
-    //   }
-
-    //   const result = await servicesCollection.deleteOne({
-    //     _id: new ObjectId(id),
-    //   });
-    //   res.send(result);
-    // });
-    // Check with postman
+ 
 
     app.delete("/service/:id", verifyToken, verifyAdminOrAuthor, async (req, res) => {
       const { id } = req.params;
@@ -837,6 +749,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       const skip = (page - 1) * limit;
       const result = await eventsCollection
         .find()
+        .sort({ _id: -1 })
         .skip(skip)
         .limit(limit)
         .toArray();
@@ -865,6 +778,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
       const result = await eventsCollection
         .find({ "author.email": email })
+        .sort({ _id: -1 })
         .toArray();
    
       res.send(result);
@@ -887,6 +801,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
         const events = await eventsCollection
           .find(query)
+          .sort({ _id: -1 })
           .skip(skip)
           .limit(limit)
           .toArray();
@@ -921,6 +836,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
         const events = await eventsCollection
           .find(query)
+          .sort({ _id: -1 })
           .skip(skip)
           .limit(limit)
           .toArray();
@@ -952,6 +868,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
         const events = await eventsCollection
           .find()
+          .sort({ _id: -1 })
           .skip(skip)
           .limit(limit)
           .toArray();
@@ -983,6 +900,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
         const events = await eventsCollection
           .find(query)
+          .sort({ _id: -1 })
           .skip(skip)
           .limit(limit)
           .toArray();
@@ -1009,7 +927,10 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
           query.city = city; // Match city exactly
         }
 
-        const events = await eventsCollection.find(query).toArray();
+        const events = await eventsCollection
+        .find(query)
+        .sort({ _id: -1 })
+        .toArray();
 
         res.json(events);
       } catch (error) {
@@ -1062,6 +983,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         // Fetch services with pagination
         const events = await eventsCollection
           .find(query, options)
+          .sort({ _id: -1 })
           .skip(skip)
           .limit(limitNumber)
           .toArray();
@@ -1083,11 +1005,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       }
     });
 
-    // app.post("/events", async(req, res)=>{
-    //   const newService = req.body;
-    //   const result = await eventsCollection.insertOne(newService)
-    //   res.send(result)
-    // })
+ 
 
     app.post("/events", async (req, res) => {
       try{
@@ -1145,24 +1063,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         res.status(500).send({ error: "Failed to save service" });
       }
     });
-    // Put API Events
-
-    // app.put("/event-update/:id", verifyToken, async (req, res) => {
-    //   const id = req.params.id;
-    //   const user = req.user;
-    //   const userEmail = user.email;
-    //   const event = await eventsCollection.findOne({ _id: new ObjectId(id) });
-    //   if (userEmail !== event.author.email) {
-    //     return res.status(403).json({ error: "Unauthorized Access" });
-    //   }
-    //   const updatedEvent = req.body;
-    //   const result = await eventsCollection.updateOne(
-    //     { _id: new ObjectId(id) },
-    //     { $set: updatedEvent },
-    //     { upsert: true }
-    //   );
-    //   res.send(result);
-    // });
+ 
 
 
     app.put("/event-update/:id",verifyToken,verifyAdminOrAuthor, async (req, res) => {
@@ -1258,22 +1159,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
       res.send(result);
     });
-    // Delete API Events
-    // app.delete("/event/:id", verifyToken, async (req, res) => {
-    //   const id = req.params.id;
-    //   const user = req.user;
-    //   const userEmail = user.email;
-    //   const event = await eventsCollection.findOne({ _id: new ObjectId(id) });
-    //   if (userEmail !== event.author.email) {
-    //     return res.status(403).json({ error: "Unauthorized Access" });
-    //   }
-    //   const result = await eventsCollection.deleteOne({
-    //     _id: new ObjectId(id),
-    //   });
-    //   res.send(result);
-    // });
-
-    // Check with postman
+ 
 
     app.delete("/event/:id", verifyToken, verifyAdminOrAuthor, async (req, res) => {
       const { id } = req.params;
@@ -1281,12 +1167,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       res.send({ message: "Event deleted successfully" });
     });
 
-
-
-
-
-
-
+ 
 
     // Events API Ends
     // Profile API Start
@@ -1318,11 +1199,11 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
     });
 
     // Get All Profiles API
-    app.get("/profiles", async (req, res) => {
+    app.get("/profiles",verifyToken, verifyAdmin, async (req, res) => {
       try {
         const result = await profileCollection
           .find()
-          .sort({ name: 1 })
+          .sort({ _id: -1 })
           .toArray();
         res.send(result);
       } catch (err) {
@@ -1351,20 +1232,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         res.status(500).send({ message: "Internal Server Error" });
       }
     });
-    // app.get("/userprofilebyemail/:email", verifyToken, async (req, res) => {
-    //   try {
-    //     const { email } = req.params;
-    //     const result = await profileCollection.findOne({ email: email });
-    //     if (!result) {
-    //       return res.status(404).send({ message: "User not found" });
-    //     }
-    //     res.send(result);
-    //   } catch (error) {
-    //     console.error(error);
-    //     res.status(500).send({ message: "Internal Server Error" });
-    //   }
-    // });
-
+ 
     // Update userProfile
     app.put("/profile-update", verifyToken, async (req, res) => {
       try {
@@ -1396,27 +1264,27 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
     });
 
     // Delete user profile
+//not used
+    // app.delete("/profile-delete", verifyToken, verifyAdmin, async (req, res) => {
+    //   try {
+    //     const email = req.user.email;
+    //     const profile = await profileCollection.findOne({ email: email });
 
-    app.delete("/profile-delete", verifyToken, async (req, res) => {
-      try {
-        const email = req.user.email;
-        const profile = await profileCollection.findOne({ email: email });
+    //     // Update it by admin email upon completion
+    //     if (email !== profile.email) {
+    //       return res.status(403).json({ error: "Unauthorized Access" });
+    //     }
 
-        // Update it by admin email upon completion
-        if (email !== profile.email) {
-          return res.status(403).json({ error: "Unauthorized Access" });
-        }
-
-        const result = await profileCollection.deleteOne({ email: email });
-        if (result.deletedCount === 0) {
-          return res.status(404).send({ message: "User not found" });
-        }
-        res.send({ message: "Profile deleted successfully" });
-      } catch (error) {
-        console.error(error);
-        res.status(500).send({ message: "Internal Server Error" });
-      }
-    });
+    //     const result = await profileCollection.deleteOne({ email: email });
+    //     if (result.deletedCount === 0) {
+    //       return res.status(404).send({ message: "User not found" });
+    //     }
+    //     res.send({ message: "Profile deleted successfully" });
+    //   } catch (error) {
+    //     console.error(error);
+    //     res.status(500).send({ message: "Internal Server Error" });
+    //   }
+    // });
 
     // Profile API End
 
