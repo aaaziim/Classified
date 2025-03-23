@@ -13,6 +13,13 @@ const Navbar = () => {
       <li>
         <Link to="/all-events">Events</Link>
       </li>
+      <li>
+        <Link to="/all-categories">All Categories</Link>
+      </li>
+      <li>
+        <Link to="/all-locations">All Locations
+        </Link>
+      </li>
       {user ? (
         ""
       ) : (

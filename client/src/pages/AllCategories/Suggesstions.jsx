@@ -8,10 +8,10 @@ const Suggesstions = () => {
     const [categories] = useCategory()
   return (
     <div>
-      <DynamicTitlePage title={`SideGurus Suggestion | SideGurus`} />
+      <DynamicTitlePage title={`SideGurus Suggestions | SideGurus`} />
 
            <Breadcrumb
-       title={"SideGurus Suggestion"}
+       title={"SideGurus Suggestions"}
        subTitle={"Want to start a gig but don't know where to begin? Turn your passion into income with our SideGuru suggestions: Here is an extensive list of our services and categories find the one that suits you best:"}>
        </Breadcrumb>
   
