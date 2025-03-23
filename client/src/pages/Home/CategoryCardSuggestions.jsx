@@ -25,7 +25,7 @@ const CategoryCardSuggestions = ({ category }) => {
                (
                   <li
                     key={sub.id}
-                    className="block text-[#FA8649] text-lg hover:text-[#001C27] transition duration-300"
+                    className="block text-[#FA8649] text-lg hover:text-[#001C27] transition duration-300 text-center"
                   >
                     <Link to={`/category/${_id}/subcategory/${sub.id}`}>
                       {sub.name}
