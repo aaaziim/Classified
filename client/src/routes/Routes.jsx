@@ -35,6 +35,7 @@ import SingleStatePage from "../pages/SingleLocationPage/SingleStatePage";
 import SafetyGuides from "../pages/SafetyGuides/SafetyGuides";
 import SafetyGuideForProviders from "../pages/SafetyGuides/SafetyGuideForProviders";
 import Guide from "../pages/SafetyGuides/Guide";
+import Suggesstions from "../pages/AllCategories/Suggesstions";
 
 const routes = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ const routes = createBrowserRouter([
             {
                 path:"/customer-safety-guide",
                 element:<SafetyGuides></SafetyGuides>
+            },
+            {
+                path:"/sidegurus-suggestions",
+                element:<Suggesstions></Suggesstions>
             },
             {
                 path:"/provider-safety-guide",

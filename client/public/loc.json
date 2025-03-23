@@ -5,6 +5,976 @@
 
 
 
+[
+  {
+    "id": 1,
+    "name": "Beauty & Personal Care Services",
+    "slug": "beauty-personal-care-services",
+    "subcategories": [
+      { "id": 101, "name": "Hair Stylist", "slug": "hair-stylist" },
+      { "id": 102, "name": "Barber", "slug": "barber" },
+      { "id": 103, "name": "Makeup Artist", "slug": "makeup-artist" },
+      { "id": 104, "name": "Nail Technician / Manicurist", "slug": "nail-technician-manicurist" },
+      { "id": 105, "name": "Eyebrow & Eyelash Technician", "slug": "eyebrow-eyelash-technician" },
+      { "id": 106, "name": "Esthetician / Facial Services", "slug": "esthetician-facial-services" },
+      { "id": 107, "name": "Waxing & Hair Removal", "slug": "waxing-hair-removal" },
+      { "id": 108, "name": "Body Contouring Specialist", "slug": "body-contouring-specialist" },
+      { "id": 109, "name": "Massage Therapy", "slug": "massage-therapy" },
+      { "id": 110, "name": "Personal Stylist / Wardrobe Consultant", "slug": "personal-stylist-wardrobe-consultant" },
+      { "id": 111, "name": "Mobile Spa Services", "slug": "mobile-spa-services" },
+      { "id": 112, "name": "Loctician (Specialist)", "slug": "loctician-specialist" },
+      { "id": 113, "name": "Cosmetic Tattooing (Microblading, Lip Blushing)", "slug": "cosmetic-tattooing-microblading-lip-blushing" },
+      { "id": 114, "name": "Skincare Consultant", "slug": "skincare-consultant" },
+      { "id": 115, "name": "Scalp Treatment Specialist (Dandruff & Hair Loss)", "slug": "scalp-treatment-specialist-dandruff-hair-loss" },
+      { "id": 116, "name": "Mobile Barber Services", "slug": "mobile-barber-services" },
+      { "id": 117, "name": "Holistic Beauty Consultant", "slug": "holistic-beauty-consultant" },
+      { "id": 118, "name": "Bridal Hair & Makeup Specialist", "slug": "bridal-hair-makeup-specialist" },
+      { "id": 119, "name": "Henna Brow Tinting", "slug": "henna-brow-tinting" },
+      { "id": 120, "name": "Mobile Spray Tan Specialist", "slug": "mobile-spray-tan-specialist" },
+      { "id": 1203938, "name": "Other", "slug": "others" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Health & Wellness",
+    "slug": "health-wellness",
+    "subcategories": [
+      { "id": 201, "name": "Personal Trainer", "slug": "personal-trainer" },
+      { "id": 202, "name": "Mindfulness & Stress Reduction Coaching", "slug": "mindfulness-stress-reduction-coaching" },
+      { "id": 203, "name": "Yoga Instructor", "slug": "yoga-instructor" },
+      { "id": 204, "name": "Pilates Instructor", "slug": "pilates-instructor" },
+      { "id": 205, "name": "Meditation Coach", "slug": "meditation-coach" },
+      { "id": 206, "name": "Health Coach", "slug": "health-coach" },
+      { "id": 207, "name": "Nutritionist / Dietitian", "slug": "nutritionist-dietitian" },
+      { "id": 208, "name": "Herbal / Juicing Consultant", "slug": "herbal-juicing-consultant" },
+      { "id": 209, "name": "Ayurvedic Health Consultant", "slug": "ayurvedic-health-consultant" },
+      { "id": 210, "name": "Counselors / Therapist", "slug": "counselors-therapist" },
+      { "id": 211, "name": "Life Coach", "slug": "life-coach" },
+      { "id": 212, "name": "Weight Loss Consultant", "slug": "weight-loss-consultant" },
+      { "id": 213, "name": "Chiropractic Services", "slug": "chiropractic-services" },
+      { "id": 214, "name": "Stretch Specialist", "slug": "stretch-specialist" },
+      { "id": 215, "name": "Mental Health Counselor", "slug": "mental-health-counselor" },
+      { "id": 216, "name": "Hypnotherapist", "slug": "hypnotherapist" },
+      { "id": 217, "name": "Sound Therapy", "slug": "sound-therapy" },
+      { "id": 218, "name": "Art Therapist", "slug": "art-therapist" },
+      { "id": 219, "name": "Relationship Coach", "slug": "relationship-coach" },
+      { "id": 12033938, "name": "Other", "slug": "others" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Educational & Tutoring Services",
+    "slug": "educational-tutoring-services",
+    "subcategories": [
+      { "id": 301, "name": "Piano Lessons", "slug": "piano-lessons" },
+      { "id": 302, "name": "Guitar Lessons", "slug": "guitar-lessons" },
+      { "id": 303, "name": "Drum Lessons", "slug": "drum-lessons" },
+      { "id": 304, "name": "Violin Lessons", "slug": "violin-lessons" },
+      { "id": 305, "name": "Vocal / Singing Coach", "slug": "vocal-singing-coach" },
+      { "id": 306, "name": "Art Lessons (Painting, Drawing, Sculpting)", "slug": "art-lessons-painting-drawing-sculpting" },
+      { "id": 307, "name": "Dance Instructor (Ballet, Hip-Hop, Salsa, etc.)", "slug": "dance-instructor-ballet-hip-hop-salsa" },
+      { "id": 308, "name": "Acting / Drama Coach", "slug": "acting-drama-coach" },
+      { "id": 309, "name": "Language Tutor (Spanish, French, Chinese, etc.)", "slug": "language-tutor-spanish-french-chinese" },
+      { "id": 310, "name": "Math Tutor", "slug": "math-tutor" },
+      { "id": 311, "name": "Science Tutor", "slug": "science-tutor" },
+      { "id": 312, "name": "SAT / ACT Prep Tutor", "slug": "sat-act-prep-tutor" },
+      { "id": 313, "name": "College Admissions Consultant", "slug": "college-admissions-consultant" },
+      { "id": 314, "name": "Special Needs Tutor", "slug": "special-needs-tutor" },
+      { "id": 315, "name": "Public Speaking Coach", "slug": "public-speaking-coach" },
+      { "id": 316, "name": "Study Skills & Time Management Coach", "slug": "study-skills-time-management-coach" },
+      { "id": 12032938, "name": "Other", "slug": "others" }
+    ]
+  },
+    {
+      "id": 4,
+      "name": "Home Improvement & Repair Services",
+      "slug": "home-improvement-repair-services",
+      "subcategories": [
+        { "id": 401, "name": "Plumbing", "slug": "plumbing" },
+        { "id": 402, "name": "Electrical Work", "slug": "electrical-work" },
+        { "id": 403, "name": "Painting", "slug": "painting" },
+        { "id": 404, "name": "Kitchen Remodeling / Bathroom Remodeling", "slug": "kitchen-bathroom-remodeling" },
+        { "id": 405, "name": "Handyman Services", "slug": "handyman-services" },
+        { "id": 406, "name": "Carpentry", "slug": "carpentry" },
+        { "id": 407, "name": "Roofing", "slug": "roofing" },
+        { "id": 408, "name": "Flooring Installation & Repair", "slug": "flooring-installation-repair" },
+        { "id": 409, "name": "HVAC (Heating, Ventilation, Air Conditioning)", "slug": "hvac" },
+        { "id": 410, "name": "Drywall & Plaster Repair", "slug": "drywall-plaster-repair" },
+        { "id": 411, "name": "Appliance Repair", "slug": "appliance-repair" },
+        { "id": 412, "name": "Water Damage Restoration", "slug": "water-damage-restoration" },
+        { "id": 413, "name": "Pest Control", "slug": "pest-control" },
+        { "id": 414, "name": "Home Security Installation", "slug": "home-security-installation" },
+        { "id": 415, "name": "Smart Home Setup", "slug": "smart-home-setup" },
+        { "id": 416, "name": "Window & Door Installation", "slug": "window-door-installation" },
+        { "id": 417, "name": "Locksmith Services", "slug": "locksmith-services" },
+        { "id": 418, "name": "Garage Door Repair", "slug": "garage-door-repair" },
+        { "id": 419, "name": "Home Theater Installation", "slug": "home-theater-installation" },
+        { "id": 420, "name": "Home Organization / Decluttering", "slug": "home-organization-decluttering" },
+        { "id": 421, "name": "Garage Makeovers", "slug": "garage-makeovers" },
+        { "id": 422, "name": "Home Soundproofing Expert", "slug": "home-soundproofing-expert" },
+        { "id": 423, "name": "Solar Panel Installation & Maintenance", "slug": "solar-panel-installation-maintenance" },
+        { "id": 424, "name": "Basement Waterproofing Specialist", "slug": "basement-waterproofing-specialist" },
+        { "id": 425, "name": "Wallpaper Installation & Removal", "slug": "wallpaper-installation-removal" },
+        { "id": 426, "name": "Exterior House Painting", "slug": "exterior-house-painting" },
+        { "id": 12039328, "name": "Other", "slug": "others" }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Automotive Services",
+      "slug": "automotive-services",
+      "subcategories": [
+        { "id": 501, "name": "Car Repair / Mechanic", "slug": "car-repair-mechanic" },
+        { "id": 502, "name": "Auto Body Repair", "slug": "auto-body-repair" },
+        { "id": 503, "name": "Car Detailing", "slug": "car-detailing" },
+        { "id": 504, "name": "Mobile Mechanic", "slug": "mobile-mechanic" },
+        { "id": 505, "name": "Motorcycle Repair", "slug": "motorcycle-repair" },
+        { "id": 506, "name": "Tire Repair & Replacement", "slug": "tire-repair-replacement" },
+        { "id": 507, "name": "Windshield Repair & Replacement", "slug": "windshield-repair-replacement" },
+        { "id": 508, "name": "Car Audio & Electronics Installation", "slug": "car-audio-electronics-installation" },
+        { "id": 509, "name": "Towing Services", "slug": "towing-services" },
+        { "id": 510, "name": "Car Wrapping / Customization", "slug": "car-wrapping-customization" },
+        { "id": 511, "name": "RV Repair", "slug": "rv-repair" },
+        { "id": 512, "name": "Boat Repair", "slug": "boat-repair" },
+        { "id": 12303938, "name": "Other", "slug": "others" }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Business & Professional Services",
+      "slug": "business-professional-services",
+      "subcategories": [
+        { "id": 601, "name": "Business Consultant", "slug": "business-consultant" },
+        { "id": 602, "name": "Virtual Assistant", "slug": "virtual-assistant" },
+        { "id": 603, "name": "Social Media Management", "slug": "social-media-management" },
+        { "id": 604, "name": "SEO & Digital Marketing Services", "slug": "seo-digital-marketing-services" },
+        { "id": 605, "name": "Graphic Design", "slug": "graphic-design" },
+        { "id": 606, "name": "Website Development", "slug": "website-development" },
+        { "id": 607, "name": "Logo & Branding Services", "slug": "logo-branding-services" },
+        { "id": 608, "name": "IT Support & Tech Services", "slug": "it-support-tech-services" },
+        { "id": 609, "name": "Copywriting & Content Writing", "slug": "copywriting-content-writing" },
+        { "id": 610, "name": "Video Editing", "slug": "video-editing" },
+        { "id": 611, "name": "Podcast Editing", "slug": "podcast-editing" },
+        { "id": 612, "name": "Business Plan Writing", "slug": "business-plan-writing" },
+        { "id": 613, "name": "Legal Consulting", "slug": "legal-consulting" },
+        { "id": 614, "name": "Accounting & Bookkeeping", "slug": "accounting-bookkeeping" },
+        { "id": 615, "name": "Notary Public", "slug": "notary-public" },
+        { "id": 616, "name": "Grant Writing Services", "slug": "grant-writing-services" },
+        { "id": 617, "name": "Public Relations Consultant", "slug": "public-relations-consultant" },
+        { "id": 12039638, "name": "Other", "slug": "others" }
+      ]
+    },
+      {
+        "id": 7,
+        "name": "Event Services",
+        "slug": "event-services",
+        "subcategories": [
+          { "id": 701, "name": "Photographer", "slug": "photographer" },
+          { "id": 702, "name": "Videographer", "slug": "videographer" },
+          { "id": 703, "name": "DJ / Musician for Events", "slug": "dj-musician-events" },
+          { "id": 704, "name": "Wedding Planner", "slug": "wedding-planner" },
+          { "id": 705, "name": "Event Decorator", "slug": "event-decorator" },
+          { "id": 706, "name": "Caterer", "slug": "caterer" },
+          { "id": 707, "name": "Cake Designer / Baker", "slug": "cake-designer-baker" },
+          { "id": 708, "name": "Balloon Artist", "slug": "balloon-artist" },
+          { "id": 709, "name": "Face Painter", "slug": "face-painter" },
+          { "id": 710, "name": "Party Magician", "slug": "party-magician" },
+          { "id": 711, "name": "Clown & Children’s Entertainment", "slug": "clown-childrens-entertainment" },
+          { "id": 712, "name": "Bartender for Hire", "slug": "bartender-for-hire" },
+          { "id": 713, "name": "Security for Events", "slug": "security-for-events" },
+          { "id": 714, "name": "Photo Booth Rental", "slug": "photo-booth-rental" },
+          { "id": 715, "name": "Live Band for Events", "slug": "live-band-events" },
+          { "id": 716, "name": "Proposal Planner", "slug": "proposal-planner" },
+          { "id": 717, "name": "Wedding Officiant", "slug": "wedding-officiant" },
+          { "id": 718, "name": "Professional Bridesmaid or Groomsman for Hire", "slug": "professional-bridesmaid-groomsman" },
+          { "id": 719, "name": "Luxury Picnic Setup Services", "slug": "luxury-picnic-setup-services" },
+          { "id": 720, "name": "Bachelorette & Bachelor Party Planner", "slug": "bachelorette-bachelor-party-planner" },
+          { "id": 721, "name": "Outdoor Movie Night Rental or Setup Services", "slug": "outdoor-movie-night-rental-setup" },
+          { "id": 722, "name": "Personal Tour Guides", "slug": "personal-tour-guides" },
+          { "id": 12034938, "name": "Other", "slug": "others" }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Cleaning & Maintenance Services",
+        "slug": "cleaning-maintenance-services",
+        "subcategories": [
+          { "id": 801, "name": "House Cleaning", "slug": "house-cleaning" },
+          { "id": 802, "name": "Commercial Cleaning", "slug": "commercial-cleaning" },
+          { "id": 803, "name": "Carpet & Upholstery Cleaning", "slug": "carpet-upholstery-cleaning" },
+          { "id": 804, "name": "Window Cleaning", "slug": "window-cleaning" },
+          { "id": 805, "name": "Power Washing", "slug": "power-washing" },
+          { "id": 806, "name": "Laundry & Ironing Services", "slug": "laundry-ironing-services" },
+          { "id": 807, "name": "Junk Removal", "slug": "junk-removal" },
+          { "id": 808, "name": "Pool Cleaning", "slug": "pool-cleaning" },
+          { "id": 809, "name": "Home Sanitation & Disinfection Services", "slug": "home-sanitation-disinfection" },
+          { "id": 810, "name": "Hoarding Cleanup", "slug": "hoarding-cleanup" },
+          { "id": 811, "name": "Home Organization", "slug": "home-organization" },
+          { "id": 12039838, "name": "Other", "slug": "others" }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Pet Services",
+        "slug": "pet-services",
+        "subcategories": [
+          { "id": 901, "name": "Dog Walker", "slug": "dog-walker" },
+          { "id": 902, "name": "Pet Groomer", "slug": "pet-groomer" },
+          { "id": 903, "name": "Pet Sitter", "slug": "pet-sitter" },
+          { "id": 904, "name": "Pet Trainer", "slug": "pet-trainer" },
+          { "id": 905, "name": "Mobile Pet Grooming", "slug": "mobile-pet-grooming" },
+          { "id": 906, "name": "Animal Behavior Specialist", "slug": "animal-behavior-specialist" },
+          { "id": 907, "name": "Dog Waste Cleanup", "slug": "dog-waste-cleanup" },
+          { "id": 154203938, "name": "Other", "slug": "others" }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "Real Estate & Moving Services",
+        "slug": "real-estate-moving-services",
+        "subcategories": [
+          { "id": 1001, "name": "Realtor Services", "slug": "realtor-services" },
+          { "id": 1002, "name": "Property Management", "slug": "property-management" },
+          { "id": 1003, "name": "Home Staging", "slug": "home-staging" },
+          { "id": 1004, "name": "Moving Services", "slug": "moving-services" },
+          { "id": 1005, "name": "Junk Hauling", "slug": "junk-hauling" },
+          { "id": 1006, "name": "Packing & Unpacking Services", "slug": "packing-unpacking-services" },
+          { "id": 1007, "name": "Furniture Assembly", "slug": "furniture-assembly" },
+          { "id": 1008, "name": "Lawn & Garden Services", "slug": "lawn-garden-services" },
+          { "id": 1009, "name": "Landscaping", "slug": "landscaping" },
+          { "id": 1010, "name": "Lawn Mowing", "slug": "lawn-mowing" },
+          { "id": 1011, "name": "Tree Trimming & Removal", "slug": "tree-trimming-removal" },
+          { "id": 1012, "name": "Gardening", "slug": "gardening" },
+          { "id": 1013, "name": "Sprinkler Installation & Repair", "slug": "sprinkler-installation-repair" },
+          { "id": 1014, "name": "Snow Removal", "slug": "snow-removal" },
+          { "id": 1015, "name": "Fence Installation & Repair", "slug": "fence-installation-repair" },
+          { "id": 1016, "name": "Deck & Patio Services", "slug": "deck-patio-services" },
+          { "id": 13938, "name": "Other", "slug": "others" }
+        ]
+      },
+      
+        {
+          "id": 11,
+          "name": "Security & Safety Services",
+          "slug": "security-safety-services",
+          "subcategories": [
+            { "id": 1101, "name": "Private Investigator", "slug": "private-investigator" },
+            { "id": 1102, "name": "Security Guard for Events", "slug": "security-guard-events" },
+            { "id": 1103, "name": "Cybersecurity Services", "slug": "cybersecurity-services" },
+            { "id": 1104, "name": "Home Security System Installation", "slug": "home-security-system-installation" },
+            { "id": 1105, "name": "Personal Bodyguard", "slug": "personal-bodyguard" },
+            { "id": 120398, "name": "Other", "slug": "others" }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "Technology & Electronics",
+          "slug": "technology-electronics",
+          "subcategories": [
+            { "id": 1201, "name": "Computer Repair", "slug": "computer-repair" },
+            { "id": 1202, "name": "Phone Repair", "slug": "phone-repair" },
+            { "id": 1203, "name": "Data Recovery Services", "slug": "data-recovery-services" },
+            { "id": 1204, "name": "IT Consulting", "slug": "it-consulting" },
+            { "id": 1205, "name": "Smart Home Setup", "slug": "smart-home-setup" },
+            { "id": 1206, "name": "3D Printing Services", "slug": "3d-printing-services" },
+            { "id": 12038, "name": "Other", "slug": "others" }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "Personal & Lifestyle Services",
+          "slug": "personal-lifestyle-services",
+          "subcategories": [
+            { "id": 1301, "name": "Personal Shopper", "slug": "personal-shopper" },
+            { "id": 1302, "name": "Meal Prep Services", "slug": "meal-prep-services" },
+            { "id": 1303, "name": "Fashion Designer / Tailor", "slug": "fashion-designer-tailor" },
+            { "id": 1304, "name": "Shoe Repair", "slug": "shoe-repair" },
+            { "id": 1305, "name": "Resume Writing Services", "slug": "resume-writing-services" },
+            { "id": 1306, "name": "Speech Therapist", "slug": "speech-therapist" },
+            { "id": 1307, "name": "Genealogy Research", "slug": "genealogy-research" },
+            { "id": 1308, "name": "Luxury and Personal Concierge Services", "slug": "luxury-personal-concierge-services" },
+            { "id": 1309, "name": "Cooking Lessons", "slug": "cooking-lessons" },
+            { "id": 123938, "name": "Other", "slug": "others" }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "Writing & Publishing Services",
+          "slug": "writing-publishing-services",
+          "subcategories": [
+            { "id": 1401, "name": "Ghostwriting", "slug": "ghostwriting" },
+            { "id": 1402, "name": "Resume Writing", "slug": "resume-writing" },
+            { "id": 1403, "name": "Scriptwriting Services", "slug": "scriptwriting-services" },
+            { "id": 1404, "name": "Editing & Proofreading", "slug": "editing-proofreading" },
+            { "id": 1405, "name": "Translation Services", "slug": "translation-services" },
+            { "id": 12745938, "name": "Other", "slug": "others" }
+          ]
+        },
+        {
+          "id": 15,
+          "name": "Fitness & Sports Coaching",
+          "slug": "fitness-sports-coaching",
+          "subcategories": [
+            { "id": 1501, "name": "Boxing Coach", "slug": "boxing-coach" },
+            { "id": 1502, "name": "Basketball Coach", "slug": "basketball-coach" },
+            { "id": 1503, "name": "Soccer Trainer", "slug": "soccer-trainer" },
+            { "id": 1504, "name": "Self Defense Instructor", "slug": "self-defense-instructor" },
+            { "id": 1505, "name": "Martial Arts Instructor", "slug": "martial-arts-instructor" },
+            { "id": 1506, "name": "Swim Instructor", "slug": "swim-instructor" },
+            { "id": 1507, "name": "Henna Artist", "slug": "henna-artist" },
+            { "id": 1508, "name": "Personal Driver", "slug": "personal-driver" },
+            { "id": 1509, "name": "Travel Agent", "slug": "travel-agent" },
+            { "id": 126403938, "name": "Other", "slug": "others" }
+          ]
+        },
+        {
+          "id": 16,
+          "name": "Music & Entertainment Services",
+          "slug": "music-entertainment-services",
+          "subcategories": [
+            { "id": 1601, "name": "Voiceover Artist", "slug": "voiceover-artist" },
+            { "id": 1602, "name": "Karaoke DJ", "slug": "karaoke-dj" },
+            { "id": 1603, "name": "Sound Engineer", "slug": "sound-engineer" },
+            { "id": 1604, "name": "Music Producer", "slug": "music-producer" },
+            { "id": 1605, "name": "Band Manager", "slug": "band-manager" },
+            { "id": 120356938, "name": "Other", "slug": "others" }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "Childcare & Senior Care",
+          "slug": "childcare-senior-care",
+          "subcategories": [
+            { "id": 1701, "name": "Babysitter", "slug": "babysitter" },
+            { "id": 1702, "name": "Nanny Services", "slug": "nanny-services" },
+            { "id": 1703, "name": "Elderly Companion Care", "slug": "elderly-companion-care" },
+            { "id": 1704, "name": "Special Needs Caregiver", "slug": "special-needs-caregiver" },
+            { "id": 1705, "name": "Doula Services", "slug": "doula-services" },
+            { "id": 1255938, "name": "Other", "slug": "others" }
+          ]
+        },
+        
+          {
+            "id": 18,
+            "name": "Legal & Financial Services",
+            "slug": "legal-financial-services",
+            "subcategories": [
+              { "id": 1801, "name": "Tax Preparer", "slug": "tax-preparer" },
+              { "id": 1802, "name": "Mortgage Broker", "slug": "mortgage-broker" },
+              { "id": 1803, "name": "Debt Counselor", "slug": "debt-counselor" },
+              { "id": 1804, "name": "Financial Planner", "slug": "financial-planner" },
+              { "id": 1805, "name": "Legal Consulting", "slug": "legal-consulting" },
+              { "id": 12039338, "name": "Other", "slug": "others" }
+            ]
+          },
+          {
+            "id": 19,
+            "name": "Handmade & Custom Creations",
+            "slug": "handmade-custom-creations",
+            "subcategories": [
+              { "id": 1901, "name": "Custom Jewelry Maker", "slug": "custom-jewelry-maker" },
+              { "id": 1902, "name": "Custom Candle Maker", "slug": "custom-candle-maker" },
+              { "id": 1903, "name": "Woodworking & Custom Furniture", "slug": "woodworking-custom-furniture" },
+              { "id": 1904, "name": "Crochet/Knitting", "slug": "crochet-knitting" },
+              { "id": 1905, "name": "Organic Handmade Soaps/ Creams", "slug": "organic-handmade-soaps-creams" },
+              { "id": 1906, "name": "Seamstress", "slug": "seamstress" },
+              { "id": 14203938, "name": "Other", "slug": "others" }
+            ]
+          },
+          {
+            "id": 20,
+            "name": "Miscellaneous Services",
+            "slug": "miscellaneous-services",
+            "subcategories": [
+              { "id": 2001, "name": "Holiday Light Installation/ Removal", "slug": "holiday-light-installation-removal" },
+              { "id": 2002, "name": "Christmas Tree Delivery & Setup", "slug": "christmas-tree-delivery-setup" },
+              { "id": 2003, "name": "Firewood Delivery", "slug": "firewood-delivery" },
+              { "id": 2004, "name": "Gutter Cleaning", "slug": "gutter-cleaning" },
+              { "id": 2005, "name": "Bouncy House Rental", "slug": "bouncy-house-rental" },
+              { "id": 2006, "name": "Costume Designer", "slug": "costume-designer" },
+              { "id": 2007, "name": "Drone Videography", "slug": "drone-videography" },
+              { "id": 2008, "name": "Rent a Buddy (Workout Buddy, Business Events, Gala, etc.)", "slug": "rent-a-buddy" },
+              { "id": 2009, "name": "Gig & Side Hustles", "slug": "gig-side-hustles" },
+              { "id": 2010, "name": "Personal Delivery Driver", "slug": "personal-delivery-driver" },
+              { "id": 2011, "name": "Food Truck Services", "slug": "food-truck-services" },
+              { "id": 2012, "name": "eBay / Amazon Product Lister", "slug": "ebay-amazon-product-lister" },
+              { "id": 2013, "name": "Mystery Shopper", "slug": "mystery-shopper" },
+              { "id": 2014, "name": "House Sitter", "slug": "house-sitter" },
+              { "id": 12039338, "name": "Other", "slug": "others" }
+            ]
+          },
+          {
+            "id": 21,
+            "name": "Elderly & Disability Services",
+            "slug": "elderly-disability-services",
+            "subcategories": [
+              { "id": 2101, "name": "Wheelchair Ramp Installation", "slug": "wheelchair-ramp-installation" },
+              { "id": 2102, "name": "Home Accessibility Modifications", "slug": "home-accessibility-modifications" },
+              { "id": 2103, "name": "Braille & Sign Language Interpreter", "slug": "braille-sign-language-interpreter" },
+              { "id": 2104, "name": "Elderly Computer Literacy Coach", "slug": "elderly-computer-literacy-coach" },
+              { "id": 120309938, "name": "Other", "slug": "others" }
+            ]
+          },
+          {
+            "id": 22,
+            "name": "Expanded Business & Professional Services",
+            "slug": "expanded-business-professional-services",
+            "subcategories": [
+              { "id": 2201, "name": "E-Commerce Consultant", "slug": "e-commerce-consultant" },
+              { "id": 2202, "name": "Dropshipping Business Consultant", "slug": "dropshipping-business-consultant" },
+              { "id": 2203, "name": "Print-on-Demand Services", "slug": "print-on-demand-services" },
+              { "id": 2204, "name": "LinkedIn Profile Optimization", "slug": "linkedin-profile-optimization" },
+              { "id": 2205, "name": "Crowdfunding Campaign Consultant", "slug": "crowdfunding-campaign-consultant" },
+              { "id": 2206, "name": "Online Course Creation Consultant", "slug": "online-course-creation-consultant" },
+              { "id": 2207, "name": "Etsy Shop Setup & Optimization", "slug": "etsy-shop-setup-optimization" },
+              { "id": 2208, "name": "Specialized Educational Services", "slug": "specialized-educational-services" },
+              { "id": 2209, "name": "STEM Tutoring (Robotics, Coding, Engineering, etc.)", "slug": "stem-tutoring" },
+              { "id": 2210, "name": "Speech & Debate Coach", "slug": "speech-debate-coach" },
+              { "id": 2211, "name": "Children’s Book Writing Workshop", "slug": "childrens-book-writing-workshop" },
+              { "id": 2212, "name": "Handwriting & Calligraphy Lessons", "slug": "handwriting-calligraphy-lessons" },
+              { "id": 2213, "name": "Voice-Over Acting Classes", "slug": "voice-over-acting-classes" },
+              { "id": 2214, "name": "Tattoo Art Training", "slug": "tattoo-art-training" },
+              { "id": 2215, "name": "Digital Legacy Planning", "slug": "digital-legacy-planning" },
+              { "id": 120389938, "name": "Other", "slug": "others" }
+            ]
+          },
+          {
+            "id": 23,
+            "name": "Language Services",
+            "slug": "language-services",
+            "subcategories": [
+              { "id": 2301, "name": "Learn Twi", "slug": "learn-twi" },
+              { "id": 2302, "name": "Learn Spanish", "slug": "learn-spanish" },
+              { "id": 2303, "name": "Learn French", "slug": "learn-french" },
+              { "id": 2304, "name": "Learn Ga", "slug": "learn-ga" },
+              { "id": 2305, "name": "Learn Urdu", "slug": "learn-urdu" },
+              { "id": 2306, "name": "Learn Bengali", "slug": "learn-bengali" },
+              { "id": 2307, "name": "Learn Arabic", "slug": "learn-arabic" },
+              { "id": 2308, "name": "Learn Chinese Mandarin", "slug": "learn-chinese-mandarin" },
+              { "id": 120368938, "name": "Other", "slug": "others" }
+            ]
+          },
+          
+            {
+              "id": 24,
+              "name": "Creative & Artistic",
+              "slug": "creative-artistic",
+              "subcategories": [
+                { 
+                  "id": 2401, 
+                  "name": "Caricature Artist", 
+                  "slug": "caricature-artist", 
+                  "description": "Creates humorous or exaggerated portraits at events or for personal use." 
+                },
+                { 
+                  "id": 2402, 
+                  "name": "Storyboard Artist", 
+                  "slug": "storyboard-artist", 
+                  "description": "Designs visual storyboards for films, commercials, or animations." 
+                },
+                { 
+                  "id": 2403, 
+                  "name": "Muralist", 
+                  "slug": "muralist", 
+                  "description": "Paints large-scale murals for homes, businesses, or public spaces." 
+                },
+                { 
+                  "id": 2404, 
+                  "name": "Comic Book Illustrator", 
+                  "slug": "comic-book-illustrator", 
+                  "description": "Creates illustrations for comic books or graphic novels." 
+                },
+                { 
+                  "id": 2405, 
+                  "name": "Graffiti Artist", 
+                  "slug": "graffiti-artist", 
+                  "description": "Offers custom graffiti art for businesses or private spaces." 
+                },
+                { 
+                  "id": 2406, 
+                  "name": "Tattoo Designer", 
+                  "slug": "tattoo-designer", 
+                  "description": "Designs custom tattoos for clients before they visit a tattoo artist." 
+                },
+                { 
+                  "id": 2407, 
+                  "name": "Pet Portrait Artist", 
+                  "slug": "pet-portrait-artist", 
+                  "description": "Creates custom portraits of pets in various artistic styles." 
+                },
+                { 
+                  "id": 2408, 
+                  "name": "Fantasy Map Illustrator", 
+                  "slug": "fantasy-map-illustrator", 
+                  "description": "Designs maps for books, games, or tabletop RPGs like Dungeons & Dragons." 
+                },
+                { 
+                  "id": 2409, 
+                  "name": "Calligrapher", 
+                  "slug": "calligrapher", 
+                  "description": "Specializes in elegant handwriting for weddings, events, or custom artwork." 
+                },
+                { 
+                  "id": 2410, 
+                  "name": "Digital Matte Painter", 
+                  "slug": "digital-matte-painter", 
+                  "description": "Creates digital backgrounds for films or video games." 
+                },
+                { "id": 1237568, "name": "Other", "slug": "others" }
+              ]
+            },
+            {
+              "id": 25,
+              "name": "Tech & Digital Professions",
+              "slug": "tech-digital-professions",
+              "subcategories": [
+                { 
+                  "id": 2501, 
+                  "name": "AI Prompt Engineer", 
+                  "slug": "ai-prompt-engineer", 
+                  "description": "Helps businesses or individuals optimize AI tools like ChatGPT or MidJourney." 
+                },
+                { 
+                  "id": 2502, 
+                  "name": "Virtual Reality (VR) Experience Designer", 
+                  "slug": "vr-experience-designer", 
+                  "description": "Creates immersive VR environments for gaming or training." 
+                },
+                { 
+                  "id": 2503, 
+                  "name": "Droneographer", 
+                  "slug": "droneographer", 
+                  "description": "Specializes in aerial photography and videography using drones." 
+                },
+                { 
+                  "id": 2504, 
+                  "name": "3D Modeler", 
+                  "slug": "3d-modeler", 
+                  "description": "Designs 3D models for video games, animations, or 3D printing." 
+                },
+                { 
+                  "id": 2505, 
+                  "name": "Game Tester", 
+                  "slug": "game-tester", 
+                  "description": "Tests video games for bugs and provides feedback to developers." 
+                },
+                { 
+                  "id": 2506, 
+                  "name": "NFT Artist", 
+                  "slug": "nft-artist", 
+                  "description": "Creates digital art for non-fungible tokens (NFTs)." 
+                },
+                { 
+                  "id": 2507, 
+                  "name": "Chatbot Designer", 
+                  "slug": "chatbot-designer", 
+                  "description": "Builds and customizes chatbots for businesses." 
+                },
+                { 
+                  "id": 2508, 
+                  "name": "Augmented Reality (AR) Developer", 
+                  "slug": "ar-developer", 
+                  "description": "Creates AR experiences for apps or marketing campaigns." 
+                },
+                { "id": 15435938, "name": "Other", "slug": "others" }
+              ]
+            },
+            {
+              "id": 26,
+              "name": "Event & Entertainment Professions",
+              "slug": "event-entertainment-professions",
+              "subcategories": [
+                { 
+                  "id": 2601, 
+                  "name": "Escape Room Designer", 
+                  "slug": "escape-room-designer", 
+                  "description": "Designs puzzles and themes for escape rooms." 
+                },
+                { 
+                  "id": 2602, 
+                  "name": "Party Motivator", 
+                  "slug": "party-motivator", 
+                  "description": "Keeps guests engaged and energized at events or parties." 
+                },
+                { 
+                  "id": 2603, 
+                  "name": "Historical Reenactor", 
+                  "slug": "historical-reenactor", 
+                  "description": "Portrays historical figures or events for educational or entertainment purposes." 
+                },
+                { 
+                  "id": 2604, 
+                  "name": "Voice Actor", 
+                  "slug": "voice-actor", 
+                  "description": "Provides voiceovers for animations, commercials, or audiobooks." 
+                },
+                { 
+                  "id": 2605, 
+                  "name": "Puppeteer", 
+                  "slug": "puppeteer", 
+                  "description": "Performs with puppets for events, children’s parties, or TV shows." 
+                },
+                { 
+                  "id": 2606, 
+                  "name": "Stand-Up Comedy Writer", 
+                  "slug": "stand-up-comedy-writer", 
+                  "description": "Writes jokes and routines for comedians." 
+                },
+                { 
+                  "id": 2607, 
+                  "name": "Costume Designer", 
+                  "slug": "costume-designer", 
+                  "description": "Creates custom costumes for theater, film, or cosplay." 
+                },
+                { 
+                  "id": 2608, 
+                  "name": "Escape Artist", 
+                  "slug": "escape-artist", 
+                  "description": "Performs escape stunts at events or parties." 
+                },
+                { "id": 1543938, "name": "Other", "slug": "others" }
+              ]
+            },
+            {
+              "id": 27,
+              "name": "Lifestyle & Personal Services",
+              "slug": "lifestyle-personal-services",
+              "subcategories": [
+                { 
+                  "id": 2701, 
+                  "name": "Personal Historian", 
+                  "slug": "personal-historian", 
+                  "description": "Writes and records life stories for individuals or families." 
+                },
+                { 
+                  "id": 2702, 
+                  "name": "Happiness Coach", 
+                  "slug": "happiness-coach", 
+                  "description": "Helps clients find joy and fulfillment in their lives." 
+                },
+                { "id": 124548, "name": "Other", "slug": "others" }
+              ]
+            },
+            {
+              "id": 28,
+              "name": "Food & Beverage Professions",
+              "slug": "food-beverage-professions",
+              "subcategories": [
+                { 
+                  "id": 2801, 
+                  "name": "Food Stylist", 
+                  "slug": "food-stylist", 
+                  "description": "Prepares and arranges food for photography or film." 
+                },
+                { 
+                  "id": 2802, 
+                  "name": "Beverage Consultant", 
+                  "slug": "beverage-consultant", 
+                  "description": "Creates custom drink menus for bars or events." 
+                },
+                { 
+                  "id": 2803, 
+                  "name": "Chocolate Sculptor", 
+                  "slug": "chocolate-sculptor", 
+                  "description": "Designs edible chocolate sculptures for events or gifts." 
+                },
+                { 
+                  "id": 2804, 
+                  "name": "Foraging Guide", 
+                  "slug": "foraging-guide", 
+                  "description": "Leads foraging tours for wild edible plants and mushrooms." 
+                },
+                { 
+                  "id": 2805, 
+                  "name": "Tea Sommelier", 
+                  "slug": "tea-sommelier", 
+                  "description": "Specializes in tea pairing and education." 
+                },
+                { 
+                  "id": 2806, 
+                  "name": "Cake Sculptor", 
+                  "slug": "cake-sculptor", 
+                  "description": "Creates custom-shaped cakes for special occasions." 
+                },
+                { 
+                  "id": 2807, 
+                  "name": "Food Taster", 
+                  "slug": "food-taster", 
+                  "description": "Has a distinct palate and gives feedback to improve dishes." 
+                },
+                { "id": 1203938, "name": "Other", "slug": "others" }
+              ]
+            },
+            
+              {
+                "id": 29,
+                "name": "Outdoor & Adventure Professions",
+                "slug": "outdoor-adventure-professions",
+                "subcategories": [
+                  { 
+                    "id": 2901, 
+                    "name": "Geocaching Guide", 
+                    "slug": "geocaching-guide", 
+                    "description": "Leads geocaching adventures for individuals or groups." 
+                  },
+                  { 
+                    "id": 2902, 
+                    "name": "Survival Skills Instructor", 
+                    "slug": "survival-skills-instructor", 
+                    "description": "Teaches wilderness survival techniques." 
+                  },
+                  { 
+                    "id": 2903, 
+                    "name": "Treehouse Builder", 
+                    "slug": "treehouse-builder", 
+                    "description": "Designs and constructs custom treehouses." 
+                  },
+                  { 
+                    "id": 2904, 
+                    "name": "Falconry Trainer", 
+                    "slug": "falconry-trainer", 
+                    "description": "Offers falconry experiences or training sessions." 
+                  },
+                  { 
+                    "id": 2905, 
+                    "name": "Urban Explorer Guide", 
+                    "slug": "urban-explorer-guide", 
+                    "description": "Leads tours of abandoned or hidden urban locations." 
+                  },
+                  { 
+                    "id": 2906, 
+                    "name": "Stargazing Guide", 
+                    "slug": "stargazing-guide", 
+                    "description": "Hosts stargazing events and teaches astronomy basics." 
+                  },
+                  { "id": 12999, "name": "Other", "slug": "others" }
+                ]
+              },
+              {
+                "id": 30,
+                "name": "Business & Marketing Professions",
+                "slug": "business-marketing-professions",
+                "subcategories": [
+                  { 
+                    "id": 3001, 
+                    "name": "Brand Namer", 
+                    "slug": "brand-namer", 
+                    "description": "Creates unique and catchy names for businesses or products." 
+                  },
+                  { 
+                    "id": 3002, 
+                    "name": "Jingle Writer", 
+                    "slug": "jingle-writer", 
+                    "description": "Composes catchy jingles for commercials or brands." 
+                  },
+                  { 
+                    "id": 3003, 
+                    "name": "Crowdfunding Consultant", 
+                    "slug": "crowdfunding-consultant", 
+                    "description": "Helps individuals or businesses launch successful crowdfunding campaigns." 
+                  },
+                  { 
+                    "id": 3004, 
+                    "name": "Podcast Producer", 
+                    "slug": "podcast-producer", 
+                    "description": "Manages all aspects of podcast creation and distribution." 
+                  },
+                  { 
+                    "id": 3005, 
+                    "name": "E-Commerce Niche Finder", 
+                    "slug": "ecommerce-niche-finder", 
+                    "description": "Identifies profitable niches for online businesses." 
+                  },
+                  { 
+                    "id": 3006, 
+                    "name": "Resume Writer", 
+                    "slug": "resume-writer", 
+                    "description": "Creates professional resumes tailored to specific industries." 
+                  },
+                  { 
+                    "id": 3007, 
+                    "name": "LinkedIn Profile Writer", 
+                    "slug": "linkedin-profile-writer", 
+                    "description": "Optimizes LinkedIn profiles for job seekers or professionals." 
+                  },
+                  { "id": 129938, "name": "Other", "slug": "others" }
+                ]
+              },
+              {
+                "id": 31,
+                "name": "Unique & Niche Professions",
+                "slug": "unique-niche-professions",
+                "subcategories": [
+                  { 
+                    "id": 3101, 
+                    "name": "Professional Apologist", 
+                    "slug": "professional-apologist", 
+                    "description": "Writes or delivers apologies on behalf of individuals or businesses." 
+                  },
+                  { 
+                    "id": 3102, 
+                    "name": "Time Capsule Creator", 
+                    "slug": "time-capsule-creator", 
+                    "description": "Designs and assembles time capsules for events or families." 
+                  },
+                  { 
+                    "id": 3103, 
+                    "name": "Memory Box Curator", 
+                    "slug": "memory-box-curator", 
+                    "description": "Creates personalized memory boxes for special occasions." 
+                  },
+                  { 
+                    "id": 3104, 
+                    "name": "Laughter Yoga Instructor", 
+                    "slug": "laughter-yoga-instructor", 
+                    "description": "Leads laughter yoga sessions for stress relief." 
+                  },
+                  { 
+                    "id": 3105, 
+                    "name": "Professional Whistler", 
+                    "slug": "professional-whistler", 
+                    "description": "Performs whistling at events or for recordings." 
+                  },
+                  { 
+                    "id": 3106, 
+                    "name": "Celebrity Impersonator", 
+                    "slug": "celebrity-impersonator", 
+                    "description": "Impersonates famous celebrities for events or parties." 
+                  },
+                  { 
+                    "id": 3107, 
+                    "name": "Professional Line Stander", 
+                    "slug": "professional-line-stander", 
+                    "description": "Waits in line for tickets, events, or product launches." 
+                  },
+                  { 
+                    "id": 3108, 
+                    "name": "Ethical Hacker", 
+                    "slug": "ethical-hacker", 
+                    "description": "Tests the security of websites or systems for vulnerabilities." 
+                  },
+                  { 
+                    "id": 3109, 
+                    "name": "Digital File Organizer", 
+                    "slug": "digital-file-organizer", 
+                    "description": "Helps clients organize their digital files and devices." 
+                  },
+                  { 
+                    "id": 3110, 
+                    "name": "Custom Perfume Maker", 
+                    "slug": "custom-perfume-maker", 
+                    "description": "Creates personalized fragrances for clients." 
+                  },
+                  { 
+                    "id": 3111, 
+                    "name": "Professional Gift Wrapper", 
+                    "slug": "professional-gift-wrapper", 
+                    "description": "Offers high-end gift wrapping services." 
+                  },
+                  { 
+                    "id": 3112, 
+                    "name": "Balloon Artist", 
+                    "slug": "balloon-artist", 
+                    "description": "Creates intricate balloon sculptures for events." 
+                  },
+                  { 
+                    "id": 3113, 
+                    "name": "Pet Food Taster", 
+                    "slug": "pet-food-taster", 
+                    "description": "Tests and reviews pet food for quality and taste." 
+                  },
+                  { "id": 1203938, "name": "Other", "slug": "others" }
+
+                ]
+              },
+              {
+                "id": 32,
+                "name": "Eco-Friendly & Sustainable Professions",
+                "slug": "eco-friendly-sustainable-professions",
+                "subcategories": [
+                  { 
+                    "id": 3201, 
+                    "name": "Upcycling Artist", 
+                    "slug": "upcycling-artist", 
+                    "description": "Turns old or discarded items into new, functional art pieces." 
+                  },
+                  { 
+                    "id": 3202, 
+                    "name": "Composting Consultant", 
+                    "slug": "composting-consultant", 
+                    "description": "Helps households or businesses set up composting systems." 
+                  },
+                  { 
+                    "id": 3203, 
+                    "name": "Sustainable Living Coach", 
+                    "slug": "sustainable-living-coach", 
+                    "description": "Teaches eco-friendly lifestyle practices." 
+                  },
+                  { 
+                    "id": 3204, 
+                    "name": "Green Roof Designer", 
+                    "slug": "green-roof-designer", 
+                    "description": "Designs and installs eco-friendly green roofs." 
+                  },
+                  { 
+                    "id": 3205, 
+                    "name": "Zero-Waste Event Planner", 
+                    "slug": "zero-waste-event-planner", 
+                    "description": "Organizes events with minimal environmental impact." 
+                  },
+                  { "id": 19998, "name": "Other", "slug": "others" }
+                ]
+              },
+              {
+                "id": 33,
+                "name": "Miscellaneous Unique Professions",
+                "slug": "miscellaneous-unique-professions",
+                "subcategories": [
+                  { 
+                    "id": 3301, 
+                    "name": "Professional Sleeper", 
+                    "slug": "professional-sleeper", 
+                    "description": "Tests mattresses, pillows, or sleep products for companies." 
+                  },
+                  { 
+                    "id": 3302, 
+                    "name": "Mystery Novelist", 
+                    "slug": "mystery-novelist", 
+                    "description": "Writes custom mystery stories for individuals or events." 
+                  },
+                  { 
+                    "id": 3303, 
+                    "name": "Professional Dungeon Master", 
+                    "slug": "professional-dungeon-master", 
+                    "description": "Hosts custom Dungeons & Dragons campaigns." 
+                  },
+                  { 
+                    "id": 3304, 
+                    "name": "Hologram Designer", 
+                    "slug": "hologram-designer", 
+                    "description": "Designs holographic displays for events or marketing." 
+                  },
+                  { "id": 12065338, "name": "Other", "slug": "others" }
+                ]
+              }
+            
+              {
+                "id": 37,
+                "name": "Others",
+                "slug": "Others",
+                "subcategories": [
+                  { 
+                    "id": 5436653, 
+                    "name": "Other Professional", 
+                    "slug": "other-professional"
+                  
+                  }
+               
+                ]
+              }
+            
+
+]
 
 
 

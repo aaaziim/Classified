@@ -155,7 +155,7 @@ const PostEvents = () => {
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]"
               >
                 <option value="sub">Select Sub-Category</option>
-                {categories[categoryIndex].subcategories.map(
+                {categories[categoryIndex]?.subcategories?.map(
                   (subcategory, index) => (
                     <option key={index} value={subcategory.name}>
                       {subcategory.name}

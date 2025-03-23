@@ -23,7 +23,8 @@
       { "id": 117, "name": "Holistic Beauty Consultant", "slug": "holistic-beauty-consultant" },
       { "id": 118, "name": "Bridal Hair & Makeup Specialist", "slug": "bridal-hair-makeup-specialist" },
       { "id": 119, "name": "Henna Brow Tinting", "slug": "henna-brow-tinting" },
-      { "id": 120, "name": "Mobile Spray Tan Specialist", "slug": "mobile-spray-tan-specialist" }
+      { "id": 120, "name": "Mobile Spray Tan Specialist", "slug": "mobile-spray-tan-specialist" },
+      { "id": 1203938, "name": "Other", "slug": "others" }
     ]
   },
   {
@@ -49,7 +50,8 @@
       { "id": 216, "name": "Hypnotherapist", "slug": "hypnotherapist" },
       { "id": 217, "name": "Sound Therapy", "slug": "sound-therapy" },
       { "id": 218, "name": "Art Therapist", "slug": "art-therapist" },
-      { "id": 219, "name": "Relationship Coach", "slug": "relationship-coach" }
+      { "id": 219, "name": "Relationship Coach", "slug": "relationship-coach" },
+      { "id": 12033938, "name": "Other", "slug": "others" }
     ]
   },
   {
@@ -72,7 +74,8 @@
       { "id": 313, "name": "College Admissions Consultant", "slug": "college-admissions-consultant" },
       { "id": 314, "name": "Special Needs Tutor", "slug": "special-needs-tutor" },
       { "id": 315, "name": "Public Speaking Coach", "slug": "public-speaking-coach" },
-      { "id": 316, "name": "Study Skills & Time Management Coach", "slug": "study-skills-time-management-coach" }
+      { "id": 316, "name": "Study Skills & Time Management Coach", "slug": "study-skills-time-management-coach" },
+      { "id": 12032938, "name": "Other", "slug": "others" }
     ]
   },
     {
@@ -105,7 +108,8 @@
         { "id": 423, "name": "Solar Panel Installation & Maintenance", "slug": "solar-panel-installation-maintenance" },
         { "id": 424, "name": "Basement Waterproofing Specialist", "slug": "basement-waterproofing-specialist" },
         { "id": 425, "name": "Wallpaper Installation & Removal", "slug": "wallpaper-installation-removal" },
-        { "id": 426, "name": "Exterior House Painting", "slug": "exterior-house-painting" }
+        { "id": 426, "name": "Exterior House Painting", "slug": "exterior-house-painting" },
+        { "id": 12039328, "name": "Other", "slug": "others" }
       ]
     },
     {
@@ -124,7 +128,8 @@
         { "id": 509, "name": "Towing Services", "slug": "towing-services" },
         { "id": 510, "name": "Car Wrapping / Customization", "slug": "car-wrapping-customization" },
         { "id": 511, "name": "RV Repair", "slug": "rv-repair" },
-        { "id": 512, "name": "Boat Repair", "slug": "boat-repair" }
+        { "id": 512, "name": "Boat Repair", "slug": "boat-repair" },
+        { "id": 12303938, "name": "Other", "slug": "others" }
       ]
     },
     {
@@ -148,7 +153,8 @@
         { "id": 614, "name": "Accounting & Bookkeeping", "slug": "accounting-bookkeeping" },
         { "id": 615, "name": "Notary Public", "slug": "notary-public" },
         { "id": 616, "name": "Grant Writing Services", "slug": "grant-writing-services" },
-        { "id": 617, "name": "Public Relations Consultant", "slug": "public-relations-consultant" }
+        { "id": 617, "name": "Public Relations Consultant", "slug": "public-relations-consultant" },
+        { "id": 12039638, "name": "Other", "slug": "others" }
       ]
     },
       {
@@ -177,7 +183,8 @@
           { "id": 719, "name": "Luxury Picnic Setup Services", "slug": "luxury-picnic-setup-services" },
           { "id": 720, "name": "Bachelorette & Bachelor Party Planner", "slug": "bachelorette-bachelor-party-planner" },
           { "id": 721, "name": "Outdoor Movie Night Rental or Setup Services", "slug": "outdoor-movie-night-rental-setup" },
-          { "id": 722, "name": "Personal Tour Guides", "slug": "personal-tour-guides" }
+          { "id": 722, "name": "Personal Tour Guides", "slug": "personal-tour-guides" },
+          { "id": 12034938, "name": "Other", "slug": "others" }
         ]
       },
       {
@@ -195,7 +202,8 @@
           { "id": 808, "name": "Pool Cleaning", "slug": "pool-cleaning" },
           { "id": 809, "name": "Home Sanitation & Disinfection Services", "slug": "home-sanitation-disinfection" },
           { "id": 810, "name": "Hoarding Cleanup", "slug": "hoarding-cleanup" },
-          { "id": 811, "name": "Home Organization", "slug": "home-organization" }
+          { "id": 811, "name": "Home Organization", "slug": "home-organization" },
+          { "id": 12039838, "name": "Other", "slug": "others" }
         ]
       },
       {
@@ -209,7 +217,8 @@
           { "id": 904, "name": "Pet Trainer", "slug": "pet-trainer" },
           { "id": 905, "name": "Mobile Pet Grooming", "slug": "mobile-pet-grooming" },
           { "id": 906, "name": "Animal Behavior Specialist", "slug": "animal-behavior-specialist" },
-          { "id": 907, "name": "Dog Waste Cleanup", "slug": "dog-waste-cleanup" }
+          { "id": 907, "name": "Dog Waste Cleanup", "slug": "dog-waste-cleanup" },
+          { "id": 154203938, "name": "Other", "slug": "others" }
         ]
       },
       {
@@ -232,7 +241,8 @@
           { "id": 1013, "name": "Sprinkler Installation & Repair", "slug": "sprinkler-installation-repair" },
           { "id": 1014, "name": "Snow Removal", "slug": "snow-removal" },
           { "id": 1015, "name": "Fence Installation & Repair", "slug": "fence-installation-repair" },
-          { "id": 1016, "name": "Deck & Patio Services", "slug": "deck-patio-services" }
+          { "id": 1016, "name": "Deck & Patio Services", "slug": "deck-patio-services" },
+          { "id": 13938, "name": "Other", "slug": "others" }
         ]
       },
       
@@ -245,7 +255,8 @@
             { "id": 1102, "name": "Security Guard for Events", "slug": "security-guard-events" },
             { "id": 1103, "name": "Cybersecurity Services", "slug": "cybersecurity-services" },
             { "id": 1104, "name": "Home Security System Installation", "slug": "home-security-system-installation" },
-            { "id": 1105, "name": "Personal Bodyguard", "slug": "personal-bodyguard" }
+            { "id": 1105, "name": "Personal Bodyguard", "slug": "personal-bodyguard" },
+            { "id": 120398, "name": "Other", "slug": "others" }
           ]
         },
         {
@@ -258,7 +269,8 @@
             { "id": 1203, "name": "Data Recovery Services", "slug": "data-recovery-services" },
             { "id": 1204, "name": "IT Consulting", "slug": "it-consulting" },
             { "id": 1205, "name": "Smart Home Setup", "slug": "smart-home-setup" },
-            { "id": 1206, "name": "3D Printing Services", "slug": "3d-printing-services" }
+            { "id": 1206, "name": "3D Printing Services", "slug": "3d-printing-services" },
+            { "id": 12038, "name": "Other", "slug": "others" }
           ]
         },
         {
@@ -274,7 +286,8 @@
             { "id": 1306, "name": "Speech Therapist", "slug": "speech-therapist" },
             { "id": 1307, "name": "Genealogy Research", "slug": "genealogy-research" },
             { "id": 1308, "name": "Luxury and Personal Concierge Services", "slug": "luxury-personal-concierge-services" },
-            { "id": 1309, "name": "Cooking Lessons", "slug": "cooking-lessons" }
+            { "id": 1309, "name": "Cooking Lessons", "slug": "cooking-lessons" },
+            { "id": 123938, "name": "Other", "slug": "others" }
           ]
         },
         {
@@ -286,7 +299,8 @@
             { "id": 1402, "name": "Resume Writing", "slug": "resume-writing" },
             { "id": 1403, "name": "Scriptwriting Services", "slug": "scriptwriting-services" },
             { "id": 1404, "name": "Editing & Proofreading", "slug": "editing-proofreading" },
-            { "id": 1405, "name": "Translation Services", "slug": "translation-services" }
+            { "id": 1405, "name": "Translation Services", "slug": "translation-services" },
+            { "id": 12745938, "name": "Other", "slug": "others" }
           ]
         },
         {
@@ -302,7 +316,8 @@
             { "id": 1506, "name": "Swim Instructor", "slug": "swim-instructor" },
             { "id": 1507, "name": "Henna Artist", "slug": "henna-artist" },
             { "id": 1508, "name": "Personal Driver", "slug": "personal-driver" },
-            { "id": 1509, "name": "Travel Agent", "slug": "travel-agent" }
+            { "id": 1509, "name": "Travel Agent", "slug": "travel-agent" },
+            { "id": 126403938, "name": "Other", "slug": "others" }
           ]
         },
         {
@@ -314,7 +329,8 @@
             { "id": 1602, "name": "Karaoke DJ", "slug": "karaoke-dj" },
             { "id": 1603, "name": "Sound Engineer", "slug": "sound-engineer" },
             { "id": 1604, "name": "Music Producer", "slug": "music-producer" },
-            { "id": 1605, "name": "Band Manager", "slug": "band-manager" }
+            { "id": 1605, "name": "Band Manager", "slug": "band-manager" },
+            { "id": 120356938, "name": "Other", "slug": "others" }
           ]
         },
         {
@@ -326,7 +342,8 @@
             { "id": 1702, "name": "Nanny Services", "slug": "nanny-services" },
             { "id": 1703, "name": "Elderly Companion Care", "slug": "elderly-companion-care" },
             { "id": 1704, "name": "Special Needs Caregiver", "slug": "special-needs-caregiver" },
-            { "id": 1705, "name": "Doula Services", "slug": "doula-services" }
+            { "id": 1705, "name": "Doula Services", "slug": "doula-services" },
+            { "id": 1255938, "name": "Other", "slug": "others" }
           ]
         },
         
@@ -339,7 +356,8 @@
               { "id": 1802, "name": "Mortgage Broker", "slug": "mortgage-broker" },
               { "id": 1803, "name": "Debt Counselor", "slug": "debt-counselor" },
               { "id": 1804, "name": "Financial Planner", "slug": "financial-planner" },
-              { "id": 1805, "name": "Legal Consulting", "slug": "legal-consulting" }
+              { "id": 1805, "name": "Legal Consulting", "slug": "legal-consulting" },
+              { "id": 12039338, "name": "Other", "slug": "others" }
             ]
           },
           {
@@ -352,7 +370,8 @@
               { "id": 1903, "name": "Woodworking & Custom Furniture", "slug": "woodworking-custom-furniture" },
               { "id": 1904, "name": "Crochet/Knitting", "slug": "crochet-knitting" },
               { "id": 1905, "name": "Organic Handmade Soaps/ Creams", "slug": "organic-handmade-soaps-creams" },
-              { "id": 1906, "name": "Seamstress", "slug": "seamstress" }
+              { "id": 1906, "name": "Seamstress", "slug": "seamstress" },
+              { "id": 14203938, "name": "Other", "slug": "others" }
             ]
           },
           {
@@ -373,7 +392,8 @@
               { "id": 2011, "name": "Food Truck Services", "slug": "food-truck-services" },
               { "id": 2012, "name": "eBay / Amazon Product Lister", "slug": "ebay-amazon-product-lister" },
               { "id": 2013, "name": "Mystery Shopper", "slug": "mystery-shopper" },
-              { "id": 2014, "name": "House Sitter", "slug": "house-sitter" }
+              { "id": 2014, "name": "House Sitter", "slug": "house-sitter" },
+              { "id": 12039338, "name": "Other", "slug": "others" }
             ]
           },
           {
@@ -384,7 +404,8 @@
               { "id": 2101, "name": "Wheelchair Ramp Installation", "slug": "wheelchair-ramp-installation" },
               { "id": 2102, "name": "Home Accessibility Modifications", "slug": "home-accessibility-modifications" },
               { "id": 2103, "name": "Braille & Sign Language Interpreter", "slug": "braille-sign-language-interpreter" },
-              { "id": 2104, "name": "Elderly Computer Literacy Coach", "slug": "elderly-computer-literacy-coach" }
+              { "id": 2104, "name": "Elderly Computer Literacy Coach", "slug": "elderly-computer-literacy-coach" },
+              { "id": 120309938, "name": "Other", "slug": "others" }
             ]
           },
           {
@@ -406,7 +427,8 @@
               { "id": 2212, "name": "Handwriting & Calligraphy Lessons", "slug": "handwriting-calligraphy-lessons" },
               { "id": 2213, "name": "Voice-Over Acting Classes", "slug": "voice-over-acting-classes" },
               { "id": 2214, "name": "Tattoo Art Training", "slug": "tattoo-art-training" },
-              { "id": 2215, "name": "Digital Legacy Planning", "slug": "digital-legacy-planning" }
+              { "id": 2215, "name": "Digital Legacy Planning", "slug": "digital-legacy-planning" },
+              { "id": 120389938, "name": "Other", "slug": "others" }
             ]
           },
           {
@@ -421,7 +443,8 @@
               { "id": 2305, "name": "Learn Urdu", "slug": "learn-urdu" },
               { "id": 2306, "name": "Learn Bengali", "slug": "learn-bengali" },
               { "id": 2307, "name": "Learn Arabic", "slug": "learn-arabic" },
-              { "id": 2308, "name": "Learn Chinese Mandarin", "slug": "learn-chinese-mandarin" }
+              { "id": 2308, "name": "Learn Chinese Mandarin", "slug": "learn-chinese-mandarin" },
+              { "id": 120368938, "name": "Other", "slug": "others" }
             ]
           },
           
@@ -489,7 +512,8 @@
                   "name": "Digital Matte Painter", 
                   "slug": "digital-matte-painter", 
                   "description": "Creates digital backgrounds for films or video games." 
-                }
+                },
+                { "id": 1237568, "name": "Other", "slug": "others" }
               ]
             },
             {
@@ -544,7 +568,8 @@
                   "name": "Augmented Reality (AR) Developer", 
                   "slug": "ar-developer", 
                   "description": "Creates AR experiences for apps or marketing campaigns." 
-                }
+                },
+                { "id": 15435938, "name": "Other", "slug": "others" }
               ]
             },
             {
@@ -599,7 +624,8 @@
                   "name": "Escape Artist", 
                   "slug": "escape-artist", 
                   "description": "Performs escape stunts at events or parties." 
-                }
+                },
+                { "id": 1543938, "name": "Other", "slug": "others" }
               ]
             },
             {
@@ -618,7 +644,8 @@
                   "name": "Happiness Coach", 
                   "slug": "happiness-coach", 
                   "description": "Helps clients find joy and fulfillment in their lives." 
-                }
+                },
+                { "id": 124548, "name": "Other", "slug": "others" }
               ]
             },
             {
@@ -667,7 +694,8 @@
                   "name": "Food Taster", 
                   "slug": "food-taster", 
                   "description": "Has a distinct palate and gives feedback to improve dishes." 
-                }
+                },
+                { "id": 1203938, "name": "Other", "slug": "others" }
               ]
             },
             
@@ -711,7 +739,8 @@
                     "name": "Stargazing Guide", 
                     "slug": "stargazing-guide", 
                     "description": "Hosts stargazing events and teaches astronomy basics." 
-                  }
+                  },
+                  { "id": 12999, "name": "Other", "slug": "others" }
                 ]
               },
               {
@@ -760,7 +789,8 @@
                     "name": "LinkedIn Profile Writer", 
                     "slug": "linkedin-profile-writer", 
                     "description": "Optimizes LinkedIn profiles for job seekers or professionals." 
-                  }
+                  },
+                  { "id": 129938, "name": "Other", "slug": "others" }
                 ]
               },
               {
@@ -845,7 +875,9 @@
                     "name": "Pet Food Taster", 
                     "slug": "pet-food-taster", 
                     "description": "Tests and reviews pet food for quality and taste." 
-                  }
+                  },
+                  { "id": 1203938, "name": "Other", "slug": "others" }
+
                 ]
               },
               {
@@ -882,7 +914,8 @@
                     "name": "Zero-Waste Event Planner", 
                     "slug": "zero-waste-event-planner", 
                     "description": "Organizes events with minimal environmental impact." 
-                  }
+                  },
+                  { "id": 19998, "name": "Other", "slug": "others" }
                 ]
               },
               {
@@ -913,18 +946,25 @@
                     "name": "Hologram Designer", 
                     "slug": "hologram-designer", 
                     "description": "Designs holographic displays for events or marketing." 
+                  },
+                  { "id": 12065338, "name": "Other", "slug": "others" }
+                ]
+              },
+            
+              {
+                "id": 37,
+                "name": "Others",
+                "slug": "Others",
+                "subcategories": [
+                  { 
+                    "id": 5436653, 
+                    "name": "Other Professional", 
+                    "slug": "other-professional"
+                  
                   }
+               
                 ]
               }
             
-            
-          
-          
-                
-      
-      
-    
-  
-  
 
 ]

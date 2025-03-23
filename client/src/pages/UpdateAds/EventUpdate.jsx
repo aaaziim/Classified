@@ -101,6 +101,7 @@ const EventUpdate = () => {
       category: selectedCategory,
       subcategory: selectedSubcategory,
       price: form.event_price.value,
+      event_availability: form.event_availability.value,
       startDate: form.event_start_date.value,
       endDate: form.event_end_date.value,
       description: form.event_description.value,
@@ -231,11 +232,25 @@ const EventUpdate = () => {
               <span className="text-[#001C27]">Price</span>
               <input type="number" name="event_price" className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" required defaultValue={event.price} />
             </label>
+            <label className="block">
+              <span className="text-[#001C27]">Availability</span>
+              <select
+                name="event_availability"
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
+                required
+              >
+                <option value="">Select </option>
+                <option value="soldout">Sold Out </option>
+                <option value="available">Available </option>
+        
+              </select>
+            </label>
 
             <label className='block'>
               <span className='text-[#001C27]'>Event Starts</span>
               <input type='date' name='event_start_date' required className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]' defaultValue={event.startDate} />
             </label>
+            
             <label className='block'>
               <span className='text-[#001C27]'>Event Ends</span>
               <input type='date' name='event_end_date' required className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]' defaultValue={event.endDate} />

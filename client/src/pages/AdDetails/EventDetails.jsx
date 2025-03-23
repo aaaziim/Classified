@@ -53,6 +53,7 @@ const EventDetails = () => {
     title,
     posted,
     price,
+    event_availability,
     country,
     state,
     city,
@@ -84,18 +85,40 @@ const EventDetails = () => {
         <DynamicTitlePage title={`${title} | SideGurus`} />
 
         <div className="w-full md:w-2/3 bg-[#FFE5D5] p-4 space-y-4 rounded-2xl">
-          <Carousel
-            infiniteLoop={true}
-            className="rounded-lg"
-            showThumbs={false}
-            showStatus={false}
-            showIndicators={true}
-            useKeyboardArrows={true}
-          >
-            {images?.map((image, index) => (
-              <GalleryImages key={index} image={image}></GalleryImages>
-            ))}
-          </Carousel>
+          <div className="relative">
+            <Carousel
+              infiniteLoop={true}
+              className="rounded-lg"
+              showThumbs={false}
+              showStatus={false}
+              showIndicators={true}
+              useKeyboardArrows={true}
+            >
+              {images?.map((image, index) => (
+                <GalleryImages key={index} image={image}></GalleryImages>
+              ))}
+            </Carousel>
+
+            {event_availability === "soldout" && (
+              <div
+                className="bg-red-700 max-w-full px-8 py-2 text-white font-bold absolute top-14 right-4"
+                style={{
+                  clipPath: "polygon(0 0, 100% 0, 90% 50%, 100% 100%, 0 100%)",
+                }}
+              >
+                <p>Sold Out</p> 
+              </div>
+            )}
+
+{new Date(endDate) < new Date() && (
+  <div className="absolute top-14 left-4 bg-red-700 max-w-full px-8 py-2 text-white font-bold"  style={{
+    clipPath: "polygon(0 0, 100% 0, 90% 50%, 100% 100%, 0 100%)",
+  }}>
+    <span style={{ color: "white", fontWeight: "bold" }}>Expired</span>
+  </div>
+)}
+
+          </div>
           <div className="flex gap-2 justify-between">
             <div>
               <h1 className="text-2xl text-[#001C27] font-bold">{title}</h1>
@@ -121,8 +144,19 @@ const EventDetails = () => {
             <p className="flex items-center gap-2 text-[#014D48]">
               <MdOutlineDateRange />
               <span>
-              <p>{new Date(startDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} to {new Date(endDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-
+                <p>
+                  {new Date(startDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}{" "}
+                  to{" "}
+                  {new Date(endDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
               </span>
             </p>
 
