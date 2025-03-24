@@ -10,7 +10,7 @@ const ReportedServiceCard = ({service,handleDelete,handleServiceApprove}) => {
       images &&   <img className='w-20 rounded' src={images[0]} />
     }
       <div>
-        <h3 className="text-lg font-semibold text-[#014D48]">{title}</h3>
+        <h3 className="text-lg font-semibold text-[#014D48]">{title?.slice(0,20)}</h3>
         <p className="text-[#001C27]">
         {description?.slice(0,20)}...
           </p>

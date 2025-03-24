@@ -18,7 +18,7 @@ const AdCard = ({service}) => {
            }
       </figure>
       <div className="card-body p-4">
-        <h2 className="card-title text-[#014D48] text-lg font-bold">{title}</h2>
+        <h2 className="card-title text-[#014D48] text-lg font-bold">{title?.slice(0,20)}...</h2>
         <p className="text-[#001C27] text-sm">
         {description?.slice(0,20)} ...
         </p>
