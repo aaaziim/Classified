@@ -56,7 +56,7 @@ const Home = () => {
           )}
         </div>
 
-        <Link className="flex justify-center" to="/all-categories">
+        <Link className="flex justify-center" to={`/all-categories`}>
           <button className="px-6 py-3 bg-[#014D48] text-white rounded-lg shadow-md hover:bg-[#FA8649] transition md:w-40">
             All Categories
           </button>

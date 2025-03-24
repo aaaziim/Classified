@@ -14,10 +14,10 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
   <AuthProvider>
   
-  <GlobalEventListener>  {/* Wrap everything */}
+  {/* <GlobalEventListener>  */}
         <RouterProvider router={routes} />
         <Toaster position="top-right" reverseOrder={false} />
-      </GlobalEventListener>
+      {/* </GlobalEventListener> */}
   
   </AuthProvider>
   </StrictMode>,

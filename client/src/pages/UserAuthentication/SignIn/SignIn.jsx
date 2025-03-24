@@ -92,7 +92,7 @@ const SignIn = () => {
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
         <div className="hidden bg-cover bg-center  lg:w-1/2 lg:flex lg:justify-center lg:items-center">
           <h1 className="text-4xl font-extrabold">
-            <span className="text-[#014D48] font-semibold text-xl">
+            <span className="text-[#014D48] font-semibold text-lg">
               SideGurus.com
             </span>
           </h1>

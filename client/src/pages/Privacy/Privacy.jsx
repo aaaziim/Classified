@@ -19,12 +19,12 @@ const Privacy = () => {
             Effective Date: 22nd March 2025
           </h1>
           <p className="mb-4">
-            Welcome to<span className="text-[#014D48] font-semibold text-xl"> SideGurus.com
+            Welcome to<span className="text-[#014D48] font-semibold text-lg"> SideGurus.com
             </span>
             , where local talent connects with opportunity. Your privacy matters
             to us, and we are committed to safeguarding your personal
             information. This policy explains how we collect, use, and protect
-            your data when you use our platform. By accessing <span className="text-[#014D48]  font-semibold text-xl"> SideGurus.com
+            your data when you use our platform. By accessing <span className="text-[#014D48]  font-semibold text-lg"> SideGurus.com
             </span>
             , you agree to the terms outlined below. We may update this policy
             from time to time, and we encourage you to review it regularly.
@@ -35,7 +35,7 @@ const Privacy = () => {
           </h2>
           <p className="mb-4">
             At{" "}
-            <span className="text-[#014D48]  font-semibold text-xl">
+            <span className="text-[#014D48]  font-semibold text-lg">
               SideGurus.com
             </span>
             , we take user privacy seriously. We do not engage in invasive
@@ -68,7 +68,7 @@ const Privacy = () => {
           <p className="mb-4">
             To enhance your experience and keep the platform secure, we collect
             specific data when you use{" "}
-            <span className="text-[#014D48]  font-semibold text-xl">
+            <span className="text-[#014D48]  font-semibold text-lg">
               SideGurus.com
             </span>
             . The information you provide allows us to facilitate transactions,
@@ -121,7 +121,7 @@ const Privacy = () => {
             </li>
             <li>
               <strong>Business Transactions –</strong> If{" "}
-              <span className=" text-[#014D48] font-semibold text-xl">
+              <span className=" text-[#014D48] font-semibold text-lg">
                 SideGurus.com
               </span>{" "}
               is involved in a merger or acquisition, user data may be
@@ -144,7 +144,7 @@ const Privacy = () => {
           </h2>
           <p className="mb-4">
             Security is a top priority at{" "}
-            <span className="text-[#014D48]  font-semibold text-xl">
+            <span className="text-[#014D48]  font-semibold text-lg">
               SideGurus.com
             </span>
             . We implement measures to protect user data from unauthorized
@@ -161,7 +161,7 @@ const Privacy = () => {
 
           <h2 className="text-xl font-semibold text-teal-700">Age Restrictions</h2>
           <p className="mb-4">
-            <span className="text-[#014D48]  font-semibold text-xl">
+            <span className="text-[#014D48]  font-semibold text-lg">
               SideGurus.com
             </span>{" "}
             is intended for individuals 18 years or older. If we discover that a
@@ -176,7 +176,7 @@ const Privacy = () => {
             We reserve the right to modify this Privacy Policy as needed. If
             significant updates are made, we will notify users through website
             announcements or email notifications. Your continued use of{" "}
-            <span className="text-[#014D48]  font-semibold text-xl">
+            <span className="text-[#014D48]  font-semibold text-lg">
               SideGurus.com
             </span>{" "}
             indicates acceptance of the revised terms.
@@ -191,8 +191,8 @@ const Privacy = () => {
             <li>Email: SideGurusServices@gmail.com</li>
             <li>
               Website:{" "}
-              <a href="https://www.SideGurus.com">
-                <span className="text-[#014D48]  font-semibold text-xl">
+              <a href="https://www.sidegurus.com">
+                <span className="text-[#014D48]  font-semibold text-lg">
                   SideGurus.com
                 </span>
               </a>
@@ -200,7 +200,7 @@ const Privacy = () => {
           </ul>
           <p>
             By using{" "}
-            <span className=" text-[#014D48] font-semibold text-xl">
+            <span className=" text-[#014D48] font-semibold text-lg">
               SideGurus.com
             </span>
             , you acknowledge and agree to the practices described in this

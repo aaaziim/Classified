@@ -19,7 +19,7 @@ const SafetyGuides = () => {
  
     <div className="mt-6 space-y-4">
     
-      <p>At <span className="text-[#014D48] font-semibold text-xl">
+      <p>At <span className="text-[#014D48] font-semibold text-lg">
               SideGurus.com
             </span>, your safety is our top priority. When connecting with service providers or clients online, it’s important to take precautions to ensure a safe and secure experience. Here are essential safety tips and tricks to follow when arranging to meet someone for your specific needs:</p>
 
@@ -187,7 +187,7 @@ const SafetyGuides = () => {
     Remember
   </h3>
   <p>
-    Your safety comes first! By following these tips, you can confidently connect with trusted professionals while protecting yourself. At    <span className="text-[#014D48] font-semibold text-xl">
+    Your safety comes first! By following these tips, you can confidently connect with trusted professionals while protecting yourself. At    <span className="text-[#014D48] font-semibold text-lg">
               SideGurus.com
             </span>, we aim to create a platform where both clients and service providers feel secure and supported.
   </p>

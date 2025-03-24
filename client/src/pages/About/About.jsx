@@ -22,7 +22,7 @@ const About = () => {
               We believe that everyone has a skill, a passion, or a hustle that
               deserves to be seen. Whether you’re a seasoned professional, a
               self-taught expert, or someone just getting started,{" "}
-              <span className="text-[#014D48] font-semibold text-xl">
+              <span className="text-[#014D48] font-semibold text-lg">
                 SideGurus.com
               </span>{" "}
               empowers individuals and small businesses to showcase their
@@ -32,7 +32,7 @@ const About = () => {
               Our platform is designed to make it easier than ever to turn your
               side hustle into a thriving business. From hairstylists and tutors
               to personal trainers, handymen, and creatives—
-              <span className="text-[#014D48] font-semibold text-xl">
+              <span className="text-[#014D48] font-semibold text-lg">
                 SideGurus.com
               </span>{" "}
               is where local talent shines.
@@ -42,7 +42,7 @@ const About = () => {
         <div className="px-10 py-4">
           <h2 className="text-2xl font-semibold my-2">
             Why Choose{" "}
-            <span className="text-[#014D48] font-semibold text-xl">
+            <span className="text-[#014D48] font-semibold text-lg">
               SideGurus.com
             </span>
             ?
@@ -63,13 +63,13 @@ const About = () => {
               </li>
               <li>
                 Simple & Affordable – No complicated processes, just a
-                straightforward way to advertise your services.
+                straightforward way to advertise your events.
               </li>
             </ul>
           </div>
           <p className="text-xl text-justify">
             At{" "}
-            <span className="text-[#014D48] font-semibold text-xl">
+            <span className="text-[#014D48] font-semibold text-lg">
               SideGurus.com
             </span>
             , we believe that your talent is valuable, your skills deserve
@@ -111,7 +111,7 @@ const About = () => {
         </div>
         <div className="text-xl text-justify">
           <p className=" my-2">
-            <span className="text-[#014D48] font-semibold text-xl">
+            <span className="text-[#014D48] font-semibold text-lg">
               SideGurus.com
             </span>{" "}
             is your go-to platform for local gigs, side hustles, and skilled
