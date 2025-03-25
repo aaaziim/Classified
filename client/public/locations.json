@@ -796,67 +796,991 @@
   {
     "id": 1,
     "name": "Egypt",
-    "slug": "egypt"
-  },
+    "slug": "egypt",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
+  }
+  ,
   {
     "id": 2,
     "name": "Israel",
-    "slug": "israel"
+    "slug": "israel",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 3,
     "name": "Jordan",
-    "slug": "jordan"
+    "slug": "jordan",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 4,
     "name": "Kuwait",
-    "slug": "kuwait"
+    "slug": "kuwait",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 5,
     "name": "Turkey",
-    "slug": "turkey"
+    "slug": "turkey",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 6,
     "name": "United Arab Emirates",
-    "slug": "united-arab-emirates"
+    "slug": "united-arab-emirates",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 7,
     "name": "Qatar",
-    "slug": "qatar"
+    "slug": "qatar",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 8,
     "name": "Saudi Arabia",
-    "slug": "saudi-arabia"
+    "slug": "saudi-arabia",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 9,
     "name": "South Africa",
-    "slug": "south-africa"
+    "slug": "south-africa",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 10,
     "name": "Ghana",
-    "slug": "ghana"
+    "slug": "ghana",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 11,
     "name": "Kenya",
-    "slug": "kenya"
+    "slug": "kenya",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 12,
     "name": "Morocco",
-    "slug": "morocco"
+    "slug": "morocco",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   },
   {
     "id": 13,
     "name": "Philippines",
-    "slug": "philippines"
+    "slug": "philippines",
+    "state": [
+      {
+        "id": 1,
+        "name": "Cairo",
+        "code": "C",
+        "slug": "cairo",
+        "cities": [
+          { "id": 101, "name": "Cairo", "slug": "cairo" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Giza",
+        "code": "GZ",
+        "slug": "giza",
+        "cities": [
+          { "id": 201, "name": "Giza", "slug": "giza" },
+          { "id": 202, "name": "6th of October City", "slug": "6th-of-october-city" },
+          { "id": 203, "name": "Sheikh Zayed City", "slug": "sheikh-zayed-city" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Sharqia",
+        "code": "SH",
+        "slug": "sharqia",
+        "cities": [
+          { "id": 301, "name": "Zagazig", "slug": "zagazig" },
+          { "id": 302, "name": "Bilbeis", "slug": "bilbeis" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Dakahlia",
+        "code": "DK",
+        "slug": "dakahlia",
+        "cities": [
+          { "id": 401, "name": "Mansoura", "slug": "mansoura" },
+          { "id": 402, "name": "Mit Ghamr", "slug": "mit-ghamr" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Beheira",
+        "code": "BH",
+        "slug": "beheira",
+        "cities": [
+          { "id": 501, "name": "Damanhour", "slug": "damanhour" },
+          { "id": 502, "name": "Kafr El Dawwar", "slug": "kafr-el-dawwar" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Alexandria",
+        "code": "ALX",
+        "slug": "alexandria",
+        "cities": [
+          { "id": 601, "name": "Alexandria", "slug": "alexandria" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Qalyubia",
+        "code": "QL",
+        "slug": "qalyubia",
+        "cities": [
+          { "id": 701, "name": "Shubra El Kheima", "slug": "shubra-el-kheima" },
+          { "id": 702, "name": "Banha", "slug": "banha" }
+        ]
+      }
+    ]
   }
 ]
 

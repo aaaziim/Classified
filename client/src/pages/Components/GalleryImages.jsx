@@ -7,8 +7,8 @@ const GalleryImage = ({image}) => {
         <div >
           <img
             src={image}
-            alt="Banner 1"
-            className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl"
+            alt={"Service Image"}
+            className="w-full  bg-cover rounded-2xl"
           />
         
       

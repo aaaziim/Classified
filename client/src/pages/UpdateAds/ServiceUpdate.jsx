@@ -324,7 +324,7 @@ const ServiceUpdate = () => {
             </label>
 
             {/* State Selection */}
-            {adCountry === "USA" && (
+            { (
               <label className="block">
                 <span className="text-[#001C27]">State</span>
                 <select
@@ -347,7 +347,7 @@ const ServiceUpdate = () => {
             )}
 
             {/* City Selection */}
-            {adCountry && selectedState && (
+            {(
               <label className="block">
                 <span className="text-[#001C27]">City</span>
                 <select
@@ -402,7 +402,7 @@ const ServiceUpdate = () => {
                 type="text"
                 name="author_phone"
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
-                required   defaultValue={service.author.phone}
+                   defaultValue={service.author.phone}
               />
             </label>
             <label className="block">

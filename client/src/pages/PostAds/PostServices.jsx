@@ -14,10 +14,10 @@ const PostServices = () => {
 
   const [categories, loadingCategories, errorCategories] = useCategory();
   const [locations, loadingLocations, errorLocations] = useLocations();
-
-  const [country, setCountry] = useState("");
-  const [stateIndex, setStateIndex] = useState(0);
-  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [stateIndex, setStateIndex] = useState(-1);
+  const [countryIndex, setCountryIndex] = useState(-1);
+  const [categoryIndex, setCategoryIndex] = useState(-1);
+  
   const [state, setState] = useState();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -32,6 +32,13 @@ const PostServices = () => {
     return <div className="text-center text-[#FA8649]">{errorCategories}</div>;
   if (errorLocations)
     return <div className="text-center text-[#FA8649]">{errorLocations}</div>;
+
+  const handleImageChange = (e) => {
+    // Check if files are selected
+    if (e.target.files.length > 0) {
+      toast.success("Photo uploaded successfully!");
+    }
+  };
 
   const handleAdPostService = async (e) => {
     e.preventDefault();
@@ -137,7 +144,7 @@ const PostServices = () => {
                 required
                 onChange={(e) => setCategoryIndex(e.target.selectedIndex - 1)}
               >
-                <option value="">Select Category</option>
+                <option value="" >Select Category</option>
                 {categories?.map((category, index) => (
                   <option
                     key={index}
@@ -150,7 +157,11 @@ const PostServices = () => {
               </select>
             </label>
 
-            <label className="block">
+           {
+            categories[categoryIndex]?.subcategories &&
+           
+           
+           <label className="block">
               <span className="text-[#001C27]">Sub-Category</span>
               <select
                 name="service_subcategory"
@@ -158,7 +169,7 @@ const PostServices = () => {
                 required
               >
                 <option value="">Select Sub-Category</option>
-                {categories[categoryIndex].subcategories.map(
+                {categories[categoryIndex]?.subcategories.map(
                   (subcategory, index) => (
                     <option key={index} value={subcategory.name}>
                       {subcategory.name}
@@ -167,6 +178,7 @@ const PostServices = () => {
                 )}
               </select>
             </label>
+}
 
             <label className="block">
               <span className="text-[#001C27]">Price</span>
@@ -190,7 +202,8 @@ const PostServices = () => {
             <label className="block">
               <span className="text-[#001C27]">Country</span>
               <select
-                onChange={(e) => setCountry(e.target.value)}
+              
+                onChange={(e) => setCountryIndex(e.target.selectedIndex - 1)}
                 name="service_country"
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
                 required
@@ -207,7 +220,7 @@ const PostServices = () => {
                 ))}
               </select>
             </label>
-            {country === "USA" && (
+            {locations[countryIndex]?.state &&
               <label className="block">
                 <span className="text-[#001C27]">State</span>
                 <select
@@ -216,8 +229,8 @@ const PostServices = () => {
                   onChange={(e) => setStateIndex(e.target.selectedIndex - 1)} // ✅ Set stateIndex here
                 >
                   <option value="">Select State</option>
-                  {locations.length > 0 && locations[0].state
-                    ? locations[0].state.map((location, index) => (
+                  {locations.length > 0 && locations[countryIndex].state
+                    ? locations[countryIndex]?.state?.map((location, index) => (
                         <option key={index} value={location.name}>
                           {location.name}
                         </option>
@@ -225,21 +238,23 @@ const PostServices = () => {
                     : null}
                 </select>
               </label>
-            )}
+            }
 
-            {country === "USA" ? (
+            { locations[countryIndex]?.state[stateIndex]?.cities &&
               <label className="block">
                 <span className="text-[#001C27]">City</span>
                 <select
                   name="service_city"
                   className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
                 >
+                  <option value="">Select City</option>
+
                   {locations.length > 0 &&
-                  locations[0].state &&
+                  locations[countryIndex]?.state &&
                   stateIndex !== undefined &&
-                  stateIndex < locations[0].state.length &&
-                  locations[0].state[stateIndex].cities
-                    ? locations[0].state[stateIndex].cities?.map(
+                  stateIndex < locations[countryIndex].state.length &&
+                  locations[countryIndex]?.state[stateIndex]?.cities
+                    ? locations[countryIndex]?.state[stateIndex]?.cities?.map(
                         (city, index) => (
                           <option key={index} value={city.name}>
                             {city.name}
@@ -249,13 +264,14 @@ const PostServices = () => {
                     : null}
                 </select>
               </label>
-            ) : null}
+             }
 
             <label className="block">
               <span className="text-[#001C27]">Upload Images</span>
               <input
                 type="file"
                 name="service_image"
+                onChange={handleImageChange} 
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]" multiple  
               />
             </label>
@@ -296,7 +312,7 @@ const PostServices = () => {
               />
             </label>
             <label className="block">
-              <span className="text-[#001C27]">Facebook</span>
+              <span className="text-[#001C27]">Facebook </span>
               <input
                 type="url"
                 name="author_facebook"

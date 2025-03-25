@@ -17,8 +17,8 @@ const AllLocations = () => {
       <div className="mx-4">
         
 
-        {locations?.map((location) => (
-          <LocationCard key={location.id} location={location} />
+        {locations?.map((location, i) => (
+          <LocationCard key={i} location={location} />
         ))}
       </div>
     </div>

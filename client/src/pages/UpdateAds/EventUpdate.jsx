@@ -287,7 +287,7 @@ const EventUpdate = () => {
             </label>
 
             {/* State Selection */}
-            {adCountry ==="USA" && (
+            { (
               <label className="block">
                 <span className="text-[#001C27]">State</span>
                 <select
@@ -308,7 +308,7 @@ const EventUpdate = () => {
             )}
 
             {/* City Selection */}
-            {adCountry && selectedState && (
+            { (
               <label className="block">
                 <span className="text-[#001C27]">City</span>
                 <select
@@ -362,7 +362,7 @@ const EventUpdate = () => {
               <input
                 type="text"
                 name="author_phone"
-                required
+                
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]"  defaultValue={event.author.phone}
               />
             </label>
