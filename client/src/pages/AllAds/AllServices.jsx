@@ -47,12 +47,26 @@ const AllServices = () => {
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState("");
   const [subcategory, setSubCategory] = useState("");
-  const [categoryIndex, setCategoryIndex] = useState(0);
+ 
+
+    const [stateIndex, setStateIndex] = useState(-1);
+    const [countryIndex, setCountryIndex] = useState(-1);
+    const [categoryIndex, setCategoryIndex] = useState(-1);
+
+
+
+
+
+
+
+
+
+
+
 
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
-  const [stateIndex, setStateIndex] = useState(0);
 
   const navigate = useNavigate();
 
@@ -146,26 +160,30 @@ const AllServices = () => {
             </div>
 
             <div>
-              <label className="block">
-                <span className="text-[#001C27]">Category</span>
-                <select
-                  name="service_category"
-                  className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
-                  required
-                  onChange={(e) => {
-                    setCategory(e.target.value);
 
-                    setCategoryIndex(e.target.selectedIndex - 1);
-                  }}
-                >
-                  <option value="">Select Category</option>
-                  {categories?.map((category, index) => (
-                    <option key={index} value={category.name}>
-                      {category.name}
-                    </option>
-                  ))}
-                </select>
-              </label>
+            <label className="block">
+              <span className="text-[#001C27]">Category</span>
+              <select
+                name="event_category"
+                required
+                className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#014D48]"
+                onChange={(e) => {setCategory(e.target.value);
+                  setCategoryIndex(e.target.selectedIndex - 1)}}
+              >
+                <option value="">Select Category</option>
+                {categories?.map((category, index) => (
+                  <option
+                    key={index}
+                    value={category.name}
+                    // Wrap the function call in an anonymous function
+                  >
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+
             </div>
 
             {category && (
@@ -196,13 +214,19 @@ const AllServices = () => {
             <label className="block">
               <span className="text-[#001C27]">Country</span>
               <select
-                onChange={(e) => setCountry(e.target.value)}
+                onChange={(e) => {
+                  
+                  setCountry(e.target.value)
+                  setCountryIndex(e.target.selectedIndex - 1)
+                }
+
+                }
                 name="service_country"
                 className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
                 required
               >
                 <option value="">Select Country</option>
-                {locations.map((location, index) => (
+                {locations?.map((location, index) => (
                   <option key={index} value={location.name}>
                     {location.name}
                   </option>
@@ -210,7 +234,7 @@ const AllServices = () => {
               </select>
             </label>
 
-            {country === "USA" && (
+            { country && (
               <label className="block">
                 <span className="text-[#001C27]">State</span>
                 <select
@@ -223,8 +247,8 @@ const AllServices = () => {
                   }}
                 >
                   <option value="">Select State</option>
-                  {locations.length > 0 && locations[0].state
-                    ? locations[0].state.map((location, index) => (
+                  {locations?.length > 0 && locations[countryIndex]?.state
+                    ? locations[countryIndex]?.state?.map((location, index) => (
                         <option key={index} value={location.name}>
                           {location.name}
                         </option>
@@ -234,7 +258,7 @@ const AllServices = () => {
               </label>
             )}
 
-            {country === "USA" && (
+            { country && state && (
               <label className="block">
                 <span className="text-[#001C27]">City</span>
                 <select
@@ -243,12 +267,14 @@ const AllServices = () => {
                   className="mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]"
                   required
                 >
-                  {locations.length > 0 &&
-                  locations[0].state &&
+                  <option value="">Select City</option>
+
+                  {locations?.length > 0 &&
+                  locations[countryIndex]?.state &&
                   stateIndex !== undefined &&
-                  stateIndex < locations[0].state.length &&
-                  locations[0].state[stateIndex].cities
-                    ? locations[0].state[stateIndex].cities.map(
+                  stateIndex < locations[countryIndex]?.state?.length &&
+                  locations[countryIndex]?.state[stateIndex]?.cities
+                    ? locations[countryIndex]?.state[stateIndex]?.cities?.map(
                         (city, index) => (
                           <option key={index} value={city.name}>
                             {city.name}

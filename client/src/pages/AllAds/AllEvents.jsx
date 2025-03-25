@@ -50,6 +50,11 @@ const AllEvents = () => {
 }, [page]);  // The effect re-runs whenever the page changes
 
 
+  
+ 
+
+ 
+ 
  
 
 
@@ -58,14 +63,16 @@ const AllEvents = () => {
   const [searchText, setSearchText] = useState("")
   const [category, setCategory] = useState("");
   const [subcategory, setSubCategory] = useState("");
-  const [categoryIndex, setCategoryIndex] = useState(0);
+ 
 
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
-  const [stateIndex, setStateIndex] = useState(0);
  
-  
+ 
+  const [stateIndex, setStateIndex] = useState(-1);
+  const [countryIndex, setCountryIndex] = useState(-1);
+  const [categoryIndex, setCategoryIndex] = useState(-1);
  
 const navigate = useNavigate()
 
@@ -200,7 +207,13 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
   <label className='block'>
     <span className='text-[#001C27]'>Country</span>
     <select
-      onChange={(e) => setCountry(e.target.value)}
+        onChange={(e) => {
+                  
+          setCountry(e.target.value)
+          setCountryIndex(e.target.selectedIndex - 1)
+        }
+
+        }
       name='event_country'
       className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
       required
@@ -214,7 +227,7 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
     </select>
   </label>
 
-  {country === 'USA' && (
+  {country && (
     <label className='block'>
       <span className='text-[#001C27]'>State</span>
       <select
@@ -228,8 +241,8 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
         }}
       >
         <option value=''>Select State</option>
-        {locations.length > 0 && locations[0].state ? (
-          locations[0].state.map((location, index) => (
+        {locations?.length > 0 && locations[countryIndex]?.state ? (
+          locations[countryIndex]?.state?.map((location, index) => (
             <option key={index} value={location.name}>
               {location.name}
             </option>
@@ -239,7 +252,7 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
     </label>
   )}
 
-  {country === 'USA' && (
+  {country && state && (
     <label className='block'>
       <span className='text-[#001C27]'>City</span>
       <select
@@ -248,12 +261,13 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
         className='mt-1 block w-full border rounded-lg p-2 focus:ring focus:ring-[#FA8649]'
         required
       >
-        {locations.length > 0 &&
-          locations[0].state &&
+         <option value="">Select City</option>
+        {locations?.length > 0 &&
+          locations[countryIndex]?.state &&
           stateIndex !== undefined &&
-          stateIndex < locations[0].state.length &&
-          locations[0].state[stateIndex].cities ? (
-          locations[0].state[stateIndex].cities.map((city, index) => (
+          stateIndex < locations[countryIndex]?.state?.length &&
+          locations[countryIndex]?.state[stateIndex]?.cities ? (
+          locations[countryIndex]?.state[stateIndex]?.cities?.map((city, index) => (
             <option key={index} value={city.name}>
               {city.name}
             </option>
