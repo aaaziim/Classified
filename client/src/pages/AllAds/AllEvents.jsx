@@ -128,7 +128,7 @@ if (errorEvents) return <div className="text-center text-[#FA8649]">{errorEvents
           <div className='space-y-4 mb-4'>
       <Breadcrumb
        title={"Events"}
-       subTitle={"Here you can find"}>
+       subTitle={"Here you can find all the events listed on sidegurus.com"}>
        </Breadcrumb>
     </div>
     <div></div>

@@ -10,7 +10,7 @@ const Privacy = () => {
 
         <Breadcrumb
           title={"Privacy Policy"}
-          subTitle={"Here you can read safety information"}
+          subTitle={"Here you can read our privacy policy"}
         ></Breadcrumb>
       </div>
       <div className="bg-[#FFE5D5]   p-6 min-h-screen flex justify-center items-center">

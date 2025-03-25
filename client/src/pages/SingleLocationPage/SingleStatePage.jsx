@@ -62,7 +62,7 @@ const SingleLocationPage = () => {
       <div className="space-y-4 mb-6">
         <Breadcrumb 
           title={stateName}
-          subTitle="Here you can update your service information"
+          subTitle={`Here you can find all ads from ${stateName}`}
         />
       </div>
 

@@ -9,7 +9,7 @@ const Cookies = () => {
         <div className='space-y-4 mb-4'>
       <Breadcrumb
        title={"Cookies Policy"}
-       subTitle={"Here you can .."}>
+       subTitle={"Here you can read our cookies policy"}>
        </Breadcrumb>
     </div>
 

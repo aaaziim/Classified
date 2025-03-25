@@ -3,6 +3,7 @@ import Breadcrumb from "../Components/Breadcrumb";
 import useCategory from "../../hooks/useCategory";
 import CategoryCardSuggestions from "../Home/CategoryCardSuggestions";
 import DynamicTitlePage from "../Components/DynamicTitlePage";
+import GlobalEventListener from "../Components/GlobalEventListener ";
 
 const Suggesstions = () => {
   const [categories] = useCategory();
@@ -10,6 +11,7 @@ const Suggesstions = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
+    <GlobalEventListener>
     <div>
       <DynamicTitlePage title={`SideGurus Suggestions | SideGurus`} />
 
@@ -37,6 +39,7 @@ const Suggesstions = () => {
         ))}
       </div>
     </div>
+    </GlobalEventListener>
   );
 };
 

@@ -31,7 +31,8 @@ const SingleCategoryPage = () => {
 
       <Breadcrumb
         title={ category}
-        subTitle="Here you can update your service information"
+        subTitle={`Here you can find all ads under ${category} category`} 
+ 
       />
     </div>
   <Tabs>

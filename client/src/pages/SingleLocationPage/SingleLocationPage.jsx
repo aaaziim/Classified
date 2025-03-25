@@ -32,7 +32,7 @@ const SingleLocationPage = () => {
       <div className="space-y-4 mb-6">
         <Breadcrumb
           title={locationName}
-          subTitle="Here you can update your service information"
+          subTitle={`Here you can find all ads from ${locationName}`}
         />
       </div>
       <Tabs>

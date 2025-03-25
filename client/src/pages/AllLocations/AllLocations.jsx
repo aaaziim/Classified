@@ -12,7 +12,7 @@ const AllLocations = () => {
 
       <Breadcrumb
           title={"Locations"}
-          subTitle={"Here you can find"}
+          subTitle={"Here you can find Ads By Location"}
         ></Breadcrumb>
       <div className="mx-4">
         

@@ -130,7 +130,7 @@ const AllServices = () => {
       <div className="space-y-4 mb-4">
         <Breadcrumb
           title={"Services"}
-          subTitle={"Here you can find"}
+          subTitle={"Here you can find all the services listed on sidegurus.com"}
         ></Breadcrumb>
       </div>
       <div></div>
