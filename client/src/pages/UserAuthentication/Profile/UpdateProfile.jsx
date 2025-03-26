@@ -6,6 +6,7 @@ import useAuth from '../../../hooks/useAuth'
 import { useNavigate } from 'react-router'
 import LoadingSpinner from '../../Components/LoadingSpinner'
 import DynamicTitlePage from '../../Components/DynamicTitlePage'
+import { FaUser } from 'react-icons/fa'
 
 const UpdateProfile = () => {
 
@@ -90,13 +91,9 @@ const UpdateProfile = () => {
 
             {/* Profile Picture Upload */}
             <div className="flex justify-center items-center">
-              <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-[#014D48]">
-                <img src="profile-picture.jpg" alt="Profile" className="w-full h-full object-cover" />
-              </div>
-              <label htmlFor="profile-picture" className="ml-4 cursor-pointer text-[#FA8649] hover:text-[#E06D36] transition">
-                Change Picture
-              </label>
-              <input type="file" id="profile-picture" className="hidden" />
+              <div className="rounded-full border-2 border-white flex items-center justify-center p-2">
+                                <FaUser className="text-5xl" />
+                              </div>
             </div>
 
             {/* Full Name */}

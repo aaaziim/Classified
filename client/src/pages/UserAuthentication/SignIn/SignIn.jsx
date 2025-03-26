@@ -37,7 +37,7 @@ const SignIn = () => {
         const { token } = await axiosSecure.post("/jwt", { email: user.email });
 
         const response = await axiosSecure.post("/profile-exists", { email: user.email });
-        console.log(response.data.exists);
+      
 
         if (!response.data.exists) {
           // Send user profile to the backend

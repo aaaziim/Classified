@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 import DynamicTitlePage from "../../Components/DynamicTitlePage";
+import { FaUser } from "react-icons/fa";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -53,11 +54,9 @@ const Profile = () => {
         {/* Profile Header */}
         <div className="flex flex-col md:flex-row items-center mb-8">
           <div className="flex-shrink-0">
-            <img
-              src="profile-picture.jpg"
-              alt="User Profile"
-              className="w-24 h-24 rounded-full border-2 border-[#014D48]"
-            />
+          <div className="rounded-full border-2 border-white flex items-center justify-center p-2">
+                  <FaUser className="text-5xl" />
+                </div>
           </div>
           <div className="ml-6 text-center md:text-left">
             <h1 className="text-2xl font-semibold text-[#014D48]">
