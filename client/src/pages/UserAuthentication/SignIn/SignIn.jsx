@@ -36,12 +36,21 @@ const SignIn = () => {
         };
         const { token } = await axiosSecure.post("/jwt", { email: user.email });
 
-        // Send user profile to the backend
+        const response = await axiosSecure.post("/profile-exists", { email: user.email });
+        console.log(response.data.exists);
+
+        if (!response.data.exists) {
+          // Send user profile to the backend
         const { data } = await axiosSecure.post("/profile", userProfile);
 
         if (data.status === 409) {
           toast.success("Sign In Successful");
         }
+        }
+        
+         
+
+        
       }
       navigate(destination, { replace: true });
     } catch (err) {

@@ -89,7 +89,7 @@ const signIn = async (email, password) => {
 
   const logOut = async () => {
     setLoading(true)
-    await axiosSecure("/logout");
+    await axiosSecure.post("/logout");
     return signOut(auth)
   }
 

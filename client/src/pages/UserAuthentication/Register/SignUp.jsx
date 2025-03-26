@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react"; 
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
@@ -7,6 +7,8 @@ import DynamicTitlePage from "../../Components/DynamicTitlePage";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 const SignUp = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const destination = location.state || "/";
   const { createUser, signInWithGoogle, user, loading } = useAuth();
   const axiosSecure = useAxiosSecure()
   const [showPassword, setShowPassword] = useState(false);
@@ -21,21 +23,35 @@ const SignUp = () => {
     try {
       const result = await signInWithGoogle();
       const user = result.user;
+
       if (user) {
         const userProfile = {
           name: user.displayName,
-          email: user.email, 
+          email: user.email,
         };
-  
-        // Send user profile to the backend
-        const { data } = await axiosSecure.post("/profile", userProfile);
-      }
+        const { token } = await axiosSecure.post("/jwt", { email: user.email });
+
+        const response = await axiosSecure.post("/profile-exists", { email: user.email });
       
-      toast.success("Sign-in Successful");
+
+        if (!response.data.exists) {
+          // Send user profile to the backend
+        const { data } = await axiosSecure.post("/profile", userProfile);
+
+        if (data.status === 409) {
+          toast.success("Sign Up Successful");
+        }
+        }
+        
+         
+
+        
+      }
+      navigate(destination, { replace: true });
     } catch (err) {
+      console.log(err);
       toast.error(err?.message);
     }
-  
   };
   const handleEmailSignIn = async (e) => {
     e.preventDefault();

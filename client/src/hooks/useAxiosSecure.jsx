@@ -27,7 +27,7 @@ const useAxiosSecure = () => {
                     
                    
                      
-                        await axiosSecure("/logout");
+                        await axiosSecure.post("/logout");
                         return signOut(auth)
                       
                 }
