@@ -202,7 +202,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         .send({ success: true });
     });
 
-    app.get("/logout", (req, res) => {
+    app.post("/logout", (req, res) => {
       res
         .clearCookie("token", {
           httpOnly: true,
@@ -1078,6 +1078,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       category,
       subcategory,
       price,
+      event_availability,
       description,
       startDate,
       endDate,
@@ -1106,6 +1107,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       category,
       subcategory,
       price,
+      event_availability,
       description,
       startDate,
       endDate,
@@ -1171,32 +1173,43 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
 
     // Events API Ends
     // Profile API Start
-
+    app.post("/profile-exists", async (req, res) => {
+      try {
+        const { email } = req.body;
+    
+        if (!email) {
+          return res.status(400).send({ message: "Email is required" });
+        }
+    
+        const existingProfile = await profileCollection.findOne({ email });
+    
+        res.send({ exists: !!existingProfile }); // true if profile exists, false otherwise
+    
+      } catch (err) {
+        console.error("Error checking profile:", err);
+        res.status(500).send({ message: "Internal Server Error" });
+      }
+    });
+    
 
     app.post("/profile", async (req, res) => {
       try {
         const newProfile = req.body;
-
-        // Check if profile already exists (based on a unique field, e.g., email)
-        const existingProfile = await profileCollection.findOne({
-          email: newProfile.email,
+    
+        // Insert the new profile into the database
+        const result = await profileCollection.insertOne(newProfile);
+    
+        // Respond with a success message, no profile returned
+        res.status(201).send({
+          message: "Profile created successfully",
         });
-
-        // If profile doesn't exist, insert the new profile
-        if (!existingProfile) {
-          const result = await profileCollection.insertOne(newProfile);
-
-          // Respond with the inserted profile details (you can customize this based on your needs)
-          res.status(201).send({
-            message: "Profile created successfully",
-            profile: result.ops[0], // Assuming you are using MongoDB and inserting a single document
-          });
-        }
+        
       } catch (err) {
         console.error("Error creating profile:", err);
         res.status(500).send({ message: "Internal Server Error" });
       }
     });
+    
 
     // Get All Profiles API
     app.get("/profiles",verifyToken, verifyAdmin, async (req, res) => {
