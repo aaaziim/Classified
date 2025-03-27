@@ -93,7 +93,7 @@ async function run() {
 
 
     const verifyAdmin = async (req, res, next) => {
-      const adminEmail = req.user.email;
+      const adminEmail = req.user.email.toLowerCase();
       const user = await profileCollection.findOne({ email: adminEmail });
     
       if (!user || !user.isAdmin) {
@@ -103,7 +103,7 @@ async function run() {
     };
     
     const verifyAdminOrAuthor = async (req, res, next) => {
-      const userEmail = req.user.email;
+      const userEmail = req.user.email.toLowerCase();
       const { id } = req.params; // Get the service/event ID
     
       // Find the service or event in both collections
@@ -196,7 +196,8 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       res
         .cookie("token", token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
+          // secure: process.env.NODE_ENV === "production",
+          secure: true,
           sameSite: "none" ,
         })
         .send({ success: true });
@@ -206,7 +207,9 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       res
         .clearCookie("token", {
           httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
+          // secure: process.env.NODE_ENV === "production",
+          secure: true,
+
           sameSite: "none" ,
 
           maxAge: 0,
@@ -355,7 +358,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
     app.get("/servicesbyauser", verifyToken, async (req, res) => {
       const user = req.user;
       
-      const email = user.email;
+      const email = user.email.toLowerCase();
       if (!email) {
         return res
           .status(400)
@@ -770,7 +773,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
     // Get Specific Events Posted by a user by user email
     app.get("/eventsbyauser", verifyToken, async (req, res) => {
       const user = req.user;
-      const email = user.email;
+      const email = user.email.toLowerCase();
       if (!email) {
         return res
           .status(400)
@@ -1071,7 +1074,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
   try {
     const eventId = req.params.id;  // Get event ID from URL parameter
     const user = req.user;
-    const userEmail = user.email;
+    const userEmail = user.email.toLowerCase();
     const event = await eventsCollection.findOne({ _id: new ObjectId(eventId) });
     
     const {
@@ -1237,7 +1240,8 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
     app.get("/userprofile", verifyToken, async (req, res) => {
       try {
         const user = req.user;
-        const email = user.email;
+        const email = user.email.toLowerCase();
+        
         if (!email) {
           return res
             .status(400)
@@ -1257,7 +1261,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
     // Update userProfile
     app.put("/profile-update", verifyToken, async (req, res) => {
       try {
-        const email = req.user.email;
+        const email = req.user.email.toLowerCase();
         const updatedProfile = req.body;
         const profile = await profileCollection.findOne({ email: email });
         
@@ -1284,28 +1288,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
       }
     });
 
-    // Delete user profile
-//not used
-    // app.delete("/profile-delete", verifyToken, verifyAdmin, async (req, res) => {
-    //   try {
-    //     const email = req.user.email;
-    //     const profile = await profileCollection.findOne({ email: email });
 
-    //     // Update it by admin email upon completion
-    //     if (email !== profile.email) {
-    //       return res.status(403).json({ error: "Unauthorized Access" });
-    //     }
-
-    //     const result = await profileCollection.deleteOne({ email: email });
-    //     if (result.deletedCount === 0) {
-    //       return res.status(404).send({ message: "User not found" });
-    //     }
-    //     res.send({ message: "Profile deleted successfully" });
-    //   } catch (error) {
-    //     console.error(error);
-    //     res.status(500).send({ message: "Internal Server Error" });
-    //   }
-    // });
 
     // Profile API End
 
