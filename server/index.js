@@ -197,7 +197,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         .cookie("token", token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "strict" ,
+          sameSite: "none" ,
         })
         .send({ success: true });
     });
@@ -207,7 +207,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         .clearCookie("token", {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "strict" ,
+          sameSite: "none" ,
 
           maxAge: 0,
         })
