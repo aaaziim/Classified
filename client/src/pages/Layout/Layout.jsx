@@ -3,6 +3,7 @@ import Navbar from "../Components/NavBar"
 import Footer from "../Components/Footer"
 
 const Layout = () => {
+  
   return (
     <div className="w-full md:container md:x-4 md:mx-auto">
     <Navbar></Navbar>

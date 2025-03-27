@@ -64,6 +64,7 @@ const SignUp = () => {
         await createUser(email, password);
 
         // Send user profile data to backend
+
         const profile = { name,   email };
         try {
             await axiosSecure.post(`/profile`, profile);

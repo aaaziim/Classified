@@ -48,9 +48,6 @@ const SignIn = () => {
         }
         }
         
-         
-
-        
       }
       navigate(destination, { replace: true });
     } catch (err) {
@@ -62,11 +59,12 @@ const SignIn = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
+    const emaillowerCase = email.toLowerCase();
     const password = e.target.password.value;
 
     try {
       await signIn(email, password);
-      const { token } = await axiosSecure.post("/jwt", { email });
+      const { token } = await axiosSecure.post("/jwt", { email:emaillowerCase });
       navigate(destination, { replace: true });
       toast.success("Sign-in Successful");
     } catch (err) {

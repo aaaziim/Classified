@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Breadcrumb from "../Components/Breadcrumb";
 import useLocations from "../../hooks/useLocations";
 import LocationCard from "./LocationCard";
@@ -6,6 +6,9 @@ import DynamicTitlePage from "../Components/DynamicTitlePage";
 
 const AllLocations = () => {
   const [locations] = useLocations();
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   return (
     <div>
       <DynamicTitlePage title={`Locations | SideGurus`} />

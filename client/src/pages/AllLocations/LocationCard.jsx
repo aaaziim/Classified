@@ -20,7 +20,7 @@ const LocationCard = ({ location }) => {
             <div className="collapse bg-base-100 border-base-300 border">
               <input type="checkbox" />
               <div className="collapse-title font-semibold">
-               All States
+              View All
               </div>
               <div className="collapse-content text-sm">
                 <ul className=" grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-3 space-y-2 pl-5 text-center">
