@@ -197,7 +197,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         .cookie("token", token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "none" ,
+          sameSite: "strict" ,
         })
         .send({ success: true });
     });
@@ -207,7 +207,7 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
         .clearCookie("token", {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "none" ,
+          sameSite: "strict" ,
 
           maxAge: 0,
         })
@@ -1196,9 +1196,16 @@ app.get("/admins", verifyToken, verifyAdmin, async (req, res) => {
     app.post("/profile", async (req, res) => {
       try {
         const newProfile = req.body;
+
+        const registerprofile ={
+          name: newProfile.name,
+          email: newProfile.email.toLowerCase(),
+        }
+
+        
     
         // Insert the new profile into the database
-        const result = await profileCollection.insertOne(newProfile);
+        const result = await profileCollection.insertOne(registerprofile);
     
         // Respond with a success message, no profile returned
         res.status(201).send({
